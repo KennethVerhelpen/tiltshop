@@ -1,0 +1,196 @@
+// Alignment of text
+%text-left,
+.text-left {
+  text-align: left !important;
+}
+
+%text-center,
+.text-center {
+  text-align: center !important;
+}
+
+%text-right,
+.text-right {
+  text-align: right !important;
+}
+
+%text-nowrap,
+.text-nowrap {
+  white-space: nowrap;
+}
+
+%text-wrap,
+.text-wrap {
+  white-space: pre-wrap;
+}
+
+%text-truncate,
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+%text-uppercase,
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+%text-capitalize,
+.text-capitalize {
+  &::first-letter {
+    text-transform: capitalize;
+  }
+}
+
+%text-lowercase,
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+%text-decoration-none,
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.error {
+  padding: 2px 6px;
+  border-radius: $radius-xs;
+  background-color: $danger-100;
+  color: $danger-500;
+}
+
+.warning {
+  padding: 2px 3px;
+  border-radius: $radius-xs;
+  background-color: $accent-300;
+  color: $accent-700;
+}
+
+// Cursors
+%cursor-pointer,
+.cursor-pointer {
+  cursor: pointer;
+}
+
+%cursor-help,
+.cursor-help {
+  cursor: help;
+}
+
+%cursor-wait,
+.cursor-wait {
+  cursor: wait;
+}
+
+%cursor-crosshair,
+.cursor-crosshair {
+  cursor: crosshair;
+}
+
+%cursor-not-allowed,
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+%cursor-zoom-in,
+.cursor-zoom-in {
+  cursor: zoom-in;
+}
+
+%cursor-zoom-out,
+.cursor-zoom-out {
+  cursor: zoom-out;
+}
+
+%cursor-grab,
+.cursor-grab {
+  cursor: grab;
+}
+
+// Display
+%display-inline-block,
+.display-inline-block {
+  display: inline-block;
+}
+
+%display-block,
+.display-block {
+  display: block;
+}
+
+%display-none,
+.display-none {
+  display: none;
+}
+
+// Border
+%border,
+.border {
+  border: 1px solid $secondary-700;
+}
+
+%border-top,
+.border-top {
+  border-top: 1px solid $secondary-700;
+}
+
+%border-right,
+.border-right {
+  border-right: 1px solid $secondary-700;
+}
+
+%border-bottom,
+.border-bottom {
+  border-bottom: 1px solid $secondary-700;
+}
+
+%border-left,
+.border-left {
+  border-left: 1px solid $secondary-700;
+}
+
+%rounded,
+.rounded {
+  border-radius: 50%;
+}
+
+%rounded-xs,
+.rounded-xs {
+  border-radius: $radius-xs;
+}
+
+%rounded-sm,
+.rounded-sm {
+  border-radius: $radius-sm;
+}
+
+%rounded-md,
+.rounded-md {
+  border-radius: $radius-md;
+}
+
+%rounded-lg,
+.rounded-lg {
+  border-radius: $radius-lg;
+}
+
+// Overflow
+@each $axis in ('-x', '-y', '') {
+  @include overflow-classes($axis);
+}
+
+// Shadows
+@each $shadow in $shadows {
+  %shadow-#{$shadow},
+  .shadow-#{$shadow} {
+    @include box($shadow, $secondary-900);
+  }
+}
+
+// Hide for print
+@media print {
+  .hide-print:not(.show-print):not(.show) {
+    display: none !important;
+  }
+}

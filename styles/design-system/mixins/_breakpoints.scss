@@ -1,0 +1,11 @@
+@mixin media-breakpoint-till($screenWidth) {
+  @media (max-width: $screenWidth) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-from($screenWidth) {
+  @media (min-width: $screenWidth) {
+    @content;
+  }
+}

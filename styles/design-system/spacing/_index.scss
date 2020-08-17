@@ -1,0 +1,13 @@
+@include generate-spacing-classes();
+
+@each $breakpointClassName, $breakpoint in $breakpoints-gt {
+  @include media-breakpoint-from($breakpoint) {
+    @include generate-spacing-classes($breakpointClassName);
+  }
+}
+
+@each $breakpointClassName, $breakpoint in $breakpoints {
+  @include media-breakpoint-till($breakpoint) {
+    @include generate-spacing-classes($breakpointClassName);
+  }
+}

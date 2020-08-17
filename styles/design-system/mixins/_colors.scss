@@ -1,0 +1,79 @@
+@mixin generate-color-classes($prefixClass, $property, $hexToRGB: null) {
+  @each $className, $color in $colors {
+    .#{$prefixClass}#{$className} {
+      @if ($hexToRGB) {
+        #{$property}: #{hexToRGB($color)};
+      } @else {
+        #{$property}: $color;
+      }
+    }
+  }
+}
+
+@mixin generate-button-colors($textColor, $backgroundColor, $borderColor, $shadowColor) {
+  @if ($textColor) {
+    color: $textColor;
+    &:hover {
+      color: darken($textColor, 5%);
+    }
+  }
+
+  @if ($backgroundColor) {
+    background: $backgroundColor;
+    &:hover {
+      background: darken($backgroundColor, 5%);
+    }
+    &:active {
+      background: darken($backgroundColor, 15%);
+    }
+  } @else {
+    background: transparent;
+  }
+
+  @if ($borderColor) {
+    border: 1px solid $borderColor;
+    &:hover {
+      border: 1px solid darken($borderColor, 5%);
+    }
+    &:active {
+      border: 1px solid darken($borderColor, 15%);
+    }
+  }
+
+  @if ($shadowColor) {
+    box-shadow: 0 4px 8px 0 rgba($shadowColor, 0.4);
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:active {
+    box-shadow: none;
+    color: $secondary-700;
+    background: $secondary-300;
+    border-color: $secondary-300;
+
+    &.loading {
+      .btn-text {
+        opacity: 0.75;
+      }
+
+      .loader svg circle {
+        stroke: $secondary-700;
+      }
+    }
+  }
+}
+
+@function btnColor($palette, $type, $attribute) {
+  $color: map-get(map-get(map-get($btnPalettes, $palette), $type), $attribute);
+  @return $color;
+}
+
+@mixin generate-button-types($palette, $type) {
+  @include generate-button-colors(
+    btnColor($palette, $type, 'text'),
+    btnColor($palette, $type, 'bg'),
+    btnColor($palette, $type, 'border'),
+    btnColor($palette, $type, 'shadow')
+  );
+}

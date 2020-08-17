@@ -1,0 +1,23 @@
+@mixin box($depth, $color) {
+  @if $depth < 1 {
+    box-shadow: none;
+  } @else if $depth > 5 {
+    @warn "Invalid $depth `#{$depth}` for mixin `box`.";
+  } @else {
+    box-shadow: top-shadow($depth, $color), bottom-shadow($depth, $color);
+  }
+}
+
+@function top-shadow($depth, $color) {
+  $primary-offset: nth(1 2 4 8 16, $depth) * 1px;
+  $blur: nth(2 4 8 16 32, $depth) * 1px;
+  $color: rgba($color, nth(0.075 0.1 0.125 0.15 0.175, $depth));
+  @return 0 $primary-offset $blur $color;
+}
+
+@function bottom-shadow($depth, $color) {
+  $primary-offset: nth(0 0 0 10 15, $depth) * 1px;
+  $blur: nth(15 20 25 30 35, $depth) * 1px;
+  $color: rgba($color, nth(0.06 0.08 0.1 0.12 0.16, $depth));
+  @return 0 $primary-offset $blur $color;
+}

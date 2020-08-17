@@ -1,0 +1,47 @@
+$font-family-sans: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+$font-family-sans-curved: SF Pro Rounded, -apple-system, sans-serif;
+
+$font-family-logo: Times, -apple-system, serif;
+
+$font-family-serif: "Libre Baskerville", -apple-system, serif;
+
+$spacer: 1rem;
+
+$font-size-base: 1rem !default;
+
+$h1-font-size: $font-size-base * 2.625 !default;
+$h2-font-size: $font-size-base * 2.35 !default;
+$h3-font-size: $font-size-base * 2 !default;
+$h4-font-size: $font-size-base * 1.5 !default;
+$h5-font-size: $font-size-base * 1.375 !default;
+$h6-font-size: $font-size-base * 1.25 !default;
+$paragraph-font-size: $font-size-base;
+$small-font-size: $font-size-base * 0.875 !default;
+
+$smaller-font-size: 80% !default;
+
+$label-font-weight: 400 !default;
+
+$blockquote-font-size: $font-size-base * 1.25 !default;
+
+$paragraph-line-height: $font-size-base * 1.5 !default;
+$paragraph-spaced-line-height: 1.75 !default;
+
+$headings-margin: ($spacer / 2) !default;
+$headings-font-family: inherit !default;
+$headings-font-weight: 400 !default;
+$headings-line-height: 1.2 !default;
+$headings-color: inherit !default;
+
+$mark-padding: 0 0.2em !default;
+
+$headings-sizes : (
+    h1 : $h1-font-size,
+    h2 : $h2-font-size,
+    h3 : $h3-font-size,
+    h4 : $h4-font-size,
+    h5 : $h5-font-size,
+    h6 : $h6-font-size,
+);

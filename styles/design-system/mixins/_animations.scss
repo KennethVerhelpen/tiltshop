@@ -1,0 +1,38 @@
+@mixin ripples($color, $growthField, $size) {
+  background: $color;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: $size + px;
+  height: $size + px;
+  transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -webkit-transition: all 0.8s;
+  -o-transition: all 0.8s;
+
+  &.animate-ripple:before {
+    content: '';
+    width: $size + px;
+    height: $size + px;
+    position: absolute;
+    border-radius: 100%;
+    animation-name: ripples;
+    animation-delay: 0s;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-in-out;
+  }
+
+  @keyframes ripples {
+    0% {
+      border: 1px solid darken($color, 5%);
+    }
+    100% {
+      border: $growthField + px solid darken($color, 12%);
+      opacity: 0;
+    }
+  }
+}

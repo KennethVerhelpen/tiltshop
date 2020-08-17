@@ -1,0 +1,7 @@
+$layout-breakpoint-xs: 600px !default;
+$layout-breakpoint-sm: 960px !default;
+$layout-breakpoint-md: 1280px !default;
+$layout-breakpoint-lg: 1920px !default;
+
+$breakpoints: 'xs' $layout-breakpoint-xs, 'sm' $layout-breakpoint-sm, 'md' $layout-breakpoint-md, 'lg' $layout-breakpoint-lg;
+$breakpoints-gt: 'gt-xs' $layout-breakpoint-xs, 'gt-sm' $layout-breakpoint-sm, 'gt-md' $layout-breakpoint-md, 'gt-lg' $layout-breakpoint-lg;

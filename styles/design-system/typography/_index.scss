@@ -1,0 +1,129 @@
+body {
+  font-size: $font-size-base;
+}
+
+.curved {
+  font-family: $font-family-sans-curved;
+}
+
+.serif {
+  font-family: $font-family-serif;
+}
+
+.logo-serif {
+  font-family: $font-family-logo;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6,
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  color: $headings-color;
+  margin: 0;
+}
+
+@each $heading, $size in $headings-sizes {
+  %#{$heading}, .#{$heading}, #{$heading} {
+    font-size: $size;
+  }
+}
+
+%blocktext, .blocktext {
+  @each $heading, $size in $headings-sizes {
+  .#{$heading}, #{$heading} {
+     margin-bottom: $size / 2;
+    }
+  }
+  p, %p, .p {
+    margin-bottom: $paragraph-font-size;
+  }
+}
+
+%p, .p , p {
+  margin: 0;
+  font-size: $paragraph-font-size;
+  line-height: $paragraph-line-height;
+}
+
+%p-spaced, .p-spaced {
+  margin: 0;
+  font-size: $paragraph-font-size;
+  line-height: $paragraph-spaced-line-height;
+}
+
+%small, .small, small {
+  font-size: $small-font-size;
+}
+
+%smaller, .smaller {
+  font-size: $smaller-font-size;
+}
+
+%mark, .mark, mark {
+  padding: $mark-padding;
+  background-color: $content-900;
+  color: $secondary-100;
+}
+
+%mark-light, .mark-light {
+  padding: $mark-padding;
+  background-color: white;
+  color: $content-900;
+}
+
+%blockquote, .blockquote, blockquote {
+  font-style: italic;
+}
+
+%em, .em, em {
+  font-style: italic;
+  font-weight: bold;
+}
+
+%code, .code, code {
+  display: inline-block;
+  color: $danger-500;
+  background: $secondary-300;
+  border: 1px solid $secondary-500;
+  border-radius: $radius-sm;
+  font-family: inherit;
+  padding: 0 0.25rem;
+}
+
+%b, .b, b,
+strong {
+  font-weight: bolder;
+}
+
+%i, .i, i {
+  font-style: italic;
+}
+
+%u, .u, u {
+  text-decoration: underline;
+}
+
+.a, %a, a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+.label, %label, label {
+  font-weight: $label-font-weight;
+  display: block;
+  font-weight: bold;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@each $height in (1, 2, 3, 4, 5, 6) {
+  .lh-#{$height} {
+    line-height: $height * .2 + 1;
+  }
+}

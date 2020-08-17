@@ -1,0 +1,231 @@
+$primary-100: #e6fafe !default;
+$primary-300: #b2f0fb !default;
+$primary-500: #20c5e5 !default;
+$primary-700: #05a3b8 !default;
+$primary-900: #002a2e !default;
+
+$secondary-100: #ffffff !default;
+$secondary-300: #fafafa !default;
+$secondary-500: #ebebeb !default;
+$secondary-700: #575757 !default;
+$secondary-900: #000000 !default;
+
+$success-100: #bef2df !default;
+$success-300: #69e2b6 !default;
+$success-500: #00cc99 !default;
+$success-700: #009973 !default;
+$success-900: #00664e !default;
+
+$danger-100: #ffe5eb !default;
+$danger-300: #ff6688 !default;
+$danger-500: #ff3970 !default;
+$danger-700: #d63458 !default;
+$danger-900: #660017 !default;
+
+$accent-100: #fffbf7 !default;
+$accent-300: #ffeacc !default;
+$accent-500: #ffd799 !default;
+$accent-700: #ffc061 !default;
+$accent-900: #a76504 !default;
+
+$content-100: #1b42af !default;
+$content-300: #153284 !default;
+$content-500: #0e2158 !default;
+$content-700: #07112c !default;
+$content-900: #000000 !default;
+
+$colors: (
+  -primary-100: $primary-100,
+  -primary-300: $primary-300,
+  -primary-500: $primary-500,
+  -primary-700: $primary-700,
+  -primary-900: $primary-900,
+  -secondary-100: $secondary-100,
+  -secondary-300: $secondary-300,
+  -secondary-500: $secondary-500,
+  -secondary-700: $secondary-700,
+  -secondary-900: $secondary-900,
+  -success-100: $success-100,
+  -success-300: $success-300,
+  -success-500: $success-500,
+  -success-700: $success-700,
+  -success-900: $success-900,
+  -danger-100: $danger-100,
+  -danger-300: $danger-300,
+  -danger-500: $danger-500,
+  -danger-700: $danger-700,
+  -danger-900: $danger-900,
+  -accent-100: $accent-100,
+  -accent-300: $accent-300,
+  -accent-500: $accent-500,
+  -accent-700: $accent-700,
+  -accent-900: $accent-900,
+  -content-100: $content-100,
+  -content-300: $content-300,
+  -content-500: $content-500,
+  -content-700: $content-700,
+  -content-900: $content-900
+);
+
+$btnPalettes: (
+  'primary': (
+    'raised': (
+      'text': white,
+      'bg': $primary-500,
+      'border': $primary-700,
+      'shadow': $primary-700,
+    ),
+    'flat': (
+      'text': white,
+      'bg': $primary-500,
+      'border': $primary-500,
+      'shadow': null,
+    ),
+    'light': (
+      'text': $primary-500,
+      'bg': $primary-100,
+      'border': $primary-100,
+      'shadow': null,
+    ),
+    'outlined': (
+      'text': $primary-500,
+      'bg': null,
+      'border': $primary-500,
+      'shadow': null,
+    ),
+    'unstyled': (
+      'text': $primary-500,
+      'bg': null,
+      'border': transparent,
+      'shadow': null,
+    ),
+  ),
+  'secondary': (
+    'raised': (
+      'text': $secondary-900,
+      'bg': white,
+      'border': $secondary-700,
+      'shadow': $secondary-700,
+    ),
+    'flat': (
+      'text': $secondary-900,
+      'bg': white,
+      'border': white,
+      'shadow': null,
+    ),
+    'light': (
+      'text': $secondary-900,
+      'bg': $secondary-300,
+      'border': $secondary-300,
+      'shadow': null,
+    ),
+    'outlined': (
+      'text': $secondary-900,
+      'bg': null,
+      'border': $secondary-700,
+      'shadow': null,
+    ),
+    'unstyled': (
+      'text': $secondary-900,
+      'bg': null,
+      'border': transparent,
+      'shadow': null,
+    ),
+  ),
+  'success': (
+    'raised': (
+      'text': white,
+      'bg': $success-500,
+      'border': $success-700,
+      'shadow': $success-700,
+    ),
+    'flat': (
+      'text': white,
+      'bg': $success-500,
+      'border': $success-500,
+      'shadow': null,
+    ),
+    'light': (
+      'text': $success-700,
+      'bg': $success-100,
+      'border': $success-100,
+      'shadow': null,
+    ),
+    'outlined': (
+      'text': $success-500,
+      'bg': null,
+      'border': $success-500,
+      'shadow': null,
+    ),
+    'unstyled': (
+      'text': $success-500,
+      'bg': null,
+      'border': transparent,
+      'shadow': null,
+    ),
+  ),
+  'danger': (
+    'raised': (
+      'text': white,
+      'bg': $danger-500,
+      'border': $danger-700,
+      'shadow': $danger-700,
+    ),
+    'flat': (
+      'text': white,
+      'bg': $danger-500,
+      'border': $danger-500,
+      'shadow': null,
+    ),
+    'light': (
+      'text': $danger-500,
+      'bg': $danger-100,
+      'border': $danger-100,
+      'shadow': null,
+    ),
+    'outlined': (
+      'text': $danger-500,
+      'bg': null,
+      'border': $danger-500,
+      'shadow': null,
+    ),
+    'unstyled': (
+      'text': $danger-500,
+      'bg': null,
+      'border': transparent,
+      'shadow': null,
+    ),
+  ),
+  'accent': (
+    'raised': (
+      'text': $accent-900,
+      'bg': $accent-500,
+      'border': $accent-700,
+      'shadow': $accent-700,
+    ),
+    'flat': (
+      'text': $accent-900,
+      'bg': $accent-500,
+      'border': $accent-500,
+      'shadow': null,
+    ),
+    'light': (
+      'text': $accent-900,
+      'bg': $accent-300,
+      'border': $accent-300,
+      'shadow': null,
+    ),
+    'outlined': (
+      'text': $accent-700,
+      'bg': null,
+      'border': $accent-500,
+      'shadow': null,
+    ),
+    'unstyled': (
+      'text': $accent-700,
+      'bg': null,
+      'border': transparent,
+      'shadow': null,
+    ),
+  ),
+);

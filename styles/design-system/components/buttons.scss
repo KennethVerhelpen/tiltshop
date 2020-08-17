@@ -1,0 +1,98 @@
+button.btn, .btn {
+  outline: none;
+  border: none;
+  position: relative;
+  vertical-align: middle;
+  border-radius: $radius-sm;
+  padding: 0.5rem 0.75rem;
+  transition: all .15s ease-in-out;
+
+  @each $palette, $type in $btnPalettes {
+    &.btn-#{$palette} {
+      @each $type in 'flat', 'light', 'raised', 'outlined', 'unstyled' {
+        &.btn-#{$type} {
+          @include generate-button-types($palette, $type);
+        }
+      }
+    }
+  }
+
+  @each $index, $size, $radius in (1 'xs' $radius-xs, 2 'sm' $radius-sm, 3 'md' $radius-md, 4 'lg' $radius-lg, 5 'xl' $radius-lg) {
+    &%btn-#{$size},
+    &.btn-#{$size} {
+      padding: 0.25rem * $index 0.25rem * ($index + 1);
+      border-radius: $radius;
+    }
+  }
+
+  .icon {
+    &-left {
+      margin-right: 0.5rem;
+    }
+    &-right {
+    margin-left: 0.5rem;
+    }
+  }
+
+  &:hover,
+  &:active {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  &:disabled:not(.loading) {
+    cursor: not-allowed;
+  }
+
+  &%loading,
+  &.loading {
+    cursor: wait;
+    overflow: hidden;
+
+    .loader {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: flex;
+      position: absolute;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  %btn-ripple,
+  &.btn-ripple {
+    overflow: hidden;
+    position: relative;
+    transform: translate3d(0, 0, 0);
+
+    &:after {
+      top: 0;
+      left: 0;
+      opacity: 0;
+      content: '';
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      pointer-events: none;
+      background-position: 50%;
+      transform: scale(10, 10);
+      background-repeat: no-repeat;
+      transition: transform 0.5s, opacity 1s;
+      background-image: radial-gradient(circle, rgba(0, 0, 0, 0.2) 10%, transparent 10%);
+    }
+
+    &:active:after {
+      opacity: 0.3;
+      transition: 0s;
+      transform: scale(0, 0);
+    }
+  }
+  %btn-hoverable:hover,
+  &.btn-hoverable:hover {
+    transition: all .15s ease-in-out;
+    transform: translateY(-2px) scale(1.01);
+  }
+}

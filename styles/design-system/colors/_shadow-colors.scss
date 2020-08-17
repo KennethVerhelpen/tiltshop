@@ -1,0 +1,7 @@
+@each $className, $color in $colors {
+  @each $shadow in $shadows {
+    .shadow-#{$shadow}#{$className} {
+      @include box($shadow, $color);
+    }
+  }
+}

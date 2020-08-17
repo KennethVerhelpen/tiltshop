@@ -1,0 +1,59 @@
+@mixin generate-spacing-classes($breakpointClass: null) {
+  @for $i from 1 through length($spacing-list) {
+    $index: nth($spacing-list, $i);
+    $breakpoint: if($breakpointClass, -#{$breakpointClass}, '');
+
+    @each $className in $spacingClassNames {
+      .#{$className}#{$breakpoint}-#{$index} {
+        // margin
+        @if $className == 'm' {
+          margin: $index + px !important;
+        }
+        @if $className == 'mt' {
+          margin-top: $index + px !important;
+        }
+        @if $className == 'mr' {
+          margin-right: $index + px !important;
+        }
+        @if $className == 'mb' {
+          margin-bottom: $index + px !important;
+        }
+        @if $className == 'ml' {
+          margin-left: $index + px !important;
+        }
+        @if $className == 'mx' {
+          margin-left: $index + px !important;
+          margin-right: $index + px !important;
+        }
+        @if $className == 'my' {
+          margin-top: $index + px !important;
+          margin-bottom: $index + px !important;
+        }
+        // padding
+        @if $className == 'p' {
+          padding: $index + px !important;
+        }
+        @if $className == 'pt' {
+          padding-top: $index + px !important;
+        }
+        @if $className == 'pr' {
+          padding-right: $index + px !important;
+        }
+        @if $className == 'pb' {
+          padding-bottom: $index + px !important;
+        }
+        @if $className == 'pl' {
+          padding-left: $index + px !important;
+        }
+        @if $className == 'px' {
+          padding-left: $index + px !important;
+          padding-right: $index + px !important;
+        }
+        @if $className == 'py' {
+          padding-top: $index + px !important;
+          padding-bottom: $index + px !important;
+        }
+      }
+    }
+  }
+}

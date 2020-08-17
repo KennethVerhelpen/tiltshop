@@ -1,0 +1,31 @@
+.shape {
+  height: 30rem;
+  position: relative;
+  background: black;
+  transition: all .3s ease-in-out;
+}
+
+.img {
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  transition: all .3s ease-in-out;
+}
+
+.content {
+  z-index: 1;
+}
+
+.tag {
+  border-radius: 2rem;
+}
+
+.shape:hover .img {
+  filter: blur(10px);
+  transform: scale(1.2);
+  transition: all .3s ease-in-out;
+}

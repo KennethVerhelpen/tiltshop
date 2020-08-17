@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="49px" height="50px" viewBox="0 0 49 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="50%" cy="6.25179603%" fx="50%" fy="6.25179603%" r="96.6525077%" gradientTransform="translate(0.500000,0.062518),rotate(104.081393),scale(1.000000,2.324394),translate(-0.500000,-0.062518)" id="radialGradient-1">
+            <stop stop-color="#FDA433" offset="0%"></stop>
+            <stop stop-color="#CFFF5C" offset="30.4977829%"></stop>
+            <stop stop-color="#00DDFF" offset="63.1096917%"></stop>
+            <stop stop-color="#F100FF" offset="100%"></stop>
+        </radialGradient>
+        <rect id="path-2" x="5" y="6" width="24" height="24" rx="7"></rect>
+        <filter x="-68.8%" y="-68.8%" width="237.5%" height="237.5%" filterUnits="objectBoundingBox" id="filter-3">
+            <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feMorphology radius="1.5" operator="erode" in="SourceAlpha" result="shadowInner"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowInner" result="shadowInner"></feOffset>
+            <feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1"></feComposite>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.976470588   0 0 0 0 0   0 0 0 0 0.917647059  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <text id="text-4" font-family="SFProRounded-Black, SF Pro Rounded" font-size="32" font-weight="700" fill="#FFFFFF">
+            <tspan x="7.046875" y="30">T</tspan>
+        </text>
+        <filter x="-75.0%" y="-39.5%" width="250.0%" height="178.9%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.976470588   0 0 0 0 0   0 0 0 0 0.917647059  0 0 0 0.468804633 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-695.000000, -15.000000)">
+            <g id="logo" transform="translate(703.000000, 22.000000)">
+                <g id="bg" transform="translate(17.000000, 18.000000) rotate(135.000000) translate(-17.000000, -18.000000) ">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                    <use stroke="#FF00EF" stroke-width="1" xlink:href="#path-2"></use>
+                    <use stroke="url(#radialGradient-1)" stroke-width="1" xlink:href="#path-2"></use>
+                </g>
+                <g id="T" fill="#FFFFFF" fill-opacity="1">
+                    <use filter="url(#filter-5)" xlink:href="#text-4"></use>
+                    <use xlink:href="#text-4"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
