@@ -1,4 +1,5 @@
 import Link from "next/link";
+import MenuRounded from "@material-ui/icons/MenuRounded";
 
 import nav from "./nav.module.scss";
 
@@ -16,7 +17,7 @@ class Nav extends React.Component {
 			<nav
 				className={`layout-row layout-align-start-center ${nav.shape}`}
 			>
-				<div className="container-md layout-row layout-align-start-center">
+				<div className="container-md layout-row layout-align-space-between-center">
 					<ul
 						className={`small layout-row layout-align-center-center p-0 m-0 ${nav.links}`}
 					>
@@ -25,7 +26,7 @@ class Nav extends React.Component {
 						</li>
 					</ul>
 					<ul
-						className={`small flex layout-row layout-align-end-center p-0 m-0 ${nav.links}`}
+						className={`hide-xs small flex layout-row layout-align-end-center p-0 m-0 ${nav.links}`}
 					>
 						{this.props.links.map((link, index) => {
 							return (
@@ -37,6 +38,9 @@ class Nav extends React.Component {
 							);
 						})}
 					</ul>
+					<button className="hide-gt-xs btn text-secondary-100">
+						<MenuRounded />
+					</button>
 					{this.props.children}
 				</div>
 			</nav>

@@ -3,8 +3,9 @@ import Article from "../components/article/article";
 import Modal from "../components/modal/modal";
 import Sidebar from "../components/sidebar/sidebar";
 import CloseRounded from "@material-ui/icons/CloseRounded";
+import FilterListRounded from "@material-ui/icons/FilterListRounded";
 
-import Select, { components } from "react-select";
+import Select from "react-select";
 
 import items from "../lib/items";
 
@@ -79,9 +80,9 @@ class Home extends React.Component {
 					</div>
 				</header>
 				<div ref={this.toolbar} className={`${this.state.raised ? "shadow-2" : ""} ${index.filtersBar} bg-secondary-100 layout-row layout-align-start-stretch`}>
-					<div className="container-md layout-row px-24 layout-align-start-center">
+					<div className="container-md layout-row px-24 layout-align-space-between-center">
 						<p className={`${this.state.raised ? "fade-in-top speed-6" : ""} logo-serif b h5 ${index.filtersBarLogo}`}>Tilt</p>
-						<div className="flex layout-row layout-align-end-center">
+						<div className="flex layout-row layout-align-end-center hide-xs">
 							<Select
 								className={`${index.select} px-8`}
 								placeholder="Movie"
@@ -92,6 +93,11 @@ class Home extends React.Component {
 								placeholder="Category"
 								options={options}
 							/>
+						</div>
+						<div className="flex layout-row layout-align-end-center hide show-xs">
+							<button className="btn text-secondary-900">
+								<FilterListRounded />
+							</button>
 						</div>
 					</div>
 				</div>

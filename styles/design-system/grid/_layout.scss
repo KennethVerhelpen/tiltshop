@@ -41,6 +41,12 @@
 
 // Only on extra small screen
 @media (max-width: $layout-breakpoint-xs - 1) {
+  .hide,
+  .hide-xs {
+    &:not(.show-xs):not(.show) {
+      display: none;
+    }
+  }
   @include layouts-for-breakpoint(xs);
 }
 
