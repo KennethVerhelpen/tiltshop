@@ -9,17 +9,22 @@
 }
 
 .shape {
-  width: 100%;
-  max-width: 70%;
-  min-height: 100%;
+  max-width: 50rem;
   transform: translateX(100%);
   transition: all 3s ease-in-out;
   background-color: rgba(0,0,0,0.98);
 }
 
+.header {
+  top: 0;
+  z-index: 1;
+  position: sticky;
+  height: 3.25rem;
+}
+
 .closeBtn {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
 }
 

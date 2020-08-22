@@ -18,34 +18,43 @@ class Sidebar extends React.Component {
       return null;
     }
 
-    const dynamicStyles = {
-      image: {
-        borderColor: this.props.article.color
-      }
-    }
+    // const dynamicStyles = {
+    //   image: {
+    //     borderColor: this.props.article.color
+    //   }
+    // }
+
     return (
       <>
-        <div className={`${sidebar.container} overflow-x-scroll layout-column layout-align-start-end`}>
-          <article className={`sidebar ${sidebar.shape} ${this.props.isOpen ? "fade-in-right speed-3" : ""} shadow-4`}>
-            <header className="layout-row layout-align-end-center p-16">
-              <a onClick={this.props.onClick} className={`${sidebar.closeBtn} cursor-pointer bg-secondary-500 p-8`}>
-                <CloseRounded />
+        <div className={`${sidebar.container} layout-column layout-align-start-end`}>
+          <article className={`sidebar overflow-scroll display-block width-100 ${sidebar.shape} ${this.props.isOpen ? "fade-in-right speed-3" : ""} shadow-4`}>
+            <header className={`${sidebar.header} bg-secondary-900 layout-row layout-align-start-center p-16`}>
+              <a onClick={this.props.onClick} className={`${sidebar.closeBtn} cursor-pointer text-secondary-100 bg-secondary-700 p-8`}>
+                <CloseRounded style={{ fontSize: 16 }}/>
               </a>
             </header>
-            <main>
+            <main className="overflow-scroll">
               <div className="layout-row p-32">
                 <div className="layout-column layout-align-start-start p-16 flex">
                   <p className="serif text-secondary-100 mb-16">{this.props.article.motion}</p>
                   <p className="h2 text-secondary-100 b">{this.props.article.title}</p>
                   <p className="text-secondary-100 my-16">{this.props.article.description}</p>
                   <span className="text-secondary-100 rounded-xs border border-secondary-100 py-4 px-8">{this.props.article.category}</span>
+                </div>
+                <div className="layout-column layout-align-start-start p-16 flex">
                   <p className="h1 b text-secondary-100 my-64">{this.props.article.price}</p>
                   <Link href={this.props.article.url}>
                     <button className={`${sidebar.btn} btn btn-xl btn-flat btn-secondary btn-hoverable`}>Buy on Amazon</button>
                   </Link>
                 </div>
-                <div className="p-16">
-                  <img className={`${sidebar.defaultImage} rounded-md border`} style={dynamicStyles.image} src={this.props.article.imgSrc}></img>
+              </div>
+              <div className="layout-row">
+                <img className={`${sidebar.defaultImage}`} src={this.props.article.imgSrc}></img>
+                <div className="layout-row layout-wrap">
+                  <img className={`${sidebar.defaultImage} flex-50`} src={this.props.article.imgSrc}></img>
+                  <img className={`${sidebar.defaultImage} flex-50`} src={this.props.article.imgSrc}></img>
+                  <img className={`${sidebar.defaultImage} flex-50`} src={this.props.article.imgSrc}></img>
+                  <img className={`${sidebar.defaultImage} flex-50`} src={this.props.article.imgSrc}></img>
                 </div>
               </div>
               <div className="mt-64">

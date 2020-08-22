@@ -78,8 +78,8 @@ class Home extends React.Component {
 						</h1>
 					</div>
 				</header>
-				<div ref={this.toolbar} className={`${this.state.raised ? "shadow-2" : ""} ${index.filtersBar} bg-secondary-100`}>
-					<div className="container-md layout-row py-8 px-24 layout-align-start-center">
+				<div ref={this.toolbar} className={`${this.state.raised ? "shadow-2" : ""} ${index.filtersBar} bg-secondary-100 layout-row layout-align-start-stretch`}>
+					<div className="container-md layout-row px-24 layout-align-start-center">
 						<p className={`${this.state.raised ? "fade-in-top speed-6" : ""} logo-serif b h5 ${index.filtersBarLogo}`}>Tilt</p>
 						<div className="flex layout-row layout-align-end-center">
 							<Select
