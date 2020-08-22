@@ -40,23 +40,32 @@ class Sidebar extends React.Component {
                   <p className="h2 text-secondary-100 b">{this.props.article.title}</p>
                   <p className="text-secondary-100 my-16">{this.props.article.description}</p>
                   <span className="text-secondary-100 rounded-xs border border-secondary-100 py-4 px-8">{this.props.article.category}</span>
-                </div>
-                <div className="layout-column layout-align-start-start p-16 flex">
-                  <p className="h1 b text-secondary-100 my-64">{this.props.article.price}</p>
-                  <Link href={this.props.article.url}>
-                    <button className={`${sidebar.btn} btn btn-xl btn-flat btn-secondary btn-hoverable`}>Buy on Amazon</button>
-                  </Link>
-                </div>
-              </div>
-              <div className="layout-row">
-                <img className={`${sidebar.defaultImage}`} src={this.props.article.imgSrc}></img>
-                <div className="layout-row layout-wrap">
-                  <img className={`${sidebar.defaultImage} flex-50`} src={this.props.article.imgSrc}></img>
-                  <img className={`${sidebar.defaultImage} flex-50`} src={this.props.article.imgSrc}></img>
-                  <img className={`${sidebar.defaultImage} flex-50`} src={this.props.article.imgSrc}></img>
-                  <img className={`${sidebar.defaultImage} flex-50`} src={this.props.article.imgSrc}></img>
+                  <div className="layout-row layout-align-start-start mt-64 flex">
+                    <Link href={this.props.article.url}>
+                      <button className={`${sidebar.btn} btn btn-xl btn-flat btn-secondary btn-hoverable`}>Buy on Amazon</button>
+                    </Link>
+                    <p className="h1 b text-secondary-100">{this.props.article.price}</p>
+                  </div>
                 </div>
               </div>
+              <table className={`${sidebar.gallery}`}>
+                <tr>
+                  <th rowspan="4"><img className={`${sidebar.image} display-block`} src={this.props.article.imgSrc}></img></th>
+                  <td><img className={`${sidebar.image} display-block`} src={this.props.article.imgSrc}></img></td>
+                </tr>
+                <tr><td><img className={`${sidebar.image} display-block`} src={this.props.article.imgSrc}></img></td></tr>
+                <tr><td><img className={`${sidebar.image} display-block`} src={this.props.article.imgSrc}></img></td></tr>
+                <tr><td><img className={`${sidebar.image} display-block`} src={this.props.article.imgSrc}></img></td></tr>
+              </table>
+              {/* <div className={`${sidebar.gallery} layout-row layout-align-start-stretch`}>
+                <img className={`${sidebar.image} flex-80`} src={this.props.article.imgSrc}></img>
+                <div className="layout-column">
+                  <img className={`${sidebar.image} flex`} src={this.props.article.imgSrc}></img>
+                  <img className={`${sidebar.image} flex`} src={this.props.article.imgSrc}></img>
+                  <img className={`${sidebar.image} flex`} src={this.props.article.imgSrc}></img>
+                  <img className={`${sidebar.image} flex`} src={this.props.article.imgSrc}></img>
+                </div>
+              </div> */}
               <div className="mt-64">
                 <table className={`${sidebar.table}`}>
                   <thead>
