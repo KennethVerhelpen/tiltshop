@@ -16,7 +16,7 @@ class Footer extends React.Component {
 			<footer className="bg-secondary-900 py-64">
 				<div className="container-md layout-row layout-align-start-start">
 					<div className="layout-column layout-align-start-start">
-						<p className="serif text-secondary-100 b h2">Tilt</p>
+						<p className="logo-serif text-secondary-100 b h2">Tilt</p>
 						<p className="h6 description text-secondary-100 mt-32">
 							<b>Tilt is the best of Amazon</b>, curated by cinema lovers.
 						</p>

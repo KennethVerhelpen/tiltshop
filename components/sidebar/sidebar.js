@@ -11,8 +11,17 @@ class Sidebar extends React.Component {
       onClick: Function,
       isOpen: Boolean,
       article: Object,
+      selectedPicture: '',
     }
   }
+
+  previewPicture = (event) => {
+    this.setState((prevState) => {
+      return {
+        selectedPicture: event,
+      }
+    });
+  };
 
   render() {
     if (!this.props.isOpen) {
@@ -35,7 +44,7 @@ class Sidebar extends React.Component {
               </a>
             </header>
             <img className={`${sidebar.cover} width-100`}src={this.props.article.coverSrc}></img>
-            <main className="overflow-scroll">
+            <main className="overflow-scroll pb-64">
               <div className="layout-row p-32">
                 <div className="layout-column layout-align-start-start p-16 flex">
                   <p className="serif text-secondary-100 mb-16">{this.props.article.motion}</p>
@@ -52,23 +61,18 @@ class Sidebar extends React.Component {
                   </Link>
                 </div>
               </div>
-              <div className={`${sidebar.gallery} layout-row`}>
-                <div className={`${sidebar.image} flex-80`}>
-                  <img src={this.props.article.imgSrc}></img>
+              <div className={`${sidebar.gallery} layout-column layout-gt-sm-row`}>
+                <div className={`${sidebar.preview}`}>
+                  <img src={this.state.selectedPicture.src || this.props.article.gallery[0].src}></img>
                 </div>
-                <div className="layout-column flex">
-                  <div className={`${sidebar.thumbnail} flex-25`}>
-                    <img src={this.props.article.imgSrc}></img>
-                  </div>
-                  <div className={`${sidebar.thumbnail} flex-25`}>
-                    <img src={this.props.article.imgSrc}></img>
-                  </div>
-                  <div className={`${sidebar.thumbnail} flex-25`}>
-                    <img src={this.props.article.imgSrc}></img>
-                  </div>
-                  <div className={`${sidebar.thumbnail} flex-25`}>
-                    <img src={this.props.article.imgSrc}></img>
-                  </div>
+                <div className="layout-row layout-gt-sm-column flex">
+                  {this.props.article.gallery.map((image) => {
+                    return (
+                      <div key={image.alt} className={`${sidebar.thumbnail} cursor-pointer flex-25`} onClick={() => this.previewPicture(image)}>
+                        <img src={image.src} alt={image.alt}></img>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
               <div className="mt-64">
@@ -85,7 +89,7 @@ class Sidebar extends React.Component {
                     </tr>
                     {Object.keys(this.props.article.details).map((key, value) => {
                       return (
-                        <tr>
+                        <tr key={key}>
                           <td className="pl-48 pl-8 py-8 text-secondary-100">{key}</td>
                           <td className="pr-48 pl-8 py-8 text-secondary-100 text-right">{this.props.article.details[key]}</td>
                         </tr>
@@ -97,7 +101,7 @@ class Sidebar extends React.Component {
             </main>
           </article>
         </div>
-        <div className={`${sidebar.backdrop} ${this.props.isOpen ? "fade-in speed-6" : ""}`}></div>
+        <div onClick={this.props.onClick} className={`cursor-pointer ${sidebar.backdrop} ${this.props.isOpen ? "fade-in speed-6" : ""}`}></div>
       </>
     )
   }
