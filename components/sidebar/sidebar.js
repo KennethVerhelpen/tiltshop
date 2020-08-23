@@ -1,6 +1,7 @@
 import sidebar from "./sidebar.module.scss";
 import CloseRounded from "@material-ui/icons/CloseRounded";
 import ArrowForwardRounded from "@material-ui/icons/ArrowForwardRounded";
+import { CarouselProvider, Slider, Slide, ImageWithZoom, DotGroup, Dot } from 'pure-react-carousel';
 
 import Link from "next/link";
 
@@ -61,25 +62,38 @@ class Sidebar extends React.Component {
                   </Link>
                 </div>
               </div>
-              <div className={`${sidebar.gallery} layout-column layout-gt-sm-row`}>
-                <div className={`${sidebar.preview}`}>
-                  <img src={this.state.selectedPicture.src || this.props.article.gallery[0].src}></img>
-                </div>
-                <div className="layout-row layout-gt-sm-column flex">
-                  {this.props.article.gallery.map((image) => {
-                    return (
-                      <div key={image.alt} className={`${sidebar.thumbnail} cursor-pointer flex-25`} onClick={() => this.previewPicture(image)}>
-                        <img src={image.src} alt={image.alt}></img>
-                      </div>
-                    );
-                  })}
-                </div>
+              <div className="layout-column layout-gt-sm-row">
+                <CarouselProvider
+                  naturalSlideWidth={100}
+                  naturalSlideHeight={100}
+                  totalSlides={this.props.article.gallery.length}
+                  lockOnWindowScroll={true}
+                  infinite={true}>
+                  <Slider>
+                    {this.props.article.gallery.map((image, key) => {
+                      return (
+                        <Slide index={key}>
+                          <ImageWithZoom src={image.src} alt={image.alt}/>
+                        </Slide>
+                      );
+                    })}
+                  </Slider>
+                  <div className="layout-row flex layout-wrap">
+                    {this.props.article.gallery.map((image, key) => {
+                      return (
+                        <Dot slide={key} className={`${sidebar.thumbnail} flex-20`} index={key}>
+                        <img src={image.src} alt={image.alt} />
+                        </Dot>
+                      );
+                    })}
+                  </div>
+                </CarouselProvider>
               </div>
               <div className="mt-64">
                 <table className={`${sidebar.table}`}>
                   <thead>
                     <tr>
-                      <th colspan="2" className="h6 b text-left px-48 pb-32 text-secondary-100">Item details</th>
+                      <th colSpan="2" className="h6 b text-left px-48 pb-32 text-secondary-100">Item details</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -87,7 +101,7 @@ class Sidebar extends React.Component {
                       <td className="pl-48 pl-8 py-8 text-secondary-100">Category</td>
                       <td className="pr-48 pl-8 py-8 text-secondary-100 text-right">{this.props.article.category}</td>
                     </tr>
-                    {Object.keys(this.props.article.details).map((key, value) => {
+                    {Object.keys(this.props.article.details).map((key) => {
                       return (
                         <tr key={key}>
                           <td className="pl-48 pl-8 py-8 text-secondary-100">{key}</td>

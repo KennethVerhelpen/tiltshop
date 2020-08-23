@@ -2,7 +2,6 @@ import Page from '../components/page/page';
 import Article from "../components/article/article";
 import Modal from "../components/modal/modal";
 import Sidebar from "../components/sidebar/sidebar";
-import CloseRounded from "@material-ui/icons/CloseRounded";
 import FilterListRounded from "@material-ui/icons/FilterListRounded";
 
 import Select from "react-select";
@@ -13,28 +12,19 @@ import index from "./index.module.scss";
 class Home extends React.Component {
 	constructor(props) {
 		super(props);
-		this.toolbar = React.createRef()
+		this.toolbar = React.createRef();
 		this.state = {
 			showModal: false,
 			showSidebar: false,
 			articles: items,
 			selectedIndex: null,
 			raised: false,
+			visibleMotion: "All"
 		};
 	}
 
-	handleRaise = () => {
-		const toolbarTop = this.toolbar.current.getBoundingClientRect().top;
-		const threshold = 0;
-		if (threshold === toolbarTop) {
-			this.setState({ raised: true });
-		} else if (toolbarTop > 56) {
-			this.setState({ raised: false });
-		}
-	};
-
 	componentDidMount = () => {
-		window.addEventListener("scroll", this.handleRaise, false);
+		window.addEventListener("scroll", this.handleRaise, true);
 	};
 
 	componentWillUnmount() {
@@ -47,6 +37,22 @@ class Home extends React.Component {
 			showModal: !this.state.showModal,
 		});
 	};
+
+	handleRaise = () => {
+		const toolbarTop = this.toolbar.current.getBoundingClientRect().top;
+		const threshold = 0;
+		if (threshold === toolbarTop) {
+			this.setState({ raised: true });
+		} else if (toolbarTop > 56) {
+			this.setState({ raised: false });
+		}
+	};
+
+	onChangeMotions = (option) => {
+		this.setState({
+			visibleMotion: option.value,
+		})
+	}
 
 	toggleSidebar = (event) => {
 		if (!this.state.showSidebar) {
@@ -62,12 +68,29 @@ class Home extends React.Component {
 		});
 	};
 
+	getOptions = (items, type) => {
+		const allItems = items.map((item) => {
+			return item[type];
+		});
+		const uniqueItems = allItems.filter(function onlyUnique(value, index, self) {
+			return self.indexOf(value) === index;
+		})
+		const options = uniqueItems.map((option, index) => {
+			return ({ label: option, value: option });
+		}); return options;
+	}
+
 	render = () => {
+
+		// const optionsMotions = (this.getFilteredLabels(this.state.articles, "motion"));
 		const options = [
-			{ value: "pins", label: "Pins", icon: <CloseRounded/> },
-			{ value: "posters", label: "Posters" },
-			{ value: "tshirts", label: "T-Shirts" },
-		];
+			{ label: "All", value: "All" },
+			{ label: "Stranger Things", value: "Stranger Things" },
+			{ label: "Denver, the Last Dinosaur", value: "Denver, the Last Dinosaur" },
+		]
+		console.log("MOTION", this.state.visibleMotion)
+		console.log("Articles", this.state.articles)
+
 		return (
 			<Page className={index.content}>
 				<header className={`${index.header} text-center`}>
@@ -84,13 +107,9 @@ class Home extends React.Component {
 						<p className={`${this.state.raised ? "fade-in-top speed-6" : ""} logo-serif b h5 ${index.filtersBarLogo}`}>Tilt</p>
 						<div className="flex layout-row layout-align-end-center hide-xs">
 							<Select
+								onChange={this.onChangeMotions}
 								className={`${index.select} px-8`}
-								placeholder="Movie"
-								options={options}
-							/>
-							<Select
-								className={`${index.select} px-8`}
-								placeholder="Category"
+								placeholder="Filter by movie"
 								options={options}
 							/>
 						</div>
@@ -103,13 +122,23 @@ class Home extends React.Component {
 				</div>
 				<main className="container-md layout-column">
 					<div className="layout-row layout-wrap">
-						{this.state.articles.map((article, index) => {
+						{ this.state.visibleMotion === "All" ?
+							this.state.articles.map((article, index) => {
+								return (
+									<div key={article.id} ref="article" className="flex-100 flex-sm-50 flex-gt-sm-33 p-16">
+										<Article article={article} onClick={() => this.toggleSidebar(index)}></Article>
+									</div>
+								)})
+						:
+						this.state.articles
+							.filter(article => article.motion === this.state.visibleMotion)
+							.map((article, index) => {
 							return (
 								<div key={article.id} ref="article" className="flex-100 flex-sm-50 flex-gt-sm-33 p-16">
 									<Article article={article} onClick={() => this.toggleSidebar(index)}></Article>
 								</div>
-							);
-						})}
+							);})
+						}
 					</div>
 				</main>
 				<Sidebar

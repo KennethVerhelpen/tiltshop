@@ -1,3 +1,5 @@
+@import "../../styles/design-system/variables/breakpoints";
+
 .backdrop {
   top: 0;
   left: 0;
@@ -36,7 +38,7 @@
   height: 2rem;
   border-radius: 50%;
   backdrop-filter: blur(10px);
-  background-color: rgba(0,0,0,0.75);
+  background-color: rgba(73, 73, 73, 0.75);
 }
 
 .container {
@@ -50,17 +52,13 @@
   box-sizing: border-box;
 }
 
-.gallery  {
-  height: 40rem;
-}
 
-.preview {
-  width: 40rem;
-  height: 40rem;
-}
-
-.preview,
 .thumbnail {
+  padding: 0;
+  border: none;
+  outline: none;
+  min-height: 10rem;
+  background: transparent;
   border: 1px solid black;
   img {
     width: 100%;
@@ -69,8 +67,10 @@
   }
 }
 
-.thumbnail {
-  min-height: 5rem;
+.thumbnail:disabled {
+  opacity: 0.2;
+  filter: saturate(0);
+  transition: all .3s ease-in-out;
 }
 
 .table {
@@ -89,4 +89,10 @@
 
 .btn {
   min-width: 13rem;
+}
+
+@media only screen and (max-width: $layout-breakpoint-sm) {
+  .carousel {
+    width: 100%;
+  }
 }
