@@ -19,11 +19,11 @@
 }
 
 .cover {
+  top: 0;
+  left: 0;
   z-index: -1;
-  position: relative;
+  position: absolute;
   filter: saturate(0);
-  margin-top: -3.25rem;
-  margin-bottom: -8rem;
 }
 
 .header {
@@ -31,6 +31,10 @@
   z-index: 1;
   position: sticky;
   height: 3.25rem;
+}
+
+.description {
+  margin-top: 10rem;
 }
 
 .closeBtn {
@@ -91,8 +95,25 @@
   min-width: 13rem;
 }
 
-@media only screen and (max-width: $layout-breakpoint-sm) {
+@media only screen and (max-width: $layout-breakpoint-xs) {
   .carousel {
     width: 100%;
+  }
+
+  .thumbnail {
+    padding: 0;
+    z-index: 1;
+    border-radius: 50%;
+    min-height: .5rem;
+    height: .5rem;
+    width: .5rem;
+    margin: -2rem .25rem 0 .25rem ;
+    border: none;
+    outline: none;
+    background: white;
+  }
+
+  .description {
+    margin-top: 0rem;
   }
 }

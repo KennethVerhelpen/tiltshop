@@ -1,7 +1,7 @@
 import sidebar from "./sidebar.module.scss";
 import CloseRounded from "@material-ui/icons/CloseRounded";
 import ArrowForwardRounded from "@material-ui/icons/ArrowForwardRounded";
-import { CarouselProvider, Slider, Slide, ImageWithZoom, DotGroup, Dot } from 'pure-react-carousel';
+import { CarouselProvider, Slider, Slide, Image, Dot } from 'pure-react-carousel';
 
 import Link from "next/link";
 
@@ -11,18 +11,9 @@ class Sidebar extends React.Component {
     this.state = {
       onClick: Function,
       isOpen: Boolean,
-      article: Object,
-      selectedPicture: '',
+      article: Object
     }
   }
-
-  previewPicture = (event) => {
-    this.setState((prevState) => {
-      return {
-        selectedPicture: event,
-      }
-    });
-  };
 
   render() {
     if (!this.props.isOpen) {
@@ -44,9 +35,9 @@ class Sidebar extends React.Component {
                 <CloseRounded style={{ fontSize: 16 }}/>
               </a>
             </header>
-            <img className={`${sidebar.cover} width-100`}src={this.props.article.coverSrc}></img>
-            <main className="overflow-scroll pb-64">
-              <div className="layout-row p-32">
+            <img className={`${sidebar.cover} width-100 hide-xs`}src={this.props.article.coverSrc}></img>
+            <main className="overflow-scroll pb-64 layout-column">
+              <div className={`${sidebar.description} layout-row p-16 flex-order-xs-1`}>
                 <div className="layout-column layout-align-start-start p-16 flex">
                   <p className="serif text-secondary-100 mb-16">{this.props.article.motion}</p>
                   <p className="h2 text-secondary-100 b">{this.props.article.title}</p>
@@ -62,7 +53,7 @@ class Sidebar extends React.Component {
                   </Link>
                 </div>
               </div>
-              <div className="layout-column layout-gt-sm-row">
+              <div className="layout-column layout-gt-sm-row flex-order-xs-0">
                 <CarouselProvider
                   naturalSlideWidth={100}
                   naturalSlideHeight={100}
@@ -73,23 +64,23 @@ class Sidebar extends React.Component {
                     {this.props.article.gallery.map((image, key) => {
                       return (
                         <Slide index={key}>
-                          <ImageWithZoom src={image.src} alt={image.alt}/>
+                          <Image src={image.src} alt={image.alt}/>
                         </Slide>
                       );
                     })}
                   </Slider>
-                  <div className="layout-row flex layout-wrap">
+                  <div className="layout-row flex layout-wrap layout-align-center-center">
                     {this.props.article.gallery.map((image, key) => {
                       return (
-                        <Dot slide={key} className={`${sidebar.thumbnail} flex-20`} index={key}>
-                        <img src={image.src} alt={image.alt} />
+                        <Dot slide={key} className={`${sidebar.thumbnail} flex-gt-xs-20 flex-none`} index={key}>
+                          <img className="hide-xs" src={image.src} alt={image.alt} />
                         </Dot>
                       );
                     })}
                   </div>
                 </CarouselProvider>
               </div>
-              <div className="mt-64">
+              <div className="mt-32 flex-order-xs-2">
                 <table className={`${sidebar.table}`}>
                   <thead>
                     <tr>
