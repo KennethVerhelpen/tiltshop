@@ -1,51 +1,34 @@
-import Link from "next/link";
-import MenuRounded from "@material-ui/icons/MenuRounded";
-
+import clsx from 'clsx';
 import nav from "./nav.module.scss";
 
 class Nav extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			links: Object
+			links: Object,
+			onClick: Function,
+			activeLink: Number,
 		}
 	}
 
 	render = () => {
-
 		return (
-			<nav
-				className={`layout-row layout-align-start-center ${nav.shape}`}
-			>
-				<div className="container-md layout-row layout-align-space-between-center">
-					<ul
-						className={`small layout-row layout-align-center-center p-0 m-0 ${nav.links}`}
-					>
-						<li className="text-secondary-100 px-8 layout-row layout-align-center-center">
-							<p className={`logo-serif b h5`}>Tilt</p>
-						</li>
-					</ul>
-					<ul
-						className={`hide-xs small flex layout-row layout-align-end-center p-0 m-0 ${nav.links}`}
-					>
-						{this.props.links.map((link, index) => {
-							return (
-								<li key={index} className="text-secondary-100 px-8">
-									<Link href={link.href}>
-										<a>{link.label}</a>
-									</Link>
-								</li>
-							);
-						})}
-					</ul>
-					<button className="hide-gt-xs btn text-secondary-100">
-						<MenuRounded />
-					</button>
-					{this.props.children}
-				</div>
+			<nav className={`layout-column ${nav.shape}`}>
+				<ul className={`hide-xs layout-fill small flex layout-row layout-align-center-stretch p-0 m-0 ${nav.links}`}>
+					{this.props.links && this.props.links.map((link, index) => {
+						return (
+							<li key={index} className="layout-row layout-align-center-center">
+								<button className={clsx({ 'test': (index === this.props.activeLink)}, `${nav.btn} layout-row layout-align-center-center px-16` )} onClick={() => this.props.onClick(index)}>
+									{link.icon && <div className="layout-column layout-align-center-center m-8">{link.icon}</div>}
+									<span>{link.type}</span>
+								</button>
+							</li>
+						);
+					})}
+				</ul>
 			</nav>
 		);
 	};
 }
 
-export default Nav;
+export { Nav };

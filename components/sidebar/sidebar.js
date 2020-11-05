@@ -35,7 +35,7 @@ class Sidebar extends React.Component {
                 <CloseRounded style={{ fontSize: 16 }}/>
               </a>
             </header>
-            <img className={`${sidebar.cover} width-100 hide-xs`}src={this.props.article.coverSrc}></img>
+            <img className={`${sidebar.cover} width-100 hide-xs`} src={this.props.article.coverSrc}></img>
             <main className="overflow-scroll pb-64 layout-column">
               <div className={`${sidebar.description} layout-row p-16 flex-order-xs-1`}>
                 <div className="layout-column layout-align-start-start p-16 flex">
@@ -112,4 +112,4 @@ class Sidebar extends React.Component {
   }
 }
 
-export default Sidebar;
+export {Sidebar};

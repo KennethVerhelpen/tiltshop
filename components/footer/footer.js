@@ -1,6 +1,4 @@
 import Link from "next/link";
-import FilterRounded from "@material-ui/icons/FilterRounded";
-
 import footer from "./footer.module.scss";
 
 class Footer extends React.Component {
@@ -28,7 +26,7 @@ class Footer extends React.Component {
 						<ul
 							className={`px-16 layout-row text-secondary-100 ${footer.list}`}
 						>
-							{this.props.links.map((link, index) => {
+							{this.props.links && this.props.links.map((link, index) => {
 								return (
 									<li key={index} className={`small ${index > 0 ? "ml-32" : ""} ${footer.list}`}>
 										<Link href={link.href}>
@@ -45,4 +43,4 @@ class Footer extends React.Component {
 	};
 }
 
-export default Footer;
+export {Footer};

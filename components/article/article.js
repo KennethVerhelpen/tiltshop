@@ -1,7 +1,5 @@
 import React from 'react';
-
 import article from './article.module.scss';
-
 class Article extends React.Component {
 	constructor(props) {
 		super(props);
@@ -52,4 +50,4 @@ class Article extends React.Component {
 	}
 }
 
-export default Article;
+export {Article};

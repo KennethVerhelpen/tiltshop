@@ -10,14 +10,9 @@ body {
   font-family: $font-family-serif;
 }
 
-.logo-serif {
-  font-family: $font-family-logo;
-}
-
 .h1, .h2, .h3, .h4, .h5, .h6,
 h1, h2, h3, h4, h5, h6 {
   font-weight: $headings-font-weight;
-  line-height: $headings-line-height;
   color: $headings-color;
   margin: 0;
 }
@@ -42,13 +37,6 @@ h1, h2, h3, h4, h5, h6 {
 %p, .p , p {
   margin: 0;
   font-size: $paragraph-font-size;
-  line-height: $paragraph-line-height;
-}
-
-%p-spaced, .p-spaced {
-  margin: 0;
-  font-size: $paragraph-font-size;
-  line-height: $paragraph-spaced-line-height;
 }
 
 %small, .small, small {

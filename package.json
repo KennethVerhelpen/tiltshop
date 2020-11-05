@@ -10,15 +10,20 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "clsx": "^1.1.1",
     "next": "^9.4.4",
+    "next-images": "^1.6.2",
     "pure-react-carousel": "^1.27.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-image": "^4.0.3",
     "react-select": "^3.1.0",
+    "react-svg": "^11.1.0",
     "sass": "^1.26.10",
-    "scrollreveal": "^4.0.7"
+    "scrollreveal": "^4.0.7",
+    "url-loader": "^4.1.1"
   },
   "devDependencies": {
-    "babel-plugin-transform-react-pug": "^7.0.1"
+    "@babel/plugin-proposal-export-default-from": "^7.12.1"
   }
 }

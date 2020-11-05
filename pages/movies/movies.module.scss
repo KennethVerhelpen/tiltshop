@@ -1,0 +1,41 @@
+.header {
+  padding: 12rem 0;
+}
+
+.headerBg {
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 0;
+  position: absolute;
+}
+
+.headerCtn {
+  z-index: 1;
+  position: relative;
+}
+
+.content {
+  background: black;
+}
+
+.select {
+  min-width: 15rem;
+}
+
+.logotype {
+  font-size: 9rem;
+}
+
+.filtersBar {
+  top: 0;
+  z-index: 4;
+  height: 3.25rem;
+  position: sticky;
+  transition: all .3s ease-in-out;
+}
+
+.filtersBarLogo {
+  opacity: 0;
+}

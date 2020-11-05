@@ -1,11 +1,12 @@
 .shape  {
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   position: fixed;
   min-height: 3.25rem;
-  background: rgba(8, 8, 8, 0.85);
+  background: rgba(5, 0, 13, 0.85);
+  border-bottom: 1px solid #1F1829;
   backdrop-filter: blur(20px);
 }
 
@@ -14,7 +15,22 @@
   height: 2.5rem;
 }
 
+.btn {
+  height: 100%;
+  border: none;
+  outline: none;
+  min-width: 6rem;
+  color: #6E5096;
+  background: transparent;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    color: #FBD79E;
+    background: #0d0021;
+    border-bottom: 2px solid #ff2aa0;
+  }
+}
+
 .links {
   list-style-type: none;
-  padding: 0;
 }

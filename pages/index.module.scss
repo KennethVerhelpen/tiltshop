@@ -1,27 +1,28 @@
 .header {
-  padding: 12rem 0;
+  padding: 6rem 0;
 }
 
-.content {
-  background: black;
+.title {
+  margin-top: -1rem;
+  line-height: 1;
 }
 
-.select {
-  min-width: 15rem;
-}
-
-.logotype {
-  font-size: 9rem;
-}
-
-.filtersBar {
+.pageBg {
   top: 0;
-  z-index: 4;
-  height: 3.25rem;
-  position: sticky;
-  transition: all .3s ease-in-out;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  width: 100%;
+  height: 48rem;
+  max-width: 1440px;
+  -o-object-fit: contain;
+  object-fit: cover;
+  position: absolute;
+  margin: auto;
 }
 
-.filtersBarLogo {
-  opacity: 0;
+.pageContent,
+.header {
+  z-index: 1;
+  position: relative;
 }

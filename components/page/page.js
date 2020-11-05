@@ -1,35 +1,30 @@
 import Head from 'next/head';
-import Nav from '../nav/nav';
-import Footer from "../footer/footer";
+import { Nav, Footer } from '../../components';
 
-class Modal extends React.Component {
+class Page extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			media: Object,
+			onClick: Function,
 			children: props.node,
+			activeMedia: Number
 		};
 	}
 
 	render() {
-		const routes = [
-			{ label: "Products", href: "/" },
-			{ label: "Sales", href: "/sales" },
-			{ label: "About", href: "/about" },
-			{ label: "Contact", href: "/contact" }
-		];
-
 		return (
 			<>
 				<Head>
 					<title>Tilt Shop</title>
 					<link rel="icon" href="/favicon.ico" />
 				</Head>
-				<Nav links={routes} ref="navbar"></Nav>
+				<Nav activeLink={this.props.activeMedia} onClick={this.props.onClick} links={this.props.media} ref="navbar"></Nav>
 				<main className="flex pb-64">{this.props.children}</main>
-				<Footer links={routes} />
+				<Footer/>
 			</>
 		);
 	}
 }
 
-export default Modal;
+export {Page};
