@@ -1,4 +1,4 @@
-import { Page, Article, Modal, Sidebar, Logotype } from '../components/index';
+import { Page, Article, Modal, Sidebar, Logotype } from '../../components/index';
 // import FilterListRounded from "@material-ui/icons/FilterListRounded";
 // import Select from "react-select";
 

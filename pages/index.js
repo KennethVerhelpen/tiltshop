@@ -1,4 +1,4 @@
-import { Page, Medium, Logotype } from '../components/index';
+import { Page, Medium, Logotype } from '../components/index ';
 import mediaSet from "../lib/media";
 import index from "./index.module.scss";
 import clsx from "clsx";
