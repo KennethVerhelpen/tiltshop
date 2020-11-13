@@ -26,7 +26,7 @@ class Medium extends React.Component {
         </header>
         <main className={`${medium.pageContent} container-lg p-0 layout-column`}>
           <div className="layout-row layout-wrap layout-align-center-center">
-            {articlesSet.filter(article => article.medium === this.props.id).map((article) => {
+            {articlesSet.filter(article => article.medium === this.props.id).length > 0 && articlesSet.filter(article => article.medium === this.props.id).map((article) => {
               return (
                 <div key={article.id} className="p-16">
                   <Article article={article} />
