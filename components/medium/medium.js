@@ -1,16 +1,16 @@
-import React from 'react';
 import medium from './medium.module.scss';
-
+import clsx from "clsx";
+import Link from "next/link";
 class Medium extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			item: Object,
 			medium: Object,
 			count: Number,
 			className: true,
-			article: Object,
-			onClick: Function,
-			isHovered: false
+			isHovered: false,
+			onClick: Function
 		};
 	}
 
@@ -27,18 +27,25 @@ class Medium extends React.Component {
 	}
 
 	componentDidMount = () => {
-		setTimeout(this.mountStyles,0);
+		setTimeout(this.mountStyles, 0);
 	};
 
 	render() {
-		const hoverClass = this.state.isHovered ? "shadow-5" : "shadow-2";
+		const hoverClass = this.props.isHovered ? "" : "";
+
 		return (
-			<article onClick={this.props.onClick} className={`${medium.block} ${this.state.className}`}>
-				<main onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} className={`layout-column layout-align-center-center p-32 text-center rounded-md ${medium.shape} ${hoverClass} overflow-hidden cursor-pointer`}>
-					<span className={`h1 serif b ${medium.name}`}>{this.props.medium.name}</span>
-					<img className={medium.img} src={this.props.medium.imgSrc} alt={this.props.medium.imgSrc}></img>
-				</main>
-			</article>
+			<Link href={`${this.props.medium.slug}/${this.props.item.slug}`}>
+				<article className={clsx(this.props.className)}>
+					<main onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} className={`layout-column layout-align-center-center p-32 text-center rounded-md ${medium.shape} ${hoverClass} overflow-hidden cursor-pointer`}>
+						<div className={`${medium.content} layout-column layout-align-center-center`}>
+							<div className={`${medium.icon} rounded layout-column layout-align-center-center mb-8`}>{this.props.medium.icon}</div>
+							<span className={`h1 serif strong ${medium.name}`}>{this.props.item.name}</span>
+							<a className="mt-8 underline">See all articles</a>
+						</div>
+						<img className={medium.img} src={this.props.item.imgSrc} alt={this.props.item.imgSrc}></img>
+					</main>
+				</article>
+			</Link>
 		);
 	}
 }

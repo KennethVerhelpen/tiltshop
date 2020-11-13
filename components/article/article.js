@@ -1,20 +1,13 @@
-import React from 'react';
 import article from './article.module.scss';
+import Link from "next/link";
+import { StarHalfTwoTone, Star, StarBorderTwoTone } from '@material-ui/icons';
 class Article extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			className: true,
-			article: Object,
-			onClick: Function,
-			isHovered: false
+			article: Object
 		};
-	}
-
-	handleHover = () => {
-		this.setState((prevState) => ({
-			isHovered: !prevState.isHovered,
-		}));
 	}
 
 	mountStyles = () => {
@@ -28,26 +21,49 @@ class Article extends React.Component {
 	};
 
 	render() {
-		const hoverClass = this.state.isHovered ? "shadow-5" : "shadow-2";
-		return (
-			<article onClick={this.props.onClick} className={`${article.block} ${this.state.className}`}>
-				<main onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} className={`layout-column layout-align-end-stretch  rounded-md ${article.shape} ${hoverClass} overflow-hidden cursor-pointer`}>
-					<img className={article.img} src={this.props.article.imgSrc}></img>
-					<div className={`p-32 layout-column layout-align-start-start ${article.content}`}>
-						<span className="text-secondary-100 h5 mb-8 b">{this.props.article.title}</span>
-						<span className="text-secondary-100 rounded-xs border border-secondary-100 py-4 px-8">{this.props.article.price}</span>
-					</div>
-				</main>
-				<footer className="px-8 py-16 layout-column layout-align-start-start">
-					<span className="b mb-8 p text-secondary-900 ">{this.props.article.motion}</span>
-					<span className={`${article.tag} mb-12 text-secondary-900 small border border-secondary-900 py-4 px-12`}>{this.props.article.category}</span>
-					<span className="text-secondary-700 small">{this.props.article.description}</span>
-					<a className="u text-secondary-700 small">Read more</a>
 
-				</footer>
-			</article>
+		const fullStars = this.props.article.ratings;
+		const plainStars = Math.floor(this.props.article.ratings);
+		const halfStar = ((Math.floor(this.props.article.ratings * 2) / 2).toFixed(1) - plainStars) > 0;
+		const emptyStars = Math.floor(5 - this.props.article.ratings);
+		console.log("plainStars", plainStars)
+		console.log("halfStar",halfStar)
+		console.log("emptyStars",emptyStars)
+		return (
+			<a href={this.props.article.url} target="_blank">
+				<article className={`layout-column layout-align-space-between-stretch rounded-md ${article.shape}  overflow-hidden cursor-pointer`}>
+					<header className={`${article.content} layout-row layout-align-end-center pt-16 px-16`}>
+						<span className="small mr-4">$</span>
+						<span className="serif h6 strong">{this.props.article.price}</span>
+					</header>
+					<footer className={`${article.content} layout-column layout-align-start-start p-32`}>
+						<span className="small bold mb-8">{this.props.article.type}</span>
+						<span className={`serif strong h6 ${article.name} mb-4`}>{this.props.article.title}</span>
+						<div className="layout-row mb-16">
+							{new Array(plainStars).fill(null).map(() => {
+								return (
+									<Star style={{ fontSize: 16 }} className={`${article.activeStar} p`}/>
+								)
+							})}
+							{halfStar && <StarHalfTwoTone style={{ fontSize: 16 }} className={`${article.activeStar}`} />}
+							{new Array(emptyStars).fill(null).map(() => {
+								return (
+									<StarBorderTwoTone style={{ fontSize: 16 }} className={`${article.inactiveStar}`} />
+								)
+							})}
+						</div>
+						<span className="small">
+							{this.props.article.description.length > 60 ? `${this.props.article.description.slice(0, 60)}...` : this.props.article.description}
+							{' '}
+							<span className="small display-inline-block underline">Read more</span>
+						</span>
+
+					</footer>
+					<img className={article.img} src={this.props.article.imgSrc}></img>
+				</article>
+			</a>
 		);
 	}
 }
 
-export {Article};
+export { Article };

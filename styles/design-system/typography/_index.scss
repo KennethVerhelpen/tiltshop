@@ -2,18 +2,16 @@ body {
   font-size: $font-size-base;
 }
 
-.curved {
-  font-family: $font-family-sans-curved;
-}
-
+%serif,
 .serif {
   font-family: $font-family-serif;
 }
 
+%h1, %h2, %h3, %h4, %h5, %h6,
 .h1, .h2, .h3, .h4, .h5, .h6,
 h1, h2, h3, h4, h5, h6 {
   font-weight: $headings-font-weight;
-  color: $headings-color;
+  line-height: $headings-line-height;
   margin: 0;
 }
 
@@ -23,7 +21,15 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-%blocktext, .blocktext {
+%p,
+.p,
+p {
+  font-size: $paragraph-font-size;
+  line-height: $paragraph-line-height;
+}
+
+%blocktext,
+.blocktext {
   @each $heading, $size in $headings-sizes {
   .#{$heading}, #{$heading} {
      margin-bottom: $size / 2;
@@ -34,41 +40,46 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-%p, .p , p {
-  margin: 0;
-  font-size: $paragraph-font-size;
+%label,
+.label,
+label {
+  font-weight: $label-font-weight;
 }
 
-%small, .small, small {
+%small,
+.small,
+small {
   font-size: $small-font-size;
 }
 
-%smaller, .smaller {
+%smaller,
+.smaller {
   font-size: $smaller-font-size;
 }
 
-%mark, .mark, mark {
+%mark,
+.mark,
+mark {
   padding: $mark-padding;
-  background-color: $content-900;
-  color: $secondary-100;
+  background-color: $primary-100;
+  color: $primary-500;
 }
 
-%mark-light, .mark-light {
-  padding: $mark-padding;
-  background-color: white;
-  color: $content-900;
-}
-
-%blockquote, .blockquote, blockquote {
+%blockquote,
+.blockquote,
+blockquote {
   font-style: italic;
 }
 
-%em, .em, em {
+%em,
+.em,
+em {
   font-style: italic;
   font-weight: bold;
 }
 
-%code, .code, code {
+%code,
+.code {
   display: inline-block;
   color: $danger-500;
   background: $secondary-300;
@@ -78,16 +89,27 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 0.25rem;
 }
 
-%b, .b, b,
-strong {
-  font-weight: bolder;
+%bold,
+.bold,
+b {
+  font-weight: bold;
 }
 
-%i, .i, i {
+%strong,
+.strong,
+strong {
+  font-weight: 900;
+}
+
+%italic,
+.italic,
+i {
   font-style: italic;
 }
 
-%u, .u, u {
+%underline,
+.underline,
+u {
   text-decoration: underline;
 }
 
@@ -96,13 +118,11 @@ strong {
   text-decoration: none;
 }
 
-.label, %label, label {
-  font-weight: $label-font-weight;
-  display: block;
-  font-weight: bold;
-
+.link {
+  text-decoration: underline;
+  color: $primary-500;
   &:hover {
-    cursor: pointer;
+    color: darken($primary-500, 5%);
   }
 }
 

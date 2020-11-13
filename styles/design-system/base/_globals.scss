@@ -5,9 +5,27 @@ body {
   width: 100%;
   height: 100%;
   max-height: 100%;
-  color: $content-500;
+  color: white;
+  background: black;
   font-family: $font-family-sans;
   font-size: $font-size-base;
-  background-color: black;
   -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+*::selection {
+  color: #FFBB27;
+  background-color: #fbe4b1;
 }

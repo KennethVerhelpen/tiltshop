@@ -1,36 +1,36 @@
 $primary-100: #e6fafe !default;
-$primary-300: #b2f0fb !default;
+$primary-300: #93dfec !default;
 $primary-500: #20c5e5 !default;
-$primary-700: #05a3b8 !default;
+$primary-700: #005A66 !default;
 $primary-900: #002a2e !default;
 
 $secondary-100: #ffffff !default;
 $secondary-300: #fafafa !default;
 $secondary-500: #ebebeb !default;
-$secondary-700: #575757 !default;
-$secondary-900: #000000 !default;
+$secondary-700: #c8c8c8 !default;
+$secondary-900: #909090 !default;
 
 $success-100: #bef2df !default;
-$success-300: #69e2b6 !default;
-$success-500: #00cc99 !default;
+$success-300: #86E2BA !default;
+$success-500: #53e3ba !default;
 $success-700: #009973 !default;
 $success-900: #00664e !default;
 
 $danger-100: #ffe5eb !default;
-$danger-300: #ff6688 !default;
+$danger-300: #f6789b !default;
 $danger-500: #ff3970 !default;
 $danger-700: #d63458 !default;
-$danger-900: #660017 !default;
+$danger-900: #930021 !default;
 
-$accent-100: #fffbf7 !default;
-$accent-300: #ffeacc !default;
-$accent-500: #ffd799 !default;
-$accent-700: #ffc061 !default;
+$accent-100: #ffeacc !default;
+$accent-300: #ffd799 !default;
+$accent-500: #ffc061 !default;
+$accent-700: #ec8f05 !default;
 $accent-900: #a76504 !default;
 
 $content-100: #1b42af !default;
 $content-300: #153284 !default;
-$content-500: #FBD79E !default;
+$content-500: #0e2158 !default;
 $content-700: #07112c !default;
 $content-900: #000000 !default;
 
@@ -70,15 +70,15 @@ $colors: (
 $btnPalettes: (
   'primary': (
     'raised': (
-      'text': white,
-      'bg': $primary-500,
-      'border': $primary-700,
-      'shadow': $primary-700,
+      'text': $primary-700,
+      'bg': $primary-300,
+      'border': $primary-300,
+      'shadow': $primary-500,
     ),
     'flat': (
-      'text': white,
-      'bg': $primary-500,
-      'border': $primary-500,
+      'text': $primary-700,
+      'bg': $primary-300,
+      'border': $primary-300,
       'shadow': null,
     ),
     'light': (
@@ -89,26 +89,26 @@ $btnPalettes: (
     ),
     'outlined': (
       'text': $primary-500,
-      'bg': null,
+      'bg': transparent,
       'border': $primary-500,
       'shadow': null,
     ),
-    'unstyled': (
+    'default': (
       'text': $primary-500,
-      'bg': null,
-      'border': transparent,
+      'bg': transparent,
+      'border': null,
       'shadow': null,
     ),
   ),
   'secondary': (
     'raised': (
-      'text': $secondary-900,
+      'text': $content-700,
       'bg': white,
       'border': $secondary-700,
       'shadow': $secondary-700,
     ),
     'flat': (
-      'text': $secondary-900,
+      'text': $content-700,
       'bg': white,
       'border': white,
       'shadow': null,
@@ -120,29 +120,29 @@ $btnPalettes: (
       'shadow': null,
     ),
     'outlined': (
-      'text': $secondary-900,
-      'bg': null,
+      'text': $content-700,
+      'bg': transparent,
       'border': $secondary-700,
       'shadow': null,
     ),
-    'unstyled': (
-      'text': $secondary-900,
-      'bg': null,
-      'border': transparent,
+    'default': (
+      'text': $content-700,
+      'bg': transparent,
+      'border': null,
       'shadow': null,
     ),
   ),
   'success': (
     'raised': (
-      'text': white,
-      'bg': $success-500,
-      'border': $success-700,
+      'text': $success-900,
+      'bg': $success-300,
+      'border': $success-300,
       'shadow': $success-700,
     ),
     'flat': (
-      'text': white,
-      'bg': $success-500,
-      'border': $success-500,
+      'text': $success-900,
+      'bg': $success-300,
+      'border': $success-300,
       'shadow': null,
     ),
     'light': (
@@ -153,28 +153,28 @@ $btnPalettes: (
     ),
     'outlined': (
       'text': $success-500,
-      'bg': null,
+      'bg': transparent,
       'border': $success-500,
       'shadow': null,
     ),
-    'unstyled': (
+    'default': (
       'text': $success-500,
-      'bg': null,
-      'border': transparent,
+      'bg': transparent,
+      'border': null,
       'shadow': null,
     ),
   ),
   'danger': (
     'raised': (
-      'text': white,
-      'bg': $danger-500,
-      'border': $danger-700,
+      'text': $danger-900,
+      'bg': $danger-300,
+      'border': $danger-300,
       'shadow': $danger-700,
     ),
     'flat': (
-      'text': white,
-      'bg': $danger-500,
-      'border': $danger-500,
+      'text': $danger-900,
+      'bg': $danger-300,
+      'border': $danger-300,
       'shadow': null,
     ),
     'light': (
@@ -185,46 +185,46 @@ $btnPalettes: (
     ),
     'outlined': (
       'text': $danger-500,
-      'bg': null,
+      'bg': transparent,
       'border': $danger-500,
       'shadow': null,
     ),
-    'unstyled': (
+    'default': (
       'text': $danger-500,
-      'bg': null,
-      'border': transparent,
+      'bg': transparent,
+      'border': null,
       'shadow': null,
     ),
   ),
   'accent': (
     'raised': (
       'text': $accent-900,
-      'bg': $accent-500,
-      'border': $accent-700,
+      'bg': $accent-300,
+      'border': $accent-300,
       'shadow': $accent-700,
     ),
     'flat': (
-      'text': $accent-900,
-      'bg': $accent-500,
-      'border': $accent-500,
-      'shadow': null,
-    ),
-    'light': (
       'text': $accent-900,
       'bg': $accent-300,
       'border': $accent-300,
       'shadow': null,
     ),
+    'light': (
+      'text': $accent-700,
+      'bg': $accent-100,
+      'border': $accent-100,
+      'shadow': null,
+    ),
     'outlined': (
       'text': $accent-700,
-      'bg': null,
+      'bg': transparent,
       'border': $accent-500,
       'shadow': null,
     ),
-    'unstyled': (
+    'default': (
       'text': $accent-700,
-      'bg': null,
-      'border': transparent,
+      'bg': transparent,
+      'border': null,
       'shadow': null,
     ),
   ),

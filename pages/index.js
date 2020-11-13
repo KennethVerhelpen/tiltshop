@@ -1,8 +1,11 @@
-import { Page, Medium, Logotype } from '../components/index';
+import { Page, Medium } from '../components/index';
 import mediaSet from "../lib/media";
 import index from "./index.module.scss";
 import clsx from "clsx";
+import { NextPageContext } from 'next'
+
 class Home extends React.Component {
+
 	constructor(props) {
 		super(props);
 		this.rotatingTextsWrapper = React.createRef();
@@ -45,48 +48,48 @@ class Home extends React.Component {
 	}
 
 	render = () => {
+
 		return (
 			<Page activeMedia={this.props.activeMedia} media={mediaSet} onClick={this.handleMediaSetChange}>
 				<header className={`${index.header} text-center`}>
-					<div className={`${index.headerCtn} container-md layout-column layout-align-center-center`}>
-						<Logotype />
-						{this.props.currentIndex}
-						<h1 className={`h4 serif ${index.title}`}>
+					<div className="container-md layout-column layout-align-center-center">
+						<h1 className={`${index.logo} serif strong`}>TiltShop</h1>
+						<h2 className={`serif lh-2 mt-16 p ${index.title}`}>
 							<span>A currated list of items for</span><br/>
-							<span ref={this.rotatingTextsWrapper}>
+							<span className="h4" ref={this.rotatingTextsWrapper}>
 								{this.rotatingTexts.map((text, index) => {
 									return (
-										<strong className={clsx({ "hide": this.state.visibleText != index })} key={index}>{text}</strong>
+										<b className={clsx({ "hide": this.state.visibleText != index })} key={index}>{text}.</b>
 									)
 								})}
-							</span>.
-						</h1>
+							</span>
+						</h2>
 					</div>
 				</header>
-				<main className={`${index.pageContent} container-md p-0 layout-column`}>
+				<main className={`${index.pageContent} container-lg p-0 layout-column`}>
 					<div className="layout-row layout-wrap layout-align-center-center">
 						{(this.state.media === undefined)
 							? mediaSet.map((medium => medium.items && medium.items.map((item, index) => {
 								return (
 									<div key={item.id} ref="article" className="p-16">
-										<Medium key={index} medium={item} />
+										<Medium key={index} item={item} medium={medium}/>
 									</div>
 								)
 						})))
 							: this.state.media != undefined && this.state.media.items.map((item, index) => {
 								return (
-									<div key={item.id} ref="article" className="flex-100 flex-sm-50 flex-gt-sm-33 p-16">
-										<Medium key={index} medium={item} />
+									<div key={item.id} ref="article" className="p-16">
+										<Medium key={index} item={item} medium={this.state.media}/>
 									</div>
 								)
 							})
 						 }
 					</div>
 				</main>
-				<img className={index.pageBg} src="/images/header-bg.png"/>
+				<img className={index.pageBg} src="/images/header-bg-02.jpg"/>
 			</Page>
 		);
 	};
 }
 
-export default Home;
+export default Home

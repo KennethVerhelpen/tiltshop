@@ -1,8 +1,34 @@
 .shape {
-  height: 30rem;
+  width: 22rem;
+  height: 34rem;
   position: relative;
   background: black;
-  transition: all .3s ease-in-out;
+  transition: border .15s ease-in-out;
+  border: 1px solid rgba(0,0,0,0);
+}
+
+.content {
+  z-index: 1;
+}
+
+.name {
+  color: white;
+}
+
+.activeStar {
+  color: #FFBB27;
+}
+
+.inactiveStar {
+  color: white;
+  opacity: 0.5;
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+  color: #FFBB27;
+  background-color: rgba(255, 187, 39, 0.2);
 }
 
 .img {
@@ -24,8 +50,17 @@
   border-radius: 2rem;
 }
 
-.shape:hover .img {
-  filter: blur(10px);
-  transform: scale(1.2);
-  transition: all .3s ease-in-out;
+.shape:hover {
+  border: 1px solid white;
+
+  .icon {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .name {
+    color: white;
+    transition: text-shadow .2s ease-in-out;
+    text-shadow: 2px 4px 15px rgba(255,255,255,0.08), 0 2px 7px rgba(255,255,255,0.36);
+  }
 }

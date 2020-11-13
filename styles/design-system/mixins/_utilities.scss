@@ -3,7 +3,7 @@
 }
 
 @mixin overflow-classes($axis) {
-  @each $type in ('scroll', 'hidden') {
+  @each $type in ('scroll', 'hidden', 'auto') {
     %overflow#{$axis}-#{$type},
     .overflow#{$axis}-#{$type} {
       overflow#{$axis}: #{$type};

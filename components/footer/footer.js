@@ -11,14 +11,14 @@ class Footer extends React.Component {
 
 	render = () => {
 		return (
-			<footer className="bg-secondary-900 py-64">
-				<div className="container-md layout-row layout-align-start-start">
-					<div className="layout-column layout-align-start-start">
-						<p className="logo-serif text-secondary-100 b h2">Tilt</p>
-						<p className="h6 description text-secondary-100 mt-32">
+			<footer className="py-64">
+				<div className="container-md layout-row layout-align-center-center">
+					<div className="layout-column layout-align-start-center text-center">
+						<p className="logo-serif strong h6 serif">TiltShop</p>
+						<p className="p description text-secondary-100 mt-8 serif">
 							<b>Tilt is the best of Amazon</b>, curated by cinema lovers.
 						</p>
-						<p className="description text-secondary-100 mb-32">
+						<p className="small description text-secondary-100 mb-32">
 							Every item is hand-picked for Amazon catalogue and sorted out just
 							for you.
 						</p>

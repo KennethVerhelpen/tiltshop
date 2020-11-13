@@ -1,18 +1,13 @@
-button.btn, .btn {
-  outline: none;
-  border: none;
+.btn, button.btn {
   padding: 0;
+  border: none;
+  outline: none;
   position: relative;
-  min-width: 2rem;
-  min-height: 2rem;
   vertical-align: middle;
-  border-radius: 50%;
-  background: transparent;
-  transition: all .15s ease-in-out;
 
   @each $palette, $type in $btnPalettes {
     &.btn-#{$palette} {
-      @each $type in 'flat', 'light', 'raised', 'outlined', 'unstyled' {
+      @each $type in 'flat', 'light', 'raised', 'outlined', 'default' {
         &.btn-#{$type} {
           @include generate-button-types($palette, $type);
         }
@@ -20,22 +15,38 @@ button.btn, .btn {
     }
   }
 
-  @each $index, $size, $radius in (1 'xs' $radius-xs, 2 'sm' $radius-sm, 3 'md' $radius-md, 4 'lg' $radius-lg, 5 'xl' $radius-lg) {
-    &%btn-#{$size},
-    &.btn-#{$size} {
-      padding: 0.25rem * $index 0.25rem * ($index + 1);
+  @each $index, $size, $radius in (1 'xs' $radius-xs, 2 'sm' $radius-sm, 3 'md' $radius-md, 4 'lg' $radius-lg) {
+    $scale: 1.5rem + ($index * 0.5rem);
+    $padding-x: 0.25rem * ($index + 1);
+
+    &.btn-#{$size}:not(.btn-fab) {
+      min-height: $scale;
+      line-height: $scale;
+      padding-left: $padding-x;
+      padding-right: $padding-x;
       border-radius: $radius;
+    }
+    &.btn-#{$size}.btn-fab {
+      height: $scale;
+      width: $scale;
+      padding-left: 0;
+      padding-right: 0;
+      border-radius: 50%;
     }
   }
 
-  .icon {
+  .btn-icon {
     &-left {
-      float: left;
       margin-right: 0.5rem;
     }
     &-right {
-      float: right;
       margin-left: 0.5rem;
+    }
+  }
+
+  @each $index, $size in (1 'xs', 2 'sm', 3 'md', 4 'lg') {
+    .btn-icon-#{$size} {
+      font-size: 0.5rem + ($index * 0.25rem);
     }
   }
 
@@ -48,7 +59,6 @@ button.btn, .btn {
     cursor: not-allowed;
   }
 
-  &%loading,
   &.loading {
     cursor: wait;
     overflow: hidden;
@@ -66,7 +76,6 @@ button.btn, .btn {
     }
   }
 
-  %btn-ripple,
   &.btn-ripple {
     overflow: hidden;
     position: relative;
@@ -94,10 +103,5 @@ button.btn, .btn {
       transition: 0s;
       transform: scale(0, 0);
     }
-  }
-  %btn-hoverable:hover,
-  &.btn-hoverable:hover {
-    transition: all .15s ease-in-out;
-    transform: translateY(-2px) scale(1.01);
   }
 }
