@@ -2,7 +2,6 @@ import { Page, Medium } from '../components/index';
 import mediaSet from "../lib/media";
 import index from "./index.module.scss";
 import clsx from "clsx";
-import { NextPageContext } from 'next'
 
 class Home extends React.Component {
 
