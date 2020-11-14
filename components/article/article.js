@@ -1,5 +1,6 @@
 import article from './article.module.scss';
 import Link from "next/link";
+import clsx from "clsx";
 import { StarHalfTwoTone, Star, StarBorderTwoTone } from '@material-ui/icons';
 class Article extends React.Component {
 	constructor(props) {
@@ -21,16 +22,12 @@ class Article extends React.Component {
 	};
 
 	render() {
-
-		const fullStars = this.props.article.ratings;
 		const plainStars = Math.floor(this.props.article.ratings);
 		const halfStar = ((Math.floor(this.props.article.ratings * 2) / 2).toFixed(1) - plainStars) > 0;
 		const emptyStars = Math.floor(5 - this.props.article.ratings);
-		console.log("plainStars", plainStars)
-		console.log("halfStar",halfStar)
-		console.log("emptyStars",emptyStars)
+
 		return (
-			<a href={this.props.article.url} target="_blank">
+			<a className={clsx(this.props.className)} href={this.props.article.url} target="_blank">
 				<article className={`layout-column layout-align-space-between-stretch rounded-md ${article.shape}  overflow-hidden cursor-pointer`}>
 					<header className={`${article.content} layout-row layout-align-end-center pt-16 px-16`}>
 						<span className="small mr-4">$</span>
@@ -40,15 +37,15 @@ class Article extends React.Component {
 						<span className="small bold mb-8">{this.props.article.type}</span>
 						<span className={`serif strong h6 ${article.name} mb-4`}>{this.props.article.title}</span>
 						<div className="layout-row mb-16">
-							{new Array(plainStars).fill(null).map(() => {
+							{new Array(plainStars).fill(null).map((index) => {
 								return (
-									<Star style={{ fontSize: 16 }} className={`${article.activeStar} p`}/>
+									<Star key={index} style={{ fontSize: 16 }} className={`${article.activeStar} p`}/>
 								)
 							})}
 							{halfStar && <StarHalfTwoTone style={{ fontSize: 16 }} className={`${article.activeStar}`} />}
-							{new Array(emptyStars).fill(null).map(() => {
+							{new Array(emptyStars).fill(null).map((index) => {
 								return (
-									<StarBorderTwoTone style={{ fontSize: 16 }} className={`${article.inactiveStar}`} />
+									<StarBorderTwoTone key={index} style={{ fontSize: 16 }} className={`${article.inactiveStar}`} />
 								)
 							})}
 						</div>
