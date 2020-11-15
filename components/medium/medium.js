@@ -1,6 +1,7 @@
 import medium from './medium.module.scss';
 import clsx from "clsx";
 import Link from "next/link";
+import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone } from '@material-ui/icons';
 class Medium extends React.Component {
 	constructor(props) {
 		super(props);
@@ -38,7 +39,15 @@ class Medium extends React.Component {
 				<article className={clsx(this.props.className)}>
 					<main onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} className={`layout-column layout-align-center-center p-32 text-center rounded-md ${medium.shape} ${hoverClass} overflow-hidden cursor-pointer`}>
 						<div className={`${medium.content} layout-column layout-align-center-center`}>
-							<div className={`${medium.icon} rounded layout-column layout-align-center-center mb-8`}>{this.props.category.icon}</div>
+							<div className={`${medium.icon} rounded layout-column layout-align-center-center mb-8`}>
+								{(() => {
+									switch (this.props.category.slug) {
+										case 'movies': return (<MovieTwoTone className="m-8" style={{ fontSize: 16 }} />)
+										case 'tv-shows': return (<TvTwoTone className="m-8" style={{ fontSize: 16 }} />)
+										case 'video-games': return (<SportsEsportsTwoTone className="m-8" style={{ fontSize: 16 }} />)
+									}
+								})()}
+							</div>
 							<span className={`h1 serif strong ${medium.name}`}>{this.props.item.name}</span>
 							<a className="mt-8 underline">See all articles</a>
 						</div>

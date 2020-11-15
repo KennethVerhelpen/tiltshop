@@ -2,7 +2,7 @@ import { Page, Medium } from '../components/index';
 import mediaSet from "../lib/media";
 import index from "./index.module.scss";
 import clsx from "clsx";
-import Head from 'next/head'
+import { ArrowDownwardTwoTone } from '@material-ui/icons';
 
 class Home extends React.Component {
 
@@ -40,12 +40,15 @@ class Home extends React.Component {
 		clearInterval(this.interval);
 	}
 
-	render = () => {
+	handleScrollDown = () => {
 
+	}
+
+	render = () => {
 		return (
 			<Page activeMedia={this.props.activeMedia} media={mediaSet} onClick={this.handleMediaSetChange}>
-				<header className={`${index.header} text-center`}>
-					<div className="container-md layout-column layout-align-center-center">
+				<header className={`${index.header} text-center layout-column layout-align-center-center`}>
+					<div className="container-md layout-column layout-align-center-center flex">
 						<h1 className={`${index.logo} serif strong`}>TiltShop</h1>
 						<h2 className={`serif lh-2 mt-16 p ${index.title}`}>
 							<span>A currated list of items for</span><br/>
@@ -58,8 +61,13 @@ class Home extends React.Component {
 							</span>
 						</h2>
 					</div>
+					<div className="hide-gt-xs layout-row layout-align-center-center p-16">
+						<a classname="rounded border p-8" href="#categories">
+							<ArrowDownwardTwoTone/>
+						</a>
+					</div>
 				</header>
-				<main className={`${index.pageContent} container-lg p-0 layout-column`}>
+				<main id="categories" className={`${index.pageContent} container-lg p-0 layout-column`}>
 					<div className="layout-row layout-wrap layout-align-center-center">
 						{mediaSet.map((category => category.items && category.items.map((item) => {
 							return (

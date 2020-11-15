@@ -37,13 +37,13 @@ class Article extends React.Component {
 						<span className="small bold mb-8">{this.props.article.type}</span>
 						<span className={`serif strong h6 ${article.name} mb-4`}>{this.props.article.title}</span>
 						<div className="layout-row mb-16">
-							{new Array(plainStars).fill(null).map((index) => {
+							{Array.from(Array(plainStars), (number, index) => {
 								return (
-									<Star key={index} style={{ fontSize: 16 }} className={`${article.activeStar} p`}/>
+									<Star key={index} style={{ fontSize: 16 }} className={`${article.activeStar}`} />
 								)
 							})}
 							{halfStar && <StarHalfTwoTone style={{ fontSize: 16 }} className={`${article.activeStar}`} />}
-							{new Array(emptyStars).fill(null).map((index) => {
+							{Array.from(Array(emptyStars), (number, index) => {
 								return (
 									<StarBorderTwoTone key={index} style={{ fontSize: 16 }} className={`${article.inactiveStar}`} />
 								)
@@ -54,7 +54,6 @@ class Article extends React.Component {
 							{' '}
 							<span className="small display-inline-block underline">Read more</span>
 						</span>
-
 					</footer>
 					<img className={article.img} src={this.props.article.imgSrc}></img>
 				</article>

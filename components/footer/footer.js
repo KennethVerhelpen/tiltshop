@@ -16,13 +16,12 @@ class Footer extends React.Component {
 					<div className="layout-column layout-align-start-center text-center">
 						<p className="logo-serif strong h6 serif">TiltShop</p>
 						<p className="p description text-secondary-100 mt-8 serif">
-							<b>Tilt is the best of Amazon</b>, curated by cinema lovers.
+							<b>TiltShop is the best of Amazon</b>, curated by movies, tv shows and video games lovers.
 						</p>
 						<p className="small description text-secondary-100 mb-32">
-							Every item is hand-picked for Amazon catalogue and sorted out just
+							Every item is hand-picked from Amazon catalogue and sorted out just
 							for you.
 						</p>
-
 						<ul
 							className={`px-16 layout-row text-secondary-100 ${footer.list}`}
 						>

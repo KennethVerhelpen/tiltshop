@@ -14,7 +14,6 @@ class Medium extends React.Component {
   render = () => {
     return (
       <Page media={mediaSet} onClick={this.handleMediaSetChange}>
-        {console.log(this.paths)}
         <header className={`${medium.header} text-center`}>
           <div className="container-md layout-column layout-align-center-center">
             <h1 className={`${medium.logo} serif strong`}>{this.props.name}</h1>
