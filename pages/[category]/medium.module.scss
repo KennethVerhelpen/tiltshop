@@ -8,6 +8,13 @@
   text-shadow: 2px 4px 60px rgba(255,143,0,0.17), 0 2px 15px rgba(255,141,0,0.56);
 }
 
+@media only screen and (max-width: 599px) {
+  .logo {
+    font-size: 3rem;
+    line-height: 0.9;
+  }
+}
+
 .title {
   span:first-child {
     color: #D1B5F8;
@@ -28,6 +35,11 @@
     color: white;
     text-shadow: 0 0 10px rgba(255,255,255,0.5);
   }
+}
+
+.column {
+  max-width: 22rem;
+  width: 100%;
 }
 
 .pageBg {
