@@ -5,10 +5,9 @@ class Page extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			media: Object,
-			onClick: Function,
+			links: Object,
 			children: props.node,
-			activeMedia: Number
+			activePage: String
 		};
 	}
 
@@ -16,10 +15,11 @@ class Page extends React.Component {
 		return (
 			<>
 				<Head>
-					<title>Tilt Shop</title>
+					<title>TiltShop</title>
 					<link rel="icon" href="/favicon.ico" />
+					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				</Head>
-				<Nav activeLink={this.props.activeMedia} onClick={this.props.onClick} links={this.props.media} ref="navbar"></Nav>
+				<Nav activePage={this.props.activePage} ref="navbar"></Nav>
 				<main className="flex pb-64">{this.props.children}</main>
 				<Footer/>
 			</>

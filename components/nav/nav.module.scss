@@ -36,7 +36,8 @@
     transition: all .15s ease-in-out;
   }
 
-  &:hover {
+  &:hover,
+  &.activeLink {
     color: #B582FF;
     background: #0d0021;
     &:after {
