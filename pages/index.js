@@ -60,10 +60,8 @@ class Home extends React.Component {
 								})}
 							</span>
 						</h2>
-					</div>
-					<div className="hide-gt-xs layout-row layout-align-center-center p-16">
-						<a classname="rounded border p-8" href="#categories">
-							<ArrowDownwardTwoTone/>
+						<a className="mt-32 layout layout-align-center-center rounded border hide-gt-xs p-4" href="#categories">
+							<ArrowDownwardTwoTone style={{ fontSize: 16 }}/>
 						</a>
 					</div>
 				</header>
