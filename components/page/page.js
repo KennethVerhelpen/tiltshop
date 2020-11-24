@@ -16,6 +16,7 @@ class Page extends React.Component {
 			<>
 				<Head>
 					<title>TiltShop</title>
+					<meta name="description" content="A currated list of the best Amazon products for movie lovers, tv shows addicts and passionate gamers." />
 					<link rel="icon" href="/favicon.ico" />
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				</Head>
@@ -27,4 +28,4 @@ class Page extends React.Component {
 	}
 }
 
-export {Page};
+export { Page };
