@@ -53,16 +53,18 @@ class Medium extends React.Component {
 							<span className={`h1 serif strong ${medium.name}`}>{this.props.item.name}</span>
 							<span className="mt-8 underline">See all articles</span>
 						</div>
-						<Image
-							quality="100"
-							width={352}
-							height={544}
-							priority={this.props.mediumIndex <= 2}
-							loading={this.props.mediumIndex <= 2 ? "eager" : "lazy"}
-							className={medium.img}
-							src={this.props.item.imgSrc}
-							alt={this.props.item.imgAlt}
-						/>
+						<div className={medium.img}>
+							<Image
+								quality="100"
+								layout="fill"
+								objectFit="cover"
+								objectPosition="center"
+								priority={this.props.mediumIndex <= 2}
+								loading={this.props.mediumIndex <= 2 ? "eager" : "lazy"}
+								src={this.props.item.imgSrc}
+								alt={this.props.item.imgAlt}
+							/>
+						</div>
 					</main>
 				</article>
 			</Link>

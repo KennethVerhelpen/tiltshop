@@ -60,9 +60,9 @@ class Article extends React.Component {
 					</footer>
 					<Image
 						quality="100"
-						width={352}
-						height={544}
-						quality="100"
+						layout="fill"
+						objectFit="cover"
+						objectPosition="center"
 						priority={this.props.articleIndex <= 2}
 						loading={this.props.articleIndex <= 2 ? "eager" : "lazy"}
 						className={article.img}
