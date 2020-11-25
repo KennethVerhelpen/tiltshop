@@ -54,10 +54,9 @@ class Medium extends React.Component {
 							<span className="mt-8 underline">See all articles</span>
 						</div>
 						<Image
-							objectFit="cover"
-							layout="fill"
 							quality="100"
-							objectPosition="center"
+							width={352}
+							height={544}
 							priority={this.props.mediumIndex <= 2}
 							loading={this.props.mediumIndex <= 2 ? "eager" : "lazy"}
 							className={medium.img}
