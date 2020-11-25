@@ -1,11 +1,12 @@
 import article from './article.module.scss';
-import Link from "next/link";
 import clsx from "clsx";
+import Image from 'next/image'
 import { StarHalfTwoTone, Star, StarBorderTwoTone } from '@material-ui/icons';
 class Article extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			articleIndex: Number,
 			className: true,
 			article: Object
 		};
@@ -27,7 +28,7 @@ class Article extends React.Component {
 		const emptyStars = Math.floor(5 - this.props.article.ratings);
 
 		return (
-			<a className={clsx(this.props.className)} href={this.props.article.url} target="_blank">
+			<a aria-label={this.props.article.title} className={clsx(this.props.className)} href={this.props.article.url} target="_blank">
 				<article className={`layout-column layout-align-space-between-stretch rounded-md ${article.shape}  overflow-hidden cursor-pointer`}>
 					<header className={`${article.content} layout-row layout-align-end-center pt-16 px-16`}>
 						<span className="small mr-4">$</span>
@@ -55,7 +56,16 @@ class Article extends React.Component {
 							<span className="small display-inline-block underline">Read more</span>
 						</span>
 					</footer>
-					<img className={article.img} src={this.props.article.imgSrc}></img>
+					<Image
+						objectFit="cover"
+						layout="fill"
+						quality="100"
+						objectPosition="center"
+						priority={this.props.articleIndex <= 2}
+						loading={this.props.articleIndex <= 2 ? "eager" : "lazy"}
+						className={article.img}
+						alt={this.props.article.imgAlt}
+						src={this.props.article.imgSrc} />
 				</article>
 			</a>
 		);

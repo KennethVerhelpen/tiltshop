@@ -1,11 +1,13 @@
 import medium from './medium.module.scss';
 import clsx from "clsx";
 import Link from "next/link";
+import Image from 'next/image'
 import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone } from '@material-ui/icons';
 class Medium extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			mediumIndex: Number,
 			item: Object,
 			category: Object,
 			count: Number,
@@ -49,9 +51,19 @@ class Medium extends React.Component {
 								})()}
 							</div>
 							<span className={`h1 serif strong ${medium.name}`}>{this.props.item.name}</span>
-							<a className="mt-8 underline">See all articles</a>
+							<span className="mt-8 underline">See all articles</span>
 						</div>
-						<img className={medium.img} src={this.props.item.imgSrc} alt={this.props.item.imgSrc}></img>
+						<Image
+							objectFit="cover"
+							layout="fill"
+							quality="100"
+							objectPosition="center"
+							priority={this.props.mediumIndex <= 2}
+							loading={this.props.mediumIndex <= 2 ? "eager" : "lazy"}
+							className={medium.img}
+							src={this.props.item.imgSrc}
+							alt={this.props.item.imgAlt}
+						/>
 					</main>
 				</article>
 			</Link>

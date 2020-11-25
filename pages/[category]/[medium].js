@@ -25,13 +25,11 @@ class Medium extends React.Component {
         </header>
         <main className={`${medium.pageContent} container-lg p-0 layout-column`}>
           <div className="layout-row layout-wrap layout-align-center-center">
-            {articlesSet.filter(article => article.medium === this.props.id).length > 0 && articlesSet.filter(article => article.medium === this.props.id).map((article) => {
-              return (
-                <div key={article.id} className={`p-16 ${medium.column}`}>
-                  <Article article={article} />
-                </div>
-              )
-            })}
+            {articlesSet.filter(article => article.medium === this.props.id).length > 0 && articlesSet.filter(article => article.medium === this.props.id).map((article, index) => (
+              <div key={article.id} className={`p-16 ${medium.column}`}>
+                <Article articleIndex={index} article={article} />
+              </div>
+            ))}
           </div>
         </main>
         <img className={medium.pageBg} src={"/images/header-bg.png"} />

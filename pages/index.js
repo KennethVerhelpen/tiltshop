@@ -1,6 +1,6 @@
 import { Page, Medium } from '../components/index';
 import mediaSet from "../lib/media";
-import index from "./index.module.scss";
+import styles from "./index.module.scss";
 import clsx from "clsx";
 import { ArrowDownwardTwoTone } from '@material-ui/icons';
 
@@ -40,46 +40,36 @@ class Home extends React.Component {
 		clearInterval(this.interval);
 	}
 
-	handleScrollDown = () => {
-
-	}
-
-	render = () => {
-		return (
-			<Page activeMedia={this.props.activeMedia} media={mediaSet} onClick={this.handleMediaSetChange}>
-				<header className={`${index.header} text-center layout-column layout-align-center-center`}>
-					<div className="container-md layout-column layout-align-center-center flex">
-						<h1 className={`${index.logo} serif strong`}>TiltShop</h1>
-						<h2 className={`serif lh-2 mt-16 p ${index.title}`}>
-							<span>A currated list of items for</span><br/>
-							<span className="h4" ref={this.rotatingTextsWrapper}>
-								{this.rotatingTexts.map((text, index) => {
-									return (
-										<b className={clsx({ "hide": this.state.visibleText != index })} key={index}>{text}.</b>
-									)
-								})}
-							</span>
-						</h2>
-						<a className="mt-32 layout layout-align-center-center rounded border hide-gt-xs p-4" href="#categories">
-							<ArrowDownwardTwoTone style={{ fontSize: 16 }}/>
-						</a>
-					</div>
-				</header>
-				<main id="categories" className={`${index.pageContent} container-lg p-0 layout-column`}>
-					<div className="layout-row layout-wrap layout-align-center-center">
-						{mediaSet.map((category => category.items && category.items.map((item) => {
-							return (
-								<div key={item.id} ref="article" className={`p-16 ${index.column}`}>
-									<Medium item={item} category={category}/>
-								</div>
-							)
-						})))}
-					</div>
-				</main>
-				<img className={index.pageBg} src="/images/header-bg-02.jpg"/>
-			</Page>
-		);
-	};
-}
+	render = () => (
+		<Page activeMedia={this.props.activeMedia} media={mediaSet} onClick={this.handleMediaSetChange}>
+			<header className={`${styles.header} text-center layout-column layout-align-center-center`}>
+				<div className="container-md layout-column layout-align-center-center flex">
+					<h1 className={`${styles.logo} serif strong`}>TiltShop</h1>
+					<h2 className={`serif lh-2 mt-16 p ${styles.title}`}>
+						<span>A currated list of items for</span><br/>
+						<span className="h4" ref={this.rotatingTextsWrapper}>
+							{this.rotatingTexts.map((text, index) => (
+									<b className={clsx({ "hide": this.state.visibleText != index })} key={index}>{text}.</b>
+							))}
+						</span>
+					</h2>
+					<a aria-label="See more" className="mt-32 layout layout-align-center-center rounded border hide-gt-xs p-4" href="#categories">
+						<ArrowDownwardTwoTone style={{ fontSize: 16 }}/>
+					</a>
+				</div>
+			</header>
+			<main id="categories" className={`${styles.pageContent} container-lg p-0 layout-column`}>
+				<div className="layout-row layout-wrap layout-align-center-center">
+					{mediaSet.map((category => category.items && category.items.map((item, index) => (
+						<div key={item.id} ref="article" className={`p-16 ${styles.column}`}>
+							<Medium mediumIndex={index} item={item} category={category}/>
+						</div>
+					))))}
+				</div>
+			</main>
+			<img className={styles.pageBg} src="/images/header-bg-02.jpg" alt="TiltShop grid"/>
+		</Page>
+	);
+};
 
 export default Home
