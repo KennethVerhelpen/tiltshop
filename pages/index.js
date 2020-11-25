@@ -40,10 +40,6 @@ class Home extends React.Component {
 		clearInterval(this.interval);
 	}
 
-	handleScrollDown = () => {
-
-	}
-
 	render = () => {
 		return (
 			<Page activeMedia={this.props.activeMedia} media={mediaSet} onClick={this.handleMediaSetChange}>
