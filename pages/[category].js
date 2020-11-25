@@ -1,7 +1,7 @@
 import { Page, Medium } from '../components/index';
-import mediaSet from "../lib/media";
-import index from "./index.module.scss";
+import styles from "./index.module.scss";
 import clsx from "clsx";
+import Image from "next/image";
 
 class Category extends React.Component {
 
@@ -17,10 +17,10 @@ class Category extends React.Component {
 	render = () => {
 		return (
 			<Page activePage={this.props.category.slug}>
-				<header className={`${index.header} text-center`}>
+				<header className={`${styles.header} text-center`}>
 					<div className="container-md layout-column layout-align-center-center">
-						<h1 className={`${index.logo} serif strong`}>{this.props.type}</h1>
-						<h2 className={`serif lh-2 mt-16 p ${index.title}`}>
+						<h1 className={`${styles.logo} serif strong`}>{this.props.type}</h1>
+						<h2 className={`serif lh-2 mt-16 p ${styles.title}`}>
 							<span>A currated list of items for</span><br/>
 							<span className="h4" ref={this.rotatingTextsWrapper}>
 								{this.rotatingTexts.map((text, index) => {
@@ -32,11 +32,11 @@ class Category extends React.Component {
 						</h2>
 					</div>
 				</header>
-				<main className={`${index.pageContent} container-lg p-0 layout-column`}>
+				<main className={`${styles.pageContent} container-lg p-0 layout-column`}>
 					<div className="layout-row layout-wrap layout-align-center-center">
 						{this.props.category.items.map((item) => {
 							return (
-								<div key={item.id} ref="article" className={`p-16 ${index.column}`}>
+								<div key={item.id} ref="article" className={`p-16 ${styles.column}`}>
 										<Medium item={item} category={this.props.category}/>
 									</div>
 								)
@@ -44,7 +44,18 @@ class Category extends React.Component {
 						 }
 					</div>
 				</main>
-				<img className={index.pageBg} src="/images/header-bg-02.jpg"/>
+				<div className={styles.pageBg}>
+					<Image
+						objectFit="cover"
+						quality="100"
+						objectPosition="center"
+						priority={true}
+						loading="eager"
+						layout="fill"
+						src="/images/header-bg.jpg"
+						alt="TiltShop header background"
+					/>
+				</div>
 			</Page>
 		);
 	};

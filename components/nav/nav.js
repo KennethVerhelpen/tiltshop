@@ -3,7 +3,7 @@ import nav from "./nav.module.scss";
 import mediaSet from "../../lib/media";
 import Link from "next/link";
 import Select from 'react-select'
-import { SearchTwoTone, MovieTwoTone, TvTwoTone, SportsEsportsTwoTone } from '@material-ui/icons';
+import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone } from '@material-ui/icons';
 class Nav extends React.Component {
 	constructor(props) {
 		super(props);
@@ -72,9 +72,9 @@ class Nav extends React.Component {
 						})}
 					</ul>
 					<div className="layout-column layout-align-center-end flex-xs">
-						<button className={`${nav.searchBtn} m-0 btn btn-default btn-fab btn-xs layout-column layout-align-center-center`} onClick={this.handleSearchReveal}>
+						{/* <button className={`${nav.searchBtn} m-0 btn btn-default btn-fab btn-xs layout-column layout-align-center-center`} onClick={this.handleSearchReveal}>
 							<SearchTwoTone/>
-						</button>
+						</button> */}
 					</div>
 				</div>
 			</nav>

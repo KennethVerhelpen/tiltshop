@@ -1,7 +1,7 @@
 import medium from './medium.module.scss';
 import clsx from "clsx";
+import Image from "next/image";
 import Link from "next/link";
-import Image from 'next/image'
 import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone } from '@material-ui/icons';
 class Medium extends React.Component {
 	constructor(props) {

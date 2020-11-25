@@ -2,6 +2,7 @@ import { Page, Medium } from '../components/index';
 import mediaSet from "../lib/media";
 import styles from "./index.module.scss";
 import clsx from "clsx";
+import Image from "next/image";
 import { ArrowDownwardTwoTone } from '@material-ui/icons';
 
 class Home extends React.Component {
@@ -49,7 +50,7 @@ class Home extends React.Component {
 						<span>A currated list of items for</span><br/>
 						<span className="h4" ref={this.rotatingTextsWrapper}>
 							{this.rotatingTexts.map((text, index) => (
-									<b className={clsx({ "hide": this.state.visibleText != index })} key={index}>{text}.</b>
+								<b className={clsx({ "hide": this.state.visibleText != index })} key={index}>{text}.</b>
 							))}
 						</span>
 					</h2>
@@ -67,7 +68,18 @@ class Home extends React.Component {
 					))))}
 				</div>
 			</main>
-			<img className={styles.pageBg} src="/images/header-bg-02.jpg" alt="TiltShop grid"/>
+			<div className={styles.pageBg}>
+				<Image
+					objectFit="cover"
+					quality="100"
+					objectPosition="center"
+					priority={true}
+					loading="eager"
+					layout="fill"
+					src="/images/header-bg.jpg"
+					alt="TiltShop header background"
+					/>
+			</div>
 		</Page>
 	);
 };
