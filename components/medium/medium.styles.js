@@ -3,6 +3,10 @@ import styled from '@emotion/styled';
 export const ImageWrapper = styled.div`
   opacity: 1;
   transition: all .6s ease-in-out;
+  img {
+    overflow: hidden;
+    border-radius: 16px;
+  }
 `
 
 export const Content = styled.div`

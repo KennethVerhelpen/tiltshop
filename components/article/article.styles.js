@@ -31,4 +31,8 @@ export const Footer = Main.withComponent('footer');
 
 export const ImageWrapper = styled.div`
   z-index: -1;
+  img {
+    overflow: hidden;
+    border-radius: 16px;
+  }
 `
