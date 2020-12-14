@@ -59,7 +59,7 @@ class Medium extends React.Component {
 								priority={this.props.mediumIndex <= 2}
 								loading={this.props.mediumIndex <= 2 ? "eager" : "lazy"}
 								src={`/images/medium/${this.props.item.slug}/thumbnail.jpg`}
-								alt={this.props.item.imgAlt}
+								alt={this.props.item.name}
 							/>
 						</ImageWrapper>
 					</Shape>
