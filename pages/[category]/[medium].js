@@ -2,6 +2,7 @@ import { Page, Article } from '../../components/index';
 import styles from "./medium.module.scss";
 import Image from "next/image";
 import articlesSet from "../../lib/articles";
+import styled from '@emotion/styled';
 import mediaSet from "../../lib/media";
 class Medium extends React.Component {
 
@@ -12,17 +13,32 @@ class Medium extends React.Component {
   }
 
   render = () => {
+    const Header = styled.header`
+      padding: 12rem 0 6rem 0;
+
+      h1 {
+        font-size: 5rem;
+        letter-spacing: -1.5px;
+        text-shadow: 10px 10px 10px rgba(0,0,0,0.12);
+      }
+
+      @media only screen and (max-width: 599px) {
+        .h1 {
+          font-size: 3rem;
+        }
+      }
+    `
+
     return (
       <Page media={mediaSet} onClick={this.handleMediaSetChange}>
-        <header className={`${styles.header} text-center`}>
+        <Header className={`${styles.header} text-center`}>
           <div className="container-md layout-column layout-align-center-center">
-            <h1 className={`${styles.logo} serif strong`}>{this.props.name}</h1>
-            <h2 className={`serif lh-2 mt-16 p ${styles.title}`}>
-              <span>A currated list of items for</span><br />
-              <span className="h4 bold">{this.props.name}'s fans.</span>
+            <h1 className="strong">{this.props.name}</h1>
+            <h2 className="h5 lh-2 mt-16">
+              A currated list of items for <b>{this.props.name}'s fans.</b>
             </h2>
           </div>
-        </header>
+        </Header>
         <main className={`${styles.pageContent} container-lg p-0 layout-column`}>
           <div className="layout-row layout-wrap layout-align-center-center">
             {articlesSet.filter(article => article.medium === this.props.id).length > 0 && articlesSet.filter(article => article.medium === this.props.id).map((article, index) => (
@@ -40,7 +56,7 @@ class Medium extends React.Component {
             priority={true}
             loading="eager"
             layout="fill"
-            src="/images/header-bg.jpg"
+            src={`/images/medium/${this.props.slug}/cover.jpg`}
             alt="TiltShop header background"
           />
         </div>
@@ -73,9 +89,7 @@ export async function getStaticProps({
     props: {
       name: activeMedium.name,
       id: activeMedium.id,
-      slug: activeMedium.slug,
-      imgSrc: activeMedium.imgSrc,
-      imgAlt: activeMedium.imgAlt
+      slug: activeMedium.slug
     }
   }
 }

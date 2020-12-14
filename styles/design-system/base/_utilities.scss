@@ -38,6 +38,8 @@
 
 %text-capitalize,
 .text-capitalize {
+  text-transform: capitalize; 
+
   &::first-letter {
     text-transform: capitalize;
   }
@@ -173,6 +175,11 @@
 %rounded-lg,
 .rounded-lg {
   border-radius: $radius-lg;
+}
+
+%rounded-xl,
+.rounded-xl {
+  border-radius: $radius-xl;
 }
 
 // Overflow

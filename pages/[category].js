@@ -1,50 +1,30 @@
-import { Page, Medium } from '../components/index';
-import styles from "./index.module.scss";
-import clsx from "clsx";
+import { Page, Medium, Header } from '../components/index';
+import { Column, BackgroundWrapper } from './index.styles';
 import Image from "next/image";
 
 class Category extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.rotatingTextsWrapper = React.createRef();
-		this.rotatingTexts = ["movie lovers", "tv shows addicts", "passionate gamers"];
-		this.state = {
-			visibleText: 0
-		}
 	}
 
 	render = () => {
 		return (
 			<Page activePage={this.props.category.slug}>
-				<header className={`${styles.header} text-center`}>
-					<div className="container-md layout-column layout-align-center-center">
-						<h1 className={`${styles.logo} serif strong`}>{this.props.type}</h1>
-						<h2 className={`serif lh-2 mt-16 p ${styles.title}`}>
-							<span>A currated list of items for</span><br/>
-							<span className="h4" ref={this.rotatingTextsWrapper}>
-								{this.rotatingTexts.map((text, index) => {
-									return (
-										<b className={clsx({ "hide": this.state.visibleText != index })} key={index}>{text}.</b>
-									)
-								})}
-							</span>
-						</h2>
-					</div>
-				</header>
-				<main className={`${styles.pageContent} container-lg p-0 layout-column`}>
+				<Header category={this.props.category.type}/>
+				<main className="container-lg p-0 layout-column">
 					<div className="layout-row layout-wrap layout-align-center-center">
 						{this.props.category.items.map((item) => {
 							return (
-								<div key={item.id} ref="article" className={`p-16 ${styles.column}`}>
-										<Medium item={item} category={this.props.category}/>
-									</div>
+								<Column key={item.id} ref="article" className="p-16 width-100">
+									<Medium item={item} category={this.props.category}/>
+								</Column>
 								)
 							})
 						 }
 					</div>
 				</main>
-				<div className={styles.pageBg}>
+				<BackgroundWrapper>
 					<Image
 						objectFit="cover"
 						quality="100"
@@ -52,10 +32,10 @@ class Category extends React.Component {
 						priority={true}
 						loading="eager"
 						layout="fill"
-						src="/images/header-bg.jpg"
+						src="/images/index-background.jpg"
 						alt="TiltShop header background"
 					/>
-				</div>
+				</BackgroundWrapper>
 			</Page>
 		);
 	};

@@ -5,18 +5,16 @@
   width: 100%;
   position: fixed;
   min-height: 3.25rem;
-  background: rgba(5, 0, 13, 0.85);
-  border-bottom: 1px solid #1F1829;
+  background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(20px);
 }
 
 .logo {
-  color: #FFBB27;
-  text-shadow: 2px 4px 20px rgba(255,143,0,0.08), 0 2px 7px rgba(255,141,0,0.30);
+  color: white;
 }
 
 .searchBtn {
-  color: #B582FF;
+  color: white;
   background: transparent;
 }
 
@@ -26,7 +24,7 @@
   border: none;
   outline: none;
   min-width: 6rem;
-  color: #6E5096;
+  color: rgba(255,255,255,0.5);
   background: transparent;
   &:after {
     width: 100%;
@@ -36,15 +34,13 @@
     border-radius: 2px;
     transform: scaleX(0);
     transform-origin: center;
-    background-color: #FFBB27;
-    box-shadow: 0 0 4px 0 #FFBB27;
+    background-color: white;
     transition: all .15s ease-in-out;
   }
 
   &:hover,
   &.activeLink {
-    color: #B582FF;
-    background: #0d0021;
+    color: white;
     &:after {
       transform: scaleX(1);
       transition: all .15s ease-in-out;

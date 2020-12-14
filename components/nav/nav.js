@@ -34,7 +34,7 @@ class Nav extends React.Component {
 					<div className="flex hide-gt-xs"></div>
 					<div className="layout-column layout-align-center-center flex-xs">
 						<Link href={"/"}>
-							<a className={`${nav.logo} bold h6 serif`}>TiltShop</a>
+							<a className={`${nav.logo} bold h6 serif`}>tilt.</a>
 						</Link>
 					</div>
 					<div className={clsx({ "hide": !this.state.isSearchVisible }, "layout-row layout-align-center-center flex-noshrink")}>
@@ -63,7 +63,7 @@ class Nav extends React.Component {
 														case 'video-games': return (<SportsEsportsTwoTone className="m-8" style={{ fontSize: 16 }}/>)
 													}
 												})()}
-												<span>{category.type}</span>
+												<span className="text-capitalize">{category.type}</span>
 											</div>
 										</a>
 									</Link>
