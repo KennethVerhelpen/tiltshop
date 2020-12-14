@@ -20,8 +20,6 @@ class Page extends React.Component {
 			<>
 				<Head>
 					<title>TiltShop</title>
-					<link rel="preload" href="/fonts/FrankRuhlLibre/FrankRuhlLibre-Bold.ttf" as="font" crossOrigin=""/>
-          <link rel="preload" href="/fonts/SF-Pro-Display/SF-Pro-Display-heavy.otf" as="font" crossOrigin=""/>
 					<meta name="description" content="A curated list of the best Amazon products for movie lovers, tv shows addicts and passionate gamers." />
 					<link rel="icon" href="/favicon.ico" />
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
