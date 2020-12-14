@@ -1,6 +1,6 @@
 import { Page, Medium, Header } from '../components/index';
-import { Column, BackgroundWrapper } from './index.styles';
 import Image from "next/image";
+import styled from '@emotion/styled';
 
 class Category extends React.Component {
 
@@ -9,33 +9,30 @@ class Category extends React.Component {
 	}
 
 	render = () => {
+
+		const Column = styled.div`
+			max-width: 22rem;
+		`
+
 		return (
-			<Page activePage={this.props.category.slug}>
+			<Page 
+				alt="TiltShop"
+				background="/images/index-background.jpg"
+				activePage={this.props.category.slug}
+				>
 				<Header category={this.props.category.type}/>
 				<main className="container-lg p-0 layout-column">
 					<div className="layout-row layout-wrap layout-align-center-center">
 						{this.props.category.items.map((item) => {
 							return (
-								<Column key={item.id} ref="article" className="p-16 width-100">
-									<Medium item={item} category={this.props.category}/>
-								</Column>
+								<div key={item.id} ref="article" className="p-16 flex-33 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
+									<Medium className="flex layout-column layout-align-center-center" item={item} category={this.props.category}/>
+								</div>
 								)
 							})
 						 }
 					</div>
 				</main>
-				<BackgroundWrapper>
-					<Image
-						objectFit="cover"
-						quality="100"
-						objectPosition="center"
-						priority={true}
-						loading="eager"
-						layout="fill"
-						src="/images/index-background.jpg"
-						alt="TiltShop header background"
-					/>
-				</BackgroundWrapper>
 			</Page>
 		);
 	};

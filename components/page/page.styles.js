@@ -5,13 +5,11 @@ export const BackgroundWrapper = styled.div`
   left: 0;
   right: 0;
   z-index: -1;
-  width: 100%;
   margin: auto;
   height: 48rem;
   max-width: 1440px;
-  position: absolute;
 `
 
-export const Column = styled.div`
-  max-width: 22rem;
+export const Main = styled.main`
+  z-index: 1;
 `

@@ -1,4 +1,6 @@
-.shape  {
+import styled from '@emotion/styled';
+
+export const Shape = styled.nav`
   top: 0;
   left: 0;
   z-index: 2;
@@ -7,18 +9,18 @@
   min-height: 3.25rem;
   background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(20px);
-}
+`
 
-.logo {
+export const Logo = styled.a`
   color: white;
-}
+`
 
-.searchBtn {
+export const SearchButton = styled.button`
   color: white;
   background: transparent;
-}
+`
 
-.btn {
+export const NavButton = styled.a`
   padding: 0;
   height: 100%;
   border: none;
@@ -26,6 +28,7 @@
   min-width: 6rem;
   color: rgba(255,255,255,0.5);
   background: transparent;
+
   &:after {
     width: 100%;
     height: 2px;
@@ -39,15 +42,11 @@
   }
 
   &:hover,
-  &.activeLink {
+  &.active {
     color: white;
     &:after {
       transform: scaleX(1);
       transition: all .15s ease-in-out;
     }
   }
-}
-
-.links {
-  list-style-type: none;
-}
+`

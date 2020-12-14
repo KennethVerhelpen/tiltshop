@@ -1,4 +1,4 @@
-import { Section, LogoWrapper } from './header.styles';
+import { Section, LogoWrapper, DefaultTitle, CustomTitle } from './header.styles';
 import clsx from "clsx";
 import Image from "next/image";
 import { ArrowDownwardTwoTone } from '@material-ui/icons';
@@ -9,7 +9,8 @@ class Header extends React.Component {
     this.className = null;
     this.title = undefined;
     this.category = undefined;
-    this.rotatingTexts = ["movie lovers", "tv shows addicts", "passionate gamers"]
+    this.medium = undefined;
+    this.rotatingTexts = [ "movie lovers", "tv shows addicts", "passionate gamers" ];
 		this.state = { 
 			visibleText: 0
 		}
@@ -40,13 +41,13 @@ class Header extends React.Component {
 
 	render = () => {
 		return (
-		  <Section className={clsx(this.props.className, "text-center layout-column layout-align-center-center")}>
+		  <Section className={clsx(this.props.className, "py-xs-16 text-center layout-column layout-align-center-center")}>
         <div className="container-md layout-column layout-align-center-center flex">
           { this.props.title ? 
-            <h1>{this.props.title}</h1>
+            <CustomTitle className="mt-16 mb-8 strong">{this.props.title}</CustomTitle>
             :
-            <h1 className="mt-16 mb-32">
-              <span>A currated list of items for</span><br/>
+            <DefaultTitle className="mt-16 mb-8 strong">
+              <span>A curated list of items for</span><br/>
                 { this.props.category ?
                   <span>{this.props.category}' lovers</span>
                 :
@@ -56,11 +57,15 @@ class Header extends React.Component {
                   ))}
                 </span>
               }
-            </h1>
+            </DefaultTitle>
           }
-          { this.props.category != undefined ? 
-            <h2 className="h6">A currated list of items for <b>{this.props.category}' lovers.</b></h2>
-            :
+          { this.props.category &&
+            <h2 className="h6">A curated list of items for <b>{this.props.category}' lovers.</b></h2>
+          }
+          { this.props.medium &&
+            <h2 className="h6">A curated list of items for <b>{this.props.medium}' fans.</b></h2>
+          }
+          {  !this.props.category && !this.props.medium &&
             <h2 className="h6 layout-row layout-align-center-center"><span>Powered by</span><LogoWrapper className="display-inline-block">
               <Image
                 width="80"
