@@ -4,7 +4,7 @@
   padding: 0 1rem;
 }
 
-@each $size, $width in (xs: 20rem, sm: 38rem, md: 56rem, lg: 72rem) {
+@each $size, $width in (xs: 20rem, sm: 38rem, md: 56rem, lg: 66rem, xl: 72rem) {
   .container-#{$size} {
     @extend %container;
     width: 100%;

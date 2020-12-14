@@ -1,6 +1,4 @@
-import { Page, Article } from '../../components/index';
-import styles from "./medium.module.scss";
-import Image from "next/image";
+import { Page, Article, Header } from '../../components/index';
 import articlesSet from "../../lib/articles";
 import mediaSet from "../../lib/media";
 class Medium extends React.Component {
@@ -13,37 +11,25 @@ class Medium extends React.Component {
 
   render = () => {
     return (
-      <Page media={mediaSet} onClick={this.handleMediaSetChange}>
-        <header className={`${styles.header} text-center`}>
-          <div className="container-md layout-column layout-align-center-center">
-            <h1 className={`${styles.logo} serif strong`}>{this.props.name}</h1>
-            <h2 className={`serif lh-2 mt-16 p ${styles.title}`}>
-              <span>A currated list of items for</span><br />
-              <span className="h4 bold">{this.props.name}'s fans.</span>
-            </h2>
-          </div>
-        </header>
-        <main className={`${styles.pageContent} container-lg p-0 layout-column`}>
+      <Page
+        media={mediaSet}
+        onClick={this.handleMediaSetChange}
+        alt={`${this.props.name} cover`}
+        background={`/images/medium/${this.props.slug}/cover.jpg`}
+        >
+        <Header
+          medium={this.props.name}
+          title={this.props.name}
+        />
+        <main className="container-lg p-0 layout-column">
           <div className="layout-row layout-wrap layout-align-center-center">
             {articlesSet.filter(article => article.medium === this.props.id).length > 0 && articlesSet.filter(article => article.medium === this.props.id).map((article, index) => (
-              <div key={article.id} className={`p-16 ${styles.column}`}>
-                <Article articleIndex={index} article={article} />
+              <div key={article.id} className="p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
+                <Article className="flex" articleIndex={index} article={article} />
               </div>
             ))}
           </div>
         </main>
-        <div className={styles.pageBg}>
-          <Image
-            objectFit="cover"
-            quality="100"
-            objectPosition="center"
-            priority={true}
-            loading="eager"
-            layout="fill"
-            src="/images/header-bg.jpg"
-            alt="TiltShop header background"
-          />
-        </div>
       </Page>
     );
   };
@@ -73,9 +59,7 @@ export async function getStaticProps({
     props: {
       name: activeMedium.name,
       id: activeMedium.id,
-      slug: activeMedium.slug,
-      imgSrc: activeMedium.imgSrc,
-      imgAlt: activeMedium.imgAlt
+      slug: activeMedium.slug
     }
   }
 }

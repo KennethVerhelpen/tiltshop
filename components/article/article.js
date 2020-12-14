@@ -1,8 +1,8 @@
-import article from './article.module.scss';
+import {Shape, Main, Footer, ImageWrapper, ActiveStar, ActiveStarHalf, InactiveStar } from './article.styles';
 import clsx from "clsx";
 import Image from 'next/image'
 import media from "../../lib/media";
-import { StarHalfTwoTone, Star, StarBorderTwoTone } from '@material-ui/icons';
+import { ArrowForwardRounded } from '@material-ui/icons';
 class Article extends React.Component {
 	constructor(props) {
 		super(props);
@@ -32,43 +32,43 @@ class Article extends React.Component {
 
 		return (
 			<a aria-label={this.props.article.title} className={clsx(this.props.className)} href={this.props.article.url} target="_blank">
-				<article className={`layout-column layout-align-space-between-stretch rounded-md ${article.shape}  overflow-hidden cursor-pointer`}>
-					<header className={`${article.content} layout-row layout-align-end-center pt-16 px-16`}>
-						<span className="serif h6 strong">{this.props.article.price}</span>
-					</header>
-					<footer className={`${article.content} layout-column layout-align-start-start p-32`}>
-						<span style={{ opacity: .4 }} className="small bold mb-8">{this.props.article.type}</span>
-						<span className={`serif strong h6 ${article.name} mb-4`}>{this.props.article.title}</span>
-						<div className="layout-row mb-16">
+				<Shape className="relative width-100 layout-column layout-align-end-stretch rounded-xl overflow-hidden cursor-pointer">
+					<Main className="layout-column layout-align-start-start pt-32 px-32">
+						<span style={{ opacity: .5 }} className="small mb-8">{this.props.article.type}</span>
+						<span className="strong h6 mb-8">{this.props.article.title}</span>
+						<div className="layout-row">
 							{Array.from(Array(plainStars), (number, index) => {
 								return (
-									<Star key={index} style={{ fontSize: 16 }} className={`${article.activeStar}`} />
+									<ActiveStar key={index} style={{ fontSize: 16 }}/>
 								)
 							})}
-							{halfStar && <StarHalfTwoTone style={{ fontSize: 16 }} className={`${article.activeStar}`} />}
+							{halfStar && <ActiveStarHalf style={{ fontSize: 16 }}/>}
 							{Array.from(Array(emptyStars), (number, index) => {
 								return (
-									<StarBorderTwoTone key={index} style={{ fontSize: 16 }} className={`${article.inactiveStar}`} />
+									<InactiveStar key={index} style={{ fontSize: 16 }}/>
 								)
 							})}
 						</div>
-						<span style={{ opacity: .4 }} className="small">
-							{this.props.article.description.length > 56 ? `${this.props.article.description.slice(0, 56)}...` : this.props.article.description}
-							{' '}
-							<span className="small display-inline-block underline">Read more</span>
-						</span>
-					</footer>
-					<Image
-						quality="100"
-						layout="fill"
-						objectFit="cover"
-						objectPosition="center"
-						priority={this.props.articleIndex <= 2}
-						loading={this.props.articleIndex <= 2 ? "eager" : "lazy"}
-						className={article.img}
-						alt={this.props.article.imgAlt}
-						src={`/images/articles/${category.slug}/${medium.slug}/${this.props.article.id}/article.jpg`} />
-				</article>
+					</Main>
+					<Footer className="px-32 py-16 layout-row layout-align-start-center">
+						<span className="flex text-truncate">See on <b>Amazon</b></span>
+						<div className="layout layout-align-center-center p-8 rounded">
+							<ArrowForwardRounded style={{ fontSize: 16 }}/>
+						</div>
+					</Footer>
+					<ImageWrapper>
+						<Image
+							quality="100"
+							layout="fill"
+							objectFit="cover"
+							objectPosition="center"
+							priority={this.props.articleIndex <= 2}
+							loading={this.props.articleIndex <= 2 ? "eager" : "lazy"}
+							alt={this.props.article.imgAlt}
+							src={`/images/articles/${category.slug}/${medium.slug}/${this.props.article.id}/article.jpg`}
+						/>
+					</ImageWrapper>
+				</Shape>
 			</a>
 		);
 	}

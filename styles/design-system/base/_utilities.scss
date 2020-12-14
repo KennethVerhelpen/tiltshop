@@ -1,17 +1,9 @@
-// Alignment of text
-%text-left,
-.text-left {
-  text-align: left !important;
-}
+@each $suffix in ('left', 'center', 'right') {
 
-%text-center,
-.text-center {
-  text-align: center !important;
-}
-
-%text-right,
-.text-right {
-  text-align: right !important;
+  %text-#{$suffix},
+  .text-#{$suffix} {
+    text-align: unquote($suffix) !important;
+  }
 }
 
 %text-nowrap,
@@ -38,6 +30,8 @@
 
 %text-capitalize,
 .text-capitalize {
+  text-transform: capitalize; 
+
   &::first-letter {
     text-transform: capitalize;
   }
@@ -67,120 +61,58 @@
   color: $accent-700;
 }
 
-// Cursors
-%cursor-pointer,
-.cursor-pointer {
-  cursor: pointer;
+@each $cursor in ('pointer', 'help', 'wait', 'crosshair', 'not-allowed', 'zoom-in', 'zoom-out', 'grab') {
+
+  %cursor-#{$cursor},
+  .cursor-#{$cursor} {
+    cursor: unquote($cursor);
+  }
 }
 
-%cursor-help,
-.cursor-help {
-  cursor: help;
+@each $suffix in ('inline-block', 'block', 'none') {
+
+  %display-#{$suffix},
+  .display-#{$suffix} {
+    display: #{$suffix};
+  }
 }
 
-%cursor-wait,
-.cursor-wait {
-  cursor: wait;
+@each $suffix in ('', '-top', '-bottom', '-right', '-left') {
+
+  %border#{$suffix},
+  .border#{$suffix} {
+    border#{$suffix}: 1px solid $secondary-700;
+  }
 }
 
-%cursor-crosshair,
-.cursor-crosshair {
-  cursor: crosshair;
+@each $suffix,
+$radius in (''50%, '-xs'$radius-xs, '-sm'$radius-sm, '-md'$radius-md, '-lg'$radius-lg, '-xl'$radius-xl) {
+
+  %rounded#{$suffix},
+  .rounded#{$suffix} {
+    border-radius: $radius;
+  }
 }
 
-%cursor-not-allowed,
-.cursor-not-allowed {
-  cursor: not-allowed;
+%list-reset,
+.list-reset {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
-%cursor-zoom-in,
-.cursor-zoom-in {
-  cursor: zoom-in;
-}
-
-%cursor-zoom-out,
-.cursor-zoom-out {
-  cursor: zoom-out;
-}
-
-%cursor-grab,
-.cursor-grab {
-  cursor: grab;
-}
-
-// Display
-%display-inline-block,
-.display-inline-block {
-  display: inline-block;
-}
-
-%display-block,
-.display-block {
-  display: block;
-}
-
-%display-none,
-.display-none {
-  display: none;
-}
-
-// Border
-%border,
-.border {
-  border: 1px solid $secondary-700;
-}
-
-%border-top,
-.border-top {
-  border-top: 1px solid $secondary-700;
-}
-
-%border-right,
-.border-right {
-  border-right: 1px solid $secondary-700;
-}
-
-%border-bottom,
-.border-bottom {
-  border-bottom: 1px solid $secondary-700;
-}
-
-%border-left,
-.border-left {
-  border-left: 1px solid $secondary-700;
-}
-
-%rounded,
-.rounded {
-  border-radius: 50%;
-}
-
-%rounded-xs,
-.rounded-xs {
-  border-radius: $radius-xs;
-}
-
-%rounded-sm,
-.rounded-sm {
-  border-radius: $radius-sm;
-}
-
-%rounded-md,
-.rounded-md {
-  border-radius: $radius-md;
-}
-
-%rounded-lg,
-.rounded-lg {
-  border-radius: $radius-lg;
-}
-
-// Overflow
 @each $axis in ('-x', '-y', '') {
   @include overflow-classes($axis);
 }
 
-// Shadows
+@each $position in ("absolute", "static", "relative", "fixed") {
+
+  %#{$position},
+  .#{$position} {
+    position: unquote($position);
+  }
+}
+
 @each $shadow in $shadows {
   %shadow-#{$shadow},
   .shadow-#{$shadow} {
@@ -188,7 +120,6 @@
   }
 }
 
-// Hide for print
 @media print {
   .hide-print:not(.show-print):not(.show) {
     display: none !important;

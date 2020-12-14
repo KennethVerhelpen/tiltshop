@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import nav from "./nav.module.scss";
+import { Shape, NavButton, SearchButton, Logo } from "./nav.styles";
 import mediaSet from "../../lib/media";
 import Link from "next/link";
 import Select from 'react-select'
@@ -29,32 +29,32 @@ class Nav extends React.Component {
 			})
 		});
 		return (
-			<nav className={`layout-row ${nav.shape} layout-align-stretch-center`}>
+			<Shape className="layout-row layout-align-stretch-center">
 				<div className="container-lg layout-align-stretch-center layout-row">
 					<div className="flex hide-gt-xs"></div>
 					<div className="layout-column layout-align-center-center flex-xs">
 						<Link href={"/"}>
-							<a className={`${nav.logo} bold h6 serif`}>TiltShop</a>
+							<Logo className="bold h6 serif">tilt.</Logo>
 						</Link>
 					</div>
 					<div className={clsx({ "hide": !this.state.isSearchVisible }, "layout-row layout-align-center-center flex-noshrink")}>
 						<Select id="media-selector" className="width-100" options={selectOptions} instanceId="media-selector"/>
 					</div>
-					<ul className={clsx({ "hide": this.state.isSearchVisible }, `hide-xs small flex-noshrink layout-row layout-align-center-stretch p-0 m-0 ${nav.links}`)}>
+					<ul className={clsx({ "hide": this.state.isSearchVisible }, `hide-xs small flex-noshrink layout-row layout-align-center-stretch p-0 m-0 list-reset`)}>
 						<li className="layout-row layout-align-center-center">
 							<Link href={"/"}>
-								<a className={clsx(this.props.activePage === undefined && `${nav.activeLink}`, `${nav.btn} layout-column layout-align-start-stretch`)}>
+								<NavButton className={clsx(this.props.activePage === undefined && "active bold", "layout-column layout-align-start-stretch cursor-pointer")}>
 									<div className="layout-row layout-align-center-center px-16 flex">
 										<span>All</span>
 									</div>
-								</a>
+								</NavButton>
 							</Link>
 						</li>
 						{mediaSet && mediaSet.map((category, index) => {
 							return (
 								<li key={index} className="layout-row layout-align-center-center">
 									<Link href={`/${category.slug}`}>
-										<a className={clsx(this.props.activePage === category.slug && `${nav.activeLink}`, `${nav.btn} layout-column layout-align-start-stretch`)}>
+										<NavButton className={clsx(this.props.activePage === category.slug && "active bold", "layout-column layout-align-start-stretch cursor-pointer")}>
 											<div className="layout-row layout-align-center-center px-16 flex">
 												{(() => {
 													switch(category.slug) {
@@ -63,21 +63,21 @@ class Nav extends React.Component {
 														case 'video-games': return (<SportsEsportsTwoTone className="m-8" style={{ fontSize: 16 }}/>)
 													}
 												})()}
-												<span>{category.type}</span>
+												<span className="text-capitalize">{category.type}</span>
 											</div>
-										</a>
+										</NavButton>
 									</Link>
 								</li>
 							);
 						})}
 					</ul>
 					<div className="layout-column layout-align-center-end flex-xs">
-						{/* <button className={`${nav.searchBtn} m-0 btn btn-default btn-fab btn-xs layout-column layout-align-center-center`} onClick={this.handleSearchReveal}>
+						{/* <SearchButton className="m-0 btn btn-default btn-fab btn-xs layout-column layout-align-center-center" onClick={this.handleSearchReveal}>
 							<SearchTwoTone/>
-						</button> */}
+						</SearchButton> */}
 					</div>
 				</div>
-			</nav>
+			</Shape>
 		);
 	};
 }
