@@ -66,17 +66,18 @@ class Header extends React.Component {
             <h2 className="h6">A curated list of items for <b>{this.props.medium}' fans.</b></h2>
           }
           {  !this.props.category && !this.props.medium &&
-            <h2 className="h6 layout-row layout-align-center-center"><span>Powered by</span><LogoWrapper className="display-inline-block">
-              <Image
-                width="80"
-                height="20"
-                src="/images/logos/amazon.svg"
-                quality="100"
-                priority={true}
-                loading="eager"
-                alt="Amazon logo"
-                />
-              </LogoWrapper></h2>
+            <h2 className="h6 layout-row layout-align-center-center"><span>Powered by</span>
+              <LogoWrapper className="display-inline-block">
+                <Image
+                  width="80"
+                  height="20"
+                  src="/images/logos/amazon.svg"
+                  quality="100"
+                  priority={true}
+                  loading="eager"
+                  alt="Amazon logo"
+                  />
+                </LogoWrapper></h2>
           }
           <a aria-label="See more" className="mt-32 layout layout-align-center-center rounded border hide-gt-xs p-4" href="#categories">
             <ArrowDownwardTwoTone style={{ fontSize: 16 }}/>
