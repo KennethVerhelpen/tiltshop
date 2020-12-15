@@ -3,9 +3,10 @@ import styled from '@emotion/styled';
 export const ImageWrapper = styled.div`
   opacity: 1;
   transition: all .6s ease-in-out;
+
   img {
     overflow: hidden;
-    border-radius: 16px;
+    border-radius: 1rem;
   }
 `
 
@@ -21,6 +22,7 @@ export const Content = styled.div`
 export const Shape = styled.div`
   height: 30rem;
   max-width: 20rem;
+  background: black;
   box-shadow: 6px 6px 20px 0 rgba(0, 0, 0, 0.35),
   20px 20px 8px 0 rgba(0, 0, 0, 0.08),
   5px 5px 7px 0 rgba(0, 0, 0, 0.09);
