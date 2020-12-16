@@ -51,7 +51,7 @@ class Nav extends React.Component {
 					</ul>
 					<Browse className="flex layout layout-align-end-center">
 						<Link href={`/browse`}>
-							<a className="layout layout-align-center-center p-4 rounded">
+							<a aria-label="Browse" name="Browse" className="layout layout-align-center-center p-4 rounded">
 								<SearchRounded/>
 							</a>
 						</Link>

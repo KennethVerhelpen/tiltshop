@@ -12,6 +12,11 @@ export const Section = styled.header`
 
 export const LogoWrapper = styled.div`
   transform: translateY(.52rem);
+  
+  img {
+    width: 5rem;
+    height: 1.25rem;
+  }
 `
 
 export const CustomTitle = styled.h1`
