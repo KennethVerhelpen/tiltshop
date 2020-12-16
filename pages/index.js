@@ -1,6 +1,7 @@
 import { Page, Medium, Header } from '../components';
 import mediaSet from "../lib/media";
 import styled from '@emotion/styled';
+import Head from 'next/head';
 class Home extends React.Component {
 
 	constructor(props) {
@@ -27,6 +28,7 @@ class Home extends React.Component {
 				media={mediaSet}
 				onClick={this.handleMediaSetChange}
 				>
+				<Head></Head>
 				<Header/>
 				<Grid id="categories" className="container-lg p-0 layout-column">
 					<div className="layout-row layout-wrap layout-align-start-center">

@@ -5,8 +5,11 @@ import { BackgroundWrapper, Main } from './page.styles';
 class Page extends React.Component {
 	constructor(props) {
 		super(props);
-		this.background = "/images/index-background.jpg";
-		this.alt = "TiltShop header background";
+		this.video = "/video/noise.mp4";
+		this.title = "TiltShop - The best items for cinema, tv & gaming lovers"
+		this.image = "/images/meta/default-meta.jpg";
+		this.description = "Discover the best hand-picked items from Amazon's catalogue sorted out just for cinema, tv shows and video games lovers."
+		this.alt = "The best items for cinema, tv & gaming lovers.";
 		this.state = {
 			links: Object,
 			children: props.node,
@@ -18,14 +21,19 @@ class Page extends React.Component {
 		return (
 			<>
 				<Head>
-					<title>TiltShop</title>
-					<meta name="description" content="Discover the best hand-picked items from Amazon's catalogue sorted out just for cinema, tv shows and video games lovers." />
-					<meta property="og:title" content="TiltShop - The best items for cinema, tv & gaming lovers." key="title"/>
-					<meta property="og:description" content="Discover the best hand-picked items from Amazon's catalogue selected for cinema, tv shows and video games lovers."/>
-					<meta property="og:image" content="/images/meta/default-meta.jpg"/>
+					<title>{this.title}</title>
+
+					<meta name="keywords" content="Cinema, Movies, Tv shows"></meta>
+					<meta name="description" content={this.description}/>
+
+					<meta property="og:title" content={this.title} key="title"/>
+					<meta property="og:description" content={this.description}/>
+					<meta property="og:image" content={this.image}/>
 					<meta property="og:url" content="http://tiltshop.co"/>
+
+					<meta name="twitter:title" content={this.description}/>
 					<meta name="twitter:card" content="summary_large_image"/>
-					<meta name="twitter:title" content="A curated list of the best Amazon products for movie lovers, tv shows addicts and passionate gamers."></meta>
+
 					<link rel="icon" href="/favicon.ico" />
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				</Head>
@@ -34,7 +42,7 @@ class Page extends React.Component {
 				<Footer/>
 				<BackgroundWrapper className="width-100 absolute layout-column">
 					<video muted autoPlay="autoplay" loop="loop" width="1440" height="768">
-  					<source src="/videos/noise.mp4" type="video/mp4" /> 
+  					<source src={this.video} type="video/mp4" /> 
 					</video>
 				</BackgroundWrapper>
 			</>
