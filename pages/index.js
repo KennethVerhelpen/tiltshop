@@ -27,6 +27,7 @@ class Home extends React.Component {
 				media={mediaSet}
 				onClick={this.handleMediaSetChange}
 				>
+				<Header/>
 				<Grid id="categories" className="container-lg p-0 layout-column">
 					<div className="layout-row layout-wrap layout-align-start-center">
 						{mediaSet.map((category => category.items && category.items.map((item, index) => (
