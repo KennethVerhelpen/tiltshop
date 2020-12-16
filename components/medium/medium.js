@@ -5,21 +5,12 @@ import { ImageWrapper, Content, Shape, Title } from "./medium.styles";
 class Medium extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			mediumIndex: Number,
-			item: Object,
-			category: Object,
-			count: Number,
-			className: true,
-			isHovered: false,
-			onClick: Function
-		};
-	}
-
-	handleHover = () => {
-		this.setState((prevState) => ({
-			isHovered: !prevState.isHovered,
-		}));
+		this.mediumIndex = Number,
+		this.item = Object,
+		this.category = Object,
+		this.count = Number,
+		this.className = String,
+		this.onClick = Function
 	}
 
 	 shouldComponentUpdate() {

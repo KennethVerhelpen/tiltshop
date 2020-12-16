@@ -9,29 +9,29 @@ class Category extends React.Component {
 
 	render = () => {
 
-		const Column = styled.div`
-			max-width: 22rem;
+		const Grid = styled.main`
+			@media only screen and (max-width: 959px) and (max-width: 959px) {
+				max-width: 44rem; 
+			}
 		`
 
 		return (
 			<Page 
 				alt="TiltShop"
-				background="/images/index-background.jpg"
+				title={`TiltShop - The best items for ${this.props.category.type} lovers`}
+				description={`Discover the best hand-picked items from Amazon's catalogue sorted out just for ${this.props.category.type} lovers`}
 				activePage={this.props.category.slug}
 				>
 				<Header category={this.props.category.type}/>
-				<main className="container-lg p-0 layout-column">
+				<Grid className="container-lg p-0 layout-column">
 					<div className="layout-row layout-wrap layout-align-center-center">
-						{this.props.category.items.map((item) => {
-							return (
-								<div key={item.id} ref="article" className="p-16 flex-33 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
-									<Medium className="flex layout-column layout-align-center-center" item={item} category={this.props.category}/>
-								</div>
-								)
-							})
-						 }
+						{this.props.category.items.map((item) => (
+							<div key={item.id} ref="article" className="p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
+								<Medium className="flex layout-column layout-align-center-center" item={item} category={this.props.category}/>
+							</div>
+						))}
 					</div>
-				</main>
+				</Grid>
 			</Page>
 		);
 	};

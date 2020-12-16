@@ -47,7 +47,7 @@ class Header extends React.Component {
             :
             <>
               <DefaultTitle className="hide-xs mt-16 mb-16 strong">
-                <span>The best gifts for</span><br/>
+                <span>The best items for</span><br/>
                   { this.props.category ?
                     <span>{this.props.category}' lovers</span>
                   :
@@ -58,14 +58,14 @@ class Header extends React.Component {
                   </span>
                 }
               </DefaultTitle>
-              <DefaultTitle className="mt-16 mb-32 strong hide show-xs">The best gifts for cinema, tv & video games lovers.</DefaultTitle>
+              <DefaultTitle className="mt-16 mb-32 strong hide show-xs">The best items for cinema, tv & video games lovers.</DefaultTitle>
             </>
           }
           { this.props.category &&
-            <h2 className="h6 mb-32">The best gifts for <b>{this.props.category}' lovers.</b></h2>
+            <h2 className="h6 mb-32">The best items for <b>{this.props.category}' lovers.</b></h2>
           }
           { this.props.medium &&
-            <h2 className="h6 mb-32">The best gifts for <b>{this.props.medium}' fans.</b></h2>
+            <h2 className="h6 mb-32">The best items for <b>{this.props.medium}' fans.</b></h2>
           }
           {  !this.props.category && !this.props.medium &&
             <h2 className="h6 layout-row layout-column-xs layout-align-center-center"><span>Powered by</span>

@@ -6,11 +6,9 @@ import { ArrowForwardRounded } from '@material-ui/icons';
 class Article extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			articleIndex: Number,
-			className: true,
-			article: Object
-		};
+		this.articleIndex = Number,
+		this.article = Object,
+		this.className = String
 	}
 
 	mountStyles = () => {
