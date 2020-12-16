@@ -6,7 +6,7 @@ class Footer extends React.Component {
 					<div className="layout-column layout-align-start-center text-center">
 						<p className="strong h4 serif">tilt.</p>
 						<p className="p mt-8 lh-1">
-							TiltShop is the best of Amazon, curated by movies, tv shows and video games lovers.
+							TiltShop gathers the best items for movies, tv shows and video games lovers.
 						</p>
 						<p className="small mb-32" style={{ opacity: 0.75 }}>
 							Every item is hand-picked from Amazon catalogue and sorted out just

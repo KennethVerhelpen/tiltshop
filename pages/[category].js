@@ -1,5 +1,4 @@
 import { Page, Medium, Header } from '../components/index';
-import Image from "next/image";
 import styled from '@emotion/styled';
 
 class Category extends React.Component {

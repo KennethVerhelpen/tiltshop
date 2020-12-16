@@ -1,4 +1,4 @@
-import {Shape, Main, Footer, ImageWrapper, ActiveStar, ActiveStarHalf, InactiveStar } from './article.styles';
+import {Shape, Main, Footer, IconButton, ImageWrapper, ActiveStar, ActiveStarHalf, InactiveStar } from './article.styles';
 import clsx from "clsx";
 import Image from 'next/image'
 import media from "../../lib/media";
@@ -52,9 +52,9 @@ class Article extends React.Component {
 					</Main>
 					<Footer className="px-32 py-16 layout-row layout-align-start-center">
 						<span className="flex text-truncate">See on <b>Amazon</b></span>
-						<div className="layout layout-align-center-center p-8 rounded">
+						<IconButton className="button layout layout-align-center-center p-8 rounded">
 							<ArrowForwardRounded style={{ fontSize: 16 }}/>
-						</div>
+						</IconButton>
 					</Footer>
 					<ImageWrapper>
 						<Image

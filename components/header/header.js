@@ -2,7 +2,6 @@ import { Section, LogoWrapper, DefaultTitle, CustomTitle } from './header.styles
 import clsx from "clsx";
 import Image from "next/image";
 import { ArrowDownwardTwoTone } from '@material-ui/icons';
-
 class Header extends React.Component {
 	constructor(props) {
     super(props);
@@ -10,7 +9,7 @@ class Header extends React.Component {
     this.title = undefined;
     this.category = undefined;
     this.medium = undefined;
-    this.rotatingTexts = [ "movie lovers", "tv shows addicts", "passionate gamers" ];
+    this.rotatingTexts = [ "cinema lovers", "tv shows addicts", "passionate gamers" ];
 		this.state = { 
 			visibleText: 0
 		}
@@ -41,32 +40,35 @@ class Header extends React.Component {
 
 	render = () => {
 		return (
-		  <Section className={clsx(this.props.className, "py-xs-16 text-center layout-column layout-align-center-center")}>
-        <div className="container-md layout-column layout-align-center-center flex">
+		  <Section className={clsx(this.props.className, "py-xs-128 text-center layout-column layout-align-center-center")}>
+        <div className="pt-32 container-md layout-column layout-align-center-center flex">
           { this.props.title ? 
-            <CustomTitle className="mt-16 mb-8 strong">{this.props.title}</CustomTitle>
+            <CustomTitle className="mt-16 mb-16 strong">{this.props.title}</CustomTitle>
             :
-            <DefaultTitle className="mt-16 mb-8 strong">
-              <span>A curated list of items for</span><br/>
-                { this.props.category ?
-                  <span>{this.props.category}' lovers</span>
-                :
-                <span ref={this.rotatingTextsWrapper}>
-                  {this.rotatingTexts.map((text, index) => (
-                    <span className={clsx({ "hide": this.state.visibleText != index })} key={index}>{text}.</span>
-                  ))}
-                </span>
-              }
-            </DefaultTitle>
+            <>
+              <DefaultTitle className="hide-xs mt-16 mb-16 strong">
+                <span>The best gifts for</span><br/>
+                  { this.props.category ?
+                    <span>{this.props.category}' lovers</span>
+                  :
+                  <span ref={this.rotatingTextsWrapper}>
+                    {this.rotatingTexts.map((text, index) => (
+                      <span className={clsx({ "hide": this.state.visibleText != index })} key={index}>{text}.</span>
+                    ))}
+                  </span>
+                }
+              </DefaultTitle>
+              <DefaultTitle className="mt-16 mb-32 strong hide show-xs">The best gifts for cinema, tv & video games lovers.</DefaultTitle>
+            </>
           }
           { this.props.category &&
-            <h2 className="h6">A curated list of items for <b>{this.props.category}' lovers.</b></h2>
+            <h2 className="h6 mb-32">The best gifts for <b>{this.props.category}' lovers.</b></h2>
           }
           { this.props.medium &&
-            <h2 className="h6">A curated list of items for <b>{this.props.medium}' fans.</b></h2>
+            <h2 className="h6 mb-32">The best gifts for <b>{this.props.medium}' fans.</b></h2>
           }
           {  !this.props.category && !this.props.medium &&
-            <h2 className="h6 layout-row layout-align-center-center"><span>Powered by</span>
+            <h2 className="h6 layout-row layout-column-xs layout-align-center-center"><span>Powered by</span>
               <LogoWrapper className="display-inline-block">
                 <Image
                   width="80"
@@ -79,9 +81,6 @@ class Header extends React.Component {
                   />
                 </LogoWrapper></h2>
           }
-          <a aria-label="See more" className="mt-32 layout layout-align-center-center rounded border hide-gt-xs p-4" href="#categories">
-            <ArrowDownwardTwoTone style={{ fontSize: 16 }}/>
-          </a>
         </div>
       </Section>
 		);
