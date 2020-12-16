@@ -5,7 +5,7 @@ import { BackgroundWrapper, Main } from './page.styles';
 class Page extends React.Component {
 	constructor(props) {
 		super(props);
-		this.video = "/video/noise.mp4";
+		this.video = "/videos/noise.mp4";
 		this.title = "TiltShop - The best items for cinema, tv & gaming lovers"
 		this.image = "/images/meta/default-meta.jpg";
 		this.description = "Discover the best hand-picked items from Amazon's catalogue sorted out just for cinema, tv shows and video games lovers."
