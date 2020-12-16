@@ -1,5 +1,6 @@
 import { Page, Medium, Header } from '../components';
 import mediaSet from "../lib/media";
+import styled from '@emotion/styled';
 class Home extends React.Component {
 
 	constructor(props) {
@@ -11,6 +12,12 @@ class Home extends React.Component {
 	}
 
 	render = () => {
+
+		const Grid = styled.main`
+			@media only screen and (max-width: 959px) and (max-width: 959px) {
+				max-width: 44rem; 
+			}
+		`
 	
 		return (
 			<Page
@@ -21,7 +28,7 @@ class Home extends React.Component {
 				onClick={this.handleMediaSetChange}
 				>
 				<Header/>
-				<main id="categories" className="container-lg p-0 layout-column">
+				<Grid id="categories" className="container-lg p-0 layout-column">
 					<div className="layout-row layout-wrap layout-align-start-center">
 						{mediaSet.map((category => category.items && category.items.map((item, index) => (
 							<div key={item.id} ref="article" className="p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
@@ -29,7 +36,7 @@ class Home extends React.Component {
 							</div>
 						))))}
 					</div>
-				</main>
+				</Grid>
 			</Page>
 		);
 	};

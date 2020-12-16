@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import { Shape, NavButton, SearchButton, Logo } from "./nav.styles";
 import mediaSet from "../../lib/media";
 import Link from "next/link";
-import Select from 'react-select'
 import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone } from '@material-ui/icons';
 class Nav extends React.Component {
 	constructor(props) {
@@ -10,14 +9,7 @@ class Nav extends React.Component {
 		mediaSet,
 		this.state = {
 			activePage: String,
-			isSearchVisible: false
 		}
-	}
-
-	handleSearchReveal = () => {
-		this.setState(prevState => ({
-			// isSearchVisible: !prevState.isSearchVisible
-		}))
 	}
 
 	render = () => {
@@ -36,9 +28,6 @@ class Nav extends React.Component {
 						<Link href={"/"}>
 							<Logo className="bold h6 serif">tilt.</Logo>
 						</Link>
-					</div>
-					<div className={clsx({ "hide": !this.state.isSearchVisible }, "layout-row layout-align-center-center flex-noshrink")}>
-						<Select id="media-selector" className="width-100" options={selectOptions} instanceId="media-selector"/>
 					</div>
 					<ul className={clsx({ "hide": this.state.isSearchVisible }, `hide-xs small flex-noshrink layout-row layout-align-center-stretch p-0 m-0 list-reset`)}>
 						<li className="layout-row layout-align-center-center">
@@ -71,11 +60,6 @@ class Nav extends React.Component {
 							);
 						})}
 					</ul>
-					<div className="layout-column layout-align-center-end flex-xs">
-						{/* <SearchButton className="m-0 btn btn-default btn-fab btn-xs layout-column layout-align-center-center" onClick={this.handleSearchReveal}>
-							<SearchTwoTone/>
-						</SearchButton> */}
-					</div>
 				</div>
 			</Shape>
 		);
@@ -83,5 +67,3 @@ class Nav extends React.Component {
 }
 
 export { Nav };
-
-// `${nav.btn} layout-column layout-align-start-stretch`

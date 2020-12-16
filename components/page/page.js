@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import { Nav, Footer } from '../../components';
 import { BackgroundWrapper, Main } from './page.styles';
 
@@ -21,6 +20,12 @@ class Page extends React.Component {
 				<Head>
 					<title>TiltShop</title>
 					<meta name="description" content="A curated list of the best Amazon products for movie lovers, tv shows addicts and passionate gamers." />
+					<meta property="og:title" content="TiltShop" key="title"/>
+					<meta property="og:description" content="A curated list of the best Amazon products for movie lovers, tv shows addicts and passionate gamers."/>
+					<meta property="og:image" content="/metas/default-meta.jpg"/>
+					<meta property="og:url" content="http://tiltshop.co"/>
+					<meta name="twitter:card" content="summary_large_image"/>
+					<meta name="twitter:title" content="A curated list of the best Amazon products for movie lovers, tv shows addicts and passionate gamers."></meta>
 					<link rel="icon" href="/favicon.ico" />
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				</Head>
@@ -28,16 +33,9 @@ class Page extends React.Component {
 				<Main className="flex pb-64">{this.props.children}</Main>
 				<Footer/>
 				<BackgroundWrapper className="width-100 absolute layout-column">
-					<Image
-						objectFit="cover"
-						quality="100"
-						layout="fill"
-						objectPosition="center"
-						priority={true}
-						loading="eager"
-						src={this.props.background}
-						alt={this.props.alt}
-						/>
+					<video muted autoPlay="autoplay" loop="loop" width="1440" height="768">
+  					<source src="/videos/noise.mp4" type="video/mp4" /> 
+					</video>
 				</BackgroundWrapper>
 			</>
 		);

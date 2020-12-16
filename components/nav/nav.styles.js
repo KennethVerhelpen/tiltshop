@@ -28,6 +28,7 @@ export const NavButton = styled.a`
   min-width: 6rem;
   color: rgba(255,255,255,0.5);
   background: transparent;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.25);
 
   &:after {
     width: 100%;
