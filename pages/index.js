@@ -19,11 +19,7 @@ class Home extends React.Component {
 		`
 	
 		return (
-			<Page
-				media={mediaSet}
-				activeMedia={this.props.activeMedia}
-				onClick={this.handleMediaSetChange}
-				>
+			<Page media={mediaSet}>
 				<Header/>
 				<Grid className="container-lg p-0 layout-column">
 					<div className="layout-row layout-wrap layout-align-start-center">

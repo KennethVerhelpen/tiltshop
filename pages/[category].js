@@ -17,7 +17,6 @@ class Category extends React.Component {
 
 		return (
 			<Page 
-				alt="TiltShop"
 				title={`TiltShop - The best items for ${this.props.category.type} lovers`}
 				description={`Discover the best hand-picked items from Amazon's catalogue sorted out just for ${this.props.category.type} lovers`}
 				activePage={this.props.category.slug}

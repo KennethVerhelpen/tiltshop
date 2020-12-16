@@ -3,19 +3,11 @@ import articlesSet from "../../lib/articles";
 import mediaSet from "../../lib/media";
 class Medium extends React.Component {
 
-  handleMediaSetChange = (index) => {
-    this.setState({
-      media: index ? mediaSet[index] : undefined
-    })
-  }
-
   render = () => {
     return (
       <Page
         media={mediaSet}
-        onClick={this.handleMediaSetChange}
-        alt={`${this.props.name} cover`}
-        background={`/images/medium/${this.props.slug}/cover.jpg`}
+        activePage={this.props.category}
         >
         <Header
           medium={this.props.name}

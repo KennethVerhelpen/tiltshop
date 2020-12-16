@@ -11,9 +11,7 @@ class Page extends React.Component {
 		this.alt = String,
 		this.title = String,
 		this.children = React.ReactNode,
-		this.state = {
-			activePage: String,
-		};
+		this.activePage = String
 	}
 
 	render() {
@@ -32,7 +30,7 @@ class Page extends React.Component {
 					<link rel="icon" href="/favicon.ico" />
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				</Head>
-				<Nav activePage={this.state.activePage} ref="navbar"></Nav>
+				<Nav activePage={this.props.activePage} ref="navbar"></Nav>
 				<Main className="flex">{this.props.children}</Main>
 				<Footer/>
 				<BackgroundWrapper className="width-100 absolute layout-column">
@@ -46,11 +44,12 @@ class Page extends React.Component {
 }
 
 Page.defaultProps = {
-	video:"/videos/noise.mp4",
-	image:"https://tiltshop.co/_next/image?url=%2Fimages%2Fmeta%2Fdefault-meta.jpg&w=1200&q=100",
-	description:"Discover the best hand-picked items from Amazon's catalogue sorted out just for cinema, tv shows and video games lovers.",
-	alt:"The best items for cinema, tv & gaming lovers.",
-	title:"TiltShop - The best items for cinema, tv & gaming lovers",
+	video: "/videos/noise.mp4",
+	image: "https://tiltshop.co/_next/image?url=%2Fimages%2Fmeta%2Fdefault-meta.jpg&w=1200&q=100",
+	description: "Discover the best hand-picked items from Amazon's catalogue sorted out just for cinema, tv shows and video games lovers.",
+	alt: "The best items for cinema, tv & gaming lovers.",
+	title: "TiltShop - The best items for cinema, tv & gaming lovers",
+	activePage: undefined
 }
 
 export { Page };

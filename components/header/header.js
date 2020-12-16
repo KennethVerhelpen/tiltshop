@@ -6,17 +6,18 @@ class Header extends React.Component {
 	constructor(props) {
     super(props);
     this.className = null;
-    this.title = undefined;
-    this.category = undefined;
-    this.medium = undefined;
-    this.rotatingTexts = [ "cinema lovers", "tv shows addicts", "passionate gamers" ];
+    this.title = String;
+    this.category = String;
+    this.medium = String;
+    this.subtitle = String;
+    this.rotatingTexts = Array;
 		this.state = { 
 			visibleText: 0
 		}
   }
   
   handleRotatingTextChange = () => {
-		if ((this.state.visibleText + 1) === this.rotatingTexts.length) {
+		if ((this.state.visibleText + 1) === this.props.rotatingTexts.length) {
 			this.setState({
 				visibleText: 0
 			});
@@ -51,8 +52,8 @@ class Header extends React.Component {
                   { this.props.category ?
                     <span>{this.props.category}' lovers</span>
                   :
-                  <span ref={this.rotatingTextsWrapper}>
-                    {this.rotatingTexts.map((text, index) => (
+                  <span>
+                    {this.props.rotatingTexts.map((text, index) => (
                       <span className={clsx({ "hide": this.state.visibleText != index })} key={index}>{text}.</span>
                     ))}
                   </span>
@@ -61,13 +62,13 @@ class Header extends React.Component {
               <DefaultTitle className="mt-16 mb-32 strong hide show-xs">The best items for cinema, tv & video games lovers.</DefaultTitle>
             </>
           }
-          { this.props.category &&
-            <h2 className="h6 mb-32">The best items for <b>{this.props.category}' lovers.</b></h2>
-          }
           { this.props.medium &&
             <h2 className="h6 mb-32">The best items for <b>{this.props.medium}' fans.</b></h2>
           }
-          {  !this.props.category && !this.props.medium &&
+          { this.props.subtitle &&
+            <h2 className="h6 mb-32">{this.props.subtitle}</h2>
+          }
+          { !this.props.medium && !this.props.subtitle &&
             <h2 className="h6 layout-row layout-column-xs layout-align-center-center"><span>Powered by</span>
               <LogoWrapper className="display-inline-block">
                 <Image
@@ -85,6 +86,10 @@ class Header extends React.Component {
       </Section>
 		);
 	};
+}
+
+Header.defaultProps = {
+	rotatingTexts: [ "cinema lovers", "tv shows addicts", "passionate gamers" ]
 }
 
 export {Header};

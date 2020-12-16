@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+export const Browse = styled.div`
+  color: white;
+`
+
 export const Shape = styled.nav`
   top: 0;
   left: 0;

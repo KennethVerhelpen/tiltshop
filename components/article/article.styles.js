@@ -18,6 +18,7 @@ export const InactiveStar = styled(StarBorderTwoTone)`
 export const Shape = styled.article`
   height: 30rem;
   max-width: 20rem;
+  min-width: 20rem;
   background: black;
   transition: all .3s ease-in-out;
   box-shadow: 6px 6px 20px 0 rgba(0,0,0,0.35), 5px 5px 7px 0 rgba(0,0,0,0.09), 20px 20px 8px 0 rgba(0,0,0,0.08);
