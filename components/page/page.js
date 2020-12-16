@@ -19,10 +19,10 @@ class Page extends React.Component {
 			<>
 				<Head>
 					<title>TiltShop</title>
-					<meta name="description" content="A curated list of the best Amazon products for movie lovers, tv shows addicts and passionate gamers." />
-					<meta property="og:title" content="TiltShop" key="title"/>
-					<meta property="og:description" content="A curated list of the best Amazon products for movie lovers, tv shows addicts and passionate gamers."/>
-					<meta property="og:image" content="/metas/default-meta.jpg"/>
+					<meta name="description" content="Discover the best hand-picked items from Amazon's catalogue sorted out just for cinema, tv shows and video games lovers." />
+					<meta property="og:title" content="TiltShop - The best items for cinema, tv & gaming lovers." key="title"/>
+					<meta property="og:description" content="Discover the best hand-picked items from Amazon's catalogue selected for cinema, tv shows and video games lovers."/>
+					<meta property="og:image" content="/images/meta/default-meta.jpg"/>
 					<meta property="og:url" content="http://tiltshop.co"/>
 					<meta name="twitter:card" content="summary_large_image"/>
 					<meta name="twitter:title" content="A curated list of the best Amazon products for movie lovers, tv shows addicts and passionate gamers."></meta>

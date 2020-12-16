@@ -13,17 +13,9 @@ class Nav extends React.Component {
 	}
 
 	render = () => {
-		const allMediaItems = mediaSet.map((category => category.items && category.items)).flat();
-		const selectOptions = allMediaItems.map((item) => {
-			return ({
-				value: item.name,
-				label: item.name
-			})
-		});
 		return (
 			<Shape className="layout-row layout-align-stretch-center">
 				<div className="container-lg layout-align-stretch-center layout-row">
-					<div className="flex hide-gt-xs"></div>
 					<div className="layout-column layout-align-center-center flex-xs">
 						<Link href={"/"}>
 							<Logo className="bold h6 serif">tilt.</Logo>
