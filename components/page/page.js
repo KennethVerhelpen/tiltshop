@@ -7,7 +7,7 @@ class Page extends React.Component {
 		super(props);
 		this.video = "/videos/noise.mp4";
 		this.title = "TiltShop - The best items for cinema, tv & gaming lovers"
-		this.image = "/images/meta/default-meta.jpg";
+		this.image = "https://tiltshop.co/_next/image?url=%2Fimages%2Fmeta%2Fdefault-meta.jpg&w=3840&q=100";
 		this.description = "Discover the best hand-picked items from Amazon's catalogue sorted out just for cinema, tv shows and video games lovers."
 		this.alt = "The best items for cinema, tv & gaming lovers.";
 		this.state = {

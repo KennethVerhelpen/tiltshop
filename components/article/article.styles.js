@@ -42,7 +42,7 @@ export const Main = styled.main`
   }
 `
 
-export const IconButton = styled.a`
+export const IconButton = styled.div`
   background: rgba(255,255,255,0.1);
   backdrop-filter: blur(3px);
   color: white;
