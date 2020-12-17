@@ -1,6 +1,12 @@
 import { Page, Medium, Header } from '../components/index';
 import styled from '@emotion/styled';
 
+const Grid = styled.main`
+	@media only screen and (max-width: 959px) and (max-width: 959px) {
+		max-width: 44rem; 
+	}
+`
+
 class Category extends React.Component {
 
 	constructor(props) {
@@ -8,13 +14,6 @@ class Category extends React.Component {
 	}
 
 	render = () => {
-
-		const Grid = styled.main`
-			@media only screen and (max-width: 959px) and (max-width: 959px) {
-				max-width: 44rem; 
-			}
-		`
-
 		return (
 			<Page 
 				title={`TiltShop - The best items for ${this.props.category.type} lovers`}
@@ -25,8 +24,8 @@ class Category extends React.Component {
 				<Grid className="container-lg p-0 layout-column">
 					<div className="layout-row layout-wrap layout-align-center-center">
 						{this.props.category.items.map((item) => (
-							<div key={item.id} ref="article" className="p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
-								<Medium className="flex layout-column layout-align-center-center" item={item} category={this.props.category}/>
+							<div key={item.id} ref="article" className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
+								<Medium className="layout-column layout-align-center-center" mediumId={item.id} item={item} category={this.props.category}/>
 							</div>
 						))}
 					</div>

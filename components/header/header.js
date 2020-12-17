@@ -1,7 +1,6 @@
 import { Section, LogoWrapper, DefaultTitle, CustomTitle } from './header.styles';
 import clsx from "clsx";
 import Image from "next/image";
-import { ArrowDownwardTwoTone } from '@material-ui/icons';
 class Header extends React.Component {
 	constructor(props) {
     super(props);
@@ -9,10 +8,11 @@ class Header extends React.Component {
     this.title = String;
     this.category = String;
     this.medium = String;
+    this.rotation = Boolean;
     this.subtitle = String;
     this.rotatingTexts = Array;
 		this.state = { 
-			visibleText: 0
+      visibleText: 0,
 		}
   }
   
@@ -28,14 +28,16 @@ class Header extends React.Component {
 		}
 	};
 
-	componentDidMount() {
-		this.interval = setInterval(
-			() => this.handleRotatingTextChange(),
-			1500
-		);
-	}
+	componentDidMount = () => {
+    if (this.props.rotation) {
+      this.interval = setInterval(
+        () => this.handleRotatingTextChange(),
+        1500
+      );
+    }
+  }
 
-	componentWillUnmount = () => {
+	componentWillUnmount() {
 		clearInterval(this.interval);
   }
 
@@ -44,10 +46,10 @@ class Header extends React.Component {
 		  <Section className={clsx(this.props.className, "py-xs-128 text-center layout-column layout-align-center-center")}>
         <div className="pt-32 container-md layout-column layout-align-center-center flex">
           { this.props.title ? 
-            <CustomTitle className="mt-16 mb-16 strong">{this.props.title}</CustomTitle>
+            <CustomTitle className={clsx(this.state.reveal, "mt-16 mb-16 strong")} >{this.props.title}</CustomTitle>
             :
             <>
-              <DefaultTitle className="hide-xs mt-16 mb-16 strong">
+              <DefaultTitle className={clsx(this.state.reveal, "hide-xs mt-16 mb-16 strong")}>
                 <span>The best items for</span><br/>
                   { this.props.category ?
                     <span>{this.props.category}' lovers</span>
@@ -59,17 +61,17 @@ class Header extends React.Component {
                   </span>
                 }
               </DefaultTitle>
-              <DefaultTitle className="mt-16 mb-32 strong hide show-xs">The best items for cinema, tv & video games lovers.</DefaultTitle>
+              <DefaultTitle className={clsx(this.state.reveal, "mt-16 mb-32 strong hide show-xs")}>The best items for cinema, tv & video games lovers.</DefaultTitle>
             </>
           }
           { this.props.medium &&
-            <h2 className="h6 mb-32">The best items for <b>{this.props.medium}' fans.</b></h2>
+            <h2 className="h6 mb-32 fade-in-bottom speed-5">The best items for <b>{this.props.medium}' fans.</b></h2>
           }
           { this.props.subtitle &&
-            <h2 className="h6 mb-32">{this.props.subtitle}</h2>
+            <h2 className="h6 mb-32 fade-in-bottom speed-5">{this.props.subtitle}</h2>
           }
           { !this.props.medium && !this.props.subtitle &&
-            <h2 className="h6 layout-row layout-column-xs layout-align-center-center"><span>Powered by</span>
+            <h2 className="fade-in-bottom speed-5 h6 layout-row layout-column-xs layout-align-center-center"><span>Powered by</span>
               <LogoWrapper className="display-inline-block">
                 <Image
                   width="80"
@@ -89,6 +91,7 @@ class Header extends React.Component {
 }
 
 Header.defaultProps = {
+  roation: false,
 	rotatingTexts: [ "cinema lovers", "tv shows addicts", "passionate gamers" ]
 }
 

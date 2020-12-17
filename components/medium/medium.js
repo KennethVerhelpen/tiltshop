@@ -1,34 +1,39 @@
+import { ArrowForwardRounded } from "@material-ui/icons";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { ImageWrapper, Content, Shape, Title } from "./medium.styles";
+import articlesSet from "../../lib/articles";
+import { ImageWrapper, Main, Footer, Shape, Title, IconButton } from "./medium.styles";
+
 class Medium extends React.Component {
 	constructor(props) {
 		super(props);
 		this.mediumIndex = Number,
+		this.mediumId = Number,
 		this.item = Object,
 		this.category = Object,
-		this.count = Number,
 		this.className = String,
 		this.onClick = Function
 	}
 
-	 shouldComponentUpdate() {
-    return false;
-  }
-
 	render() {
+		const articlesLength = (articlesSet.filter(article => article.medium === this.props.mediumId && article.category === this.props.category.id)).length;
 
 		return (
 			<Link href={`${this.props.category.slug}/${this.props.item.slug}`}>
 				<article className={clsx(this.props.className, "cursor-pointer")}>
 					<Shape onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}
-						className="width-100 relative cursor-pointer layout-column layout-align-end-center p-32 text-center overflow-hidden rounded-xl">
-						<Content className="content layout-column layout-align-center-center">
+						className="width-100 relative cursor-pointer layout-column layout-align-end-stretch text-center overflow-hidden rounded-xl">
+						<Main className="p-16 content layout-column layout-align-center-center">
 							<Title className="h2 strong mb-8">{this.props.item.name}</Title>
 							<span className="p bold text-capitalize">{this.props.category.type}</span>
-							<span className="mt-8 small" style={{ opacity: 0.5 }}>See all articles</span>
-						</Content>
+						</Main>
+						<Footer className="px-32 py-16 layout-row layout-align-start-center">
+							<span className="text-left flex text-truncate">See all <b>{articlesLength}</b> articles</span>
+							<IconButton className="button layout layout-align-center-center p-8 rounded">
+								<ArrowForwardRounded style={{ fontSize: 16 }}/>
+							</IconButton> 
+						</Footer>
 						<ImageWrapper className="image">
 							<Image
 								quality="100"

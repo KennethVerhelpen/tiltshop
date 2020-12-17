@@ -1,27 +1,36 @@
 import { Page, Article, Header } from '../../components/index';
 import articlesSet from "../../lib/articles";
 import mediaSet from "../../lib/media";
+import styled from '@emotion/styled';
+
+const Grid = styled.main`
+  @media only screen and (max-width: 959px) and (max-width: 959px) {
+    max-width: 44rem; 
+  }
+`
+
 class Medium extends React.Component {
 
   render = () => {
     return (
       <Page
         media={mediaSet}
+        menu={false}
         activePage={this.props.category}
         >
         <Header
           medium={this.props.name}
           title={this.props.name}
         />
-        <main className="container-lg p-0 layout-column">
+        <Grid className="container-lg p-0 layout-column">
           <div className="layout-row layout-wrap layout-align-center-center">
-            {articlesSet.filter(article => article.medium === this.props.id).length > 0 && articlesSet.filter(article => article.medium === this.props.id).map((article, index) => (
-              <div key={article.id} className="p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
-                <Article className="flex" articleIndex={index} article={article} />
+            {articlesSet.filter(article => article.medium === this.props.id && article.category === this.props.categoryId).length > 0 && articlesSet.filter(article => article.medium === this.props.id && article.category === this.props.categoryId).map((article, index) => (
+              <div key={article.id} className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
+                <Article articleIndex={index} article={article} />
               </div>
             ))}
           </div>
-        </main>
+        </Grid>
       </Page>
     );
   };
@@ -42,16 +51,17 @@ export async function getStaticPaths() {
 };
 
 export async function getStaticProps({
-  params: { medium }
+  params: { medium, category }
 }) {
   const media = (await import("../../lib/media.js")).default;
-  const items = media.map((categories => categories)).map(category => category.items && category.items).flat();
-  const activeMedium = items.find(item => item.slug === medium);
+  const activeCategory = media.find(item => item.slug === category);
+  const activeMedium = activeCategory.items.find(item => item.slug === medium);
   return {
     props: {
       name: activeMedium.name,
       id: activeMedium.id,
-      slug: activeMedium.slug
+      slug: activeMedium.slug,
+      categoryId: activeCategory.id
     }
   }
 }

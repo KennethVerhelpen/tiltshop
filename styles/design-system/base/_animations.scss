@@ -1,7 +1,31 @@
-@each $speed in (1,2,3,4,5,6,7,8,9) {
-  .speed-#{$speed} {
-    animation-duration: unquote('.' + $speed + 's');
+@for $i from 1 through 50 {
+  .speed-#{$i} {
+    animation-duration: unquote(($i * .25) + 's');
   }
+}
+
+@for $i from 1 through 50 {
+  .cascade:nth-of-type(#{$i}) {
+    $i: (($i - 1) * 0.1);
+    animation-delay: unquote($i + s);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-in {
+  animation-name: scaleIn;
+  animation-fill-mode: both;
 }
 
 @keyframes fadeIn {

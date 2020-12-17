@@ -16,11 +16,13 @@ class Home extends React.Component {
 		`
 	
 		return (
-			<Page>
-        { console.log(articles.map(article => article)) }
+			<Page
+				activePage={"browse"}
+				menu={false}
+			>
 				<Header
         title="Browse all items"
-        subtitle="Easily find all items we hand-picked just for you."
+        subtitle="Easily find all items hand-picked just for you."
         />
 				<Grid className="p-0 layout-column">
 					<div className="container-lg layout-row layout-wrap layout-align-center-center">

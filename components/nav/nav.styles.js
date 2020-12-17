@@ -4,6 +4,10 @@ export const Browse = styled.div`
   color: white;
 `
 
+export const BackButton = styled.a`
+  color: white;
+`
+
 export const Shape = styled.nav`
   top: 0;
   left: 0;

@@ -11,16 +11,6 @@ class Article extends React.Component {
 		this.className = String
 	}
 
-	mountStyles = () => {
-		this.setState({
-			className: "fade-in-bottom speed-9",
-		})
-	}
-
-	componentDidMount = () => {
-		setTimeout(this.mountStyles,0);
-	};
-
 	render() {
 		const plainStars = Math.floor(this.props.article.ratings);
 		const halfStar = ((Math.floor(this.props.article.ratings * 2) / 2).toFixed(1) - plainStars) > 0;
@@ -62,7 +52,7 @@ class Article extends React.Component {
 							objectPosition="center"
 							priority={this.props.articleIndex <= 2}
 							loading={this.props.articleIndex <= 2 ? "eager" : "lazy"}
-							alt={this.props.article.imgAlt}
+							alt={`${this.props.article.imgAlt} - ${medium.name}`}
 							src={`/images/articles/${category.slug}/${medium.slug}/${this.props.article.id}/article.jpg`}
 						/>
 					</ImageWrapper>
