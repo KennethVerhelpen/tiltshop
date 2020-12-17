@@ -46,10 +46,10 @@ class Header extends React.Component {
 		  <Section className={clsx(this.props.className, "py-xs-128 text-center layout-column layout-align-center-center")}>
         <div className="pt-32 container-md layout-column layout-align-center-center flex">
           { this.props.title ? 
-            <CustomTitle className={clsx(this.state.reveal, "mt-16 mb-16 strong")} >{this.props.title}</CustomTitle>
+            <CustomTitle className="scale-in speed-10 mt-16 mb-16 strong" >{this.props.title}</CustomTitle>
             :
             <>
-              <DefaultTitle className={clsx(this.state.reveal, "hide-xs mt-16 mb-16 strong")}>
+              <DefaultTitle className="scale-in speed-10 hide-xs mt-16 mb-16 strong"> 
                 <span>The best items for</span><br/>
                   { this.props.category ?
                     <span>{this.props.category}' lovers</span>
@@ -61,7 +61,7 @@ class Header extends React.Component {
                   </span>
                 }
               </DefaultTitle>
-              <DefaultTitle className={clsx(this.state.reveal, "mt-16 mb-32 strong hide show-xs")}>The best items for cinema, tv & video games lovers.</DefaultTitle>
+              <DefaultTitle className="scale-in speed-10 mt-16 mb-32 strong hide show-xs">The best items for cinema, tv & video games lovers.</DefaultTitle>
             </>
           }
           { this.props.medium &&
