@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { Nav, Footer } from '../../components';
+import Image from "next/image";
 import { BackgroundWrapper, Main, Video } from './page.styles';
 
 class Page extends React.Component {
@@ -35,7 +36,19 @@ class Page extends React.Component {
 				<Main className="flex">{this.props.children}</Main>
 				<Footer/>
 				<BackgroundWrapper className="width-100 absolute layout-column">
-					<Video className="width-100" playsinline muted autoPlay="autoplay" loop="loop" width="1440" height="768">
+					<div className="hide-gt-xs width-100 height-100">
+						<Image
+							src="/images/mobile-background.jpg"
+							layout="fill"
+							quality="100"
+							objectFit="cover"
+							objectPosition="center"
+							priority={true}
+							loading={"eager"}
+							alt={this.props.alt}
+						/>
+					</div>
+					<Video className="width-100 hide-xs" playsinline muted autoPlay="autoplay" loop="loop" width="1440" height="768">
   					<source src={this.props.video} type="video/mp4" /> 
 					</Video>
 				</BackgroundWrapper>
