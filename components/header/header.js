@@ -71,18 +71,7 @@ class Header extends React.Component {
             <h2 className="h6 mb-32 fade-in-bottom speed-5">{this.props.subtitle}</h2>
           }
           { !this.props.medium && !this.props.subtitle &&
-            <h2 className="fade-in-bottom speed-5 h6 layout-row layout-column-xs layout-align-center-center"><span>Powered by</span>
-              <LogoWrapper className="display-inline-block">
-                <Image
-                  width="80"
-                  height="20"
-                  src="/images/logos/amazon.svg"
-                  quality="100"
-                  priority={true}
-                  loading="eager"
-                  alt="Amazon logo"
-                  />
-                </LogoWrapper></h2>
+            <h2 className="fade-in-bottom speed-5 h6 layout-row layout-column-xs layout-align-center-center">A list of great products hand-picked just for you.</h2>
           }
         </div>
       </Section>

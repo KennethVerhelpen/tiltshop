@@ -24,7 +24,7 @@ class Article extends React.Component {
 					<Main className="layout-column layout-align-start-start pt-32 px-32">
 						<span style={{ opacity: .5 }} className="small mb-8">{this.props.article.type}</span>
 						<span className="strong h6 mb-8">{this.props.article.title}</span>
-						<div className="layout-row">
+						{/* <div className="layout-row">
 							{Array.from(Array(plainStars), (number, index) => {
 								return (
 									<ActiveStar key={index} style={{ fontSize: 16 }}/>
@@ -36,7 +36,7 @@ class Article extends React.Component {
 									<InactiveStar key={index} style={{ fontSize: 16 }}/>
 								)
 							})}
-						</div>
+						</div> */}
 					</Main>
 					<Footer className="px-32 py-16 layout-row layout-align-start-center">
 						<span className="flex text-truncate">See on <b>Amazon</b></span>
