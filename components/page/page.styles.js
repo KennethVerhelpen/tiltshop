@@ -13,7 +13,3 @@ export const BackgroundWrapper = styled.div`
 export const Main = styled.main`
   z-index: 1;
 `
-
-export const Video = styled.video`
-  height: auto;
-`
