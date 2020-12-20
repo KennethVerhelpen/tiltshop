@@ -48,7 +48,7 @@ class Page extends React.Component {
 							alt={this.props.alt}
 						/>
 					</div>
-					<video className="width-100 hide-xs" style={{ height : 'auto' }} playsinline={true} playsInline={true} muted autoPlay="autoplay" loop="loop" width="1440" height="768">
+					<video className="width-100 hide-xs" style={{ height : 'auto' }} playsInline={true} muted autoPlay="autoplay" loop="loop" width="1440" height="768">
   					<source src={this.props.video} type="video/mp4" />
 					</video>
 				</BackgroundWrapper>
