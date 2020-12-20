@@ -1,6 +1,5 @@
-import { Section, LogoWrapper, DefaultTitle, CustomTitle } from './header.styles';
+import { Section, DefaultTitle, CustomTitle } from './header.styles';
 import clsx from "clsx";
-import Image from "next/image";
 class Header extends React.Component {
 	constructor(props) {
     super(props);

@@ -27,6 +27,11 @@ export const IconButton = styled.div`
   color: white;
 `
 
+export const Soon = styled.span`
+  opacity: 0.5;
+  background: rgba(255,255,255, 0.15);
+`
+
 export const Shape = styled.div`
   height: 30rem;
   max-width: 20rem;

@@ -1,10 +1,11 @@
 
 import styled from '@emotion/styled';
+import { BudgetRange } from "../budget-range/budget-range";
 import { StarHalfTwoTone, Star, StarBorderTwoTone } from '@material-ui/icons';
 
 export const ActiveStar = styled(Star)`
   color: #FFBB27;
-`
+` 
 
 export const ActiveStarHalf = styled(StarHalfTwoTone)`
   color: #FFBB27;
@@ -43,13 +44,19 @@ export const Main = styled.main`
   }
 `
 
+export const Footer = Main.withComponent('footer');
+
+export const BudgetRangeStyled = styled(BudgetRange)`
+  background: rgba(255,255,255, 0.1);
+  color: white;
+  font-size: 12px;
+`
+
 export const IconButton = styled.div`
   background: rgba(255,255,255,0.1);
   backdrop-filter: blur(3px);
   color: white;
 `
-
-export const Footer = Main.withComponent('footer');
 
 export const ImageWrapper = styled.div`
   z-index: 0;

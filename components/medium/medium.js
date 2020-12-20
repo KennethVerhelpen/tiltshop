@@ -3,7 +3,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import articlesSet from "../../lib/articles";
-import { ImageWrapper, Main, Footer, Shape, Title, IconButton } from "./medium.styles";
+import { ImageWrapper, Main, Footer, Shape, Title, IconButton, Soon } from "./medium.styles";
 
 class Medium extends React.Component {
 	constructor(props) {
@@ -28,11 +28,18 @@ class Medium extends React.Component {
 							<Title className="h2 strong mb-8">{this.props.item.name}</Title>
 							<span className="p bold text-capitalize">{this.props.category.type}</span>
 						</Main>
-						<Footer className="px-32 py-16 layout-row layout-align-start-center">
-							<span className="text-left flex text-truncate">See all <b>{articlesLength}</b> articles</span>
-							<IconButton className="button layout layout-align-center-center p-8 rounded">
-								<ArrowForwardRounded style={{ fontSize: 16 }}/>
-							</IconButton> 
+						<Footer className={clsx(articlesLength > 0 ? "layout-align-start-center" : "layout-align-center-center", "px-32 py-16 layout-row")}>
+							{articlesLength > 0
+							?	<>
+									<span className="text-left flex text-truncate">See all <b>{articlesLength}</b> articles</span>
+									<IconButton className="button layout layout-align-center-center p-8 rounded">
+										<ArrowForwardRounded style={{ fontSize: 16 }}/>
+									</IconButton>
+								</>
+							: <Soon className="flex small py-8 px-16 rounded-sm">Coming soon</Soon>
+							
+						}
+							 
 						</Footer>
 						<ImageWrapper className="image">
 							<Image

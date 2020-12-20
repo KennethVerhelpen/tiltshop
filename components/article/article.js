@@ -1,4 +1,4 @@
-import {Shape, Main, Footer, IconButton, ImageWrapper, ActiveStar, ActiveStarHalf, InactiveStar } from './article.styles';
+import {Shape, Main, Footer, IconButton, ImageWrapper, ActiveStar, ActiveStarHalf, InactiveStar, BudgetRangeStyled } from './article.styles';
 import clsx from "clsx";
 import Image from 'next/image'
 import media from "../../lib/media";
@@ -6,24 +6,28 @@ import { ArrowForwardRounded } from '@material-ui/icons';
 class Article extends React.Component {
 	constructor(props) {
 		super(props);
-		this.articleIndex = Number,
-		this.article = Object,
-		this.className = String
+		this.medium = String | undefined,
+		this.articleIndex = Number | null,
+		this.article = Object | undefined,
+		this.className = String | undefined
 	}
 
 	render() {
-		const plainStars = Math.floor(this.props.article.ratings);
-		const halfStar = ((Math.floor(this.props.article.ratings * 2) / 2).toFixed(1) - plainStars) > 0;
-		const emptyStars = Math.floor(5 - this.props.article.ratings);
+		// const plainStars = Math.floor(this.props.article.ratings);
+		// const halfStar = ((Math.floor(this.props.article.ratings * 2) / 2).toFixed(1) - plainStars) > 0;
+		// const emptyStars = Math.floor(5 - this.props.article.ratings);
 		const category = media.find(category => category.id === this.props.article.category);
 		const medium = category.items.find(medium => medium.id === this.props.article.medium);
 
 		return (
 			<a aria-label={this.props.article.title} className={clsx(this.props.className)} href={this.props.article.url} target="_blank">
 				<Shape className="relative width-100 layout-column layout-align-end-stretch rounded-xl overflow-hidden cursor-pointer">
+					<div className="flex"></div>
 					<Main className="layout-column layout-align-start-start pt-32 px-32">
-						<span style={{ opacity: .5 }} className="small mb-8">{this.props.article.type}</span>
-						<span className="strong h6 mb-8">{this.props.article.title}</span>
+						<span style={{ opacity: .5 }} className="small mb-8">{this.props.article.type} / {this.props.medium}</span>
+						<span className="strong h6 mb-8">{this.props.article.title.length > 45 ? `${this.props.article.title.slice(0,45)}...` : this.props.article.title}</span>
+						{this.props.article.price.dollar && <BudgetRangeStyled className="rounded-sm px-16 py-4" amount={this.props.article.price.dollar}/>}
+						
 						{/* <div className="layout-row">
 							{Array.from(Array(plainStars), (number, index) => {
 								return (
