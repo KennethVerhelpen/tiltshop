@@ -29,8 +29,6 @@ class Page extends React.Component {
 					<meta property="og:url" content="http://tiltshop.co" />
 					<meta name="twitter:title" content={this.props.description} />
 					<meta name="twitter:card" content="summary_large_image" />
-					<link rel="icon" href="/favicon.ico" />
-					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				</Head>
 				<Nav menu={this.props.menu} activePage={this.props.activePage} ref="navbar"></Nav>
 				<Main className="flex">{this.props.children}</Main>

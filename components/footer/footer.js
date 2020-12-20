@@ -12,7 +12,7 @@ class Footer extends React.Component {
 							Every item is hand-picked from Amazon catalogue and sorted out just
 							for you.
 						</p>
-						<p className="small lh-1" style={{ opacity: 0.5 }} ><i>Tiltshop.com</i> is a participant in the <i>Amazon Services LLC Associates Program</i>, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to <i>amazon.com.</i></p>
+						<p className="small lh-1" style={{ opacity: 0.65 }} ><i>Tiltshop.com</i> is a participant in the <i>Amazon Services LLC Associates Program</i>, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to <i>amazon.com.</i></p>
 					</div>
 				</div>
 			</footer>

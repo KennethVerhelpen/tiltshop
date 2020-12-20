@@ -80,7 +80,7 @@ class Header extends React.Component {
 }
 
 Header.defaultProps = {
-  roation: false,
+  rotation: false,
 	rotatingTexts: [ "cinema lovers", "tv shows addicts", "passionate gamers" ]
 }
 

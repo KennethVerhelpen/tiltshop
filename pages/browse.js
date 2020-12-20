@@ -27,7 +27,7 @@ class Home extends React.Component {
 				<Grid className="p-0 layout-column">
 					<div className="container-lg layout-row layout-wrap layout-align-center-center">
             {articles.map((article, index) => (
-              <div key={article.id} className="p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
+              <div key={article.id} className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
                 <Article className="flex" articleIndex={index} article={article} />
               </div>
             ))}

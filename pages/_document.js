@@ -10,6 +10,9 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <meta charset="UTF-8" />
+          <link rel="icon" href="/favicon.ico" />
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.G_TAG}`} />
           <script dangerouslySetInnerHTML={{
             __html: `
