@@ -1,4 +1,4 @@
-import {Shape, Main, Footer, IconButton, ImageWrapper, ActiveStar, ActiveStarHalf, InactiveStar, BudgetRangeStyled } from './article.styles';
+import { Shape, Main, Footer, IconButton, ImageWrapper, ActiveStar, ActiveStarHalf, InactiveStar, BudgetRangeStyled } from './article.styles';
 import clsx from "clsx";
 import Image from 'next/image'
 import media from "../../lib/media";

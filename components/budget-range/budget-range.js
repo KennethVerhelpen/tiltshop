@@ -8,11 +8,11 @@ class BudgetRange extends React.Component {
   }
 
   getSigns = (amount) => {
-    if (amount < 10) {
+    if (amount <= 10) {
       return (<span>$</span>)
-    } if (amount > 10 && amount < 99) {
+    } if (amount > 10 && amount < 100) {
       return (<span>$$</span>)
-    } if (amount >= 100 && amount < 999) {
+    } if (amount >= 100 && amount < 1000) {
       return (<span>$$$</span>)
     } if (amount >= 1000) {
       return (<span>$$$$</span>)
