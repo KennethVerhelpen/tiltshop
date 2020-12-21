@@ -20,10 +20,10 @@ class Page extends React.Component {
 		return (
 			<>
 				<Head>
-					<title>{this.props.title} - 2021</title>
 					<meta charset="UTF-8" />
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+					<title>{this.props.title} - 2021</title>
 					<meta name="keywords" content="Cinema, Movies, Tv shows, Video games" />
 					<meta name="description" content={this.props.description} />
 					<meta property="og:title" content={this.props.title} />

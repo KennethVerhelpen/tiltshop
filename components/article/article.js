@@ -20,7 +20,7 @@ class Article extends React.Component {
 		const medium = category.items.find(medium => medium.id === this.props.article.medium);
 
 		return (
-			<a aria-label={this.props.article.title} className={clsx(this.props.className)} href={this.props.article.url} target="_blank">
+			<a rel="nofollow" aria-label={this.props.article.title} className={clsx(this.props.className)} href={this.props.article.url} target="_blank">
 				<Shape className="relative width-100 layout-column layout-align-end-stretch rounded-xl overflow-hidden cursor-pointer">
 					<div className="flex"></div>
 					<Main className="layout-column layout-align-start-start pt-32 px-32">
