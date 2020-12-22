@@ -11,7 +11,7 @@ class Home extends React.Component {
 	}
 
 	render = () => {
-
+	
 		const Grid = styled.main`
 			@media only screen and (max-width: 959px) and (max-width: 959px) {
 				max-width: 44rem; 
@@ -19,8 +19,13 @@ class Home extends React.Component {
 		`
 	
 		return (
-			<Page media={mediaSet}>
-				<Header rotation={true}/>
+			<Page
+				media={mediaSet}
+				allowBack={false}
+			>
+				<Header
+					rotation={true}
+				/>
 				<Grid className="container-lg p-0 layout-column">
 					<div className="layout-row layout-wrap layout-align-start-center">
 						{mediaSet.map((category => category.items && category.items.map((item, index) => (

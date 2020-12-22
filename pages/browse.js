@@ -21,10 +21,11 @@ class Home extends React.Component {
 			<Page
 				activePage={"browse"}
 				menu={false}
+				allowBack={false}
 			>
 				<Header
-        title="Browse all items"
-        subtitle="Easily find all items hand-picked just for you."
+        	title="Browse all items"
+        	subtitle="Easily find all items hand-picked just for you."
         />
 				<Grid className="p-0 layout-column">
 					<div className="container-lg layout-row layout-wrap layout-align-center-center">

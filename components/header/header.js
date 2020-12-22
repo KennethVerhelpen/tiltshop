@@ -51,7 +51,7 @@ class Header extends React.Component {
               <DefaultTitle className="scale-in speed-10 hide-xs mt-16 mb-16 strong"> 
                 <span>The best items for</span><br/>
                   { this.props.category ?
-                    <span>{this.props.category}' lovers</span>
+                    <span>{this.props.category} lovers</span>
                   :
                   <span>
                     {this.props.rotatingTexts.map((text, index) => (
@@ -60,11 +60,11 @@ class Header extends React.Component {
                   </span>
                 }
               </DefaultTitle>
-              <DefaultTitle className="scale-in speed-10 mt-16 mb-32 strong hide show-xs">The best items for cinema, tv & video games lovers.</DefaultTitle>
+              <DefaultTitle className="scale-in speed-10 mt-16 mb-32 strong hide show-xs">The best items for cinema, tv & video game lovers.</DefaultTitle>
             </>
           }
           { this.props.medium &&
-            <h2 className="h6 mb-32 fade-in-bottom speed-5">The best items for <b>{this.props.medium}' fans.</b></h2>
+            <h2 className="h6 mb-32 fade-in-bottom speed-5">The best items for <b>{this.props.medium} fans.</b></h2>
           }
           { this.props.subtitle &&
             <h2 className="h6 mb-32 fade-in-bottom speed-5">{this.props.subtitle}</h2>
@@ -80,7 +80,7 @@ class Header extends React.Component {
 
 Header.defaultProps = {
   rotation: false,
-	rotatingTexts: [ "cinema lovers", "tv shows addicts", "passionate gamers" ]
+	rotatingTexts: [ "cinema lovers", "tv show addicts", "passionate gamers" ]
 }
 
 export {Header};

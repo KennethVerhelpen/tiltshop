@@ -19,6 +19,7 @@ function BackHistory() {
 class Nav extends React.Component {
 	constructor(props) {
 		super(props);
+		this.allowBack = Boolean,
 		this.activePage = String,
 		this.menu = Boolean
 	}
@@ -28,7 +29,7 @@ class Nav extends React.Component {
 			<Shape className="layout-row layout-align-stretch-center">
 				<div className="container-lg layout-align-stretch-center layout-row">
 					<div className="flex hide-gt-xs layout-row layout-align-start-center">
-						{ 
+						{ this.props.allowBack &&
 							<BackHistory />
 						}
 					</div>
@@ -88,6 +89,10 @@ class Nav extends React.Component {
 			</Shape>
 		);
 	};
+}
+
+Nav.defaultProps = {
+  allowBack: true,
 }
 
 export { Nav };
