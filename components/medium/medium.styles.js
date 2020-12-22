@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 
 export const ImageWrapper = styled.div`
   opacity: 1;
+  top: 0;
+  z-index: 0;
   transition: all .6s ease-in-out;
 
   img {
