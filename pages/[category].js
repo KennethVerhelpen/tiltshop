@@ -6,7 +6,6 @@ const Grid = styled.main`
 		max-width: 44rem; 
 	}
 `
-
 class Category extends React.Component {
 
 	constructor(props) {
