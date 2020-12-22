@@ -37,24 +37,28 @@ class Medium extends React.Component {
 									</IconButton>
 								</>
 							: <Soon className="flex small py-8 px-16 rounded-sm">Coming soon</Soon>
-						} 
+							
+						}
+							 
 						</Footer>
-						<ImageWrapper className="image absolute">
+						<ImageWrapper className="image">
 							<Image
-								quality={"100"}
-								width={'320'}
-								height={'480'}
+								quality={100}
+								layout="fill"
+								objectFit="cover"
+								objectPosition="center"
 								priority={this.props.mediumIndex <= 2}
 								loading={this.props.mediumIndex <= 2 ? "eager" : "lazy"}
 								src={`/images/medium/${this.props.item.slug}/thumbnail-hover.jpg`}
 								alt={this.props.item.name}
 							/>
 						</ImageWrapper>
-						<ImageWrapper className="image absolute">
+						<ImageWrapper className="image">
 							<Image
-								quality={"100"}
-								width={'320'}
-								height={'480'}
+								quality={100}
+								layout="fill"
+								objectFit="cover"
+								objectPosition="center"
 								priority={this.props.mediumIndex <= 2}
 								loading={this.props.mediumIndex <= 2 ? "eager" : "lazy"}
 								src={`/images/medium/${this.props.item.slug}/thumbnail.jpg`}
