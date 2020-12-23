@@ -51,11 +51,11 @@ class Medium extends React.Component {
           />
           <Grid className="container-lg p-0 layout-column">
             {this.props.description &&
-              <p className="blocktext serif lh-3 px-64 pb-64 text-center">
+              <div className="blocktext serif lh-3 px-64 pb-64 text-center">
                 {this.props.description.length > 1500 && !this.state.expanded ? 
-                  <p dangerouslySetInnerHTML={this.createMarkup(`${this.props.description.slice(0,1500)}...`)}></p>
+                  <div dangerouslySetInnerHTML={this.createMarkup(`${this.props.description.slice(0,1500)}...`)}></p>
                   :
-                  <p dangerouslySetInnerHTML={this.createMarkup(this.props.description)}></p>
+                  <div dangerouslySetInnerHTML={this.createMarkup(this.props.description)}></p>
                 }
                 { this.props.description.length > 1500 &&
                   <>
@@ -68,7 +68,7 @@ class Medium extends React.Component {
                     </a>
                   </>
                 }
-              </p>
+              </div>
             }
             { articlesCount > 0
               ? <div className="layout-row layout-wrap layout-align-center-center">
