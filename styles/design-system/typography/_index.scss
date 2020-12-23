@@ -127,7 +127,7 @@ u {
 }
 
 @each $height in (1, 2, 3, 4, 5, 6) {
-  .lh-#{$height} {
+  %lh-#{$height}, .lh-#{$height} {
     line-height: $height * .2 + 1;
   }
 }

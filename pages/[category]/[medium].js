@@ -17,7 +17,7 @@ const ArticleShape = styled.div`
 
 class Medium extends React.Component {
   constructor(props) {
-		super(props);
+    super(props);
     this.state = {
       expanded: false
     }
@@ -27,6 +27,10 @@ class Medium extends React.Component {
     this.setState({
       expanded: !this.state.expanded
     })
+  }
+
+  createMarkup = (html) => {
+    return {__html: html};
   }
 
   render = () => {
@@ -46,20 +50,24 @@ class Medium extends React.Component {
             title={this.props.name}
           />
           <Grid className="container-lg p-0 layout-column">
-            {this.props.description.length &&
-              <p className="h6 serif lh-3 px-64 pb-64 text-center">
-                {this.props.description.length > 300 && !this.state.expanded ? 
-                  <span>{`${this.props.description.slice(0,300)}...`}</span>
+            {this.props.description &&
+              <p className="blocktext serif lh-3 px-64 pb-64 text-center">
+                {this.props.description.length > 1500 && !this.state.expanded ? 
+                  <p dangerouslySetInnerHTML={this.createMarkup(`${this.props.description.slice(0,1500)}...`)}></p>
                   :
-                  <span>{this.props.description}</span>
+                  <p dangerouslySetInnerHTML={this.createMarkup(this.props.description)}></p>
                 }
-                {' '}
-                <a onClick={() => this.handleDescriptionExpand()} aria-label="Description expand" className="cursor-pointer underline">
-                  { this.state.expanded
-                    ? <span>Show less</span>
-                    : <span>Read more</span>
-                  }
-                </a>
+                { this.props.description.length > 1500 &&
+                  <>
+                    {' '}
+                    <a onClick={() => this.handleDescriptionExpand()} aria-label="Description expand" className="cursor-pointer underline">
+                      { this.state.expanded
+                        ? <span>Show less</span>
+                        : <span>Read more</span>
+                      }
+                    </a>
+                  </>
+                }
               </p>
             }
             { articlesCount > 0
@@ -116,7 +124,7 @@ export async function getStaticProps({
       name: activeMedium.name,
       id: activeMedium.id,
       slug: activeMedium.slug,
-      description: activeMedium.description | null,
+      description: activeMedium.description,
       categoryId: activeCategory.id
     }
   }
