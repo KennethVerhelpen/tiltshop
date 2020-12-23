@@ -53,9 +53,9 @@ class Medium extends React.Component {
             {this.props.description &&
               <div className="blocktext serif lh-3 px-64 pb-64 text-center">
                 {this.props.description.length > 1500 && !this.state.expanded ? 
-                  <div dangerouslySetInnerHTML={this.createMarkup(`${this.props.description.slice(0,1500)}...`)}></p>
+                  <div dangerouslySetInnerHTML={this.createMarkup(`${this.props.description.slice(0,1500)}...`)}></div>
                   :
-                  <div dangerouslySetInnerHTML={this.createMarkup(this.props.description)}></p>
+                  <div dangerouslySetInnerHTML={this.createMarkup(this.props.description)}></div>
                 }
                 { this.props.description.length > 1500 &&
                   <>
