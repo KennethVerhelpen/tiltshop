@@ -2,7 +2,6 @@ import { Page, Article, Header } from '../../components/index';
 import articlesSet from "../../lib/articles";
 import mediaSet from "../../lib/media";
 import styled from '@emotion/styled';
-import Head from "next/head";
 
 const Grid = styled.main`
   @media only screen and (max-width: 959px) and (max-width: 959px) {
@@ -124,7 +123,7 @@ export async function getStaticProps({
       name: activeMedium.name,
       id: activeMedium.id,
       slug: activeMedium.slug,
-      description: activeMedium.description,
+      description: activeMedium.description || null,
       categoryId: activeCategory.id
     }
   }
