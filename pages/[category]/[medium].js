@@ -50,7 +50,7 @@ class Medium extends React.Component {
           />
           <Grid className="container-lg p-0 layout-column">
             {this.props.description &&
-              <div className="blocktext serif lh-3 px-64 pb-64 text-center">
+              <div className="blocktext serif lh-3 px-xs-32 px-gt-xs-64 pb-64 text-center">
                 {this.props.description.length > 1500 && !this.state.expanded ? 
                   <div dangerouslySetInnerHTML={this.createMarkup(`${this.props.description.slice(0,1500)}...`)}></div>
                   :

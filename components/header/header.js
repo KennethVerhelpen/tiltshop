@@ -42,7 +42,7 @@ class Header extends React.Component {
 
 	render = () => {
 		return (
-		  <Section className={clsx(this.props.className, "py-xs-128 text-center layout-column layout-align-center-center")}>
+		  <Section className={clsx(this.props.className, "pt-xs-128 pb-xs-32 text-center layout-column layout-align-center-center")}>
         <div className="pt-32 container-md layout-column layout-align-center-center flex">
           { this.props.title ? 
             <CustomTitle className="scale-in speed-10 mt-16 mb-16 strong" >{this.props.title}</CustomTitle>
