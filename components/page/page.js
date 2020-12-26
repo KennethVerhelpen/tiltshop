@@ -24,7 +24,7 @@ class Page extends React.Component {
 		return (
 			<>
 				<Head>
-					<meta charset="UTF-8" />
+					<meta charSet="UTF-8" />
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 					<title>Tiltshop: {this.props.title} in {currentYear}</title>
