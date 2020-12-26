@@ -61,12 +61,20 @@ class Nav extends React.Component {
 											<div className="layout-row layout-align-center-center px-16 flex">
 												{(() => {
 													switch(category.slug) {
-														case 'movies': return (<MovieTwoTone className="m-8" style={{ fontSize: 16 }}/>)
-														case 'tv-shows': return (<TvTwoTone className="m-8" style={{ fontSize: 16 }}/>)
-														case 'video-games': return (<SportsEsportsTwoTone className="m-8" style={{ fontSize: 16 }}/>)
+														case 'movies': return <MovieTwoTone className="m-8" style={{ fontSize: 16 }}/>
+														case 'tv-shows': return <TvTwoTone className="m-8" style={{ fontSize: 16 }}/>
+														case 'video-games': return <SportsEsportsTwoTone className="m-8" style={{ fontSize: 16 }}/>
 													}
 												})()}
-												<span className="text-capitalize">{category.type}</span>
+												<span className="text-capitalize">
+													{(() => {
+														switch(category.slug) {
+															case 'movies': return "movies"
+															case 'tv-shows': return "tv shows"
+															case 'video-games': return "video games"
+														}
+													})()}
+												</span>
 											</div>
 										</NavButton>
 									</Link>
