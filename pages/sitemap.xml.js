@@ -19,7 +19,11 @@ export async function getServerSideProps({ res }) {
   function getLocations(pages) {
     const categories = [].concat.apply([], pages.map(category => ("/" + category.slug).toString()));
     const media = [].concat.apply([], pages.map(category => category.items.map(item => ("/" + category.slug + "/" + item.slug).toString())));
-    const concatLocations = categories.concat(media).concat("");
+    const concatLocations = categories.concat(
+      media,
+      "",
+      "/browse",
+    );
     return {
       pages: 
         concatLocations.map(slug => (

@@ -25,7 +25,7 @@ export const Shape = styled.article`
 
 export const Main = styled.main`
   z-index: 1; 
-  span {
+  span, a {
     color: white;
   }
 `

@@ -10,13 +10,14 @@ class Category extends React.Component {
 
 	constructor(props) {
 		super(props);
+		this.currentYear = new Date().getFullYear();
 	}
 
 	render = () => {
 		return (
 			<Page 
 				title={`Best items for ${this.props.category.type} lovers`}
-				description={`Discover the best hand-picked items from Amazon's catalogue sorted out just for ${this.props.category.type} lovers`}
+				description={`Discover the best hand-picked items of ${this.props.currentYear} sorted out just for ${this.props.category.type} lovers.`}
 				activePage={this.props.category.slug}
 				>
 				<Header category={this.props.category.type}/>
