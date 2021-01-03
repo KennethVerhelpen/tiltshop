@@ -19,7 +19,7 @@ class Article extends React.Component {
 		const medium = category.items.find(medium => medium.id === this.props.article.medium);
 
 		return (
-			<a rel="sponsored" aria-label={this.props.article.title} className={clsx(this.props.className)} href={this.props.article.url} target="_blank">
+			<a rel="sponsored" aria-label={this.props.article.title} className={clsx(this.props.className)} href={this.props.article.trackingUrl} target="_blank">
 				<Shape className="relative width-100 layout-column layout-align-end-stretch rounded-xl overflow-hidden cursor-pointer">
 					<div className="flex"></div>
 					<Main className={clsx({"pb-32" : this.props.static}, "layout-column layout-align-start-start pt-32 px-32")}>
@@ -27,14 +27,16 @@ class Article extends React.Component {
 						<span className="strong h6 mb-8">{this.props.article.title.length > 45 ? `${this.props.article.title.slice(0,45)}...` : this.props.article.title}</span>
 						{ !this.props.static &&
 							<>
-								<span className="small mb-8" style={{ opacity: .5 }}>
-									<span>{this.props.article.description.slice(0,20)}...</span>
-									{' '}
-									<Link href={`/${category.slug}/${medium.slug}/${this.props.article.slug}`}>
-										<a className="underline" aria-label="Read more" target="_blank">Read more</a>
-									</Link>
-								</span>
-								{this.props.article.price.dollar && <BudgetRangeStyled className="rounded-sm px-16 py-4" amount={this.props.article.price.dollar}/>}
+								{ this.props.article.description &&
+									<span className="small mb-8" style={{ opacity: .5 }}>
+										<span>{this.props.article.description.slice(0,20)}...</span>
+										{' '}
+										<Link href={`/${category.slug}/${medium.slug}/${this.props.article.slug}`}>
+											<span className="underline" aria-label="Read more" target="_blank">Read more</span>
+										</Link>
+									</span>
+								 }
+								{this.props.article.price.dollar != null && <BudgetRangeStyled className="rounded-sm px-16 py-4" amount={this.props.article.price.dollar}/>}
 							</>
 						}
 					</Main>

@@ -65,6 +65,6 @@ export const Title = styled.div`
   transition: text-shadow .2s ease-in-out;
 
   @media only screen and (max-width: 599px) {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 `
