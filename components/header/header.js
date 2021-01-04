@@ -10,6 +10,7 @@ class Header extends React.Component {
     this.rotation = Boolean;
     this.subtitle = String;
     this.rotatingTexts = Array;
+    this.currentYear = Number;
 		this.state = { 
       visibleText: 0,
 		}
@@ -65,10 +66,10 @@ class Header extends React.Component {
             </>
           }
           { this.props.medium &&
-            <h2 className="h6 mb-32 fade-in-bottom speed-5">The best items for <b>{this.props.medium} fans.</b></h2>
+            <h2 className="h6 fade-in-bottom speed-5">The best items for <b>{this.props.medium} fans</b> in <b>{this.props.currentYear}</b>.</h2>
           }
           { this.props.subtitle &&
-            <h2 className="h6 mb-32 fade-in-bottom speed-5">{this.props.subtitle}</h2>
+            <h2 className="h6 fade-in-bottom speed-5">{this.props.subtitle}</h2>
           }
           { !this.props.medium && !this.props.subtitle &&
             <h2 className="fade-in-bottom speed-5 h6 layout-row layout-column-xs layout-align-center-center">A list of great products hand-picked just for you.</h2>
@@ -81,6 +82,7 @@ class Header extends React.Component {
 
 Header.defaultProps = {
   rotation: false,
+  currentYear: new Date().getFullYear(),
 	rotatingTexts: [ "cinema lovers", "tv show addicts", "passionate gamers" ]
 }
 

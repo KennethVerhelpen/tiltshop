@@ -14,6 +14,12 @@ const ArticleShape = styled.div`
   background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
 `
 
+const Description = styled.div`
+  p {
+    line-height: 1.5;
+    font-size: 1.125rem;
+  }
+`
 class Medium extends React.Component {
   constructor(props) {
     super(props);
@@ -45,12 +51,12 @@ class Medium extends React.Component {
           activePage={this.props.category}
           >
           <Header
-            medium={this.props.name}
             title={this.props.name}
+            medium={this.props.name}
           />
           <Grid className="container-lg p-0 layout-column">
             {this.props.description &&
-              <div className="fade-in-bottom speed-5 blocktext serif lh-3 px-xs-32 px-gt-xs-64 pb-64 text-center">
+              <Description className="fade-in-bottom speed-5 blocktext serif px-xs-32 px-gt-xs-64 pb-64 text-center">
                 {this.props.description.length > 1500 && !this.state.expanded ? 
                   <div dangerouslySetInnerHTML={this.createMarkup(`${this.props.description.slice(0,1500)}...`)}></div>
                   :
@@ -67,7 +73,7 @@ class Medium extends React.Component {
                     </a>
                   </>
                 }
-              </div>
+              </Description>
             }
             { articlesCount > 0
               ? <div className="layout-row layout-wrap layout-align-center-center">
@@ -78,7 +84,7 @@ class Medium extends React.Component {
                   ))}
                 </div>
               : <>
-                  <div className="fade-in-bottom speed-9 layout-align-center-center layout-column text-center pt-64 px-32">
+                  <div className="fade-in-bottom speed-9 layout-align-center-center layout-column text-center pt-128 px-32">
                     <p className="bold">No articles yet.</p>
                     <p className="small">We are currently working on collecting the best items for {this.props.name}.</p>
                   </div>

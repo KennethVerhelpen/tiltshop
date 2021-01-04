@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import { Shape, NavButton, Browse, Logo, BackButton } from "./nav.styles";
+import { Shape, NavButton, Browse, Logo, BackButton, Blog } from "./nav.styles";
 import mediaSet from "../../lib/media";
 import Link from "next/link";
-import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone, SearchRounded, ArrowBackTwoTone } from '@material-ui/icons';
+import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone, SearchRounded, ArrowBackTwoTone, DevicesOtherTwoTone } from '@material-ui/icons';
 import { useRouter } from 'next/router'
 
 function BackHistory() {
@@ -26,8 +26,8 @@ class Nav extends React.Component {
 
 	render = () => {
 		return (
-			<Shape className="layout-row layout-align-stretch-center">
-				<div className="container-lg layout-align-stretch-center layout-row">
+			<Shape className="layout-column layout-align-start-center">
+				<div className="container-lg layout-align-stretch-center layout-row flex">
 					<div className="flex hide-gt-xs layout-row layout-align-start-center">
 						{ this.props.allowBack &&
 							<BackHistory />
@@ -43,8 +43,22 @@ class Nav extends React.Component {
 							<Logo className="bold h6 serif">tilt.</Logo>
 						</Link>
 					</div>
-					{ this.props.menu &&
-						<ul className="hide-xs small flex-noshrink layout-row layout-align-center-stretch p-0 m-0 list-reset">
+					<div className="flex layout layout-align-end-center">
+						<Link href={'/blog'}>
+							<Blog className="px-16 small cursor-pointer">Blog</Blog>
+						</Link>
+						{	this.props.menu &&
+							<Link href={'/browse'}>
+								<Browse aria-label="Browse" name="Browse" className="layout layout-align-center-center p-4 rounded cursor-pointer">
+									<SearchRounded style={{ fontSize: 20 }}/>
+								</Browse>
+							</Link>
+						}
+					</div>
+				</div>
+				{ this.props.menu &&
+					<div style={{ borderTop: "1px solid rgba(255,255,255,0.2)"}} className="layout-row layout-align-center-center flex-none hide-xs width-100">
+						<ul className="small flex-noshrink layout-row layout-align-center-stretch p-0 m-0 list-reset">
 							<li className="layout-row layout-align-center-center">
 								<Link href={"/"}>
 									<NavButton className={clsx(this.props.activePage === undefined && "active bold", "layout-column layout-align-start-stretch cursor-pointer")}>
@@ -64,14 +78,16 @@ class Nav extends React.Component {
 														case 'movies': return <MovieTwoTone className="m-8" style={{ fontSize: 16 }}/>
 														case 'tv-shows': return <TvTwoTone className="m-8" style={{ fontSize: 16 }}/>
 														case 'video-games': return <SportsEsportsTwoTone className="m-8" style={{ fontSize: 16 }}/>
+														case 'electronics': return <DevicesOtherTwoTone className="m-8" style={{ fontSize: 16 }}/>
 													}
 												})()}
-												<span className="text-capitalize">
+												<span className="text-capitalize text-truncate">
 													{(() => {
 														switch(category.slug) {
 															case 'movies': return "movies"
 															case 'tv-shows': return "tv shows"
 															case 'video-games': return "video games"
+															case 'electronics': return "electronics"
 														}
 													})()}
 												</span>
@@ -81,19 +97,8 @@ class Nav extends React.Component {
 								</li>
 							))}
 						</ul>
-					}
-					<div className="flex layout layout-align-end-center">
-						{	this.props.menu &&
-							<Browse>
-								<Link href={`/browse`}>
-									<a aria-label="Browse" name="Browse" className="layout layout-align-center-center p-4 rounded">
-										<SearchRounded style={{ fontSize: 20 }}/>
-									</a>
-								</Link>
-							</Browse>
-						}
 					</div>
-				</div>
+				}
 			</Shape>
 		);
 	};

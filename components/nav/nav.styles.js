@@ -1,10 +1,18 @@
 import styled from '@emotion/styled';
 
-export const Browse = styled.div`
+export const Browse = styled.a`
+  color: white;
+`
+
+export const Blog = styled.a`
   color: white;
 `
 
 export const BackButton = styled.a`
+  color: white;
+`
+
+export const Logo = styled.a`
   color: white;
 `
 
@@ -14,13 +22,14 @@ export const Shape = styled.nav`
   z-index: 2;
   width: 100%;
   position: fixed;
-  min-height: 3.25rem;
   background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(20px);
-`
-
-export const Logo = styled.a`
-  color: white;
+  > div:last-of-type {
+    height: 2.125rem;
+  }
+  > div:first-of-type {
+    height: 2.875rem;
+  }
 `
 
 export const SearchButton = styled.button`
