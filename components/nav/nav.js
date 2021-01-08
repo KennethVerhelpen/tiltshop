@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Shape, NavButton, Browse, Logo, BackButton, Blog } from "./nav.styles";
+import { Shape, NavButton } from "./nav.styles";
 import mediaSet from "../../lib/media";
 import Link from "next/link";
 import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone, SearchRounded, ArrowBackTwoTone, DevicesOtherTwoTone } from '@material-ui/icons';
@@ -8,11 +8,11 @@ import { useRouter } from 'next/router'
 function BackHistory() {
   const router = useRouter();
   return (
-    <BackButton onClick={() => router.back()} className="cursor-pointer layout-row layout-align-start-center">
-			<ArrowBackTwoTone style={{ fontSize: 16 }} className="mr-8" />
-			<span className="small hide-xs">Go back</span>
-			<span className="mx-8 h5 hide-xs" style={{ opacity: 0.2 }}>/</span>
-		</BackButton>
+    <a onClick={() => router.back()} className="cursor-pointer layout-row layout-align-start-center">
+			<ArrowBackTwoTone style={{ fontSize: 16 }} className="text-secondary-100 mr-8" />
+			<span className="small hide-xs text-secondary-100">Go back</span>
+			<span className="mx-8 h5 hide-xs text-secondary-700">/</span>
+		</a>
   )
 }
 
@@ -40,18 +40,18 @@ class Nav extends React.Component {
 							}	
 						</div>
 						<Link href={"/"}>
-							<Logo className="bold h6 serif">tilt.</Logo>
+							<a className="text-secondary-100 bold h6 serif">tilt.</a>
 						</Link>
 					</div>
 					<div className="flex layout layout-align-end-center">
 						<Link href={'/blog'}>
-							<Blog className="px-16 small cursor-pointer">Blog</Blog>
+							<a className="text-secondary-100 px-16 small cursor-pointer">Blog</a>
 						</Link>
 						{	this.props.menu &&
 							<Link href={'/browse'}>
-								<Browse aria-label="Browse" name="Browse" className="layout layout-align-center-center p-4 rounded cursor-pointer">
+								<a aria-label="Browse" name="Browse" className="layout text-secondary-100 layout-align-center-center p-4 rounded cursor-pointer">
 									<SearchRounded style={{ fontSize: 20 }}/>
-								</Browse>
+								</a>
 							</Link>
 						}
 					</div>
@@ -61,7 +61,7 @@ class Nav extends React.Component {
 						<ul className="small flex-noshrink layout-row layout-align-center-stretch p-0 m-0 list-reset">
 							<li className="layout-row layout-align-center-center">
 								<Link href={"/"}>
-									<NavButton className={clsx(this.props.activePage === undefined && "active bold", "layout-column layout-align-start-stretch cursor-pointer")}>
+									<NavButton className={clsx(this.props.activePage === undefined && "active bold text-secondary-100", "text-secondary-500 layout-column layout-align-start-stretch cursor-pointer")}>
 										<div className="layout-row layout-align-center-center px-16 flex">
 											<span>All</span>
 										</div>
@@ -71,7 +71,7 @@ class Nav extends React.Component {
 							{mediaSet && mediaSet.map((category, index) => (
 								<li key={index} className="layout-row layout-align-center-center">
 									<Link href={`/${category.slug}`}>
-										<NavButton className={clsx(this.props.activePage === category.slug && "active bold", "layout-column layout-align-start-stretch cursor-pointer")}>
+										<NavButton className={clsx(this.props.activePage === category.slug && "active bold text-secondary-100", "text-secondary-500 layout-column layout-align-start-stretch cursor-pointer")}>
 											<div className="layout-row layout-align-center-center px-16 flex">
 												{(() => {
 													switch(category.slug) {

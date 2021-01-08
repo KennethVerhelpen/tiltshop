@@ -1,21 +1,5 @@
 import styled from '@emotion/styled';
 
-export const Browse = styled.a`
-  color: white;
-`
-
-export const Blog = styled.a`
-  color: white;
-`
-
-export const BackButton = styled.a`
-  color: white;
-`
-
-export const Logo = styled.a`
-  color: white;
-`
-
 export const Shape = styled.nav`
   top: 0;
   left: 0;
@@ -32,19 +16,10 @@ export const Shape = styled.nav`
   }
 `
 
-export const SearchButton = styled.button`
-  color: white;
-  background: transparent;
-`
-
 export const NavButton = styled.a`
   padding: 0;
   height: 100%;
-  border: none;
-  outline: none;
   min-width: 6rem;
-  color: rgba(255,255,255,0.5);
-  background: transparent;
   box-shadow: 0 2px 10px 0 rgba(0,0,0,0.25);
 
   &:after {

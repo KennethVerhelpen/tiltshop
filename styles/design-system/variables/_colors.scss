@@ -1,228 +1,53 @@
-$primary-100: #e6fafe !default;
-$primary-300: #93dfec !default;
-$primary-500: #20c5e5 !default;
-$primary-700: #005A66 !default;
-$primary-900: #002a2e !default;
-
-$secondary-100: #ffffff !default;
-$secondary-300: #fafafa !default;
-$secondary-500: #ebebeb !default;
-$secondary-700: #c8c8c8 !default;
-$secondary-900: #909090 !default;
-
-$success-100: #bef2df !default;
-$success-300: #86E2BA !default;
-$success-500: #53e3ba !default;
-$success-700: #009973 !default;
-$success-900: #00664e !default;
-
-$danger-100: #ffe5eb !default;
-$danger-300: #f6789b !default;
-$danger-500: #ff3970 !default;
-$danger-700: #d63458 !default;
-$danger-900: #930021 !default;
-
-$accent-100: #ffeacc !default;
-$accent-300: #ffd799 !default;
-$accent-500: #ffc061 !default;
-$accent-700: #ec8f05 !default;
-$accent-900: #a76504 !default;
-
-$content-100: #1b42af !default;
-$content-300: #153284 !default;
-$content-500: #0e2158 !default;
-$content-700: #07112c !default;
-$content-900: #000000 !default;
+$secondary-100: hsl(0, 0%, 100%) !default;
+$secondary-200: hsl(0, 0%, 87.5%) !default;
+$secondary-300: hsl(0, 0%, 75%) !default;
+$secondary-400: hsl(0, 0%, 62.5%) !default;
+$secondary-500: hsl(0, 0%, 50%) !default;
+$secondary-600: hsl(0, 0%, 37.5%) !default;
+$secondary-700: hsl(0, 0%, 25%) !default;
+$secondary-800: hsl(0, 0%, 12.5%) !default;
+$secondary-900: hsl(0, 0%, 0%) !default;
 
 $colors: (
-  -primary-100: $primary-100,
-  -primary-300: $primary-300,
-  -primary-500: $primary-500,
-  -primary-700: $primary-700,
-  -primary-900: $primary-900,
   -secondary-100: $secondary-100,
+  -secondary-200: $secondary-200,
   -secondary-300: $secondary-300,
+  -secondary-400: $secondary-400,
   -secondary-500: $secondary-500,
+  -secondary-600: $secondary-600,
   -secondary-700: $secondary-700,
+  -secondary-800: $secondary-800,
   -secondary-900: $secondary-900,
-  -success-100: $success-100,
-  -success-300: $success-300,
-  -success-500: $success-500,
-  -success-700: $success-700,
-  -success-900: $success-900,
-  -danger-100: $danger-100,
-  -danger-300: $danger-300,
-  -danger-500: $danger-500,
-  -danger-700: $danger-700,
-  -danger-900: $danger-900,
-  -accent-100: $accent-100,
-  -accent-300: $accent-300,
-  -accent-500: $accent-500,
-  -accent-700: $accent-700,
-  -accent-900: $accent-900,
-  -content-100: $content-100,
-  -content-300: $content-300,
-  -content-500: $content-500,
-  -content-700: $content-700,
-  -content-900: $content-900
 );
 
 $btnPalettes: (
-  'primary': (
-    'raised': (
-      'text': $primary-700,
-      'bg': $primary-300,
-      'border': $primary-300,
-      'shadow': $primary-500,
-    ),
-    'flat': (
-      'text': $primary-700,
-      'bg': $primary-300,
-      'border': $primary-300,
-      'shadow': null,
-    ),
-    'light': (
-      'text': $primary-500,
-      'bg': $primary-100,
-      'border': $primary-100,
-      'shadow': null,
-    ),
-    'outlined': (
-      'text': $primary-500,
-      'bg': transparent,
-      'border': $primary-500,
-      'shadow': null,
-    ),
-    'default': (
-      'text': $primary-500,
-      'bg': transparent,
-      'border': null,
-      'shadow': null,
-    ),
-  ),
   'secondary': (
     'raised': (
-      'text': $content-700,
-      'bg': white,
-      'border': $secondary-700,
-      'shadow': $secondary-700,
+      'text': $secondary-100,
+      'bg': $secondary-900,
+      'border': $secondary-900,
+      'shadow': $secondary-500,
     ),
     'flat': (
-      'text': $content-700,
+      'text': $secondary-900,
       'bg': white,
       'border': white,
       'shadow': null,
     ),
     'light': (
       'text': $secondary-900,
-      'bg': $secondary-300,
-      'border': $secondary-300,
+      'bg': $secondary-200,
+      'border': $secondary-200,
       'shadow': null,
     ),
     'outlined': (
-      'text': $content-700,
+      'text': $secondary-900,
       'bg': transparent,
       'border': $secondary-700,
       'shadow': null,
     ),
     'default': (
-      'text': $content-700,
-      'bg': transparent,
-      'border': null,
-      'shadow': null,
-    ),
-  ),
-  'success': (
-    'raised': (
-      'text': $success-900,
-      'bg': $success-300,
-      'border': $success-300,
-      'shadow': $success-700,
-    ),
-    'flat': (
-      'text': $success-900,
-      'bg': $success-300,
-      'border': $success-300,
-      'shadow': null,
-    ),
-    'light': (
-      'text': $success-700,
-      'bg': $success-100,
-      'border': $success-100,
-      'shadow': null,
-    ),
-    'outlined': (
-      'text': $success-500,
-      'bg': transparent,
-      'border': $success-500,
-      'shadow': null,
-    ),
-    'default': (
-      'text': $success-500,
-      'bg': transparent,
-      'border': null,
-      'shadow': null,
-    ),
-  ),
-  'danger': (
-    'raised': (
-      'text': $danger-900,
-      'bg': $danger-300,
-      'border': $danger-300,
-      'shadow': $danger-700,
-    ),
-    'flat': (
-      'text': $danger-900,
-      'bg': $danger-300,
-      'border': $danger-300,
-      'shadow': null,
-    ),
-    'light': (
-      'text': $danger-500,
-      'bg': $danger-100,
-      'border': $danger-100,
-      'shadow': null,
-    ),
-    'outlined': (
-      'text': $danger-500,
-      'bg': transparent,
-      'border': $danger-500,
-      'shadow': null,
-    ),
-    'default': (
-      'text': $danger-500,
-      'bg': transparent,
-      'border': null,
-      'shadow': null,
-    ),
-  ),
-  'accent': (
-    'raised': (
-      'text': $accent-900,
-      'bg': $accent-300,
-      'border': $accent-300,
-      'shadow': $accent-700,
-    ),
-    'flat': (
-      'text': $accent-900,
-      'bg': $accent-300,
-      'border': $accent-300,
-      'shadow': null,
-    ),
-    'light': (
-      'text': $accent-700,
-      'bg': $accent-100,
-      'border': $accent-100,
-      'shadow': null,
-    ),
-    'outlined': (
-      'text': $accent-700,
-      'bg': transparent,
-      'border': $accent-500,
-      'shadow': null,
-    ),
-    'default': (
-      'text': $accent-700,
+      'text': $secondary-900,
       'bg': transparent,
       'border': null,
       'shadow': null,

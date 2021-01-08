@@ -12,11 +12,11 @@ export default function Custom404() {
   `
 
   return (
-    <main style={{ background: 'black', color: 'white' }} className="layout-column layout-fill layout-align-center-center text-center p-32">
-      <Title className="strong serif">404</Title>
-      <h2 className="h5">Oops, something went wrong</h2>
+    <main className="bg-secondary-900 layout-column layout-fill layout-align-center-center text-center p-32">
+      <Title className="strong serif text-secondary-100">404</Title>
+      <h2 className="h5 text-secondary-100">Oops, something went wrong</h2>
       <Link href={'/'}>
-        <a className="p mt-16 underline" aria-label="Back to home">Back to home</a>
+        <a className="p mt-16 underline text-secondary-100" aria-label="Back to home">Back to home</a>
       </Link>
     </main>
   );

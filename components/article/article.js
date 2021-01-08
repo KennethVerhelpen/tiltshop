@@ -20,31 +20,31 @@ class Article extends React.Component {
 
 		return (
 			<a rel="sponsored" aria-label={this.props.article.title} className={clsx(this.props.className)} href={this.props.article.trackingUrl} target="_blank">
-				<Shape className="relative width-100 layout-column layout-align-end-stretch rounded-xl overflow-hidden cursor-pointer">
+				<Shape className="bg-secondary-900 relative width-100 layout-column layout-align-end-stretch rounded-xl overflow-hidden cursor-pointer">
 					<div className="flex"></div>
 					<Main className={clsx({"pb-32" : this.props.static}, "layout-column layout-align-start-start pt-32 px-32")}>
-						<span style={{ opacity: .5 }} className="small mb-8">{this.props.article.type} / {this.props.medium}</span>
-						<span className="strong h6 mb-8">{this.props.article.title.length > 45 ? `${this.props.article.title.slice(0,45)}...` : this.props.article.title}</span>
+						<span className="text-secondary-500 small mb-8">{this.props.article.type} / {this.props.medium}</span>
+						<span className="text-secondary-100 strong h6 mb-8">{this.props.article.title.length > 45 ? `${this.props.article.title.slice(0,45)}...` : this.props.article.title}</span>
 						{ !this.props.static &&
 							<>
 								{ this.props.article.description &&
-									<span className="small mb-8" style={{ opacity: .5 }}>
+									<span className="small mb-8 text-secondary-500">
 										<span>{this.props.article.description.slice(0,20)}...</span>
 										{' '}
 										<Link href={`/${category.slug}/${medium.slug}/${this.props.article.slug}`}>
-											<span className="underline" aria-label="Read more" target="_blank">Read more</span>
+											<span className="underline text-secondary-300" aria-label="Read more" target="_blank">Read more</span>
 										</Link>
 									</span>
 								 }
-								{this.props.article.price.dollar != null && <BudgetRangeStyled className="rounded-sm px-16 py-4" amount={this.props.article.price.dollar}/>}
+								{this.props.article.price.dollar != null && <BudgetRangeStyled className="rounded-sm px-16 py-4 text-secondary-100" amount={this.props.article.price.dollar}/>}
 							</>
 						}
 					</Main>
 					{ !this.props.static &&
 						<Footer className="px-32 py-16 layout-row layout-align-start-center">
-							<span className="flex text-truncate">See on <b>Amazon</b></span>
-							<IconButton className="button layout layout-align-center-center p-8 rounded">
-								<ArrowForwardRounded style={{ fontSize: 16 }}/>
+							<span className="flex text-truncate text-secondary-100">See on <b>Amazon</b></span>
+							<IconButton className="layout layout-align-center-center p-8 rounded">
+								<ArrowForwardRounded className="text-secondary-100" style={{ fontSize: 16 }}/>
 							</IconButton>
 						</Footer>
 					}

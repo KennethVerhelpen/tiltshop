@@ -6,7 +6,6 @@ export const Shape = styled.article`
   height: 30rem;
   max-width: 20rem;
   min-width: 20rem;
-  background: black;
   transition: all .3s ease-in-out;
   box-shadow: 6px 6px 20px 0 rgba(0,0,0,0.35), 5px 5px 7px 0 rgba(0,0,0,0.09), 20px 20px 8px 0 rgba(0,0,0,0.08);
   &:hover {
@@ -25,23 +24,18 @@ export const Shape = styled.article`
 
 export const Main = styled.main`
   z-index: 1; 
-  span, a {
-    color: white;
-  }
 `
 
 export const Footer = Main.withComponent('footer');
 
 export const BudgetRangeStyled = styled(BudgetRange)`
   background: rgba(255,255,255, 0.1);
-  color: white;
   font-size: 12px;
 `
 
 export const IconButton = styled.div`
   background: rgba(255,255,255,0.1);
   backdrop-filter: blur(3px);
-  color: white;
 `
 
 export const ImageWrapper = styled.div`

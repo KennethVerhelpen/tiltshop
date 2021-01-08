@@ -1,3 +1,4 @@
+import { ArrowForwardRounded } from "@material-ui/icons";
 import { Page, Article } from "../../../components/index";
 import mediaSet from "../../../lib/media";
 
@@ -21,19 +22,33 @@ class ArticleDetails extends React.Component {
 								<header>
 									<h1 className="strong mb-8">{this.props.article.title}</h1>
 									<h2 className="h6 mb-16">{this.props.medium.name}</h2>
-									<h3 className="p text-capitalize mb-32" style={{ opacity: 0.5 }}>{this.props.category.type}</h3>
-									<p className="lh-3 h6">{this.props.article.description}</p>
+									<h3 className="p text-capitalize mb-32 text-secondary-500">{this.props.category.type}</h3>
+									<p className="lh-3 h6 mb-32">{this.props.article.description}</p>
+									{this.props.article.details.length > 0 ? (
+										<>
+											<h4 className="bold h6 mb-16">Product details</h4>
+											<ul className="lh-3 h6">
+												{this.props.article.details.map(detail => (
+													<li key={detail}>{detail}</li>
+												))}
+											</ul>
+										</>
+									) : null}
 								</header>
 								<main>
 									
 								</main>
 							</section>
-							<section className="flex-33 p-32">
-								<Article static={true} article={this.props.article} medium={this.props.medium.name}/>
+							<section className="flex-none p-32 layout-column layout-align-start-stretch">
+								<Article className="mb-32" static={true} article={this.props.article} medium={this.props.medium.name}/>
+								<button className="text-left btn btn-outlined btn-md btn-secondary layout-row layout-align-start-center">
+									<span className="flex">See on <b>Amazon</b></span>
+									<ArrowForwardRounded style={{ fontSize: 20 }}/>
+								</button>
 							</section>
 						</div>
 
-						<footer className="py-64 layout-column layout-align-center-center border-top border-secondary-500">
+						<footer className="py-64 layout-column layout-align-center-center border-top border-secondary-300">
 							<h4 className="p-32 bold h4">Other articles you may like</h4>
 							<main className="layout-row">
 								{this.props.articles.slice(0,3).map(article => (

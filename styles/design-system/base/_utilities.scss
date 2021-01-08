@@ -47,20 +47,6 @@
   text-decoration: none;
 }
 
-.error {
-  padding: 2px 6px;
-  border-radius: $radius-xs;
-  background-color: $danger-100;
-  color: $danger-500;
-}
-
-.warning {
-  padding: 2px 3px;
-  border-radius: $radius-xs;
-  background-color: $accent-300;
-  color: $accent-700;
-}
-
 @each $cursor in ('pointer', 'help', 'wait', 'crosshair', 'not-allowed', 'zoom-in', 'zoom-out', 'grab') {
 
   %cursor-#{$cursor},
@@ -81,16 +67,30 @@
 
   %border#{$suffix},
   .border#{$suffix} {
-    border#{$suffix}: 1px solid $secondary-700;
+    border#{$suffix}: 1px solid $secondary-900;
   }
 }
 
-@each $suffix,
-$radius in (''50%, '-xs'$radius-xs, '-sm'$radius-sm, '-md'$radius-md, '-lg'$radius-lg, '-xl'$radius-xl) {
+.border-none {
+  border: none;
+}
 
-  %rounded#{$suffix},
-  .rounded#{$suffix} {
-    border-radius: $radius;
+@each $position in ('', '-top-left', '-top-right', '-bottom-left', '-bottom-right', '-top', '-bottom') {
+
+  @each $suffix,
+  $radius in (''50%, '-xs'$radius-xs, '-sm'$radius-sm, '-md'$radius-md, '-lg'$radius-lg, '-xl'$radius-xl) {
+
+    %rounded#{$position}#{$suffix},
+    .rounded#{$position}#{$suffix} {
+      @if ($position=="-top") or ($position=="-bottom") {
+        border#{$position}-left-radius: $radius;
+        border#{$position}-right-radius: $radius;
+      }
+
+      @else {
+        border#{$position}-radius: $radius;
+      }
+    }
   }
 }
 
@@ -105,7 +105,7 @@ $radius in (''50%, '-xs'$radius-xs, '-sm'$radius-sm, '-md'$radius-md, '-lg'$radi
   @include overflow-classes($axis);
 }
 
-@each $position in ("absolute", "static", "relative", "fixed") {
+@each $position in ("absolute", "static", "relative", "fixed", "sticky") {
 
   %#{$position},
   .#{$position} {
