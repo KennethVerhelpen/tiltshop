@@ -16,6 +16,7 @@ class Page extends React.Component {
 		this.children = React.ReactNode,
 		this.activePage = String
 		this.currentYear = Number;
+		this.history = String;
 	}
 
 	render() {
@@ -25,7 +26,7 @@ class Page extends React.Component {
 					<meta charSet="UTF-8" />
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-					<title>Tiltshop: {this.props.title} in {this.props.currentYear}</title>
+					<title>Tiltshop: {this.props.title}</title>
 					<meta name="keywords" content="Cinema, Movies, Tv shows, Video games" />
 					<meta name="description" content={this.props.description} />
 					<meta property="og:title" content={this.props.title} />
@@ -35,7 +36,7 @@ class Page extends React.Component {
 					<meta name="twitter:title" content={this.props.description} />
 					<meta name="twitter:card" content="summary_large_image" />
 				</Head>
-				<Nav menu={this.props.menu} allowBack={this.props.allowBack} activePage={this.props.activePage} ref="navbar"></Nav>
+				<Nav history={this.props.history} menu={this.props.menu} allowBack={this.props.allowBack} activePage={this.props.activePage} ref="navbar"></Nav>
 				<Main className="flex pt-56">{this.props.children}</Main>
 				<Footer/>
 				<BackgroundWrapper className="width-100 absolute layout-column">
@@ -67,7 +68,7 @@ Page.defaultProps = {
 	image: "https://tiltshop.co/_next/image?url=%2Fimages%2Fmeta%2Fdefault-meta.jpg&w=1200&q=100", 
 	description: `Discover the best hand-picked items of ${new Date().getFullYear()} sorted out just for cinema, tv shows and video games lovers.`,
 	alt: "Best items for cinema, tv & gaming lovers",
-	title: "Best items for cinema, tv & gaming lovers",
+	title: `Best items for cinema, tv & gaming lovers in ${new Date().getFullYear()}`,
 	activePage: undefined
 }
 

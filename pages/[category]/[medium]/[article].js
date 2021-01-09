@@ -13,7 +13,9 @@ class ArticleDetails extends React.Component {
 			<Page
           media={mediaSet}
           menu={false}
-          title={this.props.article.title}
+					title={`${this.props.article.title} - ${this.props.medium.name}`}
+					description={this.props.article.description}
+					history={`/${this.props.category.slug}/${this.props.medium.slug}`}
           >
 					<main className="container-lg ">
 

@@ -3,16 +3,16 @@ import { Shape, NavButton } from "./nav.styles";
 import mediaSet from "../../lib/media";
 import Link from "next/link";
 import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone, SearchRounded, ArrowBackTwoTone, DevicesOtherTwoTone } from '@material-ui/icons';
-import { useRouter } from 'next/router'
 
-function BackHistory() {
-  const router = useRouter();
+function BackHistory(slug) {
   return (
-    <a onClick={() => router.back()} className="cursor-pointer layout-row layout-align-start-center">
-			<ArrowBackTwoTone style={{ fontSize: 16 }} className="text-secondary-100 mr-8" />
-			<span className="small hide-xs text-secondary-100">Go back</span>
-			<span className="mx-8 h5 hide-xs text-secondary-700">/</span>
-		</a>
+    <Link href={slug} className="cursor-pointer layout-row layout-align-start-center">
+			<a className="layout-row layout-align-center-center">
+				<ArrowBackTwoTone style={{ fontSize: 16 }} className="text-secondary-100 mr-8" />
+				<span className="small hide-xs text-secondary-100">Go back</span>
+				<span className="mx-8 h5 hide-xs text-secondary-700">/</span>
+			</a>
+		</Link>
   )
 }
 
@@ -22,6 +22,7 @@ class Nav extends React.Component {
 		this.allowBack = Boolean,
 		this.activePage = String,
 		this.menu = Boolean
+		this.history = String;
 	}
 
 	render = () => {
@@ -29,15 +30,11 @@ class Nav extends React.Component {
 			<Shape className="layout-column layout-align-start-center">
 				<div className="container-lg layout-align-stretch-center layout-row flex">
 					<div className="flex hide-gt-xs layout-row layout-align-start-center">
-						{ this.props.allowBack &&
-							<BackHistory />
-						}
+						{ this.props.history && BackHistory(this.props.history) }
 					</div>
 					<div className="layout-row layout-align-start-center layout-align-xs-center-center flex">
 						<div className="hide-xs">
-							{ !this.props.menu &&
-								<BackHistory/>
-							}	
+							{ this.props.history && !this.props.menu && BackHistory(this.props.history) }	
 						</div>
 						<Link href={"/"}>
 							<a className="text-secondary-100 bold h6 serif">tilt.</a>

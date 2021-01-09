@@ -40,7 +40,7 @@ class Medium extends React.Component {
 
   render = () => {
 
-    const articlesCount = articlesSet.filter(article => article.medium === this.props.id && article.category === this.props.categoryId).length;
+    const articlesCount = articlesSet.filter(article => article.medium === this.props.id && article.category === this.props.category.id).length;
 
     return (
       <>
@@ -49,6 +49,7 @@ class Medium extends React.Component {
           menu={false}
           title={`Best 20+ products for ${this.props.name} lovers`}
           activePage={this.props.category}
+          history={`/${this.props.category.slug}`}
           >
           <Header
             title={this.props.name}
@@ -77,7 +78,7 @@ class Medium extends React.Component {
             }
             { articlesCount > 0
               ? <div className="layout-row layout-wrap layout-align-center-center">
-                  { articlesSet.filter(article => article.medium === this.props.id && article.category === this.props.categoryId).map((article, index) => (
+                  { articlesSet.filter(article => article.medium === this.props.id && article.category === this.props.category.id).map((article, index) => (
                     <div key={article.id} className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
                       <Article articleIndex={index} article={article} medium={this.props.name}/>
                     </div>
@@ -130,7 +131,7 @@ export async function getStaticProps({
       id: activeMedium.id,
       slug: activeMedium.slug,
       description: activeMedium.description || null,
-      categoryId: activeCategory.id
+      category: activeCategory
     }
   }
 }
