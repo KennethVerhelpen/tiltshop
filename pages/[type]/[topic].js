@@ -1,6 +1,4 @@
 import { Page, Article, Header } from '../../components/index';
-import articlesSet from "../../lib/articles";
-import mediaSet from "../../lib/media";
 import styled from '@emotion/styled';
 
 const Grid = styled.main`
@@ -20,7 +18,7 @@ const Description = styled.div`
     font-size: 1.125rem;
   }
 `
-class Medium extends React.Component {
+class Topic extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,31 +37,28 @@ class Medium extends React.Component {
   }
 
   render = () => {
-
-    const articlesCount = articlesSet.filter(article => article.medium === this.props.id && article.category === this.props.category.id).length;
-
+    const { type, topic, articles } = this.props;
     return (
       <>
         <Page
-          media={mediaSet}
           menu={false}
-          title={`Best 20+ products for ${this.props.name} lovers`}
-          activePage={this.props.category}
-          history={`/${this.props.category.slug}`}
+          title={`Best 20+ products for ${topic.name} lovers`}
+          activePage={type}
+          history={`/${type.slug}`}
           >
           <Header
-            title={this.props.name}
-            medium={this.props.name}
+            title={topic.name}
+            medium={topic.name}
           />
           <Grid className="container-lg p-0 layout-column">
-            {this.props.description &&
+            {topic.description.length &&
               <Description className="fade-in-bottom speed-5 blocktext serif px-xs-32 px-gt-xs-64 pb-64 text-center">
-                {this.props.description.length > 1500 && !this.state.expanded ? 
-                  <div dangerouslySetInnerHTML={this.createMarkup(`${this.props.description.slice(0,1500)}...`)}></div>
+                {topic.description.length > 1500 && !this.state.expanded ? 
+                  <div dangerouslySetInnerHTML={this.createMarkup(`${topic.description.length.slice(0,1500)}...`)}></div>
                   :
-                  <div dangerouslySetInnerHTML={this.createMarkup(this.props.description)}></div>
+                  <div dangerouslySetInnerHTML={this.createMarkup(topic.description)}></div>
                 }
-                { this.props.description.length > 1500 &&
+                { topic.description.length > 1500 &&
                   <>
                     {' '}
                     <a onClick={() => this.handleDescriptionExpand()} aria-label="Description expand" className="cursor-pointer underline">
@@ -76,18 +71,18 @@ class Medium extends React.Component {
                 }
               </Description>
             }
-            { articlesCount > 0
+            { articles.length > 0
               ? <div className="layout-row layout-wrap layout-align-center-center">
-                  { articlesSet.filter(article => article.medium === this.props.id && article.category === this.props.category.id).map((article, index) => (
-                    <div key={article.id} className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
-                      <Article articleIndex={index} article={article} medium={this.props.name}/>
-                    </div>
+                  { articles.map((article, index) => (
+                      <div key={article.id} className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
+                        <Article index={index} article={article} topic={topic} type={type}/>
+                      </div>
                   ))}
                 </div>
               : <>
                   <div className="fade-in-bottom speed-9 layout-align-center-center layout-column text-center pt-128 px-32">
                     <p className="bold">No articles yet.</p>
-                    <p className="small">We are currently working on collecting the best items for {this.props.name}.</p>
+                    <p className="small">We are currently working on collecting the best items for {topic.name}.</p>
                   </div>
                   <div className="layout-row layout-wrap layout-align-center-center hide-xs" style={{ marginTop: '-10rem' }}>
                     {Array.from(Array(3), (number, index) => (
@@ -106,13 +101,20 @@ class Medium extends React.Component {
 }
 
 export async function getStaticPaths() {
-  const media = (await import("../../lib/media")).default;
-  const paths = media.map((category => category.items.map((item => ({
-    params: {
-      category: category.slug.toString(),
-      medium: item.slug.toString()
-    }}
-  ))))).flat();
+
+  const types = (await import("../../lib/types")).default;
+  const topics = (await import("../../lib/topics")).default;
+
+  const paths = topics.map((topic => {
+    const type = types.find(type => type.id === topic.type);
+    return {
+      params: {
+        type: type.slug.toString(),
+        topic: topic.slug.toString()
+      }
+    }
+  }));
+
   return {
     paths,
     fallback: false
@@ -120,20 +122,26 @@ export async function getStaticPaths() {
 };
 
 export async function getStaticProps({
-  params: { medium, category }
-}) {
-  const media = (await import("../../lib/media.js")).default;
-  const activeCategory = media.find(item => item.slug === category);
-  const activeMedium = activeCategory.items.find(item => item.slug === medium);
+  params: {
+    topic: topicSlug,
+    type: typeSlug
+  }}){
+
+  const types = (await import("../../lib/types")).default;
+  const topics = (await import("../../lib/topics")).default;
+  const articles = (await import("../../lib/items.js")).default;
+
+  const currentType = types.find(type => type.slug === typeSlug);
+  const currentTopic = topics.find(topic => topic.slug === topicSlug);
+  const currentArticles = articles.filter(article => article.topic ===  currentTopic.id);
+
   return {
     props: {
-      name: activeMedium.name,
-      id: activeMedium.id,
-      slug: activeMedium.slug,
-      description: activeMedium.description || null,
-      category: activeCategory
+      type: currentType,
+      topic: currentTopic,
+      articles: currentArticles,
     }
   }
 }
 
-export default Medium;
+export default Topic;

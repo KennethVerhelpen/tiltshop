@@ -21,13 +21,15 @@ class Ratings extends React.Component {
   }
 
 	render = () => {
+    const { rate, className} = this.props;
+
 		return (
-      <div className={clsx(this.props.className, "layout-row")}>
-        {Array.from(Array(this.getPlainStars(this.props.rate)), (number, index) => (
+      <div className={clsx(className, "layout-row")}>
+        {Array.from(Array(this.getPlainStars(rate)), (number, index) => (
             <ActiveStar key={index} style={{ fontSize: 16 }}/>
         ))}
-        {this.isHalfStar(this.props.rate) && <ActiveStarHalf style={{ fontSize: 16 }}/>}
-        {Array.from(Array(this.getEmptyStars(this.props.rate)), (number, index) => (
+        {this.isHalfStar(rate) && <ActiveStarHalf style={{ fontSize: 16 }}/>}
+        {Array.from(Array(this.getEmptyStars(rate)), (number, index) => (
             <InactiveStar className="text-secondary-500" key={index} style={{ fontSize: 16 }}/>
         ))} 
       </div>
@@ -35,6 +37,6 @@ class Ratings extends React.Component {
 	};
 }
 
-export {Ratings};
+export { Ratings };
             
            

@@ -20,9 +20,11 @@ class BudgetRange extends React.Component {
   }
 
 	render = () => {
+    const { amount, className } = this.props;
+
 		return (
-			<span className={clsx(this.props.className)}>
-        {this.getSigns(this.props.amount)}
+			<span className={clsx(className)}>
+        {this.getSigns(amount)}
 			</span>
 		);
 	};

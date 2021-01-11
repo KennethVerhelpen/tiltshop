@@ -3,21 +3,22 @@ import clsx from "clsx";
 class Header extends React.Component {
 	constructor(props) {
     super(props);
-    this.className = null;
+    this.className = String;
     this.title = String;
     this.category = String;
     this.medium = String;
-    this.rotation = Boolean;
     this.subtitle = String;
+    this.rotation = Boolean;
     this.rotatingTexts = Array;
-    this.currentYear = Number;
 		this.state = { 
       visibleText: 0,
 		}
   }
   
   handleRotatingTextChange = () => {
-		if ((this.state.visibleText + 1) === this.props.rotatingTexts.length) {
+    const { rotatingTexts } = this.props;
+
+		if ((this.state.visibleText + 1) === rotatingTexts.length) {
 			this.setState({
 				visibleText: 0
 			});
@@ -42,21 +43,22 @@ class Header extends React.Component {
   }
 
 	render = () => {
+    const { className, title, category, medium, subtitle, rotatingTexts } = this.props;
 
 		return (
-		  <Section className={clsx(this.props.className, "pt-xs-128 pb-xs-32 text-center layout-column layout-align-center-center")}>
+		  <Section className={clsx(className, "pt-xs-128 pb-xs-32 text-center layout-column layout-align-center-center")}>
         <div className="pt-32 container-md layout-column layout-align-center-center flex">
-          { this.props.title ? 
-            <CustomTitle className="scale-in speed-10 mt-16 mb-16 strong" >{this.props.title}</CustomTitle>
+          { title ? 
+            <CustomTitle className="scale-in speed-10 mt-16 mb-16 strong" >{title}</CustomTitle>
             :
             <>
               <DefaultTitle className="scale-in speed-10 hide-xs mt-16 mb-16 strong"> 
                 <span>The best items for</span><br/>
-                  { this.props.category ?
-                    <span>{this.props.category} lovers</span>
+                  { category ?
+                    <span>{category} lovers</span>
                   :
                   <span>
-                    {this.props.rotatingTexts.map((text, index) => (
+                    {rotatingTexts.map((text, index) => (
                       <span className={clsx({ "hide": this.state.visibleText != index })} key={index}>{text}.</span>
                     ))}
                   </span>
@@ -65,13 +67,13 @@ class Header extends React.Component {
               <DefaultTitle className="scale-in speed-10 mt-16 mb-32 strong hide show-xs">The best items for cinema, tv & video game lovers.</DefaultTitle>
             </>
           }
-          { this.props.medium &&
-            <h2 className="h6 fade-in-bottom speed-5">The best items for <b>{this.props.medium} fans</b> in <b>{this.props.currentYear}</b>.</h2>
+          { medium &&
+            <h2 className="h6 fade-in-bottom speed-5">The best items for <b>{medium} fans</b> in <b>{new Date().getFullYear()}</b>.</h2>
           }
-          { this.props.subtitle &&
-            <h2 className="h6 fade-in-bottom speed-5">{this.props.subtitle}</h2>
+          { subtitle &&
+            <h2 className="h6 fade-in-bottom speed-5">{subtitle}</h2>
           }
-          { !this.props.medium && !this.props.subtitle &&
+          { !medium && !subtitle &&
             <h2 className="fade-in-bottom speed-5 h6 layout-row layout-column-xs layout-align-center-center">A list of great products hand-picked just for you.</h2>
           }
         </div>
@@ -82,7 +84,6 @@ class Header extends React.Component {
 
 Header.defaultProps = {
   rotation: false,
-  currentYear: new Date().getFullYear(),
 	rotatingTexts: [ "cinema lovers", "tv show addicts", "passionate gamers" ]
 }
 
