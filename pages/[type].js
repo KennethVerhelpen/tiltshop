@@ -54,7 +54,7 @@ export async function getStaticProps({
 }) {
 	const types = (await import("../lib/types")).default;
 	const topics = (await import("../lib/topics")).default;
-	const articles = (await import("../lib/items")).default;
+	const articles = (await import("../lib/articles")).default;
 
 	const currentType = types.find(type => type.slug === typeSlug);
 	const currentTopics = topics.filter(topic => topic.type === currentType.id);

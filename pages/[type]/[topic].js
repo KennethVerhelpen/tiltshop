@@ -51,7 +51,7 @@ class Topic extends React.Component {
             medium={topic.name}
           />
           <Grid className="container-lg p-0 layout-column">
-            {topic.description.length &&
+            {topic.description && topic.description.length &&
               <Description className="fade-in-bottom speed-5 blocktext serif px-xs-32 px-gt-xs-64 pb-64 text-center">
                 {topic.description.length > 1500 && !this.state.expanded ? 
                   <div dangerouslySetInnerHTML={this.createMarkup(`${topic.description.length.slice(0,1500)}...`)}></div>
@@ -71,7 +71,7 @@ class Topic extends React.Component {
                 }
               </Description>
             }
-            { articles.length > 0
+            { articles && articles.length > 0
               ? <div className="layout-row layout-wrap layout-align-center-center">
                   { articles.map((article, index) => (
                       <div key={article.id} className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
@@ -129,7 +129,7 @@ export async function getStaticProps({
 
   const types = (await import("../../lib/types")).default;
   const topics = (await import("../../lib/topics")).default;
-  const articles = (await import("../../lib/items.js")).default;
+  const articles = (await import("../../lib/articles")).default;
 
   const currentType = types.find(type => type.slug === typeSlug);
   const currentTopic = topics.find(topic => topic.slug === topicSlug);

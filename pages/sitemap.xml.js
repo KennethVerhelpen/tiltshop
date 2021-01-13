@@ -14,27 +14,40 @@ const generateSitemap =(data, origin) => {
 }
 
 export async function getServerSideProps({ res }) {
-  const mediaSet = (await import("../lib/media.js")).default;
+  const articles = (await import("../lib/articles")).default;
+  const topics = (await import("../lib/topics")).default;
+  const types = (await import("../lib/types")).default;
 
-  function getLocations(pages) {
-    const categories = [].concat.apply([], pages.map(category => ("/" + category.slug).toString()));
-    const media = [].concat.apply([], pages.map(category => category.items.map(item => ("/" + category.slug + "/" + item.slug).toString())));
-    const concatLocations = categories.concat(
-      media,
-      "",
-      "/browse",
-    );
+  const typeSlugs = [].concat.apply([], types.map(
+    type => ("/" + type.slug).toString()
+  ));
+  const topicSlugs = [].concat.apply([], topics.map(
+    topic => ("/" + types.find(type => type.id === topic.type).slug + "/" + topic.slug).toString()
+  ));
+  const articleSlugs = [].concat.apply([], articles.map(article => (
+    "/" + types.find(type => type.id === article.type).slug + "/" + topics.find(topic => topic.id === article.topic).slug + "/" + article.slug).toString()
+  ));
+
+  const slugs = [].concat(
+    "",
+    "/",
+    typeSlugs,
+    topicSlugs,
+    articleSlugs
+  );
+
+  function getPaths(params) {
     return {
       pages: 
-        concatLocations.map(slug => (
-          { location: slug }
+        params.map(param => (
+          { location: param }
         )
       )
     }
   }
 
   res.setHeader('Content-Type', 'text/xml')
-  res.write(generateSitemap(getLocations(mediaSet), 'https://www.tiltshop.co'))
+  res.write(generateSitemap(getPaths(slugs), 'https://www.tiltshop.co'))
   res.end()
 
   return {

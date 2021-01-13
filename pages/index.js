@@ -35,7 +35,7 @@ export async function getStaticProps() {
 
   const types = (await import("../lib/types")).default;
   const topics = (await import("../lib/topics")).default;
-  const articles = (await import("../lib/items")).default;
+  const articles = (await import("../lib/articles")).default;
 
   return {
     props: {
