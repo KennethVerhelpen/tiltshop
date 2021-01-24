@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { Shape, NavButton } from "./nav.styles";
-import types from "../../lib/types";
 import Link from "next/link";
 import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone, SearchRounded, ArrowBackTwoTone, DevicesOtherTwoTone } from '@material-ui/icons';
 
@@ -20,11 +19,12 @@ class Nav extends React.Component {
 		super(props);
 		this.menu = Boolean,
 		this.history = String,
-		this.activePage = String
+		this.activePage = String,
+		this.types = Object
 	}
 
 	render = () => {
-		const { menu, history, activePage } = this.props;
+		const { types, menu, history, activePage } = this.props;
 
 		return (
 			<Shape className="layout-column layout-align-start-center">
@@ -44,13 +44,11 @@ class Nav extends React.Component {
 						<Link href={'/blog'}>
 							<a className="text-secondary-100 px-16 small cursor-pointer">Blog</a>
 						</Link>
-						{	menu &&
-							<Link href={'/browse'}>
-								<a aria-label="Browse" name="Browse" className="layout text-secondary-100 layout-align-center-center p-4 rounded cursor-pointer">
-									<SearchRounded style={{ fontSize: 20 }}/>
-								</a>
-							</Link>
-						}
+						<Link href={'/browse'}>
+							<a aria-label="Browse" name="Browse" className="layout text-secondary-100 layout-align-center-center p-4 rounded cursor-pointer">
+								<SearchRounded style={{ fontSize: 20 }}/>
+							</a>
+						</Link>
 					</div>
 				</div>
 				{ menu &&

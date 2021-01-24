@@ -1,4 +1,5 @@
 import { Page, Topic, Header } from '../components/index';
+import { getTopics, getTypes } from "../lib/api";
 import styled from '@emotion/styled';
 
 const Grid = styled.main`
@@ -8,22 +9,22 @@ const Grid = styled.main`
 `
 class Type extends React.Component {
 	render = () => {
-		const { type, topics, articles } = this.props;
+		const { types, type, topics } = this.props;
 
 		return (
 			<Page 
 				title={`Best items for ${type.name} lovers`}
 				description={`Discover the best hand-picked items of ${new Date().getFullYear()} sorted out just for ${type.name} lovers.`}
 				activePage={type.slug}
-				>
+				types={types}
+			>
 				<Header category={type.name}/>
 				<Grid className="container-lg p-0 layout-column">
 					<div className="layout-row layout-wrap layout-align-center-center">
 						{topics.map((topic, index) => {
-							const articlesCount = articles.filter(article => article.topic === topic.id).length
 							return (
 								<div key={topic.id} ref="article" className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
-									<Topic className="flex layout-column layout-align-center-center" count={articlesCount} topic={topic} type={type} index={index} />
+									<Topic className="flex layout-column layout-align-center-center" count={topic.articlesCount} topic={topic} type={type} index={index} />
 								</div>
 							)
 						})}
@@ -35,7 +36,7 @@ class Type extends React.Component {
 }
 
 export async function getStaticPaths() {
-	const types = (await import("../lib/types")).default;
+	const types = await getTypes();
 
 	const paths = types.map(type => ({
 		params: {
@@ -52,17 +53,16 @@ export async function getStaticPaths() {
 export async function getStaticProps({
 	params: { type: typeSlug }
 }) {
-	const types = (await import("../lib/types")).default;
-	const topics = (await import("../lib/topics")).default;
-	const articles = (await import("../lib/articles")).default;
-
+	const topics = await getTopics();
+	const types = await getTypes();
+	
 	const currentType = types.find(type => type.slug === typeSlug);
-	const currentTopics = topics.filter(topic => topic.type === currentType.id);
+	const currentTopics = topics.filter(topic => topic.type === currentType.id && topic.articlesCount >= 0);
 	return { 
 		props: {
+			types: types,
 			type: currentType,
 			topics: currentTopics,
-			articles: articles,
 		}
 	}
 }

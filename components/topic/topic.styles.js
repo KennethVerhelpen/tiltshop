@@ -1,10 +1,8 @@
 import styled from '@emotion/styled';
 
 export const ImageWrapper = styled.div`
-  opacity: 1;
   top: 0;
   z-index: 0;
-  transition: all .6s ease-in-out;
 
   img {
     overflow: hidden;
@@ -37,12 +35,23 @@ export const Shape = styled.div`
   20px 20px 8px 0 rgba(0, 0, 0, 0.08),
   5px 5px 7px 0 rgba(0, 0, 0, 0.09);
 
-  &:hover {
-    .image:last-child {
-      opacity: 0;
-      transition: all .3s ease-in-out;
-    }
+  .image::before {
+    top: 0;
+    left: 0;
+    z-index: 1;
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0,0,0,0.1);
+    transition: all .6s ease-in-out;
+  }
 
+  &:hover {
+    .image::before {
+      background: rgba(0,0,0,0);
+      transition: all .6s ease-in-out;
+    }
     .content {
       margin-bottom: 2rem;
       transition: all .3s ease-in-out;
@@ -52,10 +61,10 @@ export const Shape = styled.div`
 
 export const Title = styled.div`
   z-index: 3;
+  opacity: 0.75;
   letter-spacing: -0.5px;
   line-height: 2.375rem;
   letter-spacing: -0.7px;
-  transition: text-shadow .2s ease-in-out;
 
   @media only screen and (max-width: 599px) {
     font-size: 2.5rem;

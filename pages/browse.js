@@ -1,4 +1,5 @@
 import { Page, Article, Header } from '../components';
+import { getTopics, getTypes, getArticles } from "../lib/api";
 import styled from '@emotion/styled';
 class Browse extends React.Component {
 	render = () => {
@@ -13,7 +14,6 @@ class Browse extends React.Component {
 			<Page
 				activePage={"browse"}
 				menu={false}
-				allowBack={false}
 			>
 				<Header
         	title="Browse all items"
@@ -39,15 +39,17 @@ class Browse extends React.Component {
 
 export async function getStaticProps() {
 
-  const types = (await import("../lib/types")).default;
-  const topics = (await import("../lib/topics")).default;
-  const articles = (await import("../lib/articles")).default;
+	const topics = await getTopics();
+	const types = await getTypes();
+	const articles = await getArticles();
+
+	const shuffledArticles = articles.sort(() => Math.random() - 0.5);
 
   return {
     props: {
-      types: types,
-      topics: topics,
-      articles: articles,
+      types,
+      topics,
+      articles: shuffledArticles,
     }
   }
 }

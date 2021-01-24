@@ -1,4 +1,5 @@
 import { Page, Article, Header } from '../../components/index';
+import { getArticles, getTopics, getTypes } from "../../lib/api";
 import styled from '@emotion/styled';
 
 const Grid = styled.main`
@@ -43,7 +44,7 @@ class Topic extends React.Component {
         <Page
           menu={false}
           title={`Best 20+ products for ${topic.name} lovers`}
-          activePage={type}
+          activePage={type.slug}
           history={`/${type.slug}`}
           >
           <Header
@@ -101,9 +102,8 @@ class Topic extends React.Component {
 }
 
 export async function getStaticPaths() {
-
-  const types = (await import("../../lib/types")).default;
-  const topics = (await import("../../lib/topics")).default;
+  const types = await getTypes();
+  const topics = await getTopics();
 
   const paths = topics.map((topic => {
     const type = types.find(type => type.id === topic.type);
@@ -127,9 +127,9 @@ export async function getStaticProps({
     type: typeSlug
   }}){
 
-  const types = (await import("../../lib/types")).default;
-  const topics = (await import("../../lib/topics")).default;
-  const articles = (await import("../../lib/articles")).default;
+  const types = await getTypes();
+  const topics = await getTopics();
+  const articles = await getArticles();
 
   const currentType = types.find(type => type.slug === typeSlug);
   const currentTopic = topics.find(topic => topic.slug === topicSlug);

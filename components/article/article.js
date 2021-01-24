@@ -56,7 +56,7 @@ class Article extends React.Component {
 							priority={index <= 2}
 							loading={index <= 2 ? "eager" : "lazy"}
 							alt={`${article.imgAlt} - ${topic.name}`}
-							src={`/images/articles/${type.slug}/${topic.slug}/${article.id}/article.jpg`}
+							src={`/images/articles/${article.id}/article.jpg`}
 						/>
 					</ImageWrapper>
 				</Shape>

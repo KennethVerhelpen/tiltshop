@@ -14,12 +14,13 @@ class Page extends React.Component {
 		this.menu = Boolean,
 		this.allowBack = Boolean,
 		this.children = React.ReactNode,
-		this.activePage = String
-		this.history = String;
+		this.activePage = String,
+		this.history = String,
+		this.types = Array
 	}
 
 	render() {
-		const { video, image, description, alt, title, menu, allowBack, children, activePage, history } = this.props;
+		const { types, video, image, description, alt, title, menu, allowBack, children, activePage, history } = this.props;
 
 		return (
 			<>
@@ -37,13 +38,13 @@ class Page extends React.Component {
 					<meta name="twitter:title" content={description} />
 					<meta name="twitter:card" content="summary_large_image" />
 				</Head>
-				<Nav history={history} menu={menu} allowBack={allowBack} activePage={activePage} ref="navbar"></Nav>
+				<Nav types={types} history={history} menu={menu} allowBack={allowBack} activePage={activePage} ref="navbar"></Nav>
 				<Main className="flex pt-56">{children}</Main>
 				<Footer/>
 				<BackgroundWrapper className="width-100 absolute layout-column">
 					<div className="hide-gt-xs width-100 height-100">
 						<Image
-							src="/images/mobile-background.jpg"
+							src="/images/backgrounds/mobile-background.jpg"
 							layout="fill"
 							quality="100"
 							objectFit="cover"

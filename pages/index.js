@@ -1,8 +1,9 @@
 import { Page, Topic, Header } from '../components';
+import { getTopics, getTypes } from "../lib/api";
 import styled from '@emotion/styled';
 class Home extends React.Component {
 	render = () => {
-		const { types, topics, articles } = this.props;
+		const { types, topics } = this.props;
 
 		const Grid = styled.main`
 			@media only screen and (max-width: 959px) and (max-width: 959px) {
@@ -11,16 +12,18 @@ class Home extends React.Component {
 		`
 	
 		return (
-			<Page allowBack={false}> 
+			<Page
+				allowBack={false}
+				types={types}
+			> 
 				<Header	rotation={true}/>
 				<Grid className="container-lg p-0 layout-column">
 					<div className="layout-row layout-wrap layout-align-start-center">
 						{topics.map((topic, index) => {
 							const type = types.find(type => type.id === topic.type);
-							const articlesCount = articles.filter(article => article.topic === topic.id).length;
 							return (
 								<div key={topic.id} ref="article" className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
-									<Topic className="flex layout-column layout-align-center-center" count={articlesCount} topic={topic} type={type} index={index} />
+									<Topic className="flex layout-column layout-align-center-center" count={topic.articlesCount} topic={topic} type={type} index={index} />
 								</div>
 							)
 						})}
@@ -32,16 +35,15 @@ class Home extends React.Component {
 };
 
 export async function getStaticProps() {
+	const topics = await getTopics();
+	const types = await getTypes();
 
-  const types = (await import("../lib/types")).default;
-  const topics = (await import("../lib/topics")).default;
-  const articles = (await import("../lib/articles")).default;
+	const activetopics = topics.filter(topic => topic.articlesCount >= 0);
 
   return {
     props: {
-      types: types,
-      topics: topics,
-      articles: articles,
+      types,
+      topics: activetopics,
     }
   }
 }

@@ -1,4 +1,5 @@
 import { ArrowForwardRounded } from "@material-ui/icons";
+import { getArticles, getTopics, getTypes } from "../../../lib/api";
 import { Page, Article } from "../../../components/index";
 
 class ArticleDetails extends React.Component {
@@ -24,7 +25,7 @@ class ArticleDetails extends React.Component {
 									<>
 										<h4 className="bold h6 mb-16">Product details</h4>
 										<ul className="lh-3 h6">
-											{article.details.map(detail => (
+											{article.details.split(';').map(detail => (
 												<li key={detail}>{detail}</li>
 											))}
 										</ul>
@@ -63,9 +64,10 @@ class ArticleDetails extends React.Component {
 }
 
 export async function getStaticPaths() {
-	const types = (await import("../../../lib/types")).default;
-	const topics = (await import("../../../lib/topics")).default;
-	const articles = (await import ("../../../lib/articles")).default;
+
+	const types = await getTypes();
+  const topics = await getTopics();
+  const articles = await getArticles();
 
   const paths = articles.map(article => {
 		const type = types.find(type => type.id === article.type);
@@ -91,9 +93,9 @@ export async function getStaticProps({
 		article: articleSlug
 	}}) {
 
-	const types = (await import("../../../lib/types")).default;
-	const topics = (await import("../../../lib/topics")).default;
-	const articles = (await import ("../../../lib/articles")).default;
+	const types = await getTypes();
+  const topics = await getTopics();
+  const articles = await getArticles();
 
 	const currentType = types.find(type => type.slug === typeSlug);
 	const currentTopic = topics.find(topic => topic.slug === topicSlug);
