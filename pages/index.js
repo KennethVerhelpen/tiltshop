@@ -1,5 +1,6 @@
 import { Page, Topic, Header } from '../components';
 import { getTopics, getTypes } from "../lib/api";
+import { throttleApi } from "../lib/utils";
 import styled from '@emotion/styled';
 class Home extends React.Component {
 	render = () => {
@@ -35,8 +36,8 @@ class Home extends React.Component {
 };
 
 export async function getStaticProps() {
-	const topics = await getTopics();
-	const types = await getTypes();
+	const topics = await throttleApi(10000, getTopics());
+	const types = await throttleApi(10000, getTypes());
 
 	const activetopics = topics.filter(topic => topic.articlesCount >= 0);
 

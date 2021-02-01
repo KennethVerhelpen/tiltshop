@@ -1,5 +1,6 @@
 import { ArrowForwardRounded } from "@material-ui/icons";
 import { getArticles, getTopics, getTypes } from "../../../lib/api";
+import { throttleApi } from "../../../lib/utils";
 import { Page, Article } from "../../../components/index";
 
 class ArticleDetails extends React.Component {
@@ -21,7 +22,7 @@ class ArticleDetails extends React.Component {
 								<h2 className="h6 mb-16">{topic.name}</h2>
 								<h3 className="p text-capitalize mb-32 text-secondary-500">{type.name}</h3>
 								<p className="lh-3 h6 mb-32">{article.description}</p>
-								{article.details.length > 0 ? (
+								{article.details && article.details.length > 0 ? (
 									<>
 										<h4 className="bold h6 mb-16">Product details</h4>
 										<ul className="lh-3 h6">
@@ -65,9 +66,9 @@ class ArticleDetails extends React.Component {
 
 export async function getStaticPaths() {
 
-	const types = await getTypes();
-  const topics = await getTopics();
-  const articles = await getArticles();
+	const types = await throttleApi(10000, getTypes());
+  const topics = await throttleApi(10000, getTopics());
+  const articles = await throttleApi(10000, getArticles());
 
   const paths = articles.map(article => {
 		const type = types.find(type => type.id === article.type);
@@ -79,7 +80,7 @@ export async function getStaticPaths() {
 				article: article.slug.toString(),
 			}
 		}})
-	
+
   return {
 		paths,
 		fallback: false,
@@ -93,9 +94,9 @@ export async function getStaticProps({
 		article: articleSlug
 	}}) {
 
-	const types = await getTypes();
-  const topics = await getTopics();
-  const articles = await getArticles();
+	const types = await throttleApi(10000, getTypes());
+  const topics = await throttleApi(10000, getTopics());
+  const articles = await throttleApi(10000, getArticles());
 
 	const currentType = types.find(type => type.slug === typeSlug);
 	const currentTopic = topics.find(topic => topic.slug === topicSlug);
