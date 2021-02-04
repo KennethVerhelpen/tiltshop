@@ -40,9 +40,9 @@ class Browse extends React.Component {
 
 export async function getStaticProps() {
 
-	const topics = await throttleApi(10000, getTopics());
-	const types = await throttleApi(10000, getTypes());
-	const articles = await throttleApi(10000, getArticles());
+	const topics = await throttleApi(0, getTopics());
+	const types = await throttleApi(0, getTypes());
+	const articles = await throttleApi(0, getArticles());
 
 	const shuffledArticles = articles.sort(() => Math.random() - 0.5);
 

@@ -65,21 +65,21 @@ class ArticleDetails extends React.Component {
 }
 
 export async function getStaticPaths() {
-
-	const types = await throttleApi(10000, getTypes());
-  const topics = await throttleApi(10000, getTopics());
-  const articles = await throttleApi(10000, getArticles());
+	const types = await throttleApi(0, getTypes());
+  const topics = await throttleApi(0, getTopics());
+  const articles = await throttleApi(0, getArticles());
 
   const paths = articles.map(article => {
-		const type = types.find(type => type.id === article.type);
-		const topic = topics.find(topic => topic.id === article.topic);
-		return {	
-			params: {
-				type: type.slug.toString(),
-				topic: topic.slug.toString(),
-				article: article.slug.toString(),
-			}
-		}})
+	const type = types.find(type => type.id === article.type);
+	const topic = topics.find(topic => topic.id === article.topic);
+
+	return {	
+		params: {
+			type: type.slug.toString(),
+			topic: topic.slug.toString(),
+			article: article.slug.toString(),
+		}
+	}})
 
   return {
 		paths,
@@ -94,9 +94,9 @@ export async function getStaticProps({
 		article: articleSlug
 	}}) {
 
-	const types = await throttleApi(10000, getTypes());
-  const topics = await throttleApi(10000, getTopics());
-  const articles = await throttleApi(10000, getArticles());
+	const types = await throttleApi(0, getTypes());
+  const topics = await throttleApi(0, getTopics());
+  const articles = await throttleApi(0, getArticles());
 
 	const currentType = types.find(type => type.slug === typeSlug);
 	const currentTopic = topics.find(topic => topic.slug === topicSlug);

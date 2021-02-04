@@ -36,8 +36,8 @@ class Home extends React.Component {
 };
 
 export async function getStaticProps() {
-	const topics = await throttleApi(10000, getTopics());
-	const types = await throttleApi(10000, getTypes());
+	const topics = await throttleApi(0, getTopics());
+	const types = await throttleApi(0, getTypes());
 
 	const activetopics = topics.filter(topic => topic.articlesCount >= 0);
 

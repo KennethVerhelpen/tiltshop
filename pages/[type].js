@@ -37,7 +37,7 @@ class Type extends React.Component {
 }
 
 export async function getStaticPaths() {
-	const types = await throttleApi(20000, getTypes());
+	const types = await throttleApi(0, getTypes());
 
 	const paths = types.map(type => ({
 		params: {
@@ -55,8 +55,8 @@ export async function getStaticProps({
 	params: { type: typeSlug }
 }) {
 	
-	const topics = await throttleApi(20000, getTopics());
-	const types = await throttleApi(20000, getTypes());
+	const topics = await throttleApi(0, getTopics());
+	const types = await throttleApi(0, getTypes());
 	
 	const currentType = types.find(type => type.slug === typeSlug);
 	const currentTopics = topics.filter(topic => topic.type === currentType.id && topic.articlesCount >= 0);

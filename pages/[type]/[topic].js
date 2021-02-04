@@ -53,14 +53,14 @@ class Topic extends React.Component {
             medium={topic.name}
           />
           <Grid className="container-lg p-0 layout-column">
-            {topic.description && topic.description.length &&
+            {topic.htmlDescription && topic.htmlDescription.length &&
               <Description className="fade-in-bottom speed-5 blocktext serif px-xs-32 px-gt-xs-64 pb-64 text-center">
-                {topic.description.length > 1500 && !this.state.expanded ? 
-                  <div dangerouslySetInnerHTML={this.createMarkup(`${topic.description.length.slice(0,1500)}...`)}></div>
+                {topic.htmlDescription.length > 1500 && !this.state.expanded ? 
+                  <div dangerouslySetInnerHTML={this.createMarkup(`${topic.htmlDescription.length.slice(0,1500)}...`)}></div>
                   :
-                  <div dangerouslySetInnerHTML={this.createMarkup(topic.description)}></div>
+                  <div dangerouslySetInnerHTML={this.createMarkup(topic.htmlDescription)}></div>
                 }
-                { topic.description.length > 1500 &&
+                { topic.htmlDescription.length > 1500 &&
                   <>
                     {' '}
                     <a onClick={() => this.handleDescriptionExpand()} aria-label="Description expand" className="cursor-pointer underline">
@@ -103,8 +103,8 @@ class Topic extends React.Component {
 }
 
 export async function getStaticPaths() {
-  const types = await throttleApi(20000, getTypes());
-  const topics = await throttleApi(20000, getTopics());
+  const types = await throttleApi(0, getTypes());
+  const topics = await throttleApi(0, getTopics());
 
   const paths = topics.map((topic => {
     const type = types.find(type => type.id === topic.type);
@@ -128,9 +128,9 @@ export async function getStaticProps({
     type: typeSlug
   }}){
 
-  const types = await throttleApi(20000, getTypes());
-  const topics = await throttleApi(20000, getTopics());
-  const articles = await throttleApi(20000, getArticles());
+  const types = await throttleApi(0, getTypes());
+  const topics = await throttleApi(0, getTopics());
+  const articles = await throttleApi(0, getArticles());
 
   const currentType = types.find(type => type.slug === typeSlug);
   const currentTopic = topics.find(topic => topic.slug === topicSlug);
