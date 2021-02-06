@@ -1,4 +1,4 @@
-import { getArticles, getTopics, getTypes } from "../lib/api";
+import { types, topics, articles } from "../lib/data";
 
 const generateSitemap =(data, origin) => {
   let xml = ''
@@ -16,10 +16,6 @@ const generateSitemap =(data, origin) => {
 }
 
 export async function getServerSideProps({ res }) {
-  const types = await getTypes();
-  const topics = await getTopics();
-  const articles = await getArticles();
-
   const typeSlugs = [].concat.apply([], types.map(
     type => ("/" + type.slug).toString()
   ));

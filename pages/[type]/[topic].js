@@ -1,6 +1,5 @@
 import { Page, Article, Header } from '../../components/index';
-import { getArticles, getTopics, getTypes } from "../../lib/api";
-import { throttleApi } from "../../lib/utils";
+import { types, topics, articles } from "../../lib/data";
 import styled from '@emotion/styled';
 
 const Grid = styled.main`
@@ -103,9 +102,6 @@ class Topic extends React.Component {
 }
 
 export async function getStaticPaths() {
-  const types = await throttleApi(0, getTypes());
-  const topics = await throttleApi(0, getTopics());
-
   const paths = topics.map((topic => {
     const type = types.find(type => type.id === topic.type);
     return {
@@ -127,10 +123,6 @@ export async function getStaticProps({
     topic: topicSlug,
     type: typeSlug
   }}){
-
-  const types = await throttleApi(0, getTypes());
-  const topics = await throttleApi(0, getTopics());
-  const articles = await throttleApi(0, getArticles());
 
   const currentType = types.find(type => type.slug === typeSlug);
   const currentTopic = topics.find(topic => topic.slug === topicSlug);

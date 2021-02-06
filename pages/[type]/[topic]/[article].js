@@ -1,6 +1,5 @@
 import { ArrowForwardRounded } from "@material-ui/icons";
-import { getArticles, getTopics, getTypes } from "../../../lib/api";
-import { throttleApi } from "../../../lib/utils";
+import { types, topics, articles } from "../../../lib/data";
 import { Page, Article } from "../../../components/index";
 
 class ArticleDetails extends React.Component {
@@ -65,10 +64,6 @@ class ArticleDetails extends React.Component {
 }
 
 export async function getStaticPaths() {
-	const types = await throttleApi(0, getTypes());
-  const topics = await throttleApi(0, getTopics());
-  const articles = await throttleApi(0, getArticles());
-
   const paths = articles.map(article => {
 	const type = types.find(type => type.id === article.type);
 	const topic = topics.find(topic => topic.id === article.topic);
@@ -93,10 +88,6 @@ export async function getStaticProps({
 		topic: topicSlug,
 		article: articleSlug
 	}}) {
-
-	const types = await throttleApi(0, getTypes());
-  const topics = await throttleApi(0, getTopics());
-  const articles = await throttleApi(0, getArticles());
 
 	const currentType = types.find(type => type.slug === typeSlug);
 	const currentTopic = topics.find(topic => topic.slug === topicSlug);

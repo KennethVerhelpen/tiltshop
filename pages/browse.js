@@ -1,6 +1,5 @@
 import { Page, Article, Header } from '../components';
-import { getTopics, getTypes, getArticles } from "../lib/api";
-import { throttleApi } from "../lib/utils";
+import { types, topics, articles } from "../lib/data";
 import styled from '@emotion/styled';
 class Browse extends React.Component {
 	render = () => {
@@ -39,11 +38,6 @@ class Browse extends React.Component {
 };
 
 export async function getStaticProps() {
-
-	const topics = await throttleApi(0, getTopics());
-	const types = await throttleApi(0, getTypes());
-	const articles = await throttleApi(0, getArticles());
-
 	const shuffledArticles = articles.sort(() => Math.random() - 0.5);
 
   return {
