@@ -41,6 +41,10 @@ export const IconButton = styled.div`
 export const ImageWrapper = styled.div`
   z-index: 0;
 
+  &.out img {
+    filter: grayscale(100%);
+  }
+
   img {
     transition: all .1s ease-in-out;
     overflow: hidden;

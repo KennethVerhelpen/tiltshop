@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Nav, Footer } from '../../components';
 import Image from "next/image";
-import { BackgroundWrapper, Main, Video } from './page.styles';
+import { BackgroundWrapper, Main } from './page.styles';
 
 class Page extends React.Component {
 	constructor(props) {

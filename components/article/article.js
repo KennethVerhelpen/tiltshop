@@ -35,19 +35,21 @@ class Article extends React.Component {
 										</Link>
 									</span>
 								 }
-								{article.price.dollar != null && <BudgetRangeStyled className="rounded-sm px-16 py-4 text-secondary-100" amount={article.price.dollar}/>}
+								{article.price.dollar != null && article.trackingUrl != null ? 
+									<BudgetRangeStyled className="rounded-sm px-16 py-4 text-secondary-100" amount={article.price.dollar}/>
+								: <span className="rounded-sm px-16 py-4 text-secondary-100 border border-secondary-100">Out of stock</span>}
 							</>
 						}
 					</Main>
 					{ !disabled &&
-						<Footer className="px-32 py-16 layout-row layout-align-start-center">
+						<Footer className={clsx({"invisible" : article.trackingUrl === null }, "px-32 py-16 layout-row layout-align-start-center")}>
 							<span className="flex text-truncate text-secondary-100">See on <b>Amazon</b></span>
 							<IconButton className="layout layout-align-center-center p-8 rounded">
 								<ArrowForwardRounded className="text-secondary-100" style={{ fontSize: 16 }}/>
 							</IconButton>
 						</Footer>
 					}
-					<ImageWrapper>
+					<ImageWrapper className={clsx({"out" : article.trackingUrl === null})}>
 						<Image
 							quality="100"
 							layout="fill"

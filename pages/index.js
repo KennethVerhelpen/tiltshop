@@ -1,5 +1,6 @@
-import { Page, Topic, Header } from '../components';
-import styled from '@emotion/styled';
+import { Page, Topic, Header } from "../components";
+import styled from "@emotion/styled";
+import { generateData } from "../lib/api"
 import { types, topics } from "../lib/data";
 class Home extends React.Component {
 	render = () => {
@@ -35,6 +36,7 @@ class Home extends React.Component {
 };
 
 export async function getStaticProps() {
+	generateData();
 	const activetopics = topics.filter(topic => topic.articlesCount >= 0);
 
   return {

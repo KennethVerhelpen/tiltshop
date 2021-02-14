@@ -47,6 +47,13 @@
   text-decoration: none;
 }
 
+@each $class, $value in ("visible" "visible", "invisible" "hidden") {
+  %#{$class},
+  .#{$class} {
+    visibility: unquote($value);
+  }
+}
+
 @each $cursor in ('pointer', 'help', 'wait', 'crosshair', 'not-allowed', 'zoom-in', 'zoom-out', 'grab') {
 
   %cursor-#{$cursor},
