@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Page, Topic, Header } from "../components";
 import styled from "@emotion/styled";
 import { generateData } from "../lib/api"
@@ -11,7 +12,7 @@ class Home extends React.Component {
 				max-width: 44rem; 
 			}
 		`
-	
+		
 		return (
 			<Page
 				allowBack={false}
@@ -20,7 +21,8 @@ class Home extends React.Component {
 				<Header	rotation={true}/>
 				<Grid className="container-lg p-0 layout-column">
 					<div className="layout-row layout-wrap layout-align-start-center">
-						{topics.map((topic, index) => {
+						{topics.sort((a, b) => a.name.localeCompare(b.name, 'en', {'sensitivity': 'base'}))
+							.map((topic, index) => {
 							const type = types.find(type => type.id === topic.type);
 							return (
 								<div key={topic.id} ref="article" className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
@@ -37,12 +39,11 @@ class Home extends React.Component {
 
 export async function getStaticProps() {
 	generateData();
-	const activetopics = topics.filter(topic => topic.articlesCount >= 0);
 
   return {
     props: {
       types,
-      topics: activetopics,
+      topics,
     }
   }
 }

@@ -19,6 +19,10 @@ const Description = styled.div`
     font-size: 1.125rem;
   }
 `
+
+const Placeholder = styled.div`
+  margin-top: -10rem;
+`
 class Topic extends React.Component {
   constructor(props) {
     super(props);
@@ -43,9 +47,9 @@ class Topic extends React.Component {
       <>
         <Page
           menu={false}
-          title={`Best 20+ products for ${topic.name} lovers`}
-          activePage={type.slug}
+          title={`Best ${topics.articlesCount >= 20 ? '20+' : '10+' } products for ${topic.name} lovers`}
           history={`/${type.slug}`}
+          coverImage={`/images/topics/${topic.slug}/cover.gif`}
           >
           <Header
             title={topic.name}
@@ -73,7 +77,7 @@ class Topic extends React.Component {
               </Description>
             }
             { articles && articles.length > 0
-              ? <div className="layout-row layout-wrap layout-align-center-center">
+              ? <div className="layout-row layout-wrap layout-align-center-center mb-128">
                   { articles.map((article, index) => (
                       <div key={article.id} className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
                         <Article index={index} article={article} topic={topic} type={type}/>
@@ -85,13 +89,13 @@ class Topic extends React.Component {
                     <p className="bold">No articles yet.</p>
                     <p className="small">We are currently working on collecting the best items for {topic.name}.</p>
                   </div>
-                  <div className="layout-row layout-wrap layout-align-center-center hide-xs" style={{ marginTop: '-10rem' }}>
+                  <Placeholder className="layout-row layout-wrap layout-align-center-center hide-xs mb-128">
                     {Array.from(Array(3), (number, index) => (
                       <div key={index} className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
                         <ArticleShape className="rounded-xl flex"/>
                       </div>
                     ))}
-                  </div>
+                  </Placeholder>
                 </>
             }
           </Grid>

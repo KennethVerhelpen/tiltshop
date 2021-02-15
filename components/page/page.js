@@ -16,11 +16,12 @@ class Page extends React.Component {
 		this.children = React.ReactNode,
 		this.activePage = String,
 		this.history = String,
-		this.types = Array
+		this.types = Array,
+		this.coverImage = String
 	}
 
 	render() {
-		const { types, video, image, description, alt, title, menu, allowBack, children, activePage, history } = this.props;
+		const { types, video, image, description, alt, title, menu, allowBack, children, activePage, history, coverImage } = this.props;
 
 		return (
 			<>
@@ -54,9 +55,12 @@ class Page extends React.Component {
 							alt={alt}
 						/>
 					</div>
-					<video className="width-100 hide-xs" style={{ height : 'auto' }} playsInline={true} muted autoPlay="autoplay" loop="loop" width="1440" height="768">
-  					<source src={video} type="video/mp4" />
-					</video>
+					{ coverImage
+						?	<img src={coverImage} alt={alt}/>
+						: <video className="width-100 hide-xs" style={{ height : 'auto' }} playsInline={true} muted autoPlay="autoplay" loop="loop" width="1440" height="768">
+								<source src={video} type="video/mp4" />
+							</video>
+						}
 				</BackgroundWrapper>
 			</>
 		);

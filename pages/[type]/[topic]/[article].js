@@ -1,8 +1,6 @@
 import { ArrowForwardRounded } from "@material-ui/icons";
 import { types, topics, articles } from "../../../lib/data";
 import { Page, Article } from "../../../components/index";
-import Head from 'next/head'; 
-
 class ArticleDetails extends React.Component {
 	render() {
 		const {type, topic, article, articles} = this.props;
