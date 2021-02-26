@@ -19,13 +19,13 @@ class Home extends React.Component {
 				types={types}
 			> 
 				<Header	rotation={true}/>
-				<Grid className="container-lg p-0 layout-column">
-					<div className="layout-row layout-wrap layout-align-start-center">
+				<Grid className="p-0 layout-column">
+					<div className="container-lg layout-row layout-wrap layout-align-center-center">
 						{topics.sort((a, b) => a.name.localeCompare(b.name, 'en', {'sensitivity': 'base'}))
 							.map((topic, index) => {
 							const type = types.find(type => type.id === topic.type);
 							return (
-								<div key={topic.id} ref="article" className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
+								<div key={topic.id} ref="article" className="fade-in-bottom speed-5 cascade p-16 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
 									<Topic className="flex layout-column layout-align-center-center" count={topic.articlesCount} topic={topic} type={type} index={index} />
 								</div>
 							)

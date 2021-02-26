@@ -25,7 +25,7 @@ class Browse extends React.Component {
 							const type = types.find(type => type.id === article.type);
 							const topic = topics.find(topic => topic.id === article.topic);
 							return (   
-								<div key={article.id} className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
+								<div key={article.id} className="fade-in-bottom speed-5 cascade p-16 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
 									<Article className="flex" index={index} article={article} topic={topic} type={type}/>
 								</div>
 							)
