@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import styled from '@emotion/styled';
+import Link from "next/link";
+import styled from "@emotion/styled";
 
 
 export default function Custom404() {
