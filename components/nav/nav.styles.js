@@ -9,10 +9,10 @@ export const Shape = styled.nav`
   background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(20px);
   > div:last-of-type {
-    height: 2.125rem;
+    min-height: 2.125rem;
   }
   > div:first-of-type {
-    height: 2.875rem;
+    min-height: 2.875rem;
   }
 `
 
