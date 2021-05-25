@@ -31,7 +31,7 @@ export const Article = (props: ArticleProps) => {
 									<span>{article.description.slice(0,20)}...</span>
 									{' '}
 									<Link href={`/${type.slug}/${topic.slug}/${article.slug}`}>
-										<a className="underline text-secondary-300" aria-label="Read more" target="_blank">Read more</a>
+										<span className="underline text-secondary-300" aria-label="Read more">Read more</span>
 									</Link>
 								</span>
 								}

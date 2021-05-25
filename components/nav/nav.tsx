@@ -46,7 +46,7 @@ export const Nav = (props: NavProps) => {
 						<a className="text-secondary-100 px-16 small cursor-pointer">Blog</a>
 					</Link>
 					<Link href={'/search'}>
-						<a aria-label="Browse" title="Browse" className="layout text-secondary-100 layout-align-center-center p-4 rounded cursor-pointer">
+						<a aria-label="Search" title="Search" className="layout text-secondary-100 layout-align-center-center p-4 rounded cursor-pointer">
 							<SearchRounded style={{ fontSize: 20 }}/>
 						</a>
 					</Link>

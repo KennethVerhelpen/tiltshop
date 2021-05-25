@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { Page, Topic, Header, SearchView } from "../components";
 import { generateData } from "../lib/data-generator";
 import { generateRecords } from "../lib/records-generator";
@@ -13,16 +11,9 @@ type HomeProps = {
 
 const Home = (props: HomeProps) => {
 	const { types } = { ...props };
-	const [historySlug, setHistorySlug] = useState(null);
-
-	const getHistorySlug = (slug: string) => {
-		setHistorySlug(slug);
-	}
-
 	return (
 		<Page
 			types={types}
-			history={historySlug}
 		> 
 			<Header	rotation={true}/>
 			<SearchView

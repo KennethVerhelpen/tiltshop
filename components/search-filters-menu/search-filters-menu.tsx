@@ -1,12 +1,13 @@
-import { useState } from "react";
-import { FilterListTwoTone } from '@material-ui/icons';
-import { Global, css } from '@emotion/react';
+import React, { useState } from "react";
+import { FilterListTwoTone } from "@material-ui/icons";
+import { Global, css } from "@emotion/react";
 
-import { RefinementList } from 'react-instantsearch-dom';
+import { RefinementList } from "react-instantsearch-dom";
+import Menu from '@material-ui/core/Menu';
 
-import * as S from './search-filters-menu.styles';
+import * as S from "./search-filters-menu.styles";
 
-export const SearchFiltersMenu = () => {
+export const SearchFiltersMenu = React.forwardRef((props, ref) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -37,6 +38,7 @@ export const SearchFiltersMenu = () => {
         <span>Filters</span>
       </button>
       <S.SearchFiltersMenu
+        ref={ref}
         id="type-filter-menu"
         anchorEl={anchorEl}
         keepMounted
@@ -50,4 +52,4 @@ export const SearchFiltersMenu = () => {
       </S.SearchFiltersMenu>
     </>
   )
-};
+});
