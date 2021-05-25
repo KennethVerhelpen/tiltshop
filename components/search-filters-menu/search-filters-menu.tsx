@@ -3,7 +3,6 @@ import { FilterListTwoTone } from "@material-ui/icons";
 import { Global, css } from "@emotion/react";
 
 import { RefinementList } from "react-instantsearch-dom";
-import Menu from '@material-ui/core/Menu';
 
 import * as S from "./search-filters-menu.styles";
 
