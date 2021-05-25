@@ -1,0 +1,15 @@
+import { ReactNode } from "react";
+import * as S from "./search-results.styles";
+
+export type Props =  {
+  hitComponent: ReactNode;
+  hitsPerPage?: number;
+}
+
+export const SearchResults = (props: Props) => {
+  const { hitComponent, hitsPerPage } = { ...props };
+
+  return(
+    <S.SearchResults hitComponent={hitComponent} hitsPerPage={hitsPerPage}/>
+  )
+}
