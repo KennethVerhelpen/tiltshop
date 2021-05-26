@@ -42,9 +42,9 @@ export const Nav = (props: NavProps) => {
 					</Link>
 				</div>
 				<div className="flex layout layout-align-end-center">
-					<Link href={'/blog'}>
+					{/* <Link href={'/blog'}>
 						<a className="text-secondary-100 px-16 small cursor-pointer">Blog</a>
-					</Link>
+					</Link> */}
 					<Link href={'/search'}>
 						<a aria-label="Search" title="Search" className="layout text-secondary-100 layout-align-center-center p-4 rounded cursor-pointer">
 							<SearchRounded style={{ fontSize: 20 }}/>

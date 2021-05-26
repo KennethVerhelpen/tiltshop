@@ -27,7 +27,7 @@ export const SearchView = (props: Props) => {
 
   return(
     <InstantSearch searchClient={searchClient} indexName={indexName}>
-      {searchBar ? <SearchBar/> : null }
+      {searchBar ? <SearchBar className="fade-in-bottom speed-3"/> : null }
       {filters || (sortingItems && sortingDefaultItem) ?
         <div className="layout-row container-lg layout-align-start-center">
           {filters ? 
