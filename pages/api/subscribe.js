@@ -6,7 +6,7 @@ export default async (req, res) => {
   }
 
   try {
-    const LIST_ID = process.env.NEXT_PUBLIC_MAILCHIMP_LIST_ID;
+    const LIST_ID = process.env.MAILCHIMP_LIST_ID;
     const API_KEY = process.env.MAILCHIMP_API_KEY;
     const DATACENTER = API_KEY.split('-')[1];
 
