@@ -1,8 +1,8 @@
 import algoliasearch from 'algoliasearch';
 
 export const algoliaClient = algoliasearch(
-  process.env.ALGOLIA_ID,
-  process.env.ALGOLIA_KEY
+  "FKT73A3RYZ",
+  "6b9a96501ecdb65eefbe37d92e6644b0"
 );
 
 export const algoliaTopicsIndexName = "tiltshop-topics";
