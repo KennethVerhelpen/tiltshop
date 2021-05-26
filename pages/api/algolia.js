@@ -6,8 +6,8 @@ export const algoliaSearchClient = algoliasearch(
 );
 
 export const algoliaAdminClient = algoliasearch(
-  process.env.NEXT_PUBLIC_ALGOLIA_ID,
-  process.env.NEXT_PUBLIC_ALGOLIA_ADMIN_API_KEY
+  process.env.ALGOLIA_ID,
+  process.env.ALGOLIA_ADMIN_API_KEY
 );
 
 export const algoliaTopicsIndexName = "tiltshop-topics";
