@@ -1,6 +1,6 @@
 import { types, topics } from "../lib/data";
 import { Page, Header, Article, SearchView } from "../components";
-import { algoliaClient, algoliaArticlesIndexName } from "./api/algolia";
+import { algoliaSearchClient, algoliaArticlesIndexName } from "./api/algolia";
 import { ArticleRecordType } from '../lib/types/types';
 
 const Search = () => {
@@ -22,7 +22,7 @@ const Search = () => {
 					subtitle="Easily find all items hand-picked just for you."
 				/>
 				<SearchView
-					searchClient={algoliaClient}
+					searchClient={algoliaSearchClient}
 					indexName={algoliaArticlesIndexName}
 					hitComponent={Articles}
 					hitsPerPage={21}

@@ -1,16 +1,21 @@
 import algoliasearch from 'algoliasearch';
 
-export const algoliaClient = algoliasearch(
+export const algoliaSearchClient = algoliasearch(
+  process.env.NEXT_PUBLIC_ALGOLIA_ID,
+  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY
+);
+
+export const algoliaAdminClient = algoliasearch(
   process.env.ALGOLIA_ID,
-  process.env.ALGOLIA_KEY
+  process.env.ALGOLIA_ADMIN_API_KEY
 );
 
 export const algoliaTopicsIndexName = "tiltshop-topics";
-export const algoliaTopicsIndex = algoliaClient.initIndex(algoliaTopicsIndexName);
+export const algoliaTopicsIndex = algoliaAdminClient.initIndex(algoliaTopicsIndexName);
 export const topics = require("../../lib/records/topics.json");
 
 export const algoliaArticlesIndexName = "tiltshop-articles";
-export const algoliaArticlesIndex = algoliaClient.initIndex(algoliaArticlesIndexName);
+export const algoliaArticlesIndex = algoliaAdminClient.initIndex(algoliaArticlesIndexName);
 export const articles = require("../../lib/records/articles.json");
 
 export const pushAlgoliaRecords = async (req, res) => {

@@ -3,7 +3,7 @@ import { generateData } from "../lib/data-generator";
 import { generateRecords } from "../lib/records-generator";
 import { TypeType, TopicRecordType } from "../lib/types/types";
 import { types } from "../lib/data";
-import { pushAlgoliaRecords, algoliaClient, algoliaTopicsIndexName } from "./api/algolia";
+import { pushAlgoliaRecords, algoliaSearchClient, algoliaTopicsIndexName } from "./api/algolia";
 
 type HomeProps = {
   types: TypeType[];
@@ -18,7 +18,7 @@ const Home = (props: HomeProps) => {
 			<Header	rotation={true}/>
 			<SearchView
 				indexName={algoliaTopicsIndexName}
-				searchClient={algoliaClient}
+				searchClient={algoliaSearchClient}
 				hitComponent={Topics}
 				hitsPerPage={51}
 				filters={false}
