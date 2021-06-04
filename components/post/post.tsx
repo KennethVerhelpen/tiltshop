@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import clsx from "clsx";
 import { PostType} from "../../lib/types/types";
 import { Shape, ImageWrapper } from "./post.styles";
 import Link from "next/link";
@@ -16,7 +17,7 @@ export const Post: React.FC<PostProps> = (props) => {
 
 	return (
 			<Link href={`blog/${post.slug}`}>
-				<Shape className="layout-column rounded-xl border shadow-2 cursor-pointer">
+				<Shape className={clsx(className, "layout-column rounded-xl border shadow-2 cursor-pointer")}>
 					<header className="p-8">
 						<ImageWrapper className="relative height-100 width-100">
 							<Image

@@ -3,7 +3,7 @@ import { generateData } from "../lib/data-generator";
 import { generateRecords } from "../lib/records-generator";
 import { TypeType, TopicRecordType } from "../lib/types/types";
 import { types } from "../lib/data";
-import { pushAlgoliaRecords, algoliaSearchClient, algoliaTopicsIndexName } from "./api/algolia";
+import { pushAlgoliaRecords, algoliaTopicsIndexName, algoliaSearchClient } from "./api/algolia";
 
 type HomeProps = {
   types: TypeType[];
