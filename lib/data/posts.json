@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "slug": "post-01",
+    "title": "The best headphones of all time",
+    "intro": "Lorem\n\nipsum dolor sit amet, consectetur adipiscing elit. Curabitur non ligula ac lorem varius accumsan. Ut a mollis metus. Proin placerat lacus et augue sodales fermentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec quis venenatis lectus. Duis id varius lorem, et malesuada dui.",
+    "type": 4,
+    "topic": 21,
+    "likes": 545,
+    "views": 674,
+    "date": "29 Mar 2021",
+    "time": 1
+  },
+  {
+    "id": 2,
+    "slug": "post-02",
+    "title": "The best headphones of all time",
+    "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non ligula ac lorem varius accumsan. Ut a mollis metus. Proin placerat lacus et augue sodales fermentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec quis venenatis lectus. Duis id varius lorem, et malesuada dui.",
+    "type": 4,
+    "topic": 21,
+    "likes": 545,
+    "views": 674,
+    "date": "30 Mar 2021",
+    "time": 1
+  },
+  {
+    "id": 3,
+    "slug": "post-03",
+    "title": "The best headphones of all time",
+    "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non ligula ac lorem varius accumsan. Ut a mollis metus. Proin placerat lacus et augue sodales fermentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec quis venenatis lectus. Duis id varius lorem, et malesuada dui.",
+    "type": 4,
+    "topic": 21,
+    "likes": 545,
+    "views": 674,
+    "date": "31 Mar 2021",
+    "time": 1
+  },
+  {
+    "id": 4,
+    "slug": "post-04",
+    "title": "The best headphones of all time",
+    "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non ligula ac lorem varius accumsan. Ut a mollis metus. Proin placerat lacus et augue sodales fermentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec quis venenatis lectus. Duis id varius lorem, et malesuada dui.",
+    "type": 4,
+    "topic": 21,
+    "likes": 545,
+    "views": 674,
+    "date": "1 Apr 2021",
+    "time": 1
+  },
+  {
+    "id": 5,
+    "slug": "post-05",
+    "title": "The best headphones of all time",
+    "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non ligula ac lorem varius accumsan. Ut a mollis metus. Proin placerat lacus et augue sodales fermentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec quis venenatis lectus. Duis id varius lorem, et malesuada dui.",
+    "type": 4,
+    "topic": 21,
+    "likes": 545,
+    "views": 674,
+    "date": "2 Apr 2021",
+    "time": 1
+  },
+  {
+    "id": 6,
+    "slug": "post-06",
+    "title": "The best headphones of all time",
+    "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non ligula ac lorem varius accumsan. Ut a mollis metus. Proin placerat lacus et augue sodales fermentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec quis venenatis lectus. Duis id varius lorem, et malesuada dui.",
+    "type": 4,
+    "topic": 21,
+    "likes": 545,
+    "views": 674,
+    "date": "3 Apr 2021",
+    "time": 1
+  },
+  {
+    "id": 7,
+    "slug": "post-07",
+    "title": "The best headphones of all time",
+    "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non ligula ac lorem varius accumsan. Ut a mollis metus. Proin placerat lacus et augue sodales fermentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec quis venenatis lectus. Duis id varius lorem, et malesuada dui.",
+    "type": 4,
+    "topic": 21,
+    "likes": 545,
+    "views": 674,
+    "date": "4 Apr 2021",
+    "time": 1
+  }
+]

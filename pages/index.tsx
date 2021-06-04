@@ -1,53 +1,55 @@
-import { Page, Topic, Header } from "../components";
-import styled from "@emotion/styled";
-import { generateData } from "../lib/api"
-import { TypeType, TopicType } from "../lib/types/types"
-import { types, topics } from "../lib/data";
+import { Page, Topic, Header, SearchView } from "../components";
+import { generateData } from "../lib/data-generator";
+import { generateRecords } from "../lib/records-generator";
+import { TypeType, TopicRecordType } from "../lib/types/types";
+import { types } from "../lib/data";
+import { pushAlgoliaRecords, algoliaTopicsIndexName, algoliaSearchClient } from "./api/algolia";
 
-type Props = {
+type HomeProps = {
   types: TypeType[];
-	topics: TopicType[];
 };
 
-const Grid = styled.main`
-	@media only screen and (max-width: 959px) and (max-width: 959px) {
-		max-width: 44rem; 
-	}
-`
-
-const Home = (props: Props) => {
-	const { types, topics } = { ...props };
-
+const Home = (props: HomeProps) => {
+	const { types } = { ...props };
 	return (
 		<Page
-			allowBack={false}
 			types={types}
 		> 
 			<Header	rotation={true}/>
-			<Grid className="p-0 layout-column">
-				<div className="container-lg layout-row layout-wrap layout-align-center-center">
-					{topics.sort((a: TopicType, b: TopicType) => a.name.localeCompare(b.name, 'en', {'sensitivity': 'base'}))
-						.map((topic, index) => {
-						const type = types.find(type => type.id === topic.type);
-						return (
-							<div key={topic.id} className="fade-in-bottom speed-5 cascade p-16 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
-								<Topic className="flex layout-column layout-align-center-center" count={topic.articlesCount} topic={topic} type={type} index={index} />
-							</div>
-						)
-					})}
-				</div>
-			</Grid>
+			<SearchView
+				indexName={algoliaTopicsIndexName}
+				searchClient={algoliaSearchClient}
+				hitComponent={Topics}
+				hitsPerPage={51}
+				filters={false}
+			/>
 		</Page>
 	);
 };
 
+export type TopicsProps = {
+  hit: TopicRecordType;
+};
+
+export const Topics = (props: TopicsProps) => {
+	const { hit } = { ...props };
+	const type = types.find(type => type.name === hit.type);
+
+  return (
+		<div key={hit.id} className="fade-in-bottom speed-5 cascade p-16 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
+			<Topic className="flex layout-column layout-align-center-center" count={hit.articlesCount} topic={hit} type={type}/>
+		</div>
+  );
+}
+
 export async function getStaticProps() {
 	generateData();
+	generateRecords();
+	pushAlgoliaRecords();
 
   return {
     props: {
-      types,
-      topics,
+      types
     }
   }
 }

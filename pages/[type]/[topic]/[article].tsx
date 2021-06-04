@@ -10,7 +10,7 @@ type Props = {
   articles: ArticleType[];
 }
 
-const ArticleDetails = (props: Props) => {
+export const ArticleDetails = (props: Props) => {
 	const {type, topic, article, articles} = { ...props };
 	return (
 		<>
