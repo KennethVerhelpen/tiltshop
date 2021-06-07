@@ -3,12 +3,12 @@ import clsx from "clsx";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowForwardRounded } from "@material-ui/icons";
-import { ArticleRecordType, ArticleType, TopicRecordType, TopicType, TypeType } from "../../lib/types/types";
+import { ArticleType, TopicType, TypeType } from "../../lib/types/types";
 
 export type ArticleProps = {
 	type?: TypeType;
-	topic?: TopicType | TopicRecordType;
-	article: ArticleType | ArticleRecordType;
+	topic?: TopicType;
+	article: ArticleType;
 	index?: number;
 	disabled?: boolean;
 	className?: string;
@@ -35,8 +35,8 @@ export const Article = (props: ArticleProps) => {
 									</Link>
 								</span>
 								}
-							{article.price.dollar != null && article.trackingUrl != null ? 
-								<BudgetRangeStyled className="rounded-sm px-16 py-4 text-secondary-100" amount={article.price.dollar}/>
+							{article.price != null && article.trackingUrl != null ? 
+								<BudgetRangeStyled className="rounded-sm px-16 py-4 text-secondary-100" amount={Number(article.price)}/>
 							: <span className="rounded-sm px-16 py-4 text-secondary-100 border border-secondary-100">Out of stock</span>}
 						</>
 					}

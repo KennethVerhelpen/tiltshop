@@ -1,16 +1,16 @@
+import prisma from "../lib/prisma";
 import { Page, Topic, Header, SearchView } from "../components";
-import { generateData } from "../lib/data-generator";
-import { generateRecords } from "../lib/records-generator";
-import { TypeType, TopicRecordType } from "../lib/types/types";
-import { types } from "../lib/data";
+import { TypeType, ArticleType, TopicType } from "../lib/types/types";
 import { pushAlgoliaRecords, algoliaTopicsIndexName, algoliaSearchClient } from "./api/algolia";
 
 type HomeProps = {
   types: TypeType[];
+	articles: ArticleType[];
 };
 
 const Home = (props: HomeProps) => {
 	const { types } = { ...props };
+	
 	return (
 		<Page
 			types={types}
@@ -28,25 +28,25 @@ const Home = (props: HomeProps) => {
 };
 
 export type TopicsProps = {
-  hit: TopicRecordType;
+  hit: TopicType;
 };
 
 export const Topics = (props: TopicsProps) => {
 	const { hit } = { ...props };
-	const type = types.find(type => type.name === hit.type);
 
   return (
 		<div key={hit.id} className="fade-in-bottom speed-5 cascade p-16 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
-			<Topic className="flex layout-column layout-align-center-center" count={hit.articlesCount} topic={hit} type={type}/>
+			<Topic className="flex layout-column layout-align-center-center" topic={hit}/>
 		</div>
   );
 }
 
 export async function getStaticProps() {
-	generateData();
-	generateRecords();
-	pushAlgoliaRecords();
-
+	const types = await prisma.type.findMany();
+	// const topics = await prisma.topic.findMany();
+	// const articles = await prisma.article.findMany();
+	// pushAlgoliaRecords(articles, types, topics);
+	
   return {
     props: {
       types

@@ -2,6 +2,7 @@ import { ArrowForwardRounded } from "@material-ui/icons";
 import { types, topics, articles } from "../../../lib/data";
 import { TypeType, TopicType, ArticleType } from "../../../lib/types/types";
 import { Page, Article } from "../../../components/index";
+import prisma from "../../../lib/prisma";
 
 type Props = {
   type: TypeType;
@@ -71,17 +72,18 @@ export const ArticleDetails = (props: Props) => {
 };
 
 export async function getStaticPaths() {
-  const paths = articles.map(article => {
-	const type = types.find(type => type.id === article.type);
-	const topic = topics.find(topic => topic.id === article.topic);
-
-	return {	
-		params: {
-			type: type.slug.toString(),
-			topic: topic.slug.toString(),
-			article: article.slug.toString(),
+	const articles = await prisma.article.findMany();
+  const paths = articles.map(async article => {
+		const currentType = await prisma.type.findUnique({ where: { id: article.typeId }});
+		const currentTopic = await prisma.topic.findUnique({ where: { id: article.topicId }});
+		return {	
+			params: {
+				type: currentType.slug.toString(),
+				topic: currentTopic.slug.toString(),
+				article: article.slug.toString(),
+			}
 		}
-	}})
+	})
 
   return {
 		paths,
@@ -95,22 +97,16 @@ export async function getStaticProps({
 		topic: topicSlug,
 		article: articleSlug
 	}}) {
-
-	const currentType = types.find(type => type.slug === typeSlug);
-	const currentTopic = topics.find(topic => topic.slug === topicSlug);
-	const currentArticle = articles.find(articles => articles.slug === articleSlug);
-	const similarArticles = (number) => {
-		let filteredArticles = articles.filter(article => article.topic === currentArticle.topic && article.id != currentArticle.id);
-		let shuffledArticles = filteredArticles.sort(() => Math.random() - 0.5);
-		return ( shuffledArticles.slice(0,number))
-	}
-
+	const currentType = await prisma.type.findUnique({ where: { slug: typeSlug }});
+	const currentTopic = await prisma.topic.findUnique({ where: { slug: topicSlug }});
+	// const currentArticle = await prisma.article.findUnique({ where: { slug: articleSlug }});
+	const similarArticles = await prisma.article.findMany({ where: { slug: { not: articleSlug }}, take: 3 });
   return {
     props: {
 			type: currentType,
 			topic: currentTopic,
-			article: currentArticle,
-			articles: similarArticles(3),
+			// article: currentArticle,
+			articles: similarArticles,
     }
   }
 }

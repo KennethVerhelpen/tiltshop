@@ -1,0 +1,47 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Article {
+  id           Int @default(autoincrement()) @id
+  title        String?
+  imgAlt       String?
+  slug         String @unique
+ 	type         Type? @relation(fields: [typeId], references: [id])
+  typeId       Int
+	topic        Topic? @relation(fields: [topicId], references: [id])
+  topicId      Int
+  categoryId   Int?
+  url          String?
+  trackingUrl  String?
+  rating       String?
+  price        String?
+  description  String?
+  details      String?
+  likes        Int?
+}
+
+model Topic {
+  id                Int @default(autoincrement()) @id
+	slug              String @unique
+	name              String
+	type              Type? @relation(fields: [typeId], references: [id])
+  typeId            Int
+	articlesCount     Int?
+	plainDescription  String?
+	htmlDescription   String?
+  articles          Article[]
+}
+
+model Type {
+  id        Int @default(autoincrement()) @id
+  slug      String @unique
+  name      String
+  topics    Topic[]
+  articles  Article[]
+}

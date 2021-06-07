@@ -1,6 +1,6 @@
+import prisma from "../../lib/prisma";
 import { useState } from "react";
 import { Page, Article, Header } from '../../components/index';
-import { types, topics, articles } from "../../lib/data";
 import { TypeType, TopicType, ArticleType } from "../../lib/types/types";
 import styled from '@emotion/styled';
 
@@ -9,7 +9,6 @@ type Props = {
   topic: TopicType;
   articles: ArticleType[];
 }
-
 
 const Grid = styled.main`
   @media only screen and (max-width: 959px) and (max-width: 959px) {
@@ -80,7 +79,7 @@ const Topic = (props: Props) => {
           }
           { articles && articles.length > 0
             ? <div className="layout-row layout-wrap layout-align-center-center mb-128">
-                { articles.map((article, index) => (
+                { articles.map((article: ArticleType, index: number) => (
                     <div key={article.id} className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
                       <Article index={index} article={article} topic={topic} type={type}/>
                     </div>
@@ -92,7 +91,7 @@ const Topic = (props: Props) => {
                   <p className="small">We are currently working on collecting the best items for {topic.name}.</p>
                 </div>
                 <Placeholder className="layout-row layout-wrap layout-align-center-center hide-xs mb-128">
-                  {Array.from(Array(3), (number, index) => (
+                  {Array.from(Array(3), (number: number, index: number) => (
                     <div key={index} className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
                       <ArticleShape className="rounded-xl flex"/>
                     </div>
@@ -107,12 +106,15 @@ const Topic = (props: Props) => {
 };
 
 export async function getStaticPaths() {
+  const topics = await prisma.topic.findMany();
+  const types = await prisma.type.findMany();
+
   const paths = topics.map((topic => {
-    const type = types.find(type => type.id === topic.type);
+    const type = types.find(type => type.id === topic.typeId)
     return {
       params: {
-        type: type.slug.toString(),
-        topic: topic.slug.toString()
+        type: type.slug,
+        topic: topic.slug
       }
     }
   }));
@@ -129,9 +131,23 @@ export async function getStaticProps({
     type: typeSlug
   }}){
 
-  const currentType = types.find(type => type.slug === typeSlug);
-  const currentTopic = topics.find(topic => topic.slug === topicSlug);
-  const currentArticles = articles.filter(article => article.topic === currentTopic.id);
+  const currentTopic = await prisma.topic.findUnique({
+    where: {
+      slug: topicSlug
+    }
+  });
+
+  const currentType = await prisma.type.findUnique({
+    where: {
+      slug: typeSlug
+    }
+  });
+   
+  const currentArticles = await prisma.article.findMany({
+    where: {
+      topicId: currentTopic.id
+    }
+  });
 
   return {
     props: {
