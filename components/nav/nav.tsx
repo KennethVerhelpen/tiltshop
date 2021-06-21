@@ -64,34 +64,37 @@ export const Nav = (props: NavProps) => {
 								</NavButton>
 							</Link>
 						</li>
-						{types && types.map((type: TypeType, index: number) => (
-							<li key={index} className="layout-row layout-align-center-center">
-								<Link href={`/${type.slug}`}>
-									<NavButton className={clsx(activePage === type.slug && "active bold text-secondary-100", "text-secondary-500 layout-column layout-align-start-stretch cursor-pointer")}>
-										<div className="layout-row layout-align-center-center px-16 flex">
-											{(() => {
-												switch(type.slug) {
-													case 'movies': return <MovieTwoTone className="m-8" style={{ fontSize: 16 }}/>
-													case 'tv-shows': return <TvTwoTone className="m-8" style={{ fontSize: 16 }}/>
-													case 'video-games': return <SportsEsportsTwoTone className="m-8" style={{ fontSize: 16 }}/>
-													case 'electronics': return <DevicesOtherTwoTone className="m-8" style={{ fontSize: 16 }}/>
-												}
-											})()}
-											<span className="text-capitalize text-truncate">
+						{types && types
+							.sort((a: TypeType, b: TypeType) => (a.id - b.id))
+							.map((type: TypeType, index: number) => (
+								<li key={index} className="layout-row layout-align-center-center">
+									<Link href={`/${type.slug}`}>
+										<NavButton className={clsx(activePage === type.slug && "active bold text-secondary-100", "text-secondary-500 layout-column layout-align-start-stretch cursor-pointer")}>
+											<div className="layout-row layout-align-center-center px-16 flex">
 												{(() => {
 													switch(type.slug) {
-														case 'movies': return "movies"
-														case 'tv-shows': return "tv shows"
-														case 'video-games': return "video games"
-														case 'electronics': return "electronics"
+														case 'movies': return <MovieTwoTone className="m-8" style={{ fontSize: 16 }}/>
+														case 'tv-shows': return <TvTwoTone className="m-8" style={{ fontSize: 16 }}/>
+														case 'video-games': return <SportsEsportsTwoTone className="m-8" style={{ fontSize: 16 }}/>
+														case 'electronics': return <DevicesOtherTwoTone className="m-8" style={{ fontSize: 16 }}/>
 													}
 												})()}
-											</span>
-										</div>
-									</NavButton>
-								</Link>
-							</li>
-						))}
+												<span className="text-capitalize text-truncate">
+													{(() => {
+														switch(type.slug) {
+															case 'movies': return "movies"
+															case 'tv-shows': return "tv shows"
+															case 'video-games': return "video games"
+															case 'electronics': return "electronics"
+														}
+													})()}
+												</span>
+											</div>
+										</NavButton>
+									</Link>
+								</li>
+							)
+						)}
 					</ul>
 				</div>
 				: null 	

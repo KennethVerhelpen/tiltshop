@@ -1,5 +1,5 @@
+import prisma from "../lib/prisma";
 import { Page, Topic, Header } from "../components/index";
-import { types, topics } from "../lib/data";
 import { TypeType, TopicType } from "../lib/types/types"
 import styled from "@emotion/styled";
 
@@ -31,7 +31,7 @@ const Type = (props: Props) => {
 					{topics.map((topic, index) => {
 						return (
 							<div key={topic.id} className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
-								<Topic className="flex layout-column layout-align-center-center" count={topic.articlesCount} topic={topic} type={type} index={index} />
+								<Topic className="flex layout-column layout-align-center-center" topic={topic} type={type} index={index} />
 							</div>
 						)
 					})}
@@ -42,6 +42,8 @@ const Type = (props: Props) => {
 };
 
 export async function getStaticPaths() {
+	const types = await prisma.type.findMany();
+
 	const paths = types.map(type => ({
 		params: {
 			type: type.slug.toString(),
@@ -57,8 +59,19 @@ export async function getStaticPaths() {
 export async function getStaticProps({
 	params: { type: typeSlug }
 }) {
-	const currentType = types.find(type => type.slug === typeSlug);
-	const currentTopics = topics.filter(topic => topic.type === currentType.id && topic.articlesCount >= 0);
+
+	const types = await prisma.type.findMany();
+	const currentType = await prisma.type.findUnique({
+		where: {
+			slug: typeSlug
+		}
+	})
+	const currentTopics = await prisma.topic.findMany({
+		where: {
+			typeId: currentType.id
+		}
+	});
+
 	return { 
 		props: {
 			types: types,

@@ -132,3 +132,13 @@
     display: none !important;
   }
 }
+
+@for $i from 1 through 10 {
+  %line-clamp-#{$i},
+  .line-clamp-#{$i} {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: #{$i};
+    -webkit-box-orient: vertical;
+  }
+}

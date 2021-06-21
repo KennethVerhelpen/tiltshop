@@ -1,5 +1,5 @@
 export type TypeType = {
-	id?: string | number,
+	id: number,
 	slug?: string,
 	name?: string,
 }
@@ -8,17 +8,9 @@ export type TopicType = {
 	id?: number;
 	slug?: string
 	name?: string;
-	type?: number,
-	articlesCount?: number;
-	plainDescription?: string;
-	htmlDescription?: string;
-}
-
-export type TopicRecordType = {
-	id?: number;
-	slug?: string
-	name?: string;
-	type?: string,
+	typeId?: number,
+  typeSlug?: string,
+  typeName?: string,
 	articlesCount?: number;
 	plainDescription?: string;
 	htmlDescription?: string;
@@ -29,34 +21,18 @@ export type ArticleType = {
   title?: string;
   imgAlt?: string;
   slug?: string;
-  type?: number;
-  topic?: number;
+  typeId?: number;
+  typeSlug?: string;
+  typeName?: string;
+  topicId?: number;
+  topicSlug?: string;
+  topicName?: string;
   category?: string;
   url?: string;
   trackingUrl?: string;
-  rating?: number;
-  price: {
-    dollar?: number;
-  };
-  description?: string;
-  details?: string;
-  likes?: number;
-}
-
-export type ArticleRecordType = {
-  id?: number;
-  title?: string;
-  imgAlt?: string;
-  slug?: string;
-  type?: string;
-  topic?: string;
-  category?: string;
-  url?: string;
-  trackingUrl?: string;
-  rating?: number;
-  price: {
-    dollar?: number;
-  };
+  rating?: number | string;
+  price?: number | string;
+  priceNumber?: number;
   description?: string;
   details?: string;
   likes?: number;
