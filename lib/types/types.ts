@@ -32,6 +32,7 @@ export type ArticleType = {
   trackingUrl?: string;
   rating?: number | string;
   price?: number | string;
+  priceNumber?: number;
   description?: string;
   details?: string;
   likes?: number;

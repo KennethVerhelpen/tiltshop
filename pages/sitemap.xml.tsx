@@ -1,4 +1,4 @@
-import { types, topics, articles } from "../lib/data";
+import prisma from "../lib/prisma";
 
 const generateSitemap =(data, origin) => {
   let xml = ''
@@ -16,14 +16,18 @@ const generateSitemap =(data, origin) => {
 }
 
 export async function getServerSideProps({ res }) {
+  const types = await prisma.type.findMany();
+  const topics = await prisma.topic.findMany();
+  const articles = await prisma.article.findMany();
+
   const typeSlugs = [].concat.apply([], types.map(
     type => ("/" + type.slug).toString()
   ));
   const topicSlugs = [].concat.apply([], topics.map(
-    topic => ("/" + types.find(type => type.id === topic.type).slug + "/" + topic.slug).toString()
+    topic => ("/" + types.find(type => type.id === topic.typeId).slug + "/" + topic.slug).toString()
   ));
   const articleSlugs = [].concat.apply([], articles.map(article => (
-    "/" + types.find(type => type.id === article.type).slug + "/" + topics.find(topic => topic.id === article.topic).slug + "/" + article.slug).toString()
+    "/" + types.find(type => type.id === article.typeId).slug + "/" + topics.find(topic => topic.id === article.topicId).slug + "/" + article.slug).toString()
   ));
 
   const slugs = [].concat(

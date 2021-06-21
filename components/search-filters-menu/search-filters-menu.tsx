@@ -46,7 +46,7 @@ export const SearchFiltersMenu = React.forwardRef((props, ref) => {
       >
         <RefinementList
           limit={20}
-          attribute="topic"
+          attribute="topicName"
         />
       </S.SearchFiltersMenu>
     </>

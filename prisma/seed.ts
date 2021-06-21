@@ -1,5 +1,5 @@
 import prisma from "../lib/prisma";
-import { types, topics, articles } from '../lib/data';
+import { types, topics, articles } from '../lib/seeds';
 
 async function generateSeeds() {
   await prisma.type.createMany({data: types});

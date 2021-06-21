@@ -1,10 +1,10 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, } from 'react';
 import { Page, Header, Post } from "../components";
-import { posts } from "../lib/data";
+import { posts } from "../lib/seeds";
 import { PostType } from "../lib/types/types";
 import styled from "@emotion/styled";
 import clsx from "clsx";
-import { EmailTwoTone, MarkunreadMailbox, MarkunreadMailboxTwoTone } from '@material-ui/icons';
+import { EmailTwoTone, MarkunreadMailboxTwoTone } from '@material-ui/icons';
 
 const Grid = styled.main`
 	@media only screen and (max-width: 959px) and (max-width: 959px) {

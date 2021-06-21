@@ -1,5 +1,5 @@
 import { Page } from "../../components/index";
-import { posts } from "../../lib/data";
+import { posts } from "../../lib/seeds";
 import { PostType } from "../../lib/types/types";
 
 type Props = {
