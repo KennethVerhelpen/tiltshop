@@ -47,6 +47,13 @@
   text-decoration: none;
 }
 
+@each $class, $value in ("visible" "visible", "invisible" "hidden") {
+  %#{$class},
+  .#{$class} {
+    visibility: unquote($value);
+  }
+}
+
 @each $cursor in ('pointer', 'help', 'wait', 'crosshair', 'not-allowed', 'zoom-in', 'zoom-out', 'grab') {
 
   %cursor-#{$cursor},
@@ -123,5 +130,15 @@
 @media print {
   .hide-print:not(.show-print):not(.show) {
     display: none !important;
+  }
+}
+
+@for $i from 1 through 10 {
+  %line-clamp-#{$i},
+  .line-clamp-#{$i} {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: #{$i};
+    -webkit-box-orient: vertical;
   }
 }
