@@ -52,8 +52,6 @@ export const algoliaArticlesIndexName = "tiltshop-articles";
 export const algoliaArticlesIndex = algoliaAdminClient.initIndex(algoliaArticlesIndexName);
 
 export const pushAlgoliaRecords = async (types: TypeType[], topics: TopicType[], articles: ArticleType[]) => {
-  console.log("Topics", topics)
-  console.log("Articles", articles)
   try {
     const clearTopics = await algoliaTopicsIndex.clearObjects();
   } catch (error) {

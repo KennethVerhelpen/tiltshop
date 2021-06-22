@@ -18,7 +18,6 @@ export const Topic = (props: TopicProps) => {
 	return (
 		<Link href={`${type ? type.slug : topic.typeSlug}/${topic.slug}`}>
 			<article className={clsx(className, "cursor-pointer")}>
-				{console.log("TOPIC", topic)}
 				<Shape
 					className="bg-secondary-900 width-100 relative cursor-pointer layout-column layout-align-end-stretch text-center overflow-hidden rounded-xl">
 					<Main className="p-16 content layout-column layout-align-center-center">
