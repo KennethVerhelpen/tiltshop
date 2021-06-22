@@ -1,4 +1,5 @@
 import algoliasearch from 'algoliasearch';
+import { ArticleType, TopicType, TypeType } from '../../lib/types/types';
 
 export const algoliaSearchClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_ID,
@@ -10,7 +11,7 @@ export const algoliaAdminClient = algoliasearch(
   process.env.ALGOLIA_ADMIN_API_KEY
 );
 
-export async function generateArticlesRecords(types, topics, articles) {
+export async function generateArticlesRecords(types: TypeType[], topics: TopicType[], articles: ArticleType[]) {
   for(var i = 0; i < articles.length; i++) {
     if (articles[i].price && typeof articles[i].price === 'string') {
       const price = articles[i].price
@@ -39,6 +40,7 @@ export async function generateTopicsRecords(types, topics) {
       const type = types.find(type => type.id === topics[i].typeId)
       delete topics[i].typeId
       topics[i]["typeName"] = type.name;
+      topics[i]["typeSlug"] = type.slug;
     }
   } return topics
 }
@@ -49,7 +51,9 @@ export const algoliaTopicsIndex = algoliaAdminClient.initIndex(algoliaTopicsInde
 export const algoliaArticlesIndexName = "tiltshop-articles";
 export const algoliaArticlesIndex = algoliaAdminClient.initIndex(algoliaArticlesIndexName);
 
-export const pushAlgoliaRecords = async (articles, types, topics) => {
+export const pushAlgoliaRecords = async (types: TypeType[], topics: TopicType[], articles: ArticleType[]) => {
+  console.log("Topics", topics)
+  console.log("Articles", articles)
   try {
     const clearTopics = await algoliaTopicsIndex.clearObjects();
   } catch (error) {

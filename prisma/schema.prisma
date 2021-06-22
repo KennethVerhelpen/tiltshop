@@ -1,47 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model Article {
-  id           Int @default(autoincrement()) @id
-  title        String?
-  imgAlt       String?
-  slug         String @unique
- 	type         Type? @relation(fields: [typeId], references: [id])
-  typeId       Int
-	topic        Topic? @relation(fields: [topicId], references: [id])
-  topicId      Int
-  categoryId   Int?
-  url          String?
-  trackingUrl  String?
-  rating       String?
-  price        String?
-  description  String?
-  details      String?
-  likes        Int?
+  id          Int     @id @default(autoincrement())
+  title       String?
+  imgAlt      String?
+  slug        String  @unique
+  url         String?
+  trackingUrl String?
+  rating      String?
+  description String?
+  details     String?
+  likes       Int?
+  topicId     Int
+  typeId      Int
+  categoryId  Int?
+  price       String?
+  topic       Topic   @relation(fields: [topicId], references: [id])
+  type        Type    @relation(fields: [typeId], references: [id])
 }
 
 model Topic {
-  id                Int @default(autoincrement()) @id
-	slug              String @unique
-	name              String
-	type              Type? @relation(fields: [typeId], references: [id])
-  typeId            Int
-	articlesCount     Int?
-	plainDescription  String?
-	htmlDescription   String?
-  articles          Article[]
+  id               Int       @id @default(autoincrement())
+  slug             String    @unique
+  name             String
+  articlesCount    Int?
+  plainDescription String?
+  htmlDescription  String?
+  typeId           Int
+  type             Type      @relation(fields: [typeId], references: [id])
+  articles         Article[]
 }
 
 model Type {
-  id        Int @default(autoincrement()) @id
-  slug      String @unique
-  name      String
-  topics    Topic[]
-  articles  Article[]
+  id       Int       @id @default(autoincrement())
+  slug     String    @unique
+  name     String
+  articles Article[]
+  topics   Topic[]
 }

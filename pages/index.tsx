@@ -5,7 +5,6 @@ import { pushAlgoliaRecords, algoliaTopicsIndexName, algoliaSearchClient } from 
 
 type HomeProps = {
   types: TypeType[];
-	articles: ArticleType[];
 };
 
 const Home = (props: HomeProps) => {
@@ -43,9 +42,11 @@ export const Topics = (props: TopicsProps) => {
 
 export async function getStaticProps() {
 	const types = await prisma.type.findMany();
-	// const topics = await prisma.topic.findMany();
-	// const articles = await prisma.article.findMany();
-	// pushAlgoliaRecords(articles, types, topics);
+	const topics = await prisma.topic.findMany();
+	const articles = await prisma.article.findMany();
+	await prisma.$disconnect();
+
+	pushAlgoliaRecords(types, topics, articles);
 	
   return {
     props: {
