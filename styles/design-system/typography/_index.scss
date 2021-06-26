@@ -32,7 +32,7 @@ p {
 .blocktext {
   @each $heading, $size in $headings-sizes {
   .#{$heading}, #{$heading} {
-     margin-bottom: $size / 2;
+     margin-bottom: math.div($size, 2);
     }
   }
   p, %p, .p {

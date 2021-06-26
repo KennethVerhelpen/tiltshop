@@ -1,11 +1,10 @@
 import prisma from "../lib/prisma";
 import { Page, Topic, Header, SearchView } from "../components";
-import { TypeType, ArticleType, TopicType } from "../lib/types/types";
+import { TypeType, TopicType } from "../lib/types/types";
 import { pushAlgoliaRecords, algoliaTopicsIndexName, algoliaSearchClient } from "./api/algolia";
 
 type HomeProps = {
   types: TypeType[];
-	articles: ArticleType[];
 };
 
 const Home = (props: HomeProps) => {
@@ -43,10 +42,11 @@ export const Topics = (props: TopicsProps) => {
 
 export async function getStaticProps() {
 	const types = await prisma.type.findMany();
+	await prisma.$disconnect()
 	// const topics = await prisma.topic.findMany();
 	// const articles = await prisma.article.findMany();
-	// pushAlgoliaRecords(articles, types, topics);
-	
+
+	// pushAlgoliaRecords(types, topics, articles);
   return {
     props: {
       types

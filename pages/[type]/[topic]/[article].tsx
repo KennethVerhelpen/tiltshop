@@ -104,6 +104,7 @@ export async function getStaticProps({
 	const currentTopic = await prisma.topic.findUnique({ where: { slug: topicSlug }});
 	const currentArticle = await prisma.article.findUnique({ where: { slug: articleSlug }});
 	const similarArticles = await prisma.article.findMany({ where: { slug: { not: articleSlug }, topicId: currentTopic.id, typeId: currentType.id }, take: 3 });
+	await prisma.$disconnect();
 
   return {
     props: {

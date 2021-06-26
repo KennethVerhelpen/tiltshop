@@ -108,6 +108,7 @@ const Topic = (props: Props) => {
 export async function getStaticPaths() {
   const topics = await prisma.topic.findMany();
   const types = await prisma.type.findMany();
+  await prisma.$disconnect();
 
   const paths = topics.map((topic => {
     const type = types.find(type => type.id === topic.typeId)
@@ -148,6 +149,8 @@ export async function getStaticProps({
       topicId: currentTopic.id
     }
   });
+
+  await prisma.$disconnect();
 
   return {
     props: {
