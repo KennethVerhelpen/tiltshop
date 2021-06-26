@@ -23,7 +23,7 @@ $blockquote-font-size: $font-size-base * 1.25 !default;
 $paragraph-line-height: $font-size-base * 1.5 !default;
 $paragraph-spaced-line-height: 1.75 !default;
 
-$headings-margin: ($spacer / 2) !default;
+$headings-margin: math.div($spacer, 2) !default;
 $headings-font-family: inherit !default;
 $headings-font-weight: 400 !default;
 $headings-line-height: 1 !default;

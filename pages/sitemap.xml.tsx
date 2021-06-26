@@ -19,7 +19,8 @@ export async function getServerSideProps({ res }) {
   const types = await prisma.type.findMany();
   const topics = await prisma.topic.findMany();
   const articles = await prisma.article.findMany();
-
+  await prisma.$disconnect();
+  
   const typeSlugs = [].concat.apply([], types.map(
     type => ("/" + type.slug).toString()
   ));
