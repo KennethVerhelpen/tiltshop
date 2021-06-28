@@ -69,11 +69,11 @@ export default function Blog() {
 			/>
 			<Grid className="p-0 layout-column">
 				<div className="container-lg layout-row layout-wrap layout-align-start-stretch">
-					{posts.map((post: PostType, index: number) => (
+					{/* {posts.map((post: PostType, index: number) => (
 						<div key={post.id} className={`flex-order-${index} fade-in-bottom speed-5 cascade p-16 width-100 layout-column layout-align-start-center flex-33 flex-xs-100 flex-sm-50`}>
 							<Post post={post}/>
 						</div>
-					))}
+					))} */}
 						<div className={`flex-order-3 fade-in-bottom speed-5 cascade p-16 width-100 layout-column layout-align-start-center flex-33 flex-xs-100 flex-sm-50`}>
 							<form onSubmit={subscribe} className="text-center rounded-xl layout-column layout-align-center-center bg-secondary-900 width-100 flex p-32">
 								{ form ?

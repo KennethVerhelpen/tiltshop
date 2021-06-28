@@ -11,7 +11,6 @@ type PostProps = {
 	post: PostType;
 }
 
-
 export const Post: React.FC<PostProps> = (props) => {
 	const { className, post } = props;
 

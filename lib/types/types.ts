@@ -39,16 +39,26 @@ export type ArticleType = {
 }
 
 export type PostType = {
-  id: number;
+  // id?: number;
   slug: string;
   title: string;
-  intro: string;
-  views?: number;
-  likes?: number;
-  type?: number;
-  topic?: number;
-  date?: string;
+  author: {
+    name: string;
+    picture: string;
+  },
+	content: string;
+	ogImage: {
+    url: string;
+  };
+	coverImage: string;
+  date: string;
   time?: number;
+
+  // intro?: string;
+  // views?: number;
+  // likes?: number;
+  // type?: number;
+  // topic?: number;
 }
 
 export type SortingItemType = {

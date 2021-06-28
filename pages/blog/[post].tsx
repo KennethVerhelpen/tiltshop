@@ -1,45 +1,84 @@
-import { Page } from "../../components/index";
-import { posts } from "../../lib/seeds";
-import { PostType } from "../../lib/types/types";
+import { Page } from '../../components';
+import markdownToHtml from '../../lib/markdownToHtml'
+import { getPostBySlug, getAllPosts } from '../../lib/posts';
+import { PostType } from '../../lib/types/types';
+import Image from "next/image";
 
 type Props = {
-  post: PostType;
+	post: PostType;
 }
 
 export const Post = (props: Props) => {
   const { post } = { ...props };
 
 	return (
-		<>
-			<Page
+		<Page
 				menu={false}
-				title={`${post.title} - TiltShop`}
-				description={post.intro}
+				image={post.ogImage.url}
+				title={`${post.title} - Tiltshop`}
+				description={post.date}
 				history={`/blog`}
 			>
-				<main className="container-lg layout-column">
-					<span>{post.id}</span>
-					<span>{post.slug}</span>
-					<span>{post.title}</span>
-					<span>{post.intro}</span>
-					<span>{post.views}</span>
-					<span>{post.likes}</span>
-					<span>{post.type}</span>
-					<span>{post.topic}</span>
-					<span>{post.date}</span>
-					<span>{post.time}</span>
-				</main>
-			</Page>
-		</>
+			<main className="container-lg">
+				<div className="layout-column">
+					<Image
+						quality="100"
+						width={'100%'}
+						height={'300px'}
+						objectFit="cover"
+						objectPosition="center"
+						priority={true}
+						loading={"eager"}
+						alt={post.title}
+						src={post.coverImage}
+						className="rounded-lg shadow-2 overflow-hidden"
+					/>
+					<h1 className="bold mb-8">{post.title}</h1>
+					<span className="mb-16">{post.date}</span>
+					<span className="mb-64">{post.author.name}</span>
+					<div dangerouslySetInnerHTML={{__html: post.content}}/>
+				</div>
+			</main>
+		</Page>
 	);
 };
 
-export async function getStaticPaths() {
-  const paths = posts.map(post => {
+export async function getStaticProps({
+	params: { post: postSlug}
+}) {
 
+	const currentPost = getPostBySlug(postSlug, [
+		'title',
+		'date',
+		'slug',
+		'author',
+		'content',
+		'ogImage',
+		'coverImage'
+	]) as PostType;
+
+	currentPost['content'] = await markdownToHtml(currentPost.content || '');
+	currentPost['date'] = new Intl.DateTimeFormat("en-US", {
+		year: "numeric",
+		month: "long",
+		day: "2-digit"
+	}).format(new Date(currentPost.date));
+	currentPost['time'] = Math.round(currentPost.content.length/200);
+
+	return {
+		props: {
+			post: currentPost,
+		},
+	}
+}
+
+export async function getStaticPaths() {
+	const posts = getAllPosts(['slug']);
+	
+  const paths = posts.map((post: PostType) => {
     return {	
       params: {
-        post: post.slug.toString(),
+        post: post.slug,
       }
 	  }
   })
@@ -50,18 +89,5 @@ export async function getStaticPaths() {
   }
 };
 
-export async function getStaticProps({
-  params: {
-		post: postSlug,
-	}}) {
-
-	const currentPost = posts.find(post => post.slug === postSlug);
-
-  return {
-    props: {
-			post: currentPost,
-    }
-  }
-}
 
 export default Post;
