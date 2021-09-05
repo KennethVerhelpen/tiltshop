@@ -36,11 +36,21 @@ export type ArticleType = {
   description?: string;
   details?: string;
   likes?: number;
+  summary?: string;
+}
+
+export type FeaturedArticleType = {
+  slug: string;
+  title?: string;
+  summary?: string;
+  benefits?: string[];
+  flaws?: string[];
 }
 
 export type PostType = {
-  // id?: number;
+  id?: number;
   slug: string;
+  excerpt?: string;
   title: string;
   author: {
     name: string;
@@ -53,12 +63,11 @@ export type PostType = {
 	coverImage: string;
   date: string;
   time?: number;
-
-  // intro?: string;
-  // views?: number;
-  // likes?: number;
-  // type?: number;
-  // topic?: number;
+  featuredArticles: FeaturedArticleType[];
+  articles?: ArticleType[];
+  typeSlug?: string;
+  topicSlug?: string;
+  outro?: string;
 }
 
 export type SortingItemType = {

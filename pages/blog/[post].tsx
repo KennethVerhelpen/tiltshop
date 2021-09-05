@@ -1,15 +1,21 @@
 import { Page } from '../../components';
 import markdownToHtml from '../../lib/markdownToHtml'
+import { getFormatedDate, getReadingTime } from '../../lib/utils';
 import { getPostBySlug, getAllPosts } from '../../lib/posts';
-import { PostType } from '../../lib/types/types';
+import { PostType, ArticleType, TypeType, TopicType } from '../../lib/types/types';
+import { Article } from '../../components';
+import prisma from "../../lib/prisma";
 import Image from "next/image";
 
 type Props = {
 	post: PostType;
+	articles: ArticleType[];
+	topics: TopicType[];
+	types: TypeType[];
 }
 
 export const Post = (props: Props) => {
-  const { post } = { ...props };
+  const { post, articles, topics, types } = { ...props };
 
 	return (
 		<Page
@@ -33,10 +39,47 @@ export const Post = (props: Props) => {
 						src={post.coverImage}
 						className="rounded-lg shadow-2 overflow-hidden"
 					/>
-					<h1 className="bold mb-8">{post.title}</h1>
-					<span className="mb-16">{post.date}</span>
-					<span className="mb-64">{post.author.name}</span>
-					<div dangerouslySetInnerHTML={{__html: post.content}}/>
+					<div className="layout-column mb-64">
+						<h1 className="strong mb-8" style={{ fontSize: 72 }}>{post.title}</h1>
+						<span className="mb-16">{post.date}</span>
+						<span >{post.author.name}</span>
+					</div>
+					<p className="h6">{post.excerpt}</p>
+					<div className="layout-row">
+						<div className="layout-column">
+							<div className="h6" dangerouslySetInnerHTML={{__html: post.content}}/>
+							{articles ? articles.map((article: ArticleType, index: number) => {
+								const articleTopic = topics.find(topic => topic.id === article.topicId)
+								const articleType = types.find(type => type.id === article.typeId)
+								return (
+									<div className="layout-column">
+										<div className="layout-row py-64">
+											
+											<div className="layout-column flex px-16 layout-align-start-start">
+												<h3 className="bold mb-16">{post.featuredArticles[index].title || article.title}</h3>
+												<span className="mb-32 h6 lh-2">{post.featuredArticles[index].summary}</span>
+												<ul className="list-reset mb-32 h6 lh-2">
+													{post.featuredArticles[index].benefits.map(benefit =>(
+														<li>👍 {benefit}</li>
+													))}
+													{post.featuredArticles[index].flaws.map(flaw =>(
+														<li>❌ {flaw}</li>
+													))}
+												</ul>
+												<button className="btn btn-raised btn-secondary btn-md">See on amazon</button>
+											</div>
+											<Article article={article} topic={articleTopic} type={articleType}/>
+										</div>
+									</div>
+								)}) : null}
+							</div>
+							<div className="layout-column" style={{minWidth: 240}}>
+								<span>Title</span>
+								<span>Title</span>
+								<span>Title</span>
+								<span>Title</span>
+							</div>
+						</div>
 				</div>
 			</main>
 		</Page>
@@ -54,20 +97,30 @@ export async function getStaticProps({
 		'author',
 		'content',
 		'ogImage',
-		'coverImage'
+		'coverImage',
+		'topicSlug',
+		'typeSlug',
+		'articles',
+		'featuredArticles'
 	]) as PostType;
 
 	currentPost['content'] = await markdownToHtml(currentPost.content || '');
-	currentPost['date'] = new Intl.DateTimeFormat("en-US", {
-		year: "numeric",
-		month: "long",
-		day: "2-digit"
-	}).format(new Date(currentPost.date));
-	currentPost['time'] = Math.round(currentPost.content.length/200);
+	currentPost['date'] = getFormatedDate(currentPost.date);
+	currentPost['time'] = getReadingTime(currentPost.content);
+
+	const currentArticlesSlugs: string[] = currentPost['featuredArticles'].map(featuredArticle => (featuredArticle.slug));
+	const currentArticles = await prisma.article.findMany({ where : { slug: { in: currentArticlesSlugs } } });
+	const currentTopicsId: number[] = currentArticles.map(article => article.topicId);
+	const currentTopics = await prisma.topic.findMany({ where : { id: { in: currentTopicsId } } });
+	const currentTypesId: number[] = currentArticles.map(article => article.typeId);
+	const currentTypes = await prisma.type.findMany({ where : { id: { in: currentTypesId } } });
 
 	return {
 		props: {
 			post: currentPost,
+			topics: currentTopics,
+			types: currentTypes,
+			articles: currentArticles
 		},
 	}
 }

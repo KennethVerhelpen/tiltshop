@@ -1,7 +1,8 @@
 import React, { useRef, useState, } from 'react';
 import { Page, Header, Post } from "../components";
-import { posts } from "../lib/seeds";
 import { PostType } from "../lib/types/types";
+import { getAllPosts } from '../lib/posts';
+import { getFormatedDate, getReadingTime } from '../lib/utils';
 import styled from "@emotion/styled";
 import clsx from "clsx";
 import { EmailTwoTone, MarkunreadMailboxTwoTone } from '@material-ui/icons';
@@ -22,10 +23,16 @@ const Input = styled.input`
 	}
 `
 
-export default function Blog() {
+type Props = {
+  posts: PostType[];
+	allPostParsed: PostType[];
+}
+
+export const Blog = (props: Props) => {
 	const [form, setForm] = useState(null);
 	const emailInput = useRef(null);
-	
+	const { posts, allPostParsed } = { ...props };
+
   const subscribe = async (e) => {
     e.preventDefault();
     setForm({ state: 'loading' });
@@ -69,63 +76,82 @@ export default function Blog() {
 			/>
 			<Grid className="p-0 layout-column">
 				<div className="container-lg layout-row layout-wrap layout-align-start-stretch">
-					{/* {posts.map((post: PostType, index: number) => (
-						<div key={post.id} className={`flex-order-${index} fade-in-bottom speed-5 cascade p-16 width-100 layout-column layout-align-start-center flex-33 flex-xs-100 flex-sm-50`}>
+					{posts.map((post: PostType, index: number) => (
+						<div key={post.slug} className={`flex-order-${index} fade-in-bottom speed-5 cascade p-16 width-100 layout-column layout-align-start-center flex-33 flex-xs-100 flex-sm-50`}>
 							<Post post={post}/>
 						</div>
-					))} */}
-						<div className={`flex-order-3 fade-in-bottom speed-5 cascade p-16 width-100 layout-column layout-align-start-center flex-33 flex-xs-100 flex-sm-50`}>
-							<form onSubmit={subscribe} className="text-center rounded-xl layout-column layout-align-center-center bg-secondary-900 width-100 flex p-32">
-								{ form ?
-									<main className="layout-column layout-align-center-center">
-										{ form.state === 'success' && (
-											<div className="layout-column layout-align-center-center">
-												<MarkunreadMailboxTwoTone style={{ fontSize: 32 }} className="mb-32 text-secondary-100"/>
-												<span className="h3 strong serif text-secondary-100 mb-16">Hooray!</span>
-												<span className="small text-secondary-100">You're now on the list.</span>
-											</div>
-										)}
-										{ form.state === 'error' && (
-											<div className="layout-column layout-align-center-center">
-												<span className="h3 strong serif text-secondary-100 mb-16">Oops!</span>
-												<span className="small text-secondary-100 mb-32">{form.message}</span>
-												<button className="btn btn-md btn-raised width-100" onClick={() => setForm(undefined)}>Go back</button>
-											</div>
-										)}
-										{ form.state === 'loading' && (
-											<div className="layout-column layout-align-center-center">
-												<span className="small text-secondary-100 mb-32">Subscribing...</span>
-											</div>
-										)}
-									</main> : null
-								}
-								<main className={clsx({ "hide" : form },"layout-column layout-align-center-center")}>
-									<EmailTwoTone style={{ fontSize: 32 }} className="mb-32 text-secondary-100"/>
-									<span className="h3 strong serif text-secondary-100 mb-16">Stay tuned about our latest articles</span>
-									<span className="small text-secondary-100 mb-16">Register to our free newsletter and get the latest reviews directly in your mailbox.</span>
-									<Input
-										id="email-input"
-										name="email"
-										ref={emailInput}
-										required
-										type="email"
-										className="text-secondary-100 px-8 border-none rounded-sm width-100 mb-16"
-										placeholder="Enter your email here..."
-									/>
-									<button className="btn btn-md btn-raised width-100" type="submit">Register now</button>
-								</main>
-							</form>
-						</div>
+					))}
+					{/* {console.log("ALL", allPostParsed)} */}
+					<div className={`flex-order-3 fade-in-bottom speed-5 cascade p-16 width-100 layout-column layout-align-start-center flex-33 flex-xs-100 flex-sm-50`}>
+						<form onSubmit={subscribe} className="text-center rounded-xl layout-column layout-align-center-center bg-secondary-900 width-100 flex p-32">
+							{ form ?
+								<main className="layout-column layout-align-center-center">
+									{ form.state === 'success' && (
+										<div className="layout-column layout-align-center-center">
+											<MarkunreadMailboxTwoTone style={{ fontSize: 32 }} className="mb-32 text-secondary-100"/>
+											<span className="h3 strong serif text-secondary-100 mb-16">Hooray!</span>
+											<span className="small text-secondary-100">You're now on the list.</span>
+										</div>
+									)}
+									{ form.state === 'error' && (
+										<div className="layout-column layout-align-center-center">
+											<span className="h3 strong serif text-secondary-100 mb-16">Oops!</span>
+											<span className="small text-secondary-100 mb-32">{form.message}</span>
+											<button className="btn btn-md btn-raised width-100" onClick={() => setForm(undefined)}>Go back</button>
+										</div>
+									)}
+									{ form.state === 'loading' && (
+										<div className="layout-column layout-align-center-center">
+											<span className="small text-secondary-100 mb-32">Subscribing...</span>
+										</div>
+									)}
+								</main> : null
+							}
+							<main className={clsx({ "hide" : form },"layout-column layout-align-center-center")}>
+								<EmailTwoTone style={{ fontSize: 32 }} className="mb-32 text-secondary-100"/>
+								<span className="h3 strong serif text-secondary-100 mb-16">Stay tuned about our latest articles</span>
+								<span className="small text-secondary-100 mb-16">Register to our free newsletter and get the latest reviews directly in your mailbox.</span>
+								<Input
+									id="email-input"
+									name="email"
+									ref={emailInput}
+									required
+									type="email"
+									className="text-secondary-100 px-8 border-none rounded-sm width-100 mb-16"
+									placeholder="Enter your email here..."
+								/>
+								<button className="btn btn-md btn-raised width-100" type="submit">Register now</button>
+							</main>
+						</form>
+					</div>
 				</div>
 			</Grid>
 		</Page>
 	);
 };
 
-export async function getStaticProps() {
+export default Blog;
+
+export async function getStaticProps(){
+
+	const allPosts = getAllPosts([
+		'title',
+		'date',
+		'slug',
+		'author',
+		'content',
+		'coverImage'
+	]);
+
+	const allPostsFormated = allPosts.map((post: PostType) => {
+		post['date'] = getFormatedDate(post.date);
+		post['time'] = getReadingTime(post.content);
+		return (post)
+	})
+
   return {
     props: {
-      posts,
+      posts: allPostsFormated,
     }
   }
 }
