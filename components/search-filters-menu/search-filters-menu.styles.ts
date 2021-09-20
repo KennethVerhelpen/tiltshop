@@ -1,6 +1,6 @@
 
+import styled from '@emotion/styled';
 import Menu from '@material-ui/core/Menu';
-import styled from "@emotion/styled";
 
 export const SearchFiltersMenu = styled(Menu)`
 	padding: 1rem 0;
@@ -44,7 +44,7 @@ export const SearchFiltersMenu = styled(Menu)`
 				align-items: center;
 				align-content: center;
 				justify-content: center;
-				padding: 0 16px;
+				padding: 0 1rem;
 			}
 
 			.ais-RefinementList-labelText:before {
@@ -82,9 +82,9 @@ export const SearchFiltersMenu = styled(Menu)`
 				border-radius: 1rem;
 				color: black;
 				background: #bfbfbf91;
-				font-size: 14px;
+				font-size: 0.875rem;
 				line-height: 1;
-				padding: 4px 8px;
+				padding: 0.25rem 0.5rem;
 			}
 		}
 	}

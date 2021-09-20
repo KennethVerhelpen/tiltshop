@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { FilterListTwoTone } from "@material-ui/icons";
-import { Global, css } from "@emotion/react";
+import React, { useState } from 'react';
+import { FilterListTwoTone } from '@material-ui/icons';
+import { Global, css } from '@emotion/react';
 
-import { RefinementList } from "react-instantsearch-dom";
+import { RefinementList } from 'react-instantsearch-dom';
 
-import * as S from "./search-filters-menu.styles";
+import * as S from './search-filters-menu.styles';
 
 export const SearchFiltersMenu = React.forwardRef((props, ref) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -29,16 +29,16 @@ export const SearchFiltersMenu = React.forwardRef((props, ref) => {
         `}
 			/>
       <button
-        aria-haspopup="true"
-        aria-controls="type-filter-menu"
-        className="btn btn-sm btn-secondary layout-row layout-align-start-center m-4"
+        aria-haspopup={'true'}
+        aria-controls={'type-filter-menu'}
+        className={'btn btn-sm btn-secondary layout-row layout-align-start-center m-4'}
         onClick={handleClick}>
-        <FilterListTwoTone style={{ fontSize: 16 }} className="mr-8"/>
+        <FilterListTwoTone style={{ fontSize: 16 }} className={'mr-8'}/>
         <span>Filters</span>
       </button>
       <S.SearchFiltersMenu
         ref={ref}
-        id="type-filter-menu"
+        id={'type-filter-menu'}
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
@@ -46,7 +46,7 @@ export const SearchFiltersMenu = React.forwardRef((props, ref) => {
       >
         <RefinementList
           limit={20}
-          attribute="topicName"
+          attribute={'topicName'}
         />
       </S.SearchFiltersMenu>
     </>

@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
-import { InstantSearch } from "react-instantsearch-dom";
-import { SortingItemType } from "../../lib/types/types";
+import { ReactNode } from 'react';
+import { InstantSearch } from 'react-instantsearch-dom';
+import { SortingItemType } from '../../lib/types';
 import {
 		SearchBar,
 		SearchSortingSelect,
@@ -9,9 +9,9 @@ import {
 		SearchCurrentFilters,
 		SearchResultsWrapper,
 		SearchResults
-} from "../index";
+} from '../index';
 
-export type Props =  {
+export type SearchContainerProps =  {
   hitComponent: ReactNode;
   hitsPerPage?: number;
   filters?: boolean;
@@ -22,27 +22,29 @@ export type Props =  {
   sortingDefaultItem?: string;
 }
 
-export const SearchView = (props: Props) => {
+export const SearchContainer = (props: SearchContainerProps) => {
   const { hitComponent, hitsPerPage, filters, searchClient, indexName, searchBar, sortingDefaultItem, sortingItems } = { ...defaultProps, ...props };
 
   return(
     <InstantSearch searchClient={searchClient} indexName={indexName}>
-      {searchBar ? <SearchBar className="fade-in-bottom speed-3"/> : null }
+      {searchBar ? <SearchBar className={'fade-in-bottom speed-3'}/> : null }
       {filters || (sortingItems && sortingDefaultItem) ?
-        <div className="layout-row container-lg layout-align-start-center">
+        <div className={'layout-row container-lg layout-align-start-center'}>
           {filters ? 
             <>
-              <SearchCurrentFilters className="layout-row flex"/>
+              <SearchCurrentFilters className={'layout-row flex'}/>
               <SearchFiltersMenu/>
             </>
           : null }
           {(sortingItems && sortingDefaultItem) ? <SearchSortingSelect defaultItem={sortingDefaultItem} items={sortingItems}/> : null }
         </div> : null
       }
-      <SearchResultsWrapper>
-        <SearchResults hitComponent={hitComponent} hitsPerPage={hitsPerPage}/>
-        <SearchPagination />
-      </SearchResultsWrapper>
+      <div className="container-lg">
+        <SearchResultsWrapper>
+          <SearchResults hitComponent={hitComponent} hitsPerPage={hitsPerPage}/>
+          <SearchPagination />
+        </SearchResultsWrapper>
+      </div>
     </InstantSearch>
   )
 }

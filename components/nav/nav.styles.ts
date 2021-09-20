@@ -7,7 +7,7 @@ export const Shape = styled.nav`
   width: 100%;
   position: fixed;
   background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(1.25rem);
   > div:last-of-type {
     min-height: 2.125rem;
   }
@@ -20,14 +20,14 @@ export const NavButton = styled.a`
   padding: 0;
   height: 100%;
   min-width: 6rem;
-  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.25);
+  box-shadow: 0 0.125rem 0.625rem 0 rgba(0,0,0,0.25);
 
   &:after {
     width: 100%;
-    height: 2px;
+    height: 0.125rem;
     content: '';
     display: block;
-    border-radius: 2px;
+    border-radius: 0.125rem;
     transform: scaleX(0);
     transform-origin: center;
     background-color: white;

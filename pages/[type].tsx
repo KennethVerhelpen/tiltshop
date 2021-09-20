@@ -1,13 +1,7 @@
-import prisma from "../lib/prisma";
-import { Page, Topic, Header } from "../components/index";
-import { TypeType, TopicType } from "../lib/types/types"
-import styled from "@emotion/styled";
-
-const Grid = styled.main`
-	@media only screen and (max-width: 959px) and (max-width: 959px) {
-		max-width: 44rem; 
-	}
-`
+import prisma from '../lib/prisma';
+import { TypeType, TopicType } from '../lib/types'
+import { Page } from '../components/index';
+import { TypeView } from '../views/type/type.view';
 
 type Props = {
 	types: TypeType[];
@@ -25,18 +19,7 @@ const Type = (props: Props) => {
 			activePage={type.slug}
 			types={types}
 		>
-			<Header category={type.name}/>
-			<Grid className="container-lg p-0 layout-column">
-				<div className="layout-row layout-wrap layout-align-center-center">
-					{topics.map((topic, index) => {
-						return (
-							<div key={topic.id} className="fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
-								<Topic className="flex layout-column layout-align-center-center" topic={topic} type={type} index={index} />
-							</div>
-						)
-					})}
-				</div>
-			</Grid>
+			<TypeView topics={topics} type={type}/>
 		</Page>
 	);
 };

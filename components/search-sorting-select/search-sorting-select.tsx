@@ -1,5 +1,5 @@
 import * as S from './search-sorting-select.styles';
-import { SortingItemType } from "../../lib/types/types";
+import { SortingItemType } from '../../lib/types';
 
 export type SearchSortingSelectProps = {
   defaultItem: string;

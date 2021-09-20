@@ -1,6 +1,6 @@
 
 import styled from '@emotion/styled';
-import { BudgetRange } from "../budget-range/budget-range";
+import { BudgetRange } from '../budget-range/budget-range';
 
 export const Shape = styled.article`
   height: 30rem;
@@ -30,7 +30,7 @@ export const Footer = Main.withComponent('footer');
 
 export const BudgetRangeStyled = styled(BudgetRange)`
   background: rgba(255,255,255, 0.1);
-  font-size: 12px;
+  font-size: 0.75rem;
 `
 
 export const IconButton = styled.div`

@@ -8,13 +8,14 @@ export const throttleApi = (time, request) => {
   );
 };
 
-export const getReadingTime = (text: string) => {
+export const getReadingTime = (texts: string[]) => {
   const wordsPerMinute = 200;
-  let time: number = null;
-  if (text.length > 0) {
-    const wordsCount = text.split(" ").length;
-    const time = Math.ceil(wordsCount / wordsPerMinute)
-    return time  
+  let time = null;
+  if (texts.length > 0) {
+    let totalCount: number = 0;
+    for(var i = 0; i < texts.length; i++) { 
+      totalCount += texts[i].split(" ").length;
+    } return time = Math.ceil(totalCount / wordsPerMinute);
   } return time
 }
 
@@ -29,3 +30,6 @@ export const getFormatedDate = (date: string) => {
   } return shortDate;
 }
 
+export  const createMarkup = (html) => {
+  return {__html: html};
+}

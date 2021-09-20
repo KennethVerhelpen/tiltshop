@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import { CurrentRefinements } from 'react-instantsearch-dom';
 
 export const SearchCurrentFilters = styled(CurrentRefinements)`

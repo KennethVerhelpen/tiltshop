@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const SearchBar = styled.div`
 	min-height: 3rem;
@@ -22,7 +22,7 @@ export const SearchBar = styled.div`
 		border: none;
 		flex:1;
   	order: 1;
-		border-radius: 6px;
+		border-radius: 0.375rem;
 		line-height: 1.5rem;
 		background: #000000;
 		padding: 0.5rem 1rem;

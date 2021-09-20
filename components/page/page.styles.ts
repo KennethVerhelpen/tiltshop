@@ -7,7 +7,7 @@ export const BackgroundWrapper = styled.div`
   z-index: -1;
   margin: auto;
   height: 48rem;
-  max-width: 1440px;
+  max-width: 90rem;
 `
 
 export const Main = styled.main`

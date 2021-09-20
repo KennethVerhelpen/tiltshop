@@ -53,8 +53,9 @@ export type PostType = {
   excerpt?: string;
   title: string;
   author: {
-    name: string;
-    picture: string;
+    name?: string;
+    picture?: string;
+    role?: string;
   },
 	content: string;
 	ogImage: {

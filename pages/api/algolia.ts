@@ -15,20 +15,20 @@ export async function generateArticlesRecords(types, topics, articles) {
     if (articles[i].price && typeof articles[i].price === 'string') {
       const price = articles[i].price
       delete articles[i].price
-      articles[i]["priceNumber"] = Number(price);
+      articles[i]['priceNumber'] = Number(price);
     }
     if (articles[i].rating && typeof articles[i].rating === 'string') {
-      articles[i]["ratingNumber"] = Number(articles[i].rating);
+      articles[i]['ratingNumber'] = Number(articles[i].rating);
     }
     if (articles[i].typeId) {
       const type = types.find(type => type.id === articles[i].typeId)
       delete articles[i].typeId
-      articles[i]["typeName"] = type.name;
+      articles[i]['typeName'] = type.name;
     }
     if (articles[i].topicId) {
       const topic = topics.find(topic => topic.id === articles[i].topicId)
       delete articles[i].topicId
-      articles[i]["topicName"] = topic.name;
+      articles[i]['topicName'] = topic.name;
     }
   } return articles
 }
@@ -38,36 +38,36 @@ export async function generateTopicsRecords(types, topics) {
     if (topics[i].typeId) {
       const type = types.find(type => type.id === topics[i].typeId)
       delete topics[i].typeId
-      topics[i]["typeName"] = type.name;
+      topics[i]['typeName'] = type.name;
     }
   } return topics
 }
 
-export const algoliaTopicsIndexName = "tiltshop-topics";
+export const algoliaTopicsIndexName = 'tiltshop-topics';
 export const algoliaTopicsIndex = algoliaAdminClient.initIndex(algoliaTopicsIndexName);
 
-export const algoliaArticlesIndexName = "tiltshop-articles";
+export const algoliaArticlesIndexName = 'tiltshop-articles';
 export const algoliaArticlesIndex = algoliaAdminClient.initIndex(algoliaArticlesIndexName);
 
 export const pushAlgoliaRecords = async (articles, types, topics) => {
   try {
     const clearTopics = await algoliaTopicsIndex.clearObjects();
   } catch (error) {
-    console.log(error, "There was an error clearing the topics.");
+    console.log(error, 'There was an error clearing the topics.');
   }
   try {
     const saveTopics = await algoliaTopicsIndex.saveObjects(await generateTopicsRecords(types, topics), { autoGenerateObjectIDIfNotExist: true });
   } catch (error) {
-    console.log(error, "There was an error uploading the topics.");
+    console.log(error, 'There was an error uploading the topics.');
   }
   try {
     const clearArticles =  await algoliaArticlesIndex.clearObjects();    
   } catch (error) {
-    console.log(error, "There was an error clearing the articles.");
+    console.log(error, 'There was an error clearing the articles.');
   }
   try {
     const saveArticles =  await algoliaArticlesIndex.saveObjects(await generateArticlesRecords(types, topics, articles), { autoGenerateObjectIDIfNotExist: true });;    
   } catch (error) {
-    console.log(error, "There was an error uploading the articles.");
+    console.log(error, 'There was an error uploading the articles.');
   }
 }

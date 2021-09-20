@@ -1,10 +1,10 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import { SortBy } from 'react-instantsearch-dom';
 
 export const SearchSortingSelect = styled(SortBy)`
 	display: flex;
 	cursor: pointer;
-	border-radius: 6px;
+	border-radius: 0.475rem;
 	position: relative;
 	flex-direction: row;
 	background: #efefef;
@@ -32,10 +32,6 @@ export const SearchSortingSelect = styled(SortBy)`
     text-indent: 0.01px;
 		padding: 0 2rem 0 1rem;
 		background: transparent;
-
-		&:hover {
-			background-color: 
-		}
 
 		&::-ms-expand {
 			display: none;

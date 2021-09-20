@@ -7,20 +7,31 @@ export const SearchResults = styled(Hits)`
 	flex-direction: column;
 
 	.ais-Hits-list {
+		margin: 0;
 		list-style-type: none;
 		flex-direction: row;
 		margin-left: auto;
     margin-right: auto;
     padding: 0;
 		width: 100%;
-    max-width: 66rem;
-		align-items: center;
-    align-content: center;
-		justify-content: center;
+		align-items: flex-start;
+    align-content: flex-start;
+		justify-content: flex-start;
 		display: flex;
 		flex-wrap: wrap;
-	}
-	@media only screen and (max-width: 959px) and (max-width: 959px) {
-		max-width: 44rem; 
+		flex-direction: row;
+
+		.ais-Hits-item {
+			padding: 0.5rem;
+			flex: 1 1 100%;
+			max-width: 33.33%;
+			max-height: 100%;
+			@media only screen and (min-width: 600px) and (max-width: 960px) {
+				max-width: 50%;
+			}
+			@media only screen and (max-width: 600px) {
+				max-width: 100%;
+			}
+		}
 	}
 `

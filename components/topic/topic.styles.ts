@@ -29,13 +29,9 @@ export const Soon = styled.span`
 
 export const Shape = styled.div`
   height: 30rem;
-  max-width: 20rem;
   min-width: 20rem;
-  box-shadow: 6px 6px 20px 0 rgba(0, 0, 0, 0.35),
-  20px 20px 8px 0 rgba(0, 0, 0, 0.08),
-  5px 5px 7px 0 rgba(0, 0, 0, 0.09);
 
-  .image::before {
+  .image-wrapper::before {
     top: 0;
     left: 0;
     z-index: 1;
@@ -48,7 +44,7 @@ export const Shape = styled.div`
   }
 
   &:hover {
-    .image::before {
+    .image-wrapper::before {
       background: rgba(0,0,0,0);
       transition: all .6s ease-in-out;
     }
