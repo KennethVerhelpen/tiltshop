@@ -1,6 +1,8 @@
 import { useState, useEffect, ReactNode } from 'react';
 import clsx from 'clsx';
 
+import { ThemeType } from '../../lib/types';
+import { createMarkup } from '../../lib/utils';
 import { Section, DefaultTitle, CustomTitle } from './header.styles';
 
 export type HeaderProps = {
@@ -11,6 +13,7 @@ export type HeaderProps = {
   subtitle?: string | ReactNode;
   rotation?: boolean;
   rotatingTexts?: string[];
+  theme?: ThemeType;
 }
 
 const defaultProps = {
@@ -18,8 +21,25 @@ const defaultProps = {
 	rotatingTexts: [ 'cinema lovers', 'tv show addicts', 'passionate gamers' ],
 }
 
+
+export type SubheadingProps = {
+   theme: ThemeType,
+   text: string | ReactNode;
+}
+
+export const Subheading = (props: SubheadingProps) => {
+  const { theme, text } = { ...props};
+  
+  return (
+    <h2
+      className={clsx({'text-secondary-100' : theme === 'dark'}, 'h6 fade-in-bottom speed-5 container-sm lh-2')}
+      dangerouslySetInnerHTML={createMarkup(text)}
+    />
+  )
+}
+
 export const Header = (props: HeaderProps) => {
-  const { className, title, category, medium, subtitle, rotatingTexts, rotation } = {...defaultProps, ...props};
+  const { className, theme, title, category, medium, subtitle, rotatingTexts, rotation } = {...defaultProps, ...props};
   const [ visibleText, setVisibleText ] = useState(0);
 
   const handleRotatingTextChange = () => {
@@ -41,34 +61,42 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <Section className={clsx(className, 'pt-xs-128 pb-xs-32 text-center layout-column layout-align-center-center')}>
-      <div className={'pt-32 container-md layout-column layout-align-center-center flex'}>
-        { title ? 
-          <CustomTitle className={'scale-in speed-10 mt-16 mb-16 strong'} >{title}</CustomTitle>
-          :
-          <>
-            <DefaultTitle className={'scale-in speed-10 hide-xs mt-16 mb-16 strong'}> 
-              <span>The best items for</span><br/>
-                { category ?
-                  <span>{category} lovers</span>
-                :
-                <span>
-                  {rotatingTexts.map((text, index) => (
-                    <span className={clsx({ 'hide': visibleText != index })} key={index}>{text}.</span>
-                  ))}
-                </span>
-              }
-            </DefaultTitle>
-            <DefaultTitle className={'scale-in speed-10 mt-16 mb-32 strong hide show-xs'}>The best items for cinema, tv & video game lovers.</DefaultTitle>
-          </>
+      <div className={'pt-32 container-lg layout-column layout-align-center-center flex'}>
+        { title
+          ? <CustomTitle className={clsx({'text-secondary-100' : theme === 'dark'}, 'scale-in speed-10 mt-16 mb-16 strong')}>{title}</CustomTitle>
+          : <>
+              <DefaultTitle className={clsx({'text-secondary-100' : theme === 'dark'}, 'scale-in speed-10 hide-xs mt-16 mb-16 strong')}> 
+                <span>The best items for</span><br/>
+                  { category ?
+                    <span>{category} lovers</span>
+                  :
+                  <span>
+                    {rotatingTexts.map((text, index) => (
+                      <span className={clsx({ 'hide': visibleText != index })} key={index}>{text}.</span>
+                    ))}
+                  </span>
+                }
+              </DefaultTitle>
+              <DefaultTitle className={clsx({'text-secondary-100' : theme === 'dark'}, 'scale-in speed-10 mt-16 mb-32 strong hide show-xs')}>The best items for cinema, tv & video game lovers.</DefaultTitle>
+            </>
         }
         { medium &&
-          <h2 className={'h6 fade-in-bottom speed-5 container-sm lh-2'}>The best items for <b>{medium} fans</b> in <b>{new Date().getFullYear()}</b>.</h2>
+          <Subheading
+            theme={theme}
+            text={`The best items for <b>{medium} fans</b> in <b>${new Date().getFullYear()}.`}
+          />
         }
         { subtitle &&
-          <h2 className={'h6 fade-in-bottom speed-5 container-sm lh-2'}>{subtitle}</h2>
+          <Subheading
+            theme={theme}
+            text={subtitle}
+          />
         }
-        { !medium && !subtitle &&
-          <h2 className={'fade-in-bottom speed-5 h6 layout-row layout-column-xs layout-align-center-center container-sm lh-2'}>A list of great products hand-picked just for you.</h2>
+        { (!medium && !subtitle) &&
+          <Subheading
+            theme={theme}
+            text={'A list of great products hand-picked just for you.'}
+          />
         }
       </div>
     </Section>

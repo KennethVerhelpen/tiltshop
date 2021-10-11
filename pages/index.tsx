@@ -1,8 +1,11 @@
 import prisma from '../lib/prisma';
-import { Page } from '../components';
 import { TypeType} from '../lib/types';
+import { Page, SearchAutocomplete } from '../components';
 import { algoliaTopicsIndexName, algoliaSearchClient } from './api/algolia';
 import { HomeView } from '../views';
+
+import algoliasearch from 'algoliasearch';
+import { getAlgoliaResults } from '@algolia/autocomplete-js';
 
 // TIP: Uncomment to push new indexes to Algolia
 // import { Topic } from "../components";
@@ -11,17 +14,32 @@ import { HomeView } from '../views';
 
 type HomeProps = {
   types: TypeType[];
-
-	// TIP: Uncomment to push new indexes to Algolia
 };
 
 const Home = (props: HomeProps) => {
 	const { types } = { ...props };
 	
 	return (
-		<Page
-			types={types}
-		> 
+		<Page types={types} theme={'dark'}>
+			{/* <SearchAutocomplete
+        openOnFocus={true}
+        getSources={({ query }) => [
+          {
+            sourceId: 'topics',
+            getItems() {
+              return getAlgoliaResults({
+                searchClient: algoliaSearchClient,
+                queries: [
+                  {
+                    indexName: 'tiltshop-topics',
+                    query,
+                  },
+                ],
+              });
+            },
+          },
+        ]}
+      /> */}
 			<HomeView searchClient={algoliaSearchClient} indexName={algoliaTopicsIndexName} />
 		</Page>
 	);

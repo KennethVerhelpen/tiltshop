@@ -1,12 +1,12 @@
-$secondary-100: hsl(0, 0%, 100%) !default;
-$secondary-200: hsl(0, 0%, 98%) !default;
-$secondary-300: rgb(191, 191, 191) !default;
-$secondary-400: hsl(0, 0%, 62.5%) !default;
-$secondary-500: hsl(0, 0%, 50%) !default;
-$secondary-600: hsl(0, 0%, 37.5%) !default;
-$secondary-700: hsl(0, 0%, 25%) !default;
-$secondary-800: hsl(0, 0%, 12.5%) !default;
-$secondary-900: hsl(0, 0%, 0%) !default;
+$secondary-100: hsl(30, 20%, 98%) !default;
+$secondary-200: hsl(30, 16%, 94%) !default;
+$secondary-300: hsl(30, 14%, 90%) !default;
+$secondary-400: hsl(30, 12%, 65%) !default;
+$secondary-500: hsl(30, 12%, 45%) !default;
+$secondary-600: hsl(30, 12%, 35%) !default;
+$secondary-700: hsl(30, 14%, 25%) !default;
+$secondary-800: hsl(30, 16%, 10%) !default;
+$secondary-900: hsl(30, 20%, 5%) !default;
 
 $colors: (
   -secondary-100: $secondary-100,

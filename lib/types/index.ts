@@ -75,3 +75,10 @@ export type SortingItemType = {
   value: string;
   label: string;
 }
+
+export type FormDataType = {
+	state?: 'loading' | 'error' | 'success';
+	message?: string;
+}
+
+export type ThemeType = 'dark' | 'light';

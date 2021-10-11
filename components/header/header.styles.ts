@@ -32,7 +32,7 @@ export const DefaultTitle = styled.h1`
   letter-spacing: -1px;
   line-height: 1;
   text-shadow: .5rem .5rem .5rem rgba(0,0,0,0.1);
-  font-size: 4.5rem;
+  font-size: 6rem;
   @media only screen and (max-width: 599px) {
     font-size: 3rem;
   }

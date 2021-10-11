@@ -5,3 +5,12 @@ export const Grid = styled.main`
 		max-width: 44rem; 
 	}
 `
+
+export const Input = styled.input`
+	height: 3rem;
+	outline: none;
+`
+
+export const Form = styled.form`
+	min-width: 30rem;
+`

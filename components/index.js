@@ -6,6 +6,7 @@ export { Nav } from './nav/nav';
 export { Page } from './page/page';
 export { Post } from './post/post';
 export { RegisterForm } from './register-form/register-form';
+export { SearchAutocomplete } from './search-autocomplete/search-autocomplete';
 export { SearchBar } from './search-bar/search-bar';
 export { SearchCurrentFilters } from './search-current-filters/search-current-filters';
 export { SearchFiltersMenu } from './search-filters-menu/search-filters-menu';

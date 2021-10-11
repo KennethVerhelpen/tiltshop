@@ -25,7 +25,7 @@ export const HomeView = (props: HomeViewProps) => {
   
   return (
     <>
-      <Header	rotation={true}/>
+      <Header	theme={'dark'} rotation={true}/>
 			<SearchContainer
 				indexName={indexName}
 				searchClient={searchClient}

@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { Nav, Footer } from '../../components';
 import { TypeType } from '../../lib/types';
 import { BackgroundWrapper, Main } from './page.styles';
+import clsx from 'clsx';
 
 export type PageProps = {
 	video?: string,
@@ -18,10 +19,11 @@ export type PageProps = {
 	history?: string,
 	types?: TypeType[],
 	bgImageUrl?: string
+	theme?: 'dark' | 'light';
 }
 
 export const Page = (props: PageProps) => {
-	const { types, video, ogImageUrl, description, alt, title, menu, children, activePage, history, bgImageUrl } = {...defaultProps, ...props};
+	const { theme, types, video, ogImageUrl, description, alt, title, menu, children, activePage, history, bgImageUrl } = {...defaultProps, ...props};
 
 	return (
 		<>
@@ -40,9 +42,9 @@ export const Page = (props: PageProps) => {
 				<meta name={'twitter:card'} content={'summary_large_image'} />
 			</Head>
 			<Nav types={types} history={history} menu={menu} activePage={activePage}></Nav>
-			<Main className={'flex pt-56 layout-column layout-align-start-center'}>{children}</Main>
+			<Main className={clsx(theme === 'dark' ? 'bg-secondary-900' : null, 'flex pt-128 layout-column layout-align-start-center')}>{children}</Main>
 			<Footer/>
-			<BackgroundWrapper className={'width-100 absolute layout-column'}>
+			{/* <BackgroundWrapper className={'width-100 absolute layout-column'}>
 				<div className={'hide-gt-xs width-100 height-100'}>
 					<Image
 						src={'/images/backgrounds/mobile-background.jpg'}
@@ -70,14 +72,15 @@ export const Page = (props: PageProps) => {
 							<source src={video} type={'video/mp4'} />
 						</video>
 					}
-			</BackgroundWrapper>
+			</BackgroundWrapper> */}
 		</>
 	);
 }
 
 const defaultProps = {
 	menu: true,
-	video: '/videos/noise.mp4',
+	theme: 'light',
+	// video: '/videos/noise.mp4',
 	image: 'https://tiltshop.co/_next/image?url=%2Fimages%2Fmeta%2Fdefault-meta.jpg&w=1200&q=100', 
 	description: `Discover the best hand-picked items of ${new Date().getFullYear()} sorted out just for cinema, tv shows and video games lovers.`,
 	alt: 'Best items for cinema, tv & gaming lovers',
