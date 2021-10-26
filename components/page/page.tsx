@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 import { Nav, Footer } from '../../components';
 import { TypeType } from '../../lib/types';
-import { BackgroundWrapper, Main } from './page.styles';
+import * as S from './page.styles';
 import clsx from 'clsx';
 
 export type PageProps = {
@@ -41,8 +41,8 @@ export const Page = (props: PageProps) => {
 				<meta name={'twitter:title'} content={description} />
 				<meta name={'twitter:card'} content={'summary_large_image'} />
 			</Head>
-			<Nav types={types} history={history} menu={menu} activePage={activePage}></Nav>
-			<Main className={clsx(theme === 'dark' ? 'bg-secondary-900' : null, 'flex pt-128 layout-column layout-align-start-center')}>{children}</Main>
+			<Nav types={types} history={history} menu={menu} activePage={activePage}/>
+			<S.Main className={clsx(theme === 'dark' ? 'dark' : null, 'flex layout-column layout-align-start-center')}>{children}</S.Main>
 			<Footer/>
 			{/* <BackgroundWrapper className={'width-100 absolute layout-column'}>
 				<div className={'hide-gt-xs width-100 height-100'}>

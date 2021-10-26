@@ -30,6 +30,7 @@ export const Soon = styled.span`
 export const Shape = styled.div`
   height: 30rem;
   min-width: 20rem;
+  max-width: 20rem;
 
   .image-wrapper::before {
     top: 0;

@@ -8,9 +8,11 @@ export const Shape = styled.nav`
   position: fixed;
   background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(1.25rem);
+
   > div:last-of-type {
     min-height: 2.125rem;
   }
+
   > div:first-of-type {
     min-height: 2.875rem;
   }

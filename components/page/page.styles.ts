@@ -12,4 +12,9 @@ export const BackgroundWrapper = styled.div`
 
 export const Main = styled.main`
   z-index: 1;
+  padding-top: 5rem;
+
+  &.dark {
+    background-color: black;
+  }
 `

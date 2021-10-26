@@ -54,7 +54,7 @@ export const Nav = (props: NavProps) => {
 				</div>
 			</div>
 			{ menu ?
-				<div className={'border-top border-secondary-700 layout-row layout-align-center-center flex-none hide-xs width-100'}>
+				<div className={'border-top border-bottom border-secondary-800 layout-row layout-align-center-center flex-none hide-xs width-100'}>
 					<ul className={'small flex-noshrink layout-row layout-align-center-stretch p-0 m-0 list-reset'}>
 						<li className={'layout-row layout-align-center-center'}>
 							<Link href={'/'}>

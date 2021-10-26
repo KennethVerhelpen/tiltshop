@@ -1,8 +1,8 @@
 import prisma from '../lib/prisma';
-import { TypeType} from '../lib/types';
+import { TypeType, TopicType } from '../lib/types';
 import { Page, SearchAutocomplete } from '../components';
 import { algoliaTopicsIndexName, algoliaSearchClient } from './api/algolia';
-import { HomeView } from '../views';
+import { HomeView, NewHomeView } from '../views';
 
 import algoliasearch from 'algoliasearch';
 import { getAlgoliaResults } from '@algolia/autocomplete-js';
@@ -14,10 +14,11 @@ import { getAlgoliaResults } from '@algolia/autocomplete-js';
 
 type HomeProps = {
   types: TypeType[];
+  topics: TopicType[];
 };
 
 const Home = (props: HomeProps) => {
-	const { types } = { ...props };
+	const { types, topics } = { ...props };
 	
 	return (
 		<Page types={types} theme={'dark'}>
@@ -40,13 +41,15 @@ const Home = (props: HomeProps) => {
           },
         ]}
       /> */}
-			<HomeView searchClient={algoliaSearchClient} indexName={algoliaTopicsIndexName} />
+			{/* <HomeView searchClient={algoliaSearchClient} indexName={algoliaTopicsIndexName} /> */}
+      <NewHomeView topics={topics}/>
 		</Page>
 	);
 };
 
 export async function getStaticProps() {
 	const types = await prisma.type.findMany();
+  const topics = await prisma.topic.findMany({});
 
 	// TIP: Uncomment to push new indexes to Algolia
 	// const topics = await prisma.topic.findMany();
@@ -55,7 +58,8 @@ export async function getStaticProps() {
 	
   return {
     props: {
-      types
+      types,
+      topics,
     }
   }
 }
