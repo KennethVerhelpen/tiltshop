@@ -39,7 +39,7 @@ export const Subheading = (props: SubheadingProps) => {
 }
 
 export const Header = (props: HeaderProps) => {
-  const { className, theme, title, category, medium, subtitle, rotatingTexts, rotation, ...restProps } = {...defaultProps, ...props};
+  const { className, theme, title, category, medium, subtitle, rotatingTexts, rotation, ...restProps } = { ...defaultProps, ...props };
   const [ visibleText, setVisibleText ] = useState(0);
 
   const handleRotatingTextChange = () => {
@@ -60,7 +60,7 @@ export const Header = (props: HeaderProps) => {
   }
 
   return (
-    <Section className={clsx(className, 'pt-xs-128 pb-xs-32 text-center layout-column layout-align-center-center')} {...restProps}>
+    <Section className={clsx(className, 'text-center layout-column layout-align-center-center')} {...restProps}>
       <div className={'pt-32 container-lg layout-column layout-align-center-center flex'}>
         { title
           ? <CustomTitle className={clsx({'text-secondary-100' : theme === 'dark'}, 'scale-in speed-10 mt-16 mb-16 strong')}>{title}</CustomTitle>

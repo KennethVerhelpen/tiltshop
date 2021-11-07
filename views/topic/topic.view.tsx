@@ -27,7 +27,7 @@ export const TopicView = (props: TopicViewProps) => {
       />
       <S.Grid className={'container-lg p-0 layout-column'}>
         {topic.htmlDescription && topic.htmlDescription.length &&
-          <S.Description className={'fade-in-bottom speed-5 blocktext serif px-xs-32 px-gt-xs-64 pb-64 text-center'}>
+          <S.Description className={'fade-in-bottom speed-5 blocktext px-xs-32 px-gt-xs-64 pb-64 text-center'}>
             {topic.htmlDescription.length > 1500 && !isExpanded ? 
               <div dangerouslySetInnerHTML={createMarkup(`${topic.htmlDescription.slice(0,1500)}...`)}></div>
               :

@@ -80,7 +80,7 @@ export const Nav = (props: NavProps) => {
 														case 'electronics': return <DevicesOtherTwoTone className={'m-8'} style={{ fontSize: 16 }}/>
 													}
 												})()}
-												<span className='text-capitalize text-truncate'>
+												<span className={'text-capitalize text-truncate'}>
 													{(() => {
 														switch(type.slug) {
 															case 'movies': return 'movies'

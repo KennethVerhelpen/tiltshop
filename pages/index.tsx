@@ -1,11 +1,12 @@
+import { Fragment } from 'react';
+
+import { getAlgoliaResults } from '@algolia/autocomplete-js';
+
 import prisma from '../lib/prisma';
 import { TypeType, TopicType } from '../lib/types';
 import { Page, SearchAutocomplete } from '../components';
-import { algoliaTopicsIndexName, algoliaSearchClient } from './api/algolia';
-import { HomeView, NewHomeView } from '../views';
-
-import algoliasearch from 'algoliasearch';
-import { getAlgoliaResults } from '@algolia/autocomplete-js';
+import { HomeView } from '../views';
+import '@algolia/autocomplete-theme-classic';
 
 // TIP: Uncomment to push new indexes to Algolia
 // import { Topic } from "../components";
@@ -22,27 +23,7 @@ const Home = (props: HomeProps) => {
 	
 	return (
 		<Page types={types} theme={'dark'}>
-			{/* <SearchAutocomplete
-        openOnFocus={true}
-        getSources={({ query }) => [
-          {
-            sourceId: 'topics',
-            getItems() {
-              return getAlgoliaResults({
-                searchClient: algoliaSearchClient,
-                queries: [
-                  {
-                    indexName: 'tiltshop-topics',
-                    query,
-                  },
-                ],
-              });
-            },
-          },
-        ]}
-      /> */}
-			{/* <HomeView searchClient={algoliaSearchClient} indexName={algoliaTopicsIndexName} /> */}
-      <NewHomeView topics={topics}/>
+      <HomeView topics={topics}/>
 		</Page>
 	);
 };

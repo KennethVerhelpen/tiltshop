@@ -1,7 +1,10 @@
-import { ArrowForwardRounded } from '@material-ui/icons';
+import React, { ForwardedRef } from 'react';
 import clsx from 'clsx';
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
+
+import { ArrowForwardRounded } from '@material-ui/icons';
+
 import { TopicType, TypeType } from '../../lib/types';
 import * as S from './topic.styles';
 
