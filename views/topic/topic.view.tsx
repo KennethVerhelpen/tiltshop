@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { createMarkup } from '../../lib/utils';
 import { TopicType, ArticleType, TypeType } from '../../lib/types';
@@ -14,25 +14,31 @@ export type TopicViewProps = {
 export const TopicView = (props: TopicViewProps) => {
 	const { topic, articles, type } = { ...props };
   const [ isExpanded, setIsExpanded ] = useState<boolean>(false);
+  const [ description, setDescription ] = useState<ArticleType['description'] | any>(undefined);
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
   }
+
+  useEffect(() => {
+    if (topic.htmlDescription.length > 1500 && !isExpanded) {
+      setDescription(createMarkup(`${topic.htmlDescription.slice(0,1500)}...`))
+    } else {
+      setDescription(createMarkup(topic.htmlDescription))
+    }
+  }, [topic])
   
   return (
     <>
       <Header
+        className={'pt-128 pb-64'}
         title={topic.name}
-        medium={topic.name}
+        topic={topic.name}
       />
       <S.Grid className={'container-lg p-0 layout-column'}>
         {topic.htmlDescription && topic.htmlDescription.length &&
           <S.Description className={'fade-in-bottom speed-5 blocktext px-xs-32 px-gt-xs-64 pb-64 text-center'}>
-            {topic.htmlDescription.length > 1500 && !isExpanded ? 
-              <div dangerouslySetInnerHTML={createMarkup(`${topic.htmlDescription.slice(0,1500)}...`)}></div>
-              :
-              <div dangerouslySetInnerHTML={createMarkup(topic.htmlDescription)}></div>
-            }
+            <div dangerouslySetInnerHTML={description}></div>
             { topic.htmlDescription.length > 1500 &&
               <>
                 {' '}

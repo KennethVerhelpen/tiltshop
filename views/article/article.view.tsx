@@ -20,7 +20,7 @@ export const ArticleView = (props: ArticleViewProps) => {
           <header>
             <h1 className={'strong mb-8'}>{article.title}</h1>
             <h2 className={'h6 mb-16'}>{topic.name}</h2>
-            <h3 className={'p text-capitalize mb-32 text-secondary-500'}>{type.name}</h3>
+            <h3 className={'p text-capitalize mb-32 text-primary-500'}>{type.name}</h3>
             <p className={'lh-3 h6 mb-32'}>{article.description}</p>
             {article.details && article.details.length > 0 ? (
               <>
@@ -44,7 +44,7 @@ export const ArticleView = (props: ArticleViewProps) => {
               href={article.trackingUrl}
               target={'_blank'}
               rel={'sponsored'}
-              className={'text-left btn btn-outlined btn-md btn-secondary layout-row layout-align-start-center'}
+              className={'text-left btn btn-outlined btn-md btn-primary layout-row layout-align-start-center'}
             >
               <span className={'flex'}>See on <b>Amazon</b></span>
               <ArrowForwardRounded style={{ fontSize: 20 }}/>
@@ -53,7 +53,7 @@ export const ArticleView = (props: ArticleViewProps) => {
         </section>
       </div>
 
-      <footer className={'py-64 layout-column layout-align-center-center border-top border-secondary-200'}>
+      <footer className={'py-64 layout-column layout-align-center-center border-top border-primary-200'}>
         <h4 className={'p-32 bold text-center'}>Other cool articles you may like</h4>
         <main className={'layout-row layout-wrap'}>
           {articles.slice(0,3).map(article => (

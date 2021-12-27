@@ -33,11 +33,11 @@ export const Article = (props: ArticleProps) => {
 			href={article.trackingUrl}
 			target={'_blank'}
 		>
-			<Shape className={'bg-secondary-900 relative width-100 layout-column layout-align-end-stretch rounded-xl overflow-hidden cursor-pointer'}>
+			<Shape className={'bg-primary-900 relative width-100 layout-column layout-align-end-stretch rounded-xl overflow-hidden cursor-pointer'}>
 				<div className={'flex'}></div>
 				<Main className={clsx({'pb-32' : disabled}, 'layout-column layout-align-start-start pt-32 px-32')}>
 					{typeName || topicName ?
-						<span className={'text-secondary-500 small mb-8 text-capitalize'}>
+						<span className={'text-primary-500 small mb-8 text-capitalize'}>
 							{typeName ? <span>{typeName}</span> : null }
 							{typeName && topicName ? <span>&nbps;&nbsp;</span> : null }
 							{typeName ? <span>{topicName}</span> : null }
@@ -45,7 +45,7 @@ export const Article = (props: ArticleProps) => {
 						: null 
 					}
 					{article.title ?
-						<span className={'text-secondary-100 strong h6 mb-8'}>
+						<span className={'text-primary-100 strong h6 mb-8'}>
 						{article.title.length > 45
 							? `${article.title.slice(0,45)}...`
 							: article.title}
@@ -55,25 +55,25 @@ export const Article = (props: ArticleProps) => {
 					{ !disabled &&
 						<>
 							{ article.description &&
-								<span className={'small mb-8 text-secondary-500'}>
+								<span className={'small mb-8 text-primary-500'}>
 									<span>{article.description.slice(0,20)}...</span>
 									{' '}
 									<Link href={`/${typeSlug}/${topicSlug}/${article.slug}`}>
-										<span className={'underline text-secondary-300'} aria-label={'Read more'}>Read more</span>
+										<span className={'underline text-primary-300'} aria-label={'Read more'}>Read more</span>
 									</Link>
 								</span>
 								}
 							{ article.trackingUrl ? 
-								<BudgetRangeStyled className={'rounded-sm px-16 py-4 text-secondary-100'} amount={price}/>
-							: <span className={'rounded-sm px-16 py-4 text-secondary-100 border border-secondary-100'}>Out of stock</span>}
+								<BudgetRangeStyled className={'rounded-sm px-16 py-4 text-primary-100'} amount={price}/>
+							: <span className={'rounded-sm px-16 py-4 text-primary-100 border border-primary-100'}>Out of stock</span>}
 						</>
 					}
 				</Main>
 				{ !disabled &&
 					<Footer className={clsx({'invisible' : article.trackingUrl === null }, 'px-32 py-16 layout-row layout-align-start-center')}>
-						<span className={'flex text-truncate text-secondary-100'}>See on <b>Amazon</b></span>
+						<span className={'flex text-truncate text-primary-100'}>See on <b>Amazon</b></span>
 						<IconButton className={'layout layout-align-center-center p-8 rounded'}>
-							<ArrowForwardRounded className={'text-secondary-100'} style={{ fontSize: 16 }}/>
+							<ArrowForwardRounded className={'text-primary-100'} style={{ fontSize: 16 }}/>
 						</IconButton>
 					</Footer>
 				}

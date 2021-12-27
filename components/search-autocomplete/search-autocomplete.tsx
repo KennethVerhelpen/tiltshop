@@ -4,8 +4,9 @@ import { render } from 'react-dom';
 import { autocomplete, getAlgoliaResults } from '@algolia/autocomplete-js';
 import { Global, css } from '@emotion/react'
 
+import { useWindowSize } from '../../hooks';
 import { algoliaSearchClient } from '../../pages/api/algolia';
-import * as S from './search-autocomplete.styles';
+import { BREAKPOINTS, COLORS } from '../../styles/design-system/variables';
 
 export function Autocomplete(props) {
   const containerRef = useRef(null);
@@ -29,10 +30,11 @@ export function Autocomplete(props) {
     };
   }, [props]);
 
-  return <div ref={containerRef} />;
+  return <div ref={containerRef} className="autocomplete-wrapper"/>;
 }
 
 export const SearchAutocomplete = () => {
+  const { width } = useWindowSize();
   return (
     <>
       <Global
@@ -43,15 +45,22 @@ export const SearchAutocomplete = () => {
           }
           .aa-Autocomplete {
             border: none;
-            width: 36rem;
+            max-width: 36rem;
+            width: 100%;
+            @media only screen and (min-width: ${BREAKPOINTS.xs}) {
+              width: 100%;
+              min-width: 36rem;
+            }
           }
           .aa-InputWrapperSuffix {
             min-height: 4.5rem;
           }
-          .aa-Form {
+          .aa-Form, .aa-Form:focus-within {
             border-radius: 0.75rem;
             border: 0;
+            border: none;
             outline: none;
+            box-shadow: none;
           }
           .aa-Panel {
             z-index: 1;
@@ -62,14 +71,66 @@ export const SearchAutocomplete = () => {
           .aa-Item {
             padding: 0 1rem;
           }
-          
+          .aa-SubmitIcon {
+            display: none;
+          }
+          .aa-InputWrapperPrefix,
+          .aa-InputWrapperSuffix {
+            height: auto;
+            padding: 0 1rem;
+          }
+          .aa-ClearIcon {
+            color: ${COLORS.PRIMARY_500} !important; 
+          }
+          .aa-Input::placeholder {
+            color: ${COLORS.PRIMARY_500};
+          }
+          .aa-SubmitButton {
+            width: auto;
+            padding: 0.5rem;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            border-radius: 2rem;
+            background-color: ${COLORS.PRIMARY_300};
+            color: ${COLORS.PRIMARY_500} !important;
+          }
+          .aa-SubmitButton:before {
+            opacity: 0.5;
+            content: 'search';
+            font-size: 1.25rem;
+            font-family: 'Material Icons Two Tone';
+          }
+          .aa-DetachedSearchButton {
+            background: white;
+            border: none;
+            border-radius: 0.5rem;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            min-height: 3.25rem;
+            display: flex;
+            color: black;
+          }
+          .aa-DetachedSearchButtonIcon {
+            display: none;
+          }
+          .autocomplete-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
         `}
       />
       <Autocomplete
         open={true}
         openOnFocus={true}
-        // debug={true}
-        placeholder={'e.g. Harry Potter, Stranger Things, Headphones...'}
+        placeholder={width <= 680 ? 'Browse products' : 'e.g. Harry Potter, Stranger Things, Headphones...' }
         getSources={({ query }) => [
           {
             sourceId: 'topics',
@@ -84,38 +145,16 @@ export const SearchAutocomplete = () => {
                 ],
               });
             },
-            
             templates: {
               item({ item, components }) {
                 return (
-                  <div className="aa-ItemWrapper">
+                  <a href={`/${item.typeSlug}/${item.slug}`} className="aa-ItemLink">
                     <div className="aa-ItemContent">
-                      <div className="aa-ItemContentBody">
-                        <div className="aa-ItemContentTitle">
-                          <components.Snippet hit={item} attribute="name" />
-                        </div>
-                        <div className="aa-ItemContentDescription">
-                          <components.Snippet hit={item} attribute="description" />
-                        </div>
+                      <div className="aa-ItemTitle">
+                        <components.Highlight hit={item} attribute="name" />
                       </div>
                     </div>
-                    <div className="aa-ItemActions">
-                      <button
-                        className="aa-ItemActionButton aa-DesktopOnly aa-ActiveOnly"
-                        type="button"
-                        title="Select"
-                      >
-                        <svg
-                          viewBox="0 0 24 24"
-                          width="20"
-                          height="20"
-                          fill="currentColor"
-                        >
-                          <path d="M18.984 6.984h2.016v6h-15.188l3.609 3.609-1.406 1.406-6-6 6-6 1.406 1.406-3.609 3.609h13.172v-4.031z" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
+                  </a>
                 )
               },
               noResults() {

@@ -8,28 +8,42 @@ import * as S from './page.styles';
 import clsx from 'clsx';
 
 export type PageProps = {
-	video?: string,
-	ogImageUrl?: string,
-	description?: string,
-	alt?: string,
-	title?: string,
-	menu?: boolean,
-	children?: ReactNode,
 	activePage?: string,
-	history?: string,
-	types?: TypeType[],
+	alt?: string,
 	bgImageUrl?: string
+	children?: ReactNode,
+	description?: string,
+	history?: string,
+	menu?: boolean,
+	nav? : boolean;
+	ogImageUrl?: string,
 	theme?: 'dark' | 'light';
+	title?: string,
+	types?: TypeType[],
+	video?: string,
 }
 
 export const Page = (props: PageProps) => {
-	const { theme, types, video, ogImageUrl, description, alt, title, menu, children, activePage, history, bgImageUrl } = {...defaultProps, ...props};
+	const {
+		activePage,
+		alt,
+		bgImageUrl,
+		children,
+		description,
+		history,
+		menu,
+		nav,
+		ogImageUrl,
+		theme,
+		title,
+		types,
+		video,
+	} = {...defaultProps, ...props};
 
 	return (
 		<>
 			<Head>
 				<meta charSet={'UTF-8'} />
-				<link rel={'icon'} href={'/favicon.ico'} />
 				<meta name={'viewport'} content={'initial-scale=1.0, width=device-width'} />
 				<title>Tiltshop: {title}</title>
 				<meta name={'keywords'} content={'Cinema, Movies, Tv shows, Video games'} />
@@ -40,9 +54,11 @@ export const Page = (props: PageProps) => {
 				<meta property={'og:url'} content={'http://tiltshop.co'} />
 				<meta name={'twitter:title'} content={description} />
 				<meta name={'twitter:card'} content={'summary_large_image'} />
+				<link rel={'icon'} href={'/favicon.ico'} />
+				<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone&display=block" rel="preconnect" />
 			</Head>
-			<Nav types={types} history={history} menu={menu} activePage={activePage}/>
-			<S.Main className={clsx(theme === 'dark' ? 'dark' : null, 'flex layout-column layout-align-start-center')}>{children}</S.Main>
+			{nav ? <Nav types={types} history={history} menu={menu} activePage={activePage}/> : null}
+			<S.Main nav={nav} menu={menu} className={clsx(theme === 'dark' ? 'dark' : null, 'flex layout-column layout-align-start-center')}>{children}</S.Main>
 			<Footer/>
 			{/* <BackgroundWrapper className={'width-100 absolute layout-column'}>
 				<div className={'hide-gt-xs width-100 height-100'}>
@@ -79,6 +95,7 @@ export const Page = (props: PageProps) => {
 
 const defaultProps = {
 	menu: true,
+	nav: true,
 	theme: 'light',
 	// video: '/videos/noise.mp4',
 	image: 'https://tiltshop.co/_next/image?url=%2Fimages%2Fmeta%2Fdefault-meta.jpg&w=1200&q=100', 

@@ -1,7 +1,7 @@
 import { useState, useEffect, ReactNode } from 'react';
 import clsx from 'clsx';
 
-import { ThemeType } from '../../lib/types';
+import { ThemeType, TopicType } from '../../lib/types';
 import { createMarkup } from '../../lib/utils';
 import { Section, DefaultTitle, CustomTitle } from './header.styles';
 
@@ -9,7 +9,8 @@ export type HeaderProps = {
   className?: string;
   title?: string;
   category?: string;
-  medium?: string;
+  topic?: TopicType['name'];
+  align?: 'left' | 'center';
   subtitle?: string | ReactNode;
   rotation?: boolean;
   rotatingTexts?: string[];
@@ -18,6 +19,7 @@ export type HeaderProps = {
 
 const defaultProps = {
   rotation: false,
+  align: 'center',
 	rotatingTexts: [ 'cinema lovers', 'tv show addicts', 'passionate gamers' ],
 }
 
@@ -29,17 +31,22 @@ export type SubheadingProps = {
 
 export const Subheading = (props: SubheadingProps) => {
   const { theme, text } = { ...props};
+  const [content, setContent] = useState<any>(undefined)
+
+  useEffect(() => {
+    setContent(createMarkup(text));
+  }, [text])
   
   return (
     <h2
-      className={clsx({'text-secondary-500' : theme === 'dark'}, 'h6 fade-in-bottom speed-5 container-sm lh-2')}
-      dangerouslySetInnerHTML={createMarkup(text)}
+      className={clsx({'text-primary-500' : theme === 'dark'}, 'h6 fade-in-bottom speed-5 lh-2')}
+      dangerouslySetInnerHTML={content}
     />
   )
 }
 
 export const Header = (props: HeaderProps) => {
-  const { className, theme, title, category, medium, subtitle, rotatingTexts, rotation, ...restProps } = { ...defaultProps, ...props };
+  const { align, className, theme, title, category, topic, subtitle, rotatingTexts, rotation, ...restProps } = { ...defaultProps, ...props };
   const [ visibleText, setVisibleText ] = useState(0);
 
   const handleRotatingTextChange = () => {
@@ -60,12 +67,12 @@ export const Header = (props: HeaderProps) => {
   }
 
   return (
-    <Section className={clsx(className, 'text-center layout-column layout-align-center-center')} {...restProps}>
-      <div className={'pt-32 container-lg layout-column layout-align-center-center flex'}>
+    <Section className={clsx(className, align === 'left' ? 'layout-align-start-start text-left' : 'layout-align-center-center text-center', 'layout-column')} {...restProps}>
+      <div className={clsx(align === 'left' ? 'layout-align-start-start' : 'layout-align-center-center', 'pt-32 layout-column flex')}>
         { title
-          ? <CustomTitle className={clsx({'text-secondary-100' : theme === 'dark'}, 'scale-in speed-10 mt-16 mb-16 strong')}>{title}</CustomTitle>
+          ? <CustomTitle className={clsx({'text-primary-100' : theme === 'dark'}, 'scale-in speed-10 mt-16 mb-16 strong')}>{title}</CustomTitle>
           : <>
-              <DefaultTitle className={clsx({'text-secondary-100' : theme === 'dark'}, 'scale-in speed-10 hide-xs mt-16 mb-16 strong')}> 
+              <DefaultTitle className={clsx({'text-primary-100' : theme === 'dark'}, 'scale-in speed-10 hide-xs mt-16 mb-16 strong')}> 
                 <span>The best items for</span><br/>
                   { category ?
                     <span>{category} lovers</span>
@@ -77,13 +84,13 @@ export const Header = (props: HeaderProps) => {
                   </span>
                 }
               </DefaultTitle>
-              <DefaultTitle className={clsx({'text-secondary-100' : theme === 'dark'}, 'scale-in speed-10 mt-16 mb-32 strong hide show-xs')}>The best items for cinema, tv & video game lovers.</DefaultTitle>
+              <DefaultTitle className={clsx({'text-primary-100' : theme === 'dark'}, 'scale-in speed-10 mt-16 mb-32 strong hide show-xs')}>The best items for cinema, tv & video game lovers.</DefaultTitle>
             </>
         }
-        { medium &&
+        { topic &&
           <Subheading
             theme={theme}
-            text={`The best items for <b>{medium} fans</b> in <b>${new Date().getFullYear()}.`}
+            text={`The best items for <b>${topic} fans</b> in <b>${new Date().getFullYear()}.`}
           />
         }
         { subtitle &&
@@ -92,7 +99,7 @@ export const Header = (props: HeaderProps) => {
             text={subtitle}
           />
         }
-        { (!medium && !subtitle) &&
+        { (!topic && !subtitle) &&
           <Subheading
             theme={theme}
             text={'A list of great products hand-picked just for you.'}

@@ -31,6 +31,7 @@ export async function getStaticPaths() {
 	const articles = await prisma.article.findMany();
 	const topics = await prisma.topic.findMany();
 	const types = await prisma.type.findMany();
+	await prisma.$disconnect();
 
   const paths = articles.map(article => {
 		const currentType = types.find(type => type.id === article.typeId)
@@ -81,6 +82,8 @@ export async function getStaticProps({
 			typeId: currentType.id
 		}, take: 3
 	});
+
+	await prisma.$disconnect();
 
   return {
     props: {

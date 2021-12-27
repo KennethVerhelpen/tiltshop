@@ -48,9 +48,9 @@
   &:disabled:hover,
   &:disabled:active {
     box-shadow: none;
-    color: $secondary-700;
-    background: $secondary-300;
-    border-color: $secondary-300;
+    color: $primary-700;
+    background: $primary-300;
+    border-color: $primary-300;
 
     &.loading {
       .btn-text {
@@ -58,7 +58,7 @@
       }
 
       .loader svg circle {
-        stroke: $secondary-700;
+        stroke: $primary-700;
       }
     }
   }

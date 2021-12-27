@@ -1,5 +1,10 @@
 import styled from '@emotion/styled';
 
+export type MainProps = {
+  menu: boolean;
+  nav: boolean;
+}
+
 export const BackgroundWrapper = styled.div`
   top: 0;
   left: 0;
@@ -10,9 +15,12 @@ export const BackgroundWrapper = styled.div`
   max-width: 90rem;
 `
 
-export const Main = styled.main`
+export const Main = styled.main<MainProps>`
   z-index: 1;
-  padding-top: 5rem;
+
+  /* TODO: move this to the direct child */
+  padding-top: ${(props) => `${props.menu && props.nav ? '5rem' : 0 }`};
+
 
   &.dark {
     background-color: black;

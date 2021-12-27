@@ -82,7 +82,7 @@ export const BlogView = (props: BlogViewProps) => {
 							)}
 							{ form?.state === 'success' && (
 								<>
-									<MarkunreadMailboxTwoTone style={{ fontSize: 32 }} className={'mb-32 text-secondary-900'}/>
+									<MarkunreadMailboxTwoTone style={{ fontSize: 32 }} className={'mb-32 text-primary-900'}/>
 									<h3 className={'h3 strong mb-8'}>Hooray!</h3>
 									<p>You're now on the list.</p>
 								</>
@@ -107,10 +107,10 @@ export const BlogView = (props: BlogViewProps) => {
 										ref={emailInputDefault}
 										required
 										type={'email'}
-										className={'flex-grow text-secondary-900 px-8 border border-secondary-300 rounded-sm mr-16'}
+										className={'flex-grow text-primary-900 px-8 border border-primary-300 rounded-sm mr-16'}
 										placeholder={'Enter your email here...'}
 									/>
-									<button className={'btn btn-md btn-raised btn-secondary width-100'} type={'submit'}>Register now</button>
+									<button className={'btn btn-md btn-raised btn-primary width-100'} type={'submit'}>Register now</button>
 								</main>
 							: null 
 						}

@@ -31,7 +31,7 @@ export const SearchFiltersMenu = React.forwardRef((props, ref) => {
       <button
         aria-haspopup={'true'}
         aria-controls={'type-filter-menu'}
-        className={'btn btn-sm btn-secondary layout-row layout-align-start-center m-4'}
+        className={'btn btn-sm btn-primary layout-row layout-align-start-center m-4'}
         onClick={handleClick}>
         <FilterListTwoTone style={{ fontSize: 16 }} className={'mr-8'}/>
         <span>Filters</span>

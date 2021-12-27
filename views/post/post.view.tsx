@@ -38,10 +38,10 @@ export const PostView = (props: PostViewProps) => {
             </div>
             <div className={'layout-row layout-wrap'}>
               {topics.map((topic) => (
-                <span className={'mb-16 bg-secondary-300 py-4 px-8 rounded-sm'}>{topic.name}</span>
+                <span className={'mb-16 bg-primary-300 py-4 px-8 rounded-sm'}>{topic.name}</span>
               ))}
               {types.map((type) => (
-                <span className={'mb-16 bg-secondary-300 py-4 px-8 rounded-sm'}>{type.name}</span>
+                <span className={'mb-16 bg-primary-300 py-4 px-8 rounded-sm'}>{type.name}</span>
               ))}
             </div>
             
@@ -68,7 +68,7 @@ export const PostView = (props: PostViewProps) => {
                           <li>❌ {flaw}</li>
                         ))}
                       </ul>
-                      <button className={'btn btn-raised btn-secondary btn-md'}>See on amazon</button>
+                      <button className={'btn btn-raised btn-primary btn-md'}>See on amazon</button>
                     </div>
                     <Article article={article} topic={articleTopic} type={articleType}/>
                   </div>

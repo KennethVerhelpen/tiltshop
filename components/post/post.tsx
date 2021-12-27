@@ -39,7 +39,7 @@ export const Post: React.FC<PostProps> = (props) => {
 					</header>
 					<main className={'p-32'}>
 						<h3 className={'strong h2 mb-8'}>{post.title}</h3>
-						<span className={'small layout-row mb-32 text-secondary-500'}>
+						<span className={'small layout-row mb-32 text-primary-500'}>
 							{readingTime != null ? 
 								<>
 									<span>{readingTime} min. read</span>

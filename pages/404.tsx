@@ -4,7 +4,8 @@ import { ErrorView } from '../views';
 export default function Custom404() {
 
   return (
-    <Page> 
+    <Page
+      nav={false}> 
       <ErrorView />
     </Page>
   );
