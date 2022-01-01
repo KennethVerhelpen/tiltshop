@@ -12,5 +12,4 @@ export const BackgroundWrapper = styled.div`
 
 export const Main = styled.main`
   z-index: 1;
-  min-height: 100vh;
 `
