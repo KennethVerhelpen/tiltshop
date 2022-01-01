@@ -1,14 +1,14 @@
 import { useState, useEffect, ReactNode } from 'react';
 import clsx from 'clsx';
 
-import { ThemeType, TopicType } from '../../lib/types';
 import { createMarkup } from '../../lib/utils';
+import { ThemeType, TopicType, TypeType } from '../../lib/types';
 import { Section, DefaultTitle, CustomTitle } from './header.styles';
 
 export type HeaderProps = {
   className?: string;
   title?: string;
-  category?: string;
+  type?: TypeType['name'];
   topic?: TopicType['name'];
   align?: 'left' | 'center';
   subtitle?: string | ReactNode;
@@ -46,7 +46,7 @@ export const Subheading = (props: SubheadingProps) => {
 }
 
 export const Header = (props: HeaderProps) => {
-  const { align, className, theme, title, category, topic, subtitle, rotatingTexts, rotation, ...restProps } = { ...defaultProps, ...props };
+  const { align, className, theme, title, type, topic, subtitle, rotatingTexts, rotation, ...restProps } = { ...defaultProps, ...props };
   const [ visibleText, setVisibleText ] = useState(0);
 
   const handleRotatingTextChange = () => {
@@ -74,8 +74,8 @@ export const Header = (props: HeaderProps) => {
           : <>
               <DefaultTitle className={clsx({'text-primary-100' : theme === 'dark'}, 'scale-in speed-10 hide-xs mt-16 mb-16 strong')}> 
                 <span>The best items for</span><br/>
-                  { category ?
-                    <span>{category} lovers</span>
+                  { type ?
+                    <span>{type} lovers</span>
                   :
                   <span>
                     {rotatingTexts.map((text, index) => (

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { BREAKPOINTS } from '../../styles/design-system/variables';
 import { GridWidthType, HeaderWrapperType, HeaderContentType } from './home.view';
 
-const outsetSpace = '22rem';
+const outsetSpace = '18rem';
 
 export const Fading = styled.div`
   position: relative;

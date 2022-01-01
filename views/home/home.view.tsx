@@ -207,11 +207,14 @@ export const HomeView = (props: NewHomeViewProps) => {
 			<S.Fading className={'p-0 layout-column layout-gt-xs-row layout-align-center-center layout-align-gt-xs-center-start overflow-hidden'}>
 				{!media.xs &&
 					<div className={'layout-column layout-align-start-start flex-none pt-32 hide-xs'}>
-						{gridItems.slice(0, sideItemsNumber).map((topic, index) => (
-							<div key={topic.id} className={clsx({'cascade fade-in-bottom speed-5' : (index <= defaultGridRows - 1)}, 'p-8 layout-column layout-align-center-center')}>
-								<Topic className={'flex layout-column layout-align-center-center'} topic={topic} index={index} />
-							</div>
-						))}
+						{gridItems.slice(0, sideItemsNumber).map((topic, index) => {
+							const currentType = types?.find((type: TypeType) => type.id === topic.typeId);
+							return (
+								<div key={topic.id} className={clsx({'cascade fade-in-bottom speed-5' : (index <= defaultGridRows - 1)}, 'p-8 layout-column layout-align-center-center')}>
+									<Topic className={'flex layout-column layout-align-center-center'} topic={topic} type={currentType} index={index} />
+								</div>
+							)}
+						)}
 					</div>
 				}
 				<S.MiddleGrid width={gridWidth} className={'layout-column layout-gt-xs-row layout-wrap layout-align-center-center flex-gt-xs-none'}>
@@ -219,11 +222,12 @@ export const HomeView = (props: NewHomeViewProps) => {
 						// TODO: find a better way to get this?
 						const currentType = types?.find((type: TypeType) => type.id === topic.typeId);
 						return (
+							// As the topics are duplicated indefinitely and to avoid conflicts, the index is combined to the id to generate the key.
 							<Fragment key={topic.id + index}>
-								{ (index === headerIndex) &&
+								{(index === headerIndex) &&
 									<S.HeaderWrapper ref={headerWrapper} key={'header'} width={headerWidth} className={'layout-column layout-align-center-center mb-64 container-sm'}>
 										<S.HeaderContent position={headerParams.position} size={headerParams.size} blur={headerParams.blur} opacity={headerParams.opacity} className={clsx({'fixed' : !media.xs}, 'layout-column layout-align-center-center')}>
-											<Header align={media.xs ? 'left' : 'center'}	theme={'dark'} rotation={true} className={'mb-48'}/>
+											<Header align={media.xs ? 'left' : 'center'} theme={'dark'} rotation={true} className={'mb-48 mt-xs-48'}/>
 											<SearchAutocomplete/>
 										</S.HeaderContent>
 									</S.HeaderWrapper>
@@ -239,11 +243,14 @@ export const HomeView = (props: NewHomeViewProps) => {
 				</S.MiddleGrid>
 				{!media.xs &&
 					<div className={'layout-column layout-align-start-start flex-none pt-128 hide-xs'}>
-						{gridItems.slice(0, sideItemsNumber).map((topic, index) => (
-							<div key={topic.id} className={clsx({'cascade fade-in-bottom speed-5' : (index <= defaultGridRows - 1)}, 'p-8 layout-column layout-align-center-center')}>
-								<Topic className={'flex layout-column layout-align-center-center'} topic={topic} index={index} />
-							</div>
-						))}
+						{gridItems.slice(0, sideItemsNumber).map((topic, index) => {
+							const currentType = types?.find((type: TypeType) => type.id === topic.typeId);
+							return (
+								<div key={topic.id} className={clsx({'cascade fade-in-bottom speed-5' : (index <= defaultGridRows - 1)}, 'p-8 layout-column layout-align-center-center')}>
+									<Topic className={'flex layout-column layout-align-center-center'} topic={topic} type={currentType} index={index} />
+								</div>
+							)
+						})}
 					</div>
 				}
 			</S.Fading>

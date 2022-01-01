@@ -58,7 +58,7 @@ export const Page = (props: PageProps) => {
 				<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone&display=block" rel="preconnect" />
 			</Head>
 			{nav ? <Nav types={types} history={history} menu={menu} activePage={activePage}/> : null}
-			<S.Main nav={nav} menu={menu} className={clsx(theme === 'dark' ? 'dark' : null, 'flex layout-column layout-align-start-center')}>{children}</S.Main>
+			<S.Main className={clsx(theme === 'dark' ? 'bg-neutral-900' : 'bg-neutral-100', 'flex layout-column layout-align-start-center')}>{children}</S.Main>
 			<Footer/>
 			{/* <BackgroundWrapper className={'width-100 absolute layout-column'}>
 				<div className={'hide-gt-xs width-100 height-100'}>

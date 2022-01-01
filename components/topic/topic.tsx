@@ -39,18 +39,20 @@ export const Topic = (props: TopicProps) => {
 						
 					}
 					</S.Footer>
-					<S.ImageWrapper className={'image-wrapper'}>
-						<Image
-							quality={100}
-							layout={'fill'}
-							objectFit={'cover'}
-							objectPosition={'center'}
-							priority={index <= 16}
-							loading={index <= 16 ? 'eager' : 'lazy'}
-							src={`/images/topics/${topic.slug}/thumbnail.jpg`}
-							alt={topic.name}
-						/>
-					</S.ImageWrapper>
+					<S.ImagePosition>
+						<S.ImageWrapper className={'image-wrapper'}>
+							<Image
+								quality={100}
+								layout={'fill'}
+								objectFit={'cover'}
+								objectPosition={'center'}
+								priority={index <= 16}
+								loading={index <= 16 ? 'eager' : 'lazy'}
+								src={`/images/topics/${topic.slug}/thumbnail.jpg`}
+								alt={topic.name}
+							/>
+						</S.ImageWrapper>
+					</S.ImagePosition>
 				</S.Shape>
 			</article>
 		</Link>
