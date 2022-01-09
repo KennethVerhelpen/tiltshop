@@ -31,32 +31,37 @@ export const TopicView = (props: TopicViewProps) => {
   return (
     <>
       <Header
-        className={'pt-128 pb-64'}
+        align={'left'}
+        theme={'dark'}
+        animated={false}
+        className={'pt-128 pb-64 container-lg px-24'}
         title={topic.name}
         topic={topic.name}
       />
-      <S.Grid className={'container-lg p-0 layout-column'}>
+      <S.Grid className={'container-lg layout-column'}>
         {topic.htmlDescription && topic.htmlDescription.length &&
-          <S.Description className={'fade-in-bottom speed-5 blocktext px-xs-32 px-gt-xs-64 pb-64 text-center'}>
-            <div dangerouslySetInnerHTML={description}></div>
-            { topic.htmlDescription.length > 1500 &&
-              <>
-                {' '}
-                <a onClick={() => toggleExpanded()} aria-label={'Description expand'} className={'cursor-pointer underline'}>
-                  { isExpanded
-                    ? <span>Show less</span>
-                    : <span>Read more</span>
-                  }
-                </a>
-              </>
-            }
-          </S.Description>
+          <section className="px-8 pb-64">
+            <S.Description className={'text-primary-500 blocktext text-left'}>
+              <div dangerouslySetInnerHTML={description}></div>
+              { topic.htmlDescription.length > 1500 &&
+                <>
+                  {' '}
+                  <a onClick={() => toggleExpanded()} aria-label={'Description expand'} className={'cursor-pointer underline'}>
+                    { isExpanded
+                      ? <span>Show less</span>
+                      : <span>Read more</span>
+                    }
+                  </a>
+                </>
+              }
+            </S.Description>
+          </section>
         }
         { articles && articles.length > 0
           ? <div className={'layout-row layout-wrap layout-align-center-center mb-128'}>
               { articles.map((article: ArticleType, index: number) => (
                   <div key={article.id} className={'fade-in-bottom speed-5 cascade p-8 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50'}>
-                    <Article index={index} article={article} topic={topic} type={type}/>
+                    <Article theme={'dark'} index={index} article={article} topic={topic} type={type}/>
                   </div>
               ))}
             </div>

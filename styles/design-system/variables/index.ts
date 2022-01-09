@@ -20,7 +20,6 @@ export const COLORS = {
   NEUTRAL_900: 'hsl(100, 0%, 0%)',
 };
 
-
 export const BREAKPOINTS = {
   xs: '600px',
   sm: '960px',
@@ -35,3 +34,27 @@ export const RADIUSES = {
   lg: '0.625rem',
   xl: '1rem',
 };
+
+const sizeBase = 1;
+
+export const TYPOGRAPHY = {
+  SANS_SERIF: `"SF Pro Display", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif`,
+  SERIF: `'Frank Ruhl Libre', sans-serif`,
+  H1: `${sizeBase * 2.625}rem`,
+  H2: `${sizeBase * 2.35}rem`,
+  H3: `${sizeBase * 2}rem`,
+  H4: `${sizeBase * 1.5}rem`,
+  H5: `${sizeBase * 1.375}rem`,
+  H6: `${sizeBase * 1.25}rem`,
+  P: `${sizeBase}rem`,
+  SMALL: `${sizeBase * 0.875}rem`,
+  SMALLER: '80%',
+  BLOCKQUOTE: `${sizeBase * 1.25}rem`,
+  LINE_HEIGHT_1: 1.2,
+  LINE_HEIGHT_2: 1.4,
+  LINE_HEIGHT_3: 1.6,
+  LINE_HEIGHT_4: 1.8,
+  LINE_HEIGHT_5: 2,
+  LINE_HEIGHT_6: 2.2
+};
+

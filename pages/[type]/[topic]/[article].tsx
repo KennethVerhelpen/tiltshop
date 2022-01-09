@@ -17,6 +17,7 @@ export const ArticleDetails = (props: Props) => {
 		<>
 			<Page
 				menu={false}
+				theme={'dark'}
 				title={`${article.title} - ${topic.name}`}
 				description={article.description}
 				history={`/${type.slug}/${topic.slug}`}

@@ -13,11 +13,12 @@ export type PageProps = {
 	bgImageUrl?: string
 	children?: ReactNode,
 	description?: string,
+	footer?: boolean;
 	history?: string,
 	menu?: boolean,
 	nav? : boolean;
 	ogImageUrl?: string,
-	theme?: 'dark' | 'light';
+	theme?: 'dark' | 'light'; 
 	title?: string,
 	types?: TypeType[],
 	video?: string,
@@ -30,6 +31,7 @@ export const Page = (props: PageProps) => {
 		bgImageUrl,
 		children,
 		description,
+		footer,
 		history,
 		menu,
 		nav,
@@ -58,8 +60,8 @@ export const Page = (props: PageProps) => {
 				<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone&display=block" rel="preconnect" />
 			</Head>
 			{nav ? <Nav types={types} history={history} menu={menu} activePage={activePage}/> : null}
-			<S.Main className={clsx(theme === 'dark' ? 'bg-neutral-900' : 'bg-neutral-100', 'flex layout-column layout-align-start-center')}>{children}</S.Main>
-			<Footer/>
+			<S.Main className={clsx(theme === 'dark' ? 'bg-primary-900' : 'bg-neutral-100', 'flex layout-column layout-align-start-center')}>{children}</S.Main>
+			{footer ? <Footer/> : null}
 			{/* <BackgroundWrapper className={'width-100 absolute layout-column'}>
 				<div className={'hide-gt-xs width-100 height-100'}>
 					<Image
@@ -94,13 +96,14 @@ export const Page = (props: PageProps) => {
 }
 
 const defaultProps = {
+	activePage: undefined,
+	alt: 'Best items for cinema, tv & gaming lovers',
+	description: `Discover the best hand-picked items of ${new Date().getFullYear()} sorted out just for cinema, tv shows and video games lovers.`,
+	footer: true,
+	image: 'https://tiltshop.co/_next/image?url=%2Fimages%2Fmeta%2Fdefault-meta.jpg&w=1200&q=100', 
 	menu: true,
 	nav: true,
 	theme: 'light',
-	// video: '/videos/noise.mp4',
-	image: 'https://tiltshop.co/_next/image?url=%2Fimages%2Fmeta%2Fdefault-meta.jpg&w=1200&q=100', 
-	description: `Discover the best hand-picked items of ${new Date().getFullYear()} sorted out just for cinema, tv shows and video games lovers.`,
-	alt: 'Best items for cinema, tv & gaming lovers',
 	title: `Best items for cinema, tv & gaming lovers in ${new Date().getFullYear()}`,
-	activePage: undefined
+	// video: '/videos/noise.mp4',
 }

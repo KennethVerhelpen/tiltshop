@@ -1,3 +1,5 @@
+import { ArticleType, TopicType, TypeType } from "./types";
+
 export const throttleApi = (time, request) => {
   return (
     new Promise(function(resolve, reject){
@@ -32,4 +34,47 @@ export const getFormatedDate = (date: string) => {
 
 export  const createMarkup = (html) => {
   return {__html: html};
+}
+
+// Adding and populating missing data to the topics array.
+export const populateTopicsData = (topics: TopicType[], types: TypeType[]) => {
+  if (topics && types) {
+    topics.forEach((topic) => {
+      topic['typeName'] = types.find(type => type.id === topic.typeId).name;
+      topic['typeSlug'] = types.find(type => type.id === topic.typeId).slug;
+    }); return topics;
+  } else {
+    throw new Error(`Missing topics or types data.`);
+  }
+}
+
+// Adding and populating missing data to the articles array.
+export const populateArticlesData = (articles: ArticleType[], topics: TopicType[], types: TypeType[]) => {
+  if (articles && topics && types) {
+    articles.forEach((article) => {
+      // Pushing and converting price data into number
+      if (article.price && typeof article.price === 'string') {
+        const price = article.price
+        article['priceNumber'] = Number(price);
+      }
+      // Pushing and converting rating data into number
+      if (article.rating && typeof article.rating === 'string') {
+        article['ratingNumber'] = Number(article.rating);
+      }
+      // Pushing new type data
+      if (article.typeId) {
+        const type = types.find(type => type.id === article.typeId)
+        article['typeName'] = type.name;
+        article['typeSlug'] = type.slug;
+      }
+      // Pushing new topic data
+      if (article.topicId) {
+        const topic = topics.find(topic => topic.id === article.topicId)
+        article['topicName'] = topic.name;
+        article['topicSlug'] = topic.slug;
+      }
+    }); return articles;
+  } else {
+    throw new Error(`Missing articles, topics or types data.`);
+  }
 }

@@ -15,11 +15,13 @@ export type HeaderProps = {
   rotation?: boolean;
   rotatingTexts?: string[];
   theme?: ThemeType;
+  animated?: boolean;
 }
 
 const defaultProps = {
   rotation: false,
   align: 'center',
+  animated: true,
 	rotatingTexts: [ 'cinema lovers', 'tv show addicts', 'passionate gamers' ],
 }
 
@@ -27,10 +29,11 @@ const defaultProps = {
 export type SubheadingProps = {
    theme: ThemeType,
    text: string | ReactNode;
+   animated?: boolean;
 }
 
 export const Subheading = (props: SubheadingProps) => {
-  const { theme, text } = { ...props};
+  const { theme, text, animated } = { ...props};
   const [content, setContent] = useState<any>(undefined)
 
   useEffect(() => {
@@ -39,14 +42,14 @@ export const Subheading = (props: SubheadingProps) => {
   
   return (
     <h2
-      className={clsx({'text-primary-500' : theme === 'dark'}, 'h6 fade-in-bottom speed-5 lh-2')}
+      className={clsx(theme === 'dark' ? 'text-primary-400' : 'text-primary-500', {'scale-in speed-10' : animated }, 'h6 lh-2')}
       dangerouslySetInnerHTML={content}
     />
   )
 }
 
 export const Header = (props: HeaderProps) => {
-  const { align, className, theme, title, type, topic, subtitle, rotatingTexts, rotation, ...restProps } = { ...defaultProps, ...props };
+  const { align, className, theme, title, type, topic, subtitle, rotatingTexts, rotation, animated, ...restProps } = { ...defaultProps, ...props };
   const [ visibleText, setVisibleText ] = useState(0);
 
   const handleRotatingTextChange = () => {
@@ -68,11 +71,11 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <Section className={clsx(className, align === 'left' ? 'layout-align-start-start text-left' : 'layout-align-center-center text-center', 'layout-column')} {...restProps}>
-      <div className={clsx(align === 'left' ? 'layout-align-start-start' : 'layout-align-center-center', 'pt-32 layout-column flex')}>
+      <div className={clsx(align === 'left' ? 'layout-align-start-start' : 'layout-align-center-center', 'layout-column flex')}>
         { title
-          ? <CustomTitle className={clsx({'text-primary-100' : theme === 'dark'}, 'scale-in speed-10 mt-16 mb-16 strong')}>{title}</CustomTitle>
+          ? <CustomTitle className={clsx({'text-primary-100' : theme === 'dark'}, {'scale-in speed-10' : animated }, ' mt-16 mb-16 strong')}>{title}</CustomTitle>
           : <>
-              <DefaultTitle className={clsx({'text-primary-100' : theme === 'dark'}, 'scale-in speed-10 hide-xs mt-16 mb-16 strong')}> 
+              <DefaultTitle className={clsx({'text-primary-100' : theme === 'dark'}, {'scale-in speed-10' : animated }, 'hide-xs mt-16 mb-16 strong')}> 
                 <span>The best items for</span><br/>
                   { type ?
                     <span>{type} lovers</span>
@@ -84,24 +87,27 @@ export const Header = (props: HeaderProps) => {
                   </span>
                 }
               </DefaultTitle>
-              <DefaultTitle className={clsx({'text-primary-100' : theme === 'dark'}, 'scale-in speed-10 mt-16 mb-32 strong hide show-xs')}>The best items for cinema, tv & video game lovers.</DefaultTitle>
+              <DefaultTitle className={clsx({'text-primary-100' : theme === 'dark'}, {'scale-in speed-10' : animated }, 'mt-16 mb-32 strong hide show-xs')}>The best items for cinema, tv & video game lovers.</DefaultTitle>
             </>
         }
         { topic &&
           <Subheading
             theme={theme}
+            animated={animated}
             text={`The best items for <b>${topic} fans</b> in <b>${new Date().getFullYear()}.`}
           />
         }
         { subtitle &&
           <Subheading
             theme={theme}
+            animated={animated}
             text={subtitle}
           />
         }
         { (!topic && !subtitle) &&
           <Subheading
             theme={theme}
+            animated={animated}
             text={'A list of great products hand-picked just for you.'}
           />
         }

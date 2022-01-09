@@ -13,7 +13,7 @@ const Type = (props: Props) => {
 	const { types, type, topics } = { ...props };
 
 	return (
-		<Page 
+		<Page
 			title={`Best items for ${type.name} lovers`}
 			description={`Discover the best hand-picked items of ${new Date().getFullYear()} sorted out just for ${type.name} lovers.`}
 			activePage={type.slug}

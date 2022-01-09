@@ -21,7 +21,7 @@ export const Post: React.FC<PostProps> = (props) => {
 
 	return (
 			<Link href={`blog/${post.slug}`}>
-				<Shape className={clsx(className, 'layout-column rounded-xl border shadow-2 cursor-pointer')}>
+				<Shape className={clsx(className, 'bg-neutral-100 layout-column rounded-xl border shadow-2 cursor-pointer')}>
 					<header className={'p-8'}>
 						<ImageWrapper className={'relative height-100 width-100'}>
 							<Image

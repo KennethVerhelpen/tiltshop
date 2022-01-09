@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { COLORS } from '../../styles/design-system/variables';
 
 export const Grid = styled.main`
 	@media only screen and (max-width: 959px) and (max-width: 959px) {
@@ -15,6 +16,9 @@ export const Description = styled.div`
   p {
     line-height: 1.5;
     font-size: 1.125rem;
+  }
+  b {
+    color: ${COLORS.PRIMARY_300};
   }
 `
 

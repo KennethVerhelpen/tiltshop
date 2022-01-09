@@ -2,6 +2,7 @@ import { ArrowForwardRounded } from '@material-ui/icons';
 
 import { ArticleType, TopicType, TypeType } from '../../lib/types';
 import { Article  } from '../../components';
+import * as S from './article.styles';
 			
 export type ArticleViewProps = {
   article: ArticleType;
@@ -15,17 +16,19 @@ export const ArticleView = (props: ArticleViewProps) => {
   
   return (
     <main className={'container-lg'}>
-      <div className={'layout-column layout-gt-xs-row pt-gt-sm-128 pt-32 pb-128'}>
+      <div className={'layout-column layout-gt-xs-row pt-gt-sm-128 pt-32 pb-64'}>
         <section className={'flex-order-1 flex-order-gt-xs-0 flex p-16 p-gt-sm-32'}>
-          <header>
-            <h1 className={'strong mb-8'}>{article.title}</h1>
-            <h2 className={'h6 mb-16'}>{topic.name}</h2>
-            <h3 className={'p text-capitalize mb-32 text-primary-500'}>{type.name}</h3>
-            <p className={'lh-3 h6 mb-32'}>{article.description}</p>
+          <header className={'layout-column layout-align-start-start'}>
+            <S.Title className={'strong mb-8 text-neutral-100'}>{article.title}</S.Title>
+            <div className={'layout-row mb-32'}>
+              <h2 className={'display-inline-block small text-capitalize text-primary-300 bg-primary-700 p-8 rounded-sm mr-8'}>{topic.name}</h2>
+              <h3 className={'display-inline-block small text-capitalize text-primary-300 bg-primary-700 p-8 rounded-sm'}>{type.name}</h3>
+            </div>
+            <p className={'lh-3 h6 mb-32 text-primary-400'}>{article.description}</p>
             {article.details && article.details.length > 0 ? (
               <>
-                <h4 className={'bold h6 mb-16'}>Product details</h4>
-                <ul className={'lh-3 h6'}>
+                <h4 className={'bold h6 mb-16 text-primary-300'}>Product details</h4>
+                <ul className={'lh-3 h6 text-primary-400'}>
                   {article.details.split(';').map(detail => (
                     <li key={detail}>{detail}</li>
                   ))}
@@ -33,18 +36,15 @@ export const ArticleView = (props: ArticleViewProps) => {
               </>
             ) : null}
           </header>
-          <main>
-            
-          </main>
         </section>
         <section className={'flex-order-0 flex-order-gt-xs-1 flex-none p-16 p-gt-sm-32 layout-column layout-align-start-stretch layout-align-gt-xs-start-start'}>
           <div className={'layout-align-start-stretch layout-column'}>
-            <Article className={'mb-32'} disabled={true} article={article} topic={topic} type={type} />
+            <Article className={'mb-32'} theme={'dark'} disabled={true} article={article} topic={topic} type={type} />
             <a
               href={article.trackingUrl}
               target={'_blank'}
               rel={'sponsored'}
-              className={'text-left btn btn-outlined btn-md btn-primary layout-row layout-align-start-center'}
+              className={'text-left text-primary-900 border border-primary-100 px-16 py-16 rounded-lg bg-primary-100 layout-row layout-align-start-center'}
             >
               <span className={'flex'}>See on <b>Amazon</b></span>
               <ArrowForwardRounded style={{ fontSize: 20 }}/>
@@ -53,12 +53,12 @@ export const ArticleView = (props: ArticleViewProps) => {
         </section>
       </div>
 
-      <footer className={'py-64 layout-column layout-align-center-center border-top border-primary-200'}>
-        <h4 className={'p-32 bold text-center'}>Other cool articles you may like</h4>
+      <footer className={'pt-64 pb-128 layout-column layout-align-center-center border-top border-primary-800'}>
+        <h4 className={'p-32 bold text-center h3 text-primary-300'}>Other cool products that you may like</h4>
         <main className={'layout-row layout-wrap'}>
           {articles.slice(0,3).map(article => (
             <div key={article.id} className={'fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50'}>
-              <Article article={article} topic={topic} type={type}/>
+              <Article theme={'dark'} article={article} topic={topic} type={type}/>
             </div>
           ))}
         </main>

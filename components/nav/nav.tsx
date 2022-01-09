@@ -29,28 +29,30 @@ export const Nav = (props: NavProps) => {
 
 	return (
 		<Shape className={'layout-column layout-align-start-center'}>
-			<div className={'container-lg layout-align-stretch-center layout-row flex'}>
-				<div className={'flex hide-gt-xs layout-row layout-align-start-center'}>
-					{ history && BackHistory(history) }
-				</div>
-				<div className={'layout-row layout-align-start-center layout-align-xs-center-center flex'}>
-					<div className={'hide-xs'}>
-						{ history && !menu && BackHistory(history) }	
+			<div className={'border-bottom border-primary-800 width-100 layout-row'}>
+				<div className={'container-lg layout-align-stretch-center layout-row flex'}>
+					<div className={'flex hide-gt-xs layout-row layout-align-start-center'}>
+						{ history && BackHistory(history) }
 					</div>
-					<Link href={'/'}>
-						<a className={'text-primary-100 bold h6 serif'}>tilt.</a>
-					</Link>
-				</div>
-				<div className={'flex layout layout-align-end-center'}>
-					{/* TODO: Uncomment when blog is ready
-					<Link href={'/blog'}>
-						<a className='text-primary-100 px-16 small cursor-pointer'>Blog</a>
-					</Link> */}
-					<Link href={'/search'}>
-						<a aria-label={'Search'} title={'Search'} className={'layout text-primary-100 layout-align-center-center p-4 rounded cursor-pointer'}>
-							<SearchRounded style={{ fontSize: 20 }}/>
-						</a>
-					</Link>
+					<div className={'layout-row layout-align-start-center layout-align-xs-center-center flex'}>
+						<div className={'hide-xs'}>
+							{ history && !menu && BackHistory(history) }	
+						</div>
+						<Link href={'/'}>
+							<a className={'text-primary-100 bold h6 serif'}>tilt.</a>
+						</Link>
+					</div>
+					<div className={'flex layout layout-align-end-center'}>
+						{/* TODO: Uncomment when blog is ready
+						<Link href={'/blog'}>
+							<a className='text-primary-100 px-16 small cursor-pointer'>Blog</a>
+						</Link> */}
+						<Link href={'/search'}>
+							<a aria-label={'Search'} title={'Search'} className={'layout text-primary-100 layout-align-center-center p-4 rounded cursor-pointer'}>
+								<SearchRounded style={{ fontSize: 20 }}/>
+							</a>
+						</Link>
+					</div>
 				</div>
 			</div>
 			{ menu ?

@@ -40,7 +40,7 @@ export const RegisterForm = () => {
   };
 
 	return (
-		<form onSubmit={subscribe} className={'text-center rounded-xl layout-column layout-align-center-center bg-primary-900 width-100 flex p-32'}>
+		<form onSubmit={subscribe} className={'border border-primary-700 text-center rounded-xl layout-column layout-align-center-center bg-primary-900 width-100 flex p-32'}>
 			{ form ?
 				<main className={'layout-column layout-align-center-center'}>
 					{ form.state === 'success' && (

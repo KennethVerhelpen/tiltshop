@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, Fragment } from 'react';
 import clsx from 'clsx';
 
 import { PostType, FormDataType } from '../../lib/types';
@@ -48,28 +48,29 @@ export const BlogView = (props: BlogViewProps) => {
   return (
     <>
       <Header
+				theme={'dark'}
+				className={'pt-128 pb-64 container-sm'}
 				title={'Latest articles'}
 				subtitle={
-					<span>Our experts carefully and insatiably review <b>movies</b>, <b>tv shows</b> and <b>video games related products</b> from the web.</span>
+					`<span>Our experts carefully and insatiably review <b>movies</b>, <b>tv shows</b> and <b>video games related products</b> from the web.</span>`
 				}
 			/>
 			{posts.length > 0
-				? <S.Grid className={'p-0 layout-column'}>
-						<div className={'container-lg layout-row layout-wrap layout-align-start-stretch'}>
+				? <S.Grid className={'p-0 layout-column pb-128'}>
+						<div className={'container-xl layout-row layout-wrap layout-align-start-stretch'}>
 							{posts.map((post: PostType, index: number) => (
-								<div
-									key={post.slug}
-									className={clsx(
-										index ? `flex-order-${index}` : null,
-										'fade-in-bottom speed-5 cascade p-16 width-100 layout-column layout-align-start-center flex-33 flex-xs-100 flex-sm-50'
-									)}
-								>
-									<Post post={post}/>
-								</div>
+								<Fragment key={post.slug}>
+									<div className={'p-8 layout-column layout-align-start-center flex-33 flex-xs-100 flex-sm-50'}>
+										<Post className={'width-100'} post={post}/>
+									</div>
+									{posts.length > 3 && index === 3 || posts.length < 3 && index === 0 ? 
+										<div className={'p-8 layout-column layout-align-start-center flex-33 flex-xs-100 flex-sm-50'}>
+											<RegisterForm/>
+										</div>
+										: null
+									}
+								</Fragment>
 							))}
-							<div className={'flex-order-3 fade-in-bottom speed-5 cascade p-16 width-100 layout-column layout-align-start-center flex-33 flex-xs-100 flex-sm-50'}>
-								<RegisterForm/>
-							</div>
 						</div>
 					</S.Grid>
 				: <S.Form onSubmit={subscribe} className="layout-column layout-align-start-stretch border p-32 rounded-md">

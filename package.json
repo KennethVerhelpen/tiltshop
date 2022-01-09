@@ -24,6 +24,7 @@
     "clsx": "^1.1.1",
     "googleapis": "^67.0.0",
     "gray-matter": "^4.0.3",
+    "jshint": "^2.13.3",
     "next": "12",
     "path-parse": "^1.0.7",
     "react": "^17.0.2",

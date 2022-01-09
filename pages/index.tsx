@@ -4,10 +4,8 @@ import { Page } from '../components';
 import { HomeView } from '../views';
 import '@algolia/autocomplete-theme-classic';
 
-// TIP: Uncomment to push new indexes to Algolia
-// import { Topic } from "../components";
-// import { ArticleType } from "../lib/types";
-// import { pushAlgoliaRecords } from "./api/algolia";
+import { populateTopicsData, populateArticlesData } from '../lib/utils';
+import { pushAlgoliaRecords } from "./api/algolia";
 
 type HomeProps = {
   types: TypeType[];
@@ -18,7 +16,7 @@ const Home = (props: HomeProps) => {
 	const { types, topics } = { ...props };
 	
 	return (
-		<Page types={types} theme={'dark'}>
+		<Page types={types} theme={'dark'} footer={false}>
       <HomeView topics={topics} types={types}/>
 		</Page>
 	);
@@ -26,18 +24,20 @@ const Home = (props: HomeProps) => {
 
 export async function getStaticProps() {
 	const types = await prisma.type.findMany();
-  const topics = await prisma.topic.findMany({});
+  const topics = await prisma.topic.findMany();
+  const populatedTopics = await populateTopicsData(topics, types);
+  
+  // TIP: Uncomment to push new indexes to Algolia;
+  // const articles = await prisma.article.findMany();
+  // const populatedArticles = await populateArticlesData(articles, topics, types);
+	// pushAlgoliaRecords(populatedArticles, types, populatedTopics);
+  
   await prisma.$disconnect();
 
-	// TIP: Uncomment to push new indexes to Algolia
-	// const topics = await prisma.topic.findMany();
-	// const articles = await prisma.article.findMany();
-	// pushAlgoliaRecords(articles, types, topics);
-	
   return {
     props: {
       types,
-      topics,
+      topics: populatedTopics,
     }
   }
 }

@@ -14,10 +14,11 @@ export type ArticleProps = {
 	index?: number;
 	disabled?: boolean;
 	className?: string;
+	theme?: 'dark' | 'light';
 }
 
 export const Article = (props: ArticleProps) => {
-	const { type, topic, index, disabled, article, className } = { ...props };
+	const { type, topic, index, disabled, article, className, theme } = { ...props };
 
 	const price = article.price ? Number(article.price) : Number(article.priceNumber);
 	const topicName = topic ? topic.name : article.typeName;
@@ -33,13 +34,13 @@ export const Article = (props: ArticleProps) => {
 			href={article.trackingUrl}
 			target={'_blank'}
 		>
-			<Shape className={'bg-primary-900 relative width-100 layout-column layout-align-end-stretch rounded-xl overflow-hidden cursor-pointer'}>
+			<Shape className={clsx({'border border-primary-500' : theme === 'dark'}, 'bg-primary-900 relative width-100 layout-column layout-align-end-stretch rounded-xl overflow-hidden cursor-pointer')}>
 				<div className={'flex'}></div>
 				<Main className={clsx({'pb-32' : disabled}, 'layout-column layout-align-start-start pt-32 px-32')}>
 					{typeName || topicName ?
-						<span className={'text-primary-500 small mb-8 text-capitalize'}>
+						<span className={'text-primary-300 small mb-8 text-capitalize'}>
 							{typeName ? <span>{typeName}</span> : null }
-							{typeName && topicName ? <span>&nbps;&nbsp;</span> : null }
+							{typeName && topicName ? <span>&nbsp;/&nbsp;</span> : null }
 							{typeName ? <span>{topicName}</span> : null }
 						</span>
 						: null 
@@ -55,7 +56,7 @@ export const Article = (props: ArticleProps) => {
 					{ !disabled &&
 						<>
 							{ article.description &&
-								<span className={'small mb-8 text-primary-500'}>
+								<span className={'small mb-8 text-primary-300'}>
 									<span>{article.description.slice(0,20)}...</span>
 									{' '}
 									<Link href={`/${typeSlug}/${topicSlug}/${article.slug}`}>

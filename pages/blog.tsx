@@ -7,7 +7,6 @@ import { getFormatedDate, getReadingTime } from '../lib/utils';
 import { Page } from '../components';
 import { BlogView } from '../views';
 
-
 type Props = {
   posts: PostType[];
 }
@@ -17,6 +16,7 @@ export const Blog = (props: Props) => {
 
 	return (
 		<Page
+			theme={'dark'}
 			activePage={'browse'}
 			menu={false}
 		>

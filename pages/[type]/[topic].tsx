@@ -16,6 +16,7 @@ const Topic = (props: Props) => {
     <>
       <Page
         menu={false}
+        theme={'dark'}
         title={`Best ${topic.articlesCount >= 20 ? '20+' : '10+' } products for ${topic.name} lovers`}
         history={`/${type.slug}`}
         bgImageUrl={`/images/topics/${topic.slug}/cover.gif`}
