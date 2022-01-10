@@ -2,7 +2,7 @@
 title: 'Learn How to Pre-render Pages Using Static Generation with Next.js'
 excerpt: 'Our experts carefully and insatiably review movies, tv shows and video games related products from the web.
 It’s easy to think of live streaming as “easy” money and tons of fun when you watch your favorite streamers. It’s easy to think of live streaming as “easy” money and tons of fun when you watch your favorite streamers.'
-coverImage: 'https://images.unsplash.com/photo-1618336753974-aae8e04506aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
+coverImageUnsplashId: 'Ag6m0LZNwnE'
 date: '2020-03-16T05:35:07.322Z'
 type: 'movies'
 topic: 'back-to-the-future'

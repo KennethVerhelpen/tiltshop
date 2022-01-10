@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import Image from 'next/image';
+import { createRef, useRef, useState, useEffect } from 'react';
 
 import { ArticleType, TopicType, TypeType, PostType } from '../../lib/types';
 import * as S from './post.styles';
@@ -11,27 +12,41 @@ export type PostViewProps = {
   articles: ArticleType[];
 }
 
+
+
 export const PostView = (props: PostViewProps) => {
 	const { types, topics, articles, post } = { ...props };
+  const articlesRefs = useRef<unknown>([...new Array(articles.length)].map(() => createRef<HTMLDivElement>()));
+  const [positions, setPositions] = useState({});
+
+  useEffect(() => {
+    setPositions(articles.map((article, index) => (
+      articlesRefs.current[index].current?.getBoundingClientRect()?.top + window.scrollY
+    )))
+  }, [])
+
+  const scrollYTo = (position: number) => {
+    window.scrollTo(0, position)
+  }
   
   return (
     <main className={'container-lg px-0 pt-128'}>
       <div className={'layout-column'}>
         <header className={'pb-64 px-32'}>
-          <div className="rounded-xl shadow-2 overflow-hidden width-100 layout-column mb-64">
+          <S.ImageWrapper className="relative rounded-xl shadow-2 width-100 overflow-hidden width-100 layout-column mb-64">
             <Image
               quality={'100'}
-              width={'100%'}
-              height={'368px'}
               objectFit={'cover'}
+              // height={'384px'}
+              // width={'1056px'}
+              layout={'fill'}
               objectPosition={'center'}
-              priority={true}
-              loading={'eager'}
+              loading={'lazy'}
               alt={post.title}
-              src={post.coverImage}
-              className={'width-100'}
+              src={post.coverImageUnsplashUrl}
             />
-          </div>
+          </S.ImageWrapper>
+          {console.log("POS1", positions)}
           <div className={'layout-column layout-align-start-start mb-64'}>
             <h1 className={'strong mb-8 text-neutral-100'} style={{ fontSize: 72 }}>{post.title}</h1>
             <div className={'layout-row'}>
@@ -48,7 +63,7 @@ export const PostView = (props: PostViewProps) => {
               ))}
             </div>
           </div>
-          <p className={'h6 text-primary-500 lh-2'}>{post.excerpt}</p>
+          <p className={'h6 text-primary-500 lh-2'} id={'#intro'}>{post.excerpt}</p>
         </header>
         <div className={'layout-row'}>
           <div className={'layout-column px-32'}>
@@ -57,7 +72,7 @@ export const PostView = (props: PostViewProps) => {
               const articleTopic = topics.find(topic => topic.id === article.topicId)
               const articleType = types.find(type => type.id === article.typeId)
               return (
-                <div key={article.slug} className={'layout-column border-bottom border-primary-800 py-64'}>
+                <div key={article.slug} ref={articlesRefs.current[index]} className={'layout-column border-bottom border-primary-800 py-64'}>
                   <div className={'layout-row'}>
                     <div className={'layout-column flex px-16 layout-align-start-start'}>
                       <h3 className={'bold mb-16 text-primary-300'}>{post.featuredArticles[index].title || article.title}</h3>
@@ -102,9 +117,10 @@ export const PostView = (props: PostViewProps) => {
               : null}
               <div className={'shadow-2 rounded-md p-16 layout-column bg-neutral-100'}>
                 <p className={'bold text-uppercase mb-16'}>In this article</p>
-                {articles ? articles.map((article: ArticleType, index: number) => {
-                  <a key={article.slug} href={'#'}>{post.featuredArticles[index].title || article.title}</a>
-                }) : null }
+                <a className={'text-secondary-900 lh-3 cursor-pointer'} onClick={() => scrollYTo(0)}>Introduction</a>
+                {articles ? articles.map((article: ArticleType, index: number) => (
+                  <a className={'text-secondary-900 lh-3 cursor-pointer'} key={article.slug} onClick={() => scrollYTo(positions[index])}>{post.featuredArticles[index].title || article.title}</a>
+                )) : null }
               </div>
             </S.SideBlock>
           </div>

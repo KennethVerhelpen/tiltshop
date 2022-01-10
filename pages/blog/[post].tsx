@@ -5,6 +5,7 @@ import { getFormatedDate, getReadingTime } from '../../lib/utils';
 import { PostType, ArticleType, TypeType, TopicType } from '../../lib/types';
 import { Page } from '../../components';
 import { PostView } from '../../views';
+import { unsplash } from '../api/unsplash';
 
 type Props = {
 	post: PostType;
@@ -38,7 +39,8 @@ export async function getStaticProps({
 		'articles',
 		'author',
 		'content',
-		'coverImage',
+		'coverImageUnsplashId',
+		'coverImageUnsplashUrl',
 		'date',
 		'excerpt',
 		'featuredArticles',
@@ -53,6 +55,9 @@ export async function getStaticProps({
 	currentPost['content'] = await markdownToHtml(currentPost.content || '');
 	currentPost['date'] = getFormatedDate(currentPost.date);
 	currentPost['time'] = getReadingTime([currentPost.content, currentPost.excerpt, currentPost.outro]);
+	currentPost['coverImageUnsplashUrl'] = await (await unsplash.photos.get({
+		photoId: `${currentPost.coverImageUnsplashId}`
+	})).response.urls.full;
 
 	const currentArticlesSlugs: string[] = currentPost['featuredArticles']?.map(featuredArticle => (featuredArticle.slug));
 	const currentArticles = await prisma.article.findMany({
@@ -105,6 +110,5 @@ export async function getStaticPaths() {
 		fallback: false,
   }
 };
-
 
 export default Post;

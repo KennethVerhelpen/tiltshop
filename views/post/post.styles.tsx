@@ -24,3 +24,7 @@ export const Article = styled(ImportedArticle)`
   top: 6rem;
 `
 
+export const ImageWrapper = styled.div`
+  height: 24rem;
+`
+

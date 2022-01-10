@@ -61,7 +61,8 @@ export type PostType = {
 	ogImage: {
     url: string;
   };
-	coverImage: string;
+  coverImageUnsplashId: string;
+	coverImageUnsplashUrl: string;
   date: string;
   time?: number;
   featuredArticles: FeaturedArticleType[];
