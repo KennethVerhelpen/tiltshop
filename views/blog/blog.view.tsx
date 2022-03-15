@@ -1,7 +1,7 @@
 import { useState, useRef, Fragment } from 'react';
 import clsx from 'clsx';
 
-import { PostType, FormDataType } from '../../lib/types';
+import { PostType, FormDataType, ThemeType } from '../../lib/types';
 import { Header, Post, RegisterForm } from '../../components';
 
 import * as S from './blog.view.styles';
@@ -48,7 +48,6 @@ export const BlogView = (props: BlogViewProps) => {
   return (
     <>
       <Header
-				theme={'dark'}
 				className={'pt-128 pb-64 container-sm'}
 				title={'Latest articles'}
 				subtitle={

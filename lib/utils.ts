@@ -1,4 +1,4 @@
-import { ArticleType, TopicType, TypeType } from "./types";
+import { ArticleType, ThemeType, TopicType, TypeType } from "./types";
 
 export const throttleApi = (time, request) => {
   return (

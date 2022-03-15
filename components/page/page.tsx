@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useContext } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
 
@@ -6,6 +6,7 @@ import { Nav, Footer } from '../../components';
 import { TypeType } from '../../lib/types';
 import * as S from './page.styles';
 import clsx from 'clsx';
+import { ThemeContext } from '../../pages/_app';
 
 export type PageProps = {
 	activePage?: string,
@@ -27,8 +28,6 @@ export type PageProps = {
 export const Page = (props: PageProps) => {
 	const {
 		activePage,
-		alt,
-		bgImageUrl,
 		children,
 		description,
 		footer,
@@ -36,11 +35,11 @@ export const Page = (props: PageProps) => {
 		menu,
 		nav,
 		ogImageUrl,
-		theme,
 		title,
 		types,
-		video,
 	} = {...defaultProps, ...props};
+
+	const { theme, switchTheme } = useContext(ThemeContext);
 
 	return (
 		<>
@@ -59,38 +58,9 @@ export const Page = (props: PageProps) => {
 				<link rel={'icon'} href={'/favicon.ico'} />
 				<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone&display=block" rel="preconnect" />
 			</Head>
-			{nav ? <Nav types={types} history={history} menu={menu} activePage={activePage}/> : null}
+			{nav ? <Nav types={types} history={history} menu={menu} activePage={activePage} switchTheme={switchTheme}/> : null}
 			<S.Main className={clsx(theme === 'dark' ? 'bg-primary-900' : 'bg-neutral-100', 'flex layout-column layout-align-start-center')}>{children}</S.Main>
 			{footer ? <Footer/> : null}
-			{/* <BackgroundWrapper className={'width-100 absolute layout-column'}>
-				<div className={'hide-gt-xs width-100 height-100'}>
-					<Image
-						src={'/images/backgrounds/mobile-background.jpg'}
-						layout={'fill'}
-						quality={'100'}
-						objectFit={'cover'}
-						objectPosition={'center'}
-						priority={true}
-						loading={'eager'}
-						alt={alt}
-					/>
-				</div>
-				{ bgImageUrl
-					?	<img src={bgImageUrl} alt={alt}/>
-					: <video
-							className={'width-100 hide-xs'}
-							style={{ height : 'auto' }}
-							playsInline={true} 
-							muted
-							autoPlay={true}
-							loop={true}
-							width={'1440'}
-							height={'768'}
-						>
-							<source src={video} type={'video/mp4'} />
-						</video>
-					}
-			</BackgroundWrapper> */}
 		</>
 	);
 }
@@ -105,5 +75,4 @@ const defaultProps = {
 	nav: true,
 	theme: 'light',
 	title: `Best items for cinema, tv & gaming lovers in ${new Date().getFullYear()}`,
-	// video: '/videos/noise.mp4',
 }

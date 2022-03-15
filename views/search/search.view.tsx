@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { ArticleType } from '../../lib/types';
+import { ArticleType, ThemeType } from '../../lib/types';
 import { Header, SearchContainer, Article } from '../../components';
 			
 export type SearchViewProps = {
@@ -32,8 +32,11 @@ export const SearchView = (props: SearchViewProps) => {
   return (
     <>
       <Header
+        align={'center'}
+        animated={false}
+        className={'pt-128 pb-64 container-lg px-24'}
         title={'Browse all items'}
-        subtitle={'Easily find all items hand-picked just for you.'}
+        topic={'Easily find all items hand-picked just for you.'}
       />
       <SearchContainer
         searchClient={searchClient}

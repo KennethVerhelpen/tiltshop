@@ -1,7 +1,8 @@
 import prisma from '../lib/prisma';
-import { TypeType, TopicType } from '../lib/types'
+import { TypeType, TopicType, ThemeType } from '../lib/types'
 import { Page } from '../components/index';
 import { TypeView } from '../views/type/type.view';
+import { useState } from 'react';
 
 type Props = {
 	types: TypeType[];

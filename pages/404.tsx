@@ -1,11 +1,13 @@
+import { useState } from 'react';
 import { Page } from '../components';
+import { ThemeType } from '../lib/types';
 import { ErrorView } from '../views';
 
-export default function Custom404() {
-
+export const Custom404 = () => {
   return (
     <Page
-      nav={false}> 
+      nav={false}
+    > 
       <ErrorView />
     </Page>
   );

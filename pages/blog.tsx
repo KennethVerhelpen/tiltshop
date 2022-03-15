@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { getAllPosts } from '../lib/posts';
-import { PostType } from "../lib/types";
+import { PostType, ThemeType } from "../lib/types";
 import { getFormatedDate, getReadingTime } from '../lib/utils';
 
 import { Page } from '../components';
@@ -16,7 +16,6 @@ export const Blog = (props: Props) => {
 
 	return (
 		<Page
-			theme={'dark'}
 			activePage={'browse'}
 			menu={false}
 		>

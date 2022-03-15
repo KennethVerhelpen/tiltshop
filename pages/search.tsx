@@ -6,10 +6,13 @@ const Search = () => {
 	return (
 		<>
 			<Page
-				activePage={'browse'}
 				menu={false}
+				activePage={'browse'}
 			>
-				<SearchView searchClient={algoliaSearchClient} indexName={algoliaArticlesIndexName} />
+				<SearchView
+					searchClient={algoliaSearchClient}
+					indexName={algoliaArticlesIndexName}
+				/>
 			</Page>
 		</>
 	);

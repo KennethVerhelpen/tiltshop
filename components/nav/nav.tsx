@@ -22,10 +22,11 @@ export type NavProps= {
 	history: string,
 	activePage: string,
 	types: TypeType[];
+	switchTheme?: () => void;
 }
 
 export const Nav = (props: NavProps) => {
-	const { types, menu, history, activePage } = { ...props };
+	const { types, menu, history, activePage, switchTheme } = { ...props };
 
 	return (
 		<Shape className={'layout-column layout-align-start-center'}>
@@ -52,6 +53,7 @@ export const Nav = (props: NavProps) => {
 								<SearchRounded style={{ fontSize: 20 }}/>
 							</a>
 						</Link>
+						<button onClick={switchTheme}>Switch theme</button>
 					</div>
 				</div>
 			</div>

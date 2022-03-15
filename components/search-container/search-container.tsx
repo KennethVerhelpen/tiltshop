@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { InstantSearch } from 'react-instantsearch-dom';
-import { SortingItemType } from '../../lib/types';
+import { SortingItemType, ThemeType } from '../../lib/types';
 import {
 		SearchBar,
 		SearchSortingSelect,
@@ -20,10 +20,11 @@ export type SearchContainerProps =  {
   indexName: string;
   sortingItems?: SortingItemType[];
   sortingDefaultItem?: string;
+  theme?: ThemeType;
 }
 
 export const SearchContainer = (props: SearchContainerProps) => {
-  const { hitComponent, hitsPerPage, filters, searchClient, indexName, searchBar, sortingDefaultItem, sortingItems } = { ...defaultProps, ...props };
+  const { hitComponent, hitsPerPage, filters, searchClient, indexName, searchBar, sortingDefaultItem, sortingItems, theme } = { ...defaultProps, ...props };
 
   return(
     <InstantSearch searchClient={searchClient} indexName={indexName}>
@@ -32,7 +33,7 @@ export const SearchContainer = (props: SearchContainerProps) => {
         <div className={'layout-row container-lg layout-align-start-center'}>
           {filters ? 
             <>
-              <SearchCurrentFilters className={'layout-row flex'}/>
+              <SearchCurrentFilters className={'layout-row flex'} theme={theme}/>
               <SearchFiltersMenu/>
             </>
           : null }
