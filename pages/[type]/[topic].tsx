@@ -1,7 +1,10 @@
+import { useContext } from 'react';
+
 import prisma from '../../lib/prisma';
 import { TypeType, TopicType, ArticleType } from '../../lib/types';
 import { Page} from '../../components/index';
 import { TopicView } from '../../views';
+import { ThemeContext } from '../_app';
 
 type Props = {
   type: TypeType;
@@ -11,17 +14,18 @@ type Props = {
 
 const Topic = (props: Props) => {
 	const { type, topic, articles } = { ...props };
+  const { theme } = useContext(ThemeContext);
 
   return (
     <>
       <Page
         menu={false}
-        theme={'dark'}
+        theme={theme}
         title={`Best ${topic.articlesCount >= 20 ? '20+' : '10+' } products for ${topic.name} lovers`}
         history={`/${type.slug}`}
         bgImageUrl={`/images/topics/${topic.slug}/cover.gif`}
         >
-          <TopicView topic={topic} type={type} articles={articles} />
+          <TopicView topic={topic} type={type} articles={articles} theme={theme}/>
       </Page>
     </>
   );

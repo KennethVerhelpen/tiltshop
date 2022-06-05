@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import clsx from 'clsx';
 
-import { EmailTwoTone, MarkunreadMailboxTwoTone } from '@material-ui/icons';
+import { EmailTwoTone, MarkunreadMailboxTwoTone } from '@mui/icons-material';
 
 import * as S from './register-form.styles';
 

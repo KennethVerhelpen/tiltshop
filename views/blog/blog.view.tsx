@@ -5,7 +5,7 @@ import { PostType, FormDataType, ThemeType } from '../../lib/types';
 import { Header, Post, RegisterForm } from '../../components';
 
 import * as S from './blog.view.styles';
-import { MarkunreadMailboxTwoTone } from '@material-ui/icons';
+import { MarkunreadMailboxTwoTone } from '@mui/icons-material';
 			
 export type BlogViewProps = {
 	posts: PostType[];

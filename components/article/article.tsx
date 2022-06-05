@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { ArrowForwardRounded } from '@material-ui/icons';
+import { ArrowForwardRounded } from '@mui/icons-material';
 
 import { ArticleType, TopicType, TypeType } from '../../lib/types';
 import { Shape, Main, Footer, IconButton, ImageWrapper, BudgetRangeStyled } from './article.styles';

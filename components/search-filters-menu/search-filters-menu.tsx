@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FilterListTwoTone } from '@material-ui/icons';
+import { FilterListTwoTone } from '@mui/icons-material';
 import { Global, css } from '@emotion/react';
 
 import { RefinementList } from 'react-instantsearch-dom';

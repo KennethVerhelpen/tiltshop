@@ -1,18 +1,18 @@
-import { TopicType, TypeType } from '../../lib/types';
+import { ThemeType, TopicType, TypeType } from '../../lib/types';
 import { Topic, Header } from '../../components';
-import * as S from './type.view.styles';
 			
 export type TypeViewProps = {
 	topics: TopicType[];
 	type: TypeType;
+	theme: ThemeType;
 }
 
 export const TypeView = (props: TypeViewProps) => {
-	const { topics, type } = { ...props };
+	const { topics, type, theme } = { ...props };
   
   return (
-		<div className={'bg-neutral-900 width-100'}>
-			<Header theme={'dark'} className={'pt-128 pb-64'} type={type.name}/>
+		<div className={'width-100'}>
+			<Header theme={theme} className={'pt-128 pb-64'} type={type.name}/>
 			<main className={'container-lg pb-128 layout-column'}>
 				<div className={'layout-row layout-wrap layout-align-center-center'}>
 					{topics.map((topic, index) => {

@@ -6,7 +6,7 @@ export const Shape = styled.nav`
   z-index: 2;
   width: 100%;
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 1);
   backdrop-filter: blur(1.25rem);
 
   > div:last-of-type {

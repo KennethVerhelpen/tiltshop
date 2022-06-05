@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { FavoriteTwoTone, RemoveRedEyeTwoTone } from '@material-ui/icons';
+import { FavoriteTwoTone, RemoveRedEyeTwoTone } from '@mui/icons-material';
 
 import { PostType} from '../../lib/types';
 import { getReadingTime } from '../../lib/utils';

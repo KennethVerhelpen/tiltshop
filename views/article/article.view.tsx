@@ -1,34 +1,36 @@
-import { ArrowForwardRounded } from '@material-ui/icons';
+import { ArrowForwardRounded } from '@mui/icons-material';
 
-import { ArticleType, TopicType, TypeType } from '../../lib/types';
+import { ArticleType, ThemeType, TopicType, TypeType } from '../../lib/types';
 import { Article  } from '../../components';
 import * as S from './article.styles';
+import clsx from 'clsx';
 			
 export type ArticleViewProps = {
   article: ArticleType;
   articles: ArticleType[];
   topic: TopicType;
   type: TypeType;
+  theme: ThemeType;
 }
 
 export const ArticleView = (props: ArticleViewProps) => {
-	const { article, articles, topic, type } = { ...props };
+	const { article, articles, topic, type, theme } = { ...props };
   
   return (
     <main className={'container-lg'}>
       <div className={'layout-column layout-gt-xs-row pt-gt-sm-128 pt-32 pb-64'}>
         <section className={'flex-order-1 flex-order-gt-xs-0 flex p-16 p-gt-sm-32'}>
           <header className={'layout-column layout-align-start-start'}>
-            <S.Title className={'strong mb-8 text-neutral-100'}>{article.title}</S.Title>
+            <S.Title className={clsx({'text-primary-100' : theme === 'dark'}, 'strong mb-8 ')}>{article.title}</S.Title>
             <div className={'layout-row mb-32'}>
-              <h2 className={'display-inline-block small text-capitalize text-primary-300 bg-primary-700 p-8 rounded-sm mr-8'}>{topic.name}</h2>
-              <h3 className={'display-inline-block small text-capitalize text-primary-300 bg-primary-700 p-8 rounded-sm'}>{type.name}</h3>
+              <h2 className={clsx(theme === 'dark' ? 'bg-primary-700 text-primary-300' : 'bg-primary-300 text-primary-500', 'display-inline-block small text-capitalize p-8 rounded-sm mr-8')}>{topic.name}</h2>
+              <h3 className={clsx(theme === 'dark' ? 'bg-primary-700 text-primary-300' : 'bg-primary-300 text-primary-500', 'display-inline-block small text-capitalize p-8 rounded-sm')}>{type.name}</h3>
             </div>
-            <p className={'lh-3 h6 mb-32 text-primary-400'}>{article.description}</p>
+            <p className={'lh-3 h6 mb-32 text-primary-500'}>{article.description}</p>
             {article.details && article.details.length > 0 ? (
               <>
-                <h4 className={'bold h6 mb-16 text-primary-300'}>Product details</h4>
-                <ul className={'lh-3 h6 text-primary-400'}>
+                <h4 className={clsx(theme === 'dark' ? 'text-primary-300' : 'text-primary-700', 'bold h6 mb-16')}>Product details</h4>
+                <ul className={'lh-3 h6 text-primary-500'}>
                   {article.details.split(';').map(detail => (
                     <li key={detail}>{detail}</li>
                   ))}
@@ -39,26 +41,26 @@ export const ArticleView = (props: ArticleViewProps) => {
         </section>
         <section className={'flex-order-0 flex-order-gt-xs-1 flex-none p-16 p-gt-sm-32 layout-column layout-align-start-stretch layout-align-gt-xs-start-start'}>
           <div className={'layout-align-start-stretch layout-column'}>
-            <Article className={'mb-32'} theme={'dark'} disabled={true} article={article} topic={topic} type={type} />
+            <Article className={'mb-32'} theme={theme} disabled={true} article={article} topic={topic} type={type} />
             <a
               href={article.trackingUrl}
               target={'_blank'}
               rel={'sponsored'}
-              className={'text-left text-primary-900 border border-primary-100 px-16 py-16 rounded-lg bg-primary-100 layout-row layout-align-start-center'}
+              className={clsx(theme === 'dark' ? 'bg-primary-100 text-primary-900' : 'bg-primary-900 text-primary-100', 'text-left border px-16 py-16 rounded-lg layout-row layout-align-start-center')}
             >
               <span className={'flex'}>See on <b>Amazon</b></span>
-              <ArrowForwardRounded style={{ fontSize: 20 }}/>
+              <ArrowForwardRounded className={clsx(theme === 'dark' ? 'text-primary-500' : 'text-primary-500')} style={{ fontSize: 20 }}/>
             </a>
           </div>
         </section>
       </div>
 
-      <footer className={'pt-64 pb-128 layout-column layout-align-center-center border-top border-primary-800'}>
-        <h4 className={'p-32 bold text-center h3 text-primary-300'}>Other cool products that you may like</h4>
+      <footer className={clsx(theme === 'dark' ? 'border-primary-800' : 'border-primary-300', 'pt-64 pb-128 layout-column layout-align-center-center border-top')}>
+        <h4 className={clsx(theme === 'dark' ? 'text-primary-300' : 'text-primary-900', 'p-32 bold text-center h3')}>Other cool products that you may like</h4>
         <main className={'layout-row layout-wrap'}>
           {articles.slice(0,3).map(article => (
             <div key={article.id} className={'fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50'}>
-              <Article theme={'dark'} article={article} topic={topic} type={type}/>
+              <Article theme={theme} article={article} topic={topic} type={type}/>
             </div>
           ))}
         </main>

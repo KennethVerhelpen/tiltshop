@@ -56,11 +56,11 @@ export const SearchAutocomplete = () => {
             min-height: 4.5rem;
           }
           .aa-Form, .aa-Form:focus-within {
-            border-radius: 0.75rem;
-            border: 0;
-            border: none;
-            outline: none;
-            box-shadow: none;
+            border-radius: 0.75rem !important;
+            border: 0 !important;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
           }
           .aa-Panel {
             z-index: 1;

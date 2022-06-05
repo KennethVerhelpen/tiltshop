@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { ArrowForwardRounded } from '@material-ui/icons';
+import { ArrowForwardRounded } from '@mui/icons-material';
 
 import { TopicType, TypeType } from '../../lib/types';
 import * as S from './topic.styles';

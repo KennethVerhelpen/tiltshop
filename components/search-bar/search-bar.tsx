@@ -1,10 +1,9 @@
 import clsx from 'clsx';
 import { SearchBox } from 'react-instantsearch-dom';
 
-import { SearchTwoTone } from '@material-ui/icons';
+import { SearchTwoTone } from '@mui/icons-material';
 
 import * as S from './search-bar.styles';
-
 
 export type SearchBarProps = {
   className?: string;

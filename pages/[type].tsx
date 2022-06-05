@@ -2,7 +2,8 @@ import prisma from '../lib/prisma';
 import { TypeType, TopicType, ThemeType } from '../lib/types'
 import { Page } from '../components/index';
 import { TypeView } from '../views/type/type.view';
-import { useState } from 'react';
+import { ThemeContext } from './_app';
+import { useContext } from 'react';
 
 type Props = {
 	types: TypeType[];
@@ -12,6 +13,7 @@ type Props = {
 
 const Type = (props: Props) => {
 	const { types, type, topics } = { ...props };
+	const { theme } = useContext(ThemeContext);
 
 	return (
 		<Page
@@ -19,8 +21,9 @@ const Type = (props: Props) => {
 			description={`Discover the best hand-picked items of ${new Date().getFullYear()} sorted out just for ${type.name} lovers.`}
 			activePage={type.slug}
 			types={types}
+			theme={theme}
 		>
-			<TypeView topics={topics} type={type}/>
+			<TypeView theme={theme} topics={topics} type={type}/>
 		</Page>
 	);
 };

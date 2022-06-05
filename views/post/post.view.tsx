@@ -46,7 +46,6 @@ export const PostView = (props: PostViewProps) => {
               src={post.coverImageUnsplashUrl}
             />
           </S.ImageWrapper>
-          {console.log("POS1", positions)}
           <div className={'layout-column layout-align-start-start mb-64'}>
             <h1 className={'strong mb-8 text-neutral-100'} style={{ fontSize: 72 }}>{post.title}</h1>
             <div className={'layout-row'}>

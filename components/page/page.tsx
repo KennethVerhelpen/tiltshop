@@ -58,8 +58,10 @@ export const Page = (props: PageProps) => {
 				<link rel={'icon'} href={'/favicon.ico'} />
 				<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone&display=block" rel="preconnect" />
 			</Head>
-			{nav ? <Nav types={types} history={history} menu={menu} activePage={activePage} switchTheme={switchTheme}/> : null}
-			<S.Main className={clsx(theme === 'dark' ? 'bg-primary-900' : 'bg-neutral-100', 'flex layout-column layout-align-start-center')}>{children}</S.Main>
+			{nav ? <Nav types={types} history={history} menu={menu} activePage={activePage} switchTheme={switchTheme} theme={theme}/> : null}
+			<S.Main className={clsx(theme === 'dark' ? 'bg-primary-900' : 'bg-neutral-100', 'flex layout-column layout-align-start-center')}>
+				{children}
+			</S.Main>
 			{footer ? <Footer/> : null}
 		</>
 	);

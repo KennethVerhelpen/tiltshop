@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import Link from 'next/link';
-import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone, SearchRounded, ArrowBackTwoTone, DevicesOtherTwoTone } from '@material-ui/icons';
+import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone, SearchRounded, ArrowBackTwoTone, DevicesOtherTwoTone, DarkModeTwoTone, LightModeTwoTone } from '@mui/icons-material';
 
 import { Shape, NavButton } from './nav.styles';
-import { TypeType } from '../../lib/types';
+import { ThemeType, TypeType } from '../../lib/types';
 
 export const BackHistory = (slug: string) =>{
   return (
@@ -22,11 +22,12 @@ export type NavProps= {
 	history: string,
 	activePage: string,
 	types: TypeType[];
+	theme: ThemeType;
 	switchTheme?: () => void;
 }
 
 export const Nav = (props: NavProps) => {
-	const { types, menu, history, activePage, switchTheme } = { ...props };
+	const { types, theme, menu, history, activePage, switchTheme } = { ...props };
 
 	return (
 		<Shape className={'layout-column layout-align-start-center'}>
@@ -53,7 +54,10 @@ export const Nav = (props: NavProps) => {
 								<SearchRounded style={{ fontSize: 20 }}/>
 							</a>
 						</Link>
-						<button onClick={switchTheme}>Switch theme</button>
+						<div className="layout-align-center-center layout-column cursor-pointer p-4" onClick={switchTheme}>
+							{ theme === "dark" ? <DarkModeTwoTone className="text-primary-100" style={{ fontSize: 20 }}/> :  
+							<LightModeTwoTone className="text-primary-100" style={{ fontSize: 20 }}/>}
+						</div>
 					</div>
 				</div>
 			</div>
