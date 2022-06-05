@@ -1,11 +1,12 @@
+import { useContext } from 'react';
+
 import prisma from '../lib/prisma';
 import { TypeType, TopicType } from '../lib/types';
 import { Page } from '../components';
 import { HomeView } from '../views';
-import '@algolia/autocomplete-theme-classic';
-
 import { populateTopicsData, populateArticlesData } from '../lib/utils';
 import { pushAlgoliaRecords } from "./api/algolia";
+import { ThemeContext } from './_app';
 
 type HomeProps = {
   types: TypeType[];
@@ -14,10 +15,11 @@ type HomeProps = {
 
 const Home = (props: HomeProps) => {
 	const { types, topics } = { ...props };
+  const { theme } = useContext(ThemeContext);
 	
 	return (
-		<Page types={types} theme={'dark'} footer={false}>
-      <HomeView topics={topics} types={types}/>
+		<Page types={types} footer={false}>
+      <HomeView theme={theme} topics={topics} types={types}/>
 		</Page>
 	);
 };

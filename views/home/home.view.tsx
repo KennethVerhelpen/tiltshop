@@ -2,15 +2,16 @@ import React, { useState, useEffect, useRef, Fragment, createRef } from 'react';
 import clsx from 'clsx';
 import { useInView } from 'react-intersection-observer';
 
-import { TopicType, TypeType } from '../../lib/types';
+import { ThemeType, TopicType, TypeType } from '../../lib/types';
 import { useWindowSize, useMediaQueries } from '../../hooks';
 import { Header, SearchAutocomplete, Topic } from '../../components';
 
 import * as S from './home.view.styles';
 
-export type NewHomeViewProps = {
+export type HomeViewProps = {
   topics: TopicType[];
 	types: TypeType[];
+	theme: ThemeType;
 }
 
 export type BreakpointsType = {
@@ -36,8 +37,8 @@ export type HeaderContentType = {
 	position: number;
 }
 
-export const HomeView = (props: NewHomeViewProps) => {
-	const { topics, types } = { ...props };
+export const HomeView = (props: HomeViewProps) => {
+	const { topics, types, theme } = { ...props };
 
 	// Hooks
 	const { width } = useWindowSize();
@@ -225,7 +226,7 @@ export const HomeView = (props: NewHomeViewProps) => {
 								{(index === headerIndex) &&
 									<S.HeaderWrapper ref={headerWrapper} key={'header'} width={headerWidth} className={'layout-column layout-align-center-center container-sm'}>
 										<S.HeaderContent position={headerParams.position} size={headerParams.size} blur={headerParams.blur} opacity={headerParams.opacity} className={clsx({'fixed' : !media.xs}, 'layout-column layout-align-center-center')}>
-											<Header align={media.xs ? 'left' : 'center'} theme={'dark'} rotation={true} className={'mb-48 mt-xs-48'}/>
+											<Header align={media.xs ? 'left' : 'center'} theme={theme} rotation={true} className={'mb-48 mt-xs-48'}/>
 											<SearchAutocomplete/>
 										</S.HeaderContent>
 									</S.HeaderWrapper>
