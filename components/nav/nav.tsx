@@ -2,8 +2,9 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone, SearchRounded, ArrowBackTwoTone, DevicesOtherTwoTone, DarkModeTwoTone, LightModeTwoTone } from '@mui/icons-material';
 
-import { Shape, NavButton } from './nav.styles';
+import * as S from './nav.styles';
 import { ThemeType, TypeType } from '../../lib/types';
+import { Logo } from '../logo/logo';
 
 export const BackHistory = (slug: string) =>{
   return (
@@ -30,7 +31,7 @@ export const Nav = (props: NavProps) => {
 	const { types, theme, menu, history, activePage, switchTheme } = { ...props };
 
 	return (
-		<Shape className={'layout-column layout-align-start-center'}>
+		<S.Shape className={'layout-column layout-align-start-center bg-primary-900'}>
 			<div className={'border-bottom border-primary-800 width-100 layout-row'}>
 				<div className={'container-lg layout-align-stretch-center layout-row flex'}>
 					<div className={'flex hide-gt-xs layout-row layout-align-start-center'}>
@@ -41,7 +42,9 @@ export const Nav = (props: NavProps) => {
 							{ history && !menu && BackHistory(history) }	
 						</div>
 						<Link href={'/'}>
-							<a className={'text-primary-100 bold h6 serif'}>tilt.</a>
+							<a className={'text-primary-100 bold h6 serif'}>
+								<Logo width={32}/>
+							</a>
 						</Link>
 					</div>
 					<div className={'flex layout layout-align-end-center'}>
@@ -66,11 +69,11 @@ export const Nav = (props: NavProps) => {
 					<ul className={'small flex-noshrink layout-row layout-align-center-stretch p-0 m-0 list-reset'}>
 						<li className={'layout-row layout-align-center-center'}>
 							<Link href={'/'}>
-								<NavButton className={clsx(activePage === undefined && 'active bold text-primary-100', 'text-primary-500 layout-column layout-align-start-stretch cursor-pointer')}>
+								<S.NavButton className={clsx(activePage === undefined && 'active bold text-primary-100', 'text-primary-500 layout-column layout-align-start-stretch cursor-pointer')}>
 									<div className={'layout-row layout-align-center-center px-16 flex'}>
 										<span>All</span>
 									</div>
-								</NavButton>
+								</S.NavButton>
 							</Link>
 						</li>
 						{types && types
@@ -78,7 +81,7 @@ export const Nav = (props: NavProps) => {
 							.map((type: TypeType, index: number) => (
 								<li key={index} className={'layout-row layout-align-center-center'}>
 									<Link href={`/${type.slug}`}>
-										<NavButton className={clsx(activePage === type.slug && 'active bold text-primary-100', 'text-primary-500 layout-column layout-align-start-stretch cursor-pointer')}>
+										<S.NavButton className={clsx(activePage === type.slug && 'active bold text-primary-100', 'text-primary-500 layout-column layout-align-start-stretch cursor-pointer')}>
 											<div className={'layout-row layout-align-center-center px-16 flex'}>
 												{(() => {
 													switch(type.slug) {
@@ -99,7 +102,7 @@ export const Nav = (props: NavProps) => {
 													})()}
 												</span>
 											</div>
-										</NavButton>
+										</S.NavButton>
 									</Link>
 								</li>
 							)
@@ -108,6 +111,6 @@ export const Nav = (props: NavProps) => {
 				</div>
 				: null 	
 			}
-		</Shape>
+		</S.Shape>
 	);
 };

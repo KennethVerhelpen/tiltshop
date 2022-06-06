@@ -22,7 +22,7 @@ export const Post = (props: Props) => {
 				menu={false}
 				theme={'dark'}
 				ogImageUrl={post.ogImage.url}
-				title={`${post.title} - Tiltshop`}
+				title={`${post.title} - Tilt`}
 				description={post.date}
 				history={`/blog`}
 			>

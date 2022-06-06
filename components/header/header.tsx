@@ -25,7 +25,6 @@ const defaultProps = {
 	rotatingTexts: [ 'cinema lovers', 'tv show addicts', 'passionate gamers' ],
 }
 
-
 export type SubheadingProps = {
    theme: ThemeType,
    text: string | ReactNode;

@@ -1,4 +1,4 @@
-import React, { ForwardedRef } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -22,7 +22,7 @@ export const Topic = (props: TopicProps) => {
 		<Link href={`${type ? type.slug : topic.typeSlug}/${topic.slug}`}>
 			<article className={clsx(className, 'cursor-pointer')}>
 				<S.Shape
-					className={'bg-primary-900 width-100 relative cursor-pointer layout-column layout-align-end-stretch text-center overflow-hidden rounded-xl'}>
+					className={'bg-primary-900 width-100 relative cursor-pointer layout-column layout-align-end-stretch text-center overflow-hidden rounded-xl shadow-3'}>
 					<S.Main className={'p-16 content layout-column layout-align-center-center'}>
 						<S.Title className={'text-primary-100 h2 strong mb-8'}>{topic.name}</S.Title>
 						<span className={'p text-capitalize text-primary-100'} style={{ opacity: 0.5 }}>{type ? type.name : topic.typeName}</span>
@@ -39,8 +39,8 @@ export const Topic = (props: TopicProps) => {
 						
 					}
 					</S.Footer>
-					<S.ImagePosition>
-						<S.ImageWrapper className={'image-wrapper'}>
+					<S.ImagePosition className="rounded-md overflow-hidden absolute">
+						<S.ImageWrapper className={'image-wrapper rounded-md overflow-hidden relative'}>
 							<Image
 								quality={100}
 								layout={'fill'}

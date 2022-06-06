@@ -2,7 +2,7 @@
 import { useWindowSize } from './useWindowSize';
 
 export const useMediaQueries = () => {
-  const {width } = useWindowSize();
+  const { width } = useWindowSize();
   
   return {
     media: {

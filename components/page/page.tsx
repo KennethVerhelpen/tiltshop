@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from 'react';
+import { ReactNode, useContext, useEffect } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
 
@@ -46,7 +46,7 @@ export const Page = (props: PageProps) => {
 			<Head>
 				<meta charSet={'UTF-8'} />
 				<meta name={'viewport'} content={'initial-scale=1.0, width=device-width'} />
-				<title>Tiltshop: {title}</title>
+				<title>Tilt: {title}</title>
 				<meta name={'keywords'} content={'Cinema, Movies, Tv shows, Video games'} />
 				<meta name={'description'} content={description} />
 				<meta property={'og:title'} content={title} />
@@ -62,7 +62,7 @@ export const Page = (props: PageProps) => {
 			<S.Main className={clsx(theme === 'dark' ? 'bg-primary-900' : 'bg-neutral-100', 'flex layout-column layout-align-start-center')}>
 				{children}
 			</S.Main>
-			{footer ? <Footer/> : null}
+			{footer ? <Footer theme={theme}/> : null}
 		</>
 	);
 }

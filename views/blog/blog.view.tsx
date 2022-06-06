@@ -9,11 +9,14 @@ import { MarkunreadMailboxTwoTone } from '@mui/icons-material';
 			
 export type BlogViewProps = {
 	posts: PostType[];
+	theme: ThemeType;
 }
 
 export const BlogView = (props: BlogViewProps) => {
-	const { posts } = { ...props };
+	const { posts, theme } = { ...props };
+
 	const [form, setForm] = useState<FormDataType>(null);
+	
 	const emailInputDefault = useRef(null);
 
 	const subscribe = async (e) => {
@@ -48,6 +51,7 @@ export const BlogView = (props: BlogViewProps) => {
   return (
     <>
       <Header
+				theme={theme}
 				className={'pt-128 pb-64 container-sm'}
 				title={'Latest articles'}
 				subtitle={

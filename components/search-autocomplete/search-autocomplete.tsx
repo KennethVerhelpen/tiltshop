@@ -1,4 +1,4 @@
-import React, { createElement, Fragment, useEffect, useRef } from 'react';
+import React, { createElement, Fragment, useEffect, useRef, useState } from 'react';
 import { render } from 'react-dom';
 
 import { autocomplete, getAlgoliaResults } from '@algolia/autocomplete-js';
@@ -34,7 +34,13 @@ export function Autocomplete(props) {
 }
 
 export const SearchAutocomplete = () => {
-  const { width } = useWindowSize();
+  const { width: windowWidth } = useWindowSize();
+  const [ width, setWidth ] = useState(windowWidth);
+
+  useEffect(() => {
+    setWidth(windowWidth);
+  }, [windowWidth])
+  
   return (
     <>
       <Global
@@ -48,7 +54,6 @@ export const SearchAutocomplete = () => {
             max-width: 36rem;
             width: 100%;
             @media only screen and (min-width: ${BREAKPOINTS.xs}) {
-              width: 100%;
               min-width: 36rem;
             }
           }
@@ -98,7 +103,7 @@ export const SearchAutocomplete = () => {
             background-color: ${COLORS.PRIMARY_300};
             color: ${COLORS.PRIMARY_500} !important;
           }
-          .aa-SubmitButton:before {
+          .aa-SubmitButton:before { 
             opacity: 0.5;
             content: 'search';
             font-size: 1.25rem;
@@ -131,7 +136,7 @@ export const SearchAutocomplete = () => {
         open={true}
         openOnFocus={true}
         placeholder={width <= 680 ? 'Browse products' : 'e.g. Harry Potter, Stranger Things, Headphones...' }
-        getSources={({ query }) => [
+        getSources={({ query }) => [ 
           {
             sourceId: 'topics',
             getItems() {

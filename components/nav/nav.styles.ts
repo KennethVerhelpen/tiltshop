@@ -5,9 +5,7 @@ export const Shape = styled.nav`
   left: 0;
   z-index: 2;
   width: 100%;
-  position: fixed;
-  background-color: rgba(0, 0, 0, 1);
-  backdrop-filter: blur(1.25rem);
+  position: sticky;
 
   > div:last-of-type {
     min-height: 2.125rem;
@@ -44,4 +42,10 @@ export const NavButton = styled.a`
       transition: all .15s ease-in-out;
     }
   }
+`
+
+export const Logo = styled.img`
+  width: 2rem;
+  height: 2.75rem;
+  object-fit: contain;
 `

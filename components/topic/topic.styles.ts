@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 export const ImagePosition = styled.div`
   top: 0;
   left: 0;
-  position: absolute;
 `
 // Then Wrapping it in a relative positionned div to prevent Chrome warnings. Setting a size is also mandatory.
 export const ImageWrapper = styled.div`
@@ -12,9 +11,7 @@ export const ImageWrapper = styled.div`
   z-index: 0;
   height: 30rem;
   min-width: 20rem;
-  max-width: 20rem;
-  position: relative;
-
+  max-width: 20rem !important;
   img {
     overflow: hidden;
     border-radius: 1rem;
@@ -41,7 +38,7 @@ export const Soon = styled.span`
 export const Shape = styled.div`
   height: 30rem;
   min-width: 20rem;
-  max-width: 20rem;
+  max-width: 20rem !important;
 
   .image-wrapper {
     &:before {
