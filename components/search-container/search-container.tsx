@@ -28,19 +28,26 @@ export const SearchContainer = (props: SearchContainerProps) => {
 
   return(
     <InstantSearch searchClient={searchClient} indexName={indexName}>
-      {searchBar ? <SearchBar className={'fade-in-bottom speed-3'}/> : null }
-      {filters || (sortingItems && sortingDefaultItem) ?
-        <div className={'layout-row container-lg layout-align-start-center'}>
-          {filters ? 
-            <>
-              <SearchCurrentFilters className={'layout-row flex'} theme={theme}/>
-              <SearchFiltersMenu/>
-            </>
-          : null }
-          {(sortingItems && sortingDefaultItem) ? <SearchSortingSelect defaultItem={sortingDefaultItem} items={sortingItems}/> : null }
-        </div> : null
-      }
-      <div className="container-lg">
+      <div className={'container-lg'}>
+        {searchBar ? 
+          <div className="layout-row layout-align-center-center">
+            <div className="flex-100 flex-gt-sm-50">
+              <SearchBar theme={theme} className={'fade-in-bottom speed-3'}/>
+            </div>
+          </div>
+          : null
+        }
+        {filters || (sortingItems && sortingDefaultItem) ?
+          <div className={'layout-row layout-align-start-center'}>
+            {filters ? 
+              <>
+                <SearchCurrentFilters className={'layout-row flex'} theme={theme}/>
+                <SearchFiltersMenu/>
+              </>
+            : null }
+            {(sortingItems && sortingDefaultItem) ? <SearchSortingSelect defaultItem={sortingDefaultItem} items={sortingItems}/> : null }
+          </div> : null
+        }
         <SearchResultsWrapper>
           <SearchResults hitComponent={hitComponent} hitsPerPage={hitsPerPage}/>
           <SearchPagination />

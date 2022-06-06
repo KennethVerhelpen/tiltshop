@@ -15,7 +15,7 @@ export const SearchResultsWrapper = (props: Props) => {
 				<div className={'layout-column layout-align-center-center py-128 text-center container-sm'}>
 					<span className={'h4 bold mb-8'}>Nothing found</span>
 					<span className={'mb-16'}>No results have been found for your keyword. Try another!</span>
-					<Link href={'/Browse'}>
+					<Link href={'/search'}>
 						<a className={'underline'}>Browse all articles</a>
 					</Link>
 				</div>

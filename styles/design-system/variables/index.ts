@@ -39,7 +39,7 @@ const sizeBase = 1;
 
 export const TYPOGRAPHY = {
   SANS_SERIF: `"SF Pro Display", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif`,
-  SERIF: `'Frank Ruhl Libre', sans-serif`,
+  SERIF: `'Damion', sans-serif`,
   H1: `${sizeBase * 2.625}rem`,
   H2: `${sizeBase * 2.35}rem`,
   H3: `${sizeBase * 2}rem`,

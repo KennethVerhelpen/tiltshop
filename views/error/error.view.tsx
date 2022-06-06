@@ -1,9 +1,12 @@
+import clsx from 'clsx';
 import Link from 'next/link';
 
+import { ThemeType } from '../../lib/types';
 import * as S from './error.view.styles';
 			
 export type ErrorViewProps = {
   error?: number;
+  theme?: ThemeType;
 }
 
 const defaultProps = {
@@ -11,14 +14,22 @@ const defaultProps = {
 }
 
 export const ErrorView = (props: ErrorViewProps) => {
-	const { error } = { ...defaultProps, ...props };
+	const { error, theme } = { ...defaultProps, ...props };
   
   return (
-    <main className={'bg-primary-900 layout-column layout-fill layout-align-center-center text-center p-32'}>
-      <S.Title className={'strong serif text-primary-100'}>{error}</S.Title>
-      <h2 className={'h5 text-primary-100'}>Oops, something went wrong</h2>
+    <main className={clsx(
+      theme === 'dark' ? 'bg-primary-900' : 'bg-neutral-100',
+      'flex layout-column layout-fill layout-align-center-center text-center p-32'
+    )}>
+      <S.Title className={clsx(
+        theme === 'dark' ? 'text-neutral-100' : 'text-primary-900',
+        'strong serif')
+      }>
+        {error}
+      </S.Title>
+      <h2 className={'h6 text-primary-500 mt-8'}>Oops, something went wrong</h2>
       <Link href={'/'}>
-        <a className={'p mt-16 underline text-primary-100'} aria-label={'Back to home'}>Back to home</a>
+        <a className={'p mt-16 underline text-primary-500'} aria-label={'Back to home'}>Back to home</a>
       </Link>
     </main>
   )

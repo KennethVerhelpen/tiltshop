@@ -43,7 +43,7 @@ export const Nav = (props: NavProps) => {
 						</div>
 						<Link href={'/'}>
 							<a className={'text-primary-100 bold h6 serif'}>
-								<Logo width={32}/>
+								<Logo width={32} className={'h2 strong'}/>
 							</a>
 						</Link>
 					</div>

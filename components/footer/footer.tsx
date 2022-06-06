@@ -13,7 +13,7 @@ export const Footer = (props: FooterProps) => {
 		<footer className={clsx(theme === 'dark' ? 'bg-primary-900': 'bg-neutral-100' , 'py-64')}>
 			<div className={'container-md layout-row layout-align-center-center'}>
 				<div className={'layout-column layout-align-start-center text-center'}>
-					<Logo theme={theme} width={48}/>
+					<Logo theme={theme} width={48} className={'h1'}/>
 					<p className={'p mt-8 lh-1 text-primary-500'}>
 						Tilt gathers the best items for movies, tv shows and video games lovers.
 					</p>
