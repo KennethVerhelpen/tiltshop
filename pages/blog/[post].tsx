@@ -6,6 +6,8 @@ import { PostType, ArticleType, TypeType, TopicType } from '../../lib/types';
 import { Page } from '../../components';
 import { PostView } from '../../views';
 import { unsplash } from '../api/unsplash';
+import { useContext } from 'react';
+import { ThemeContext } from '../_app';
 
 type Props = {
 	post: PostType;
@@ -16,17 +18,18 @@ type Props = {
 
 export const Post = (props: Props) => {
   const { post, articles, topics, types } = { ...props };
+	const { theme } = useContext(ThemeContext);
 
 	return (
 		<Page
 				menu={false}
-				theme={'dark'}
 				ogImageUrl={post.ogImage.url}
 				title={`${post.title} - Tilt`}
 				description={post.date}
 				history={`/blog`}
+				theme={theme}
 			>
-			<PostView topics={topics} types={types} articles={articles} post={post}/>
+			<PostView theme={theme} topics={topics} types={types} articles={articles} post={post}/>
 		</Page>
 	);
 };

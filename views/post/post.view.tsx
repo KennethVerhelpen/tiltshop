@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { createRef, useRef, useState, useEffect } from 'react';
 
-import { ArticleType, TopicType, TypeType, PostType } from '../../lib/types';
+import { ArticleType, TopicType, TypeType, PostType, ThemeType } from '../../lib/types';
 import * as S from './post.styles';
 			
 export type PostViewProps = {
@@ -10,12 +10,13 @@ export type PostViewProps = {
 	topics?: TopicType[];
 	post: PostType;
   articles: ArticleType[];
+  theme: ThemeType;
 }
 
 
 
 export const PostView = (props: PostViewProps) => {
-	const { types, topics, articles, post } = { ...props };
+	const { types, topics, articles, post, theme } = { ...props };
   const articlesRefs = useRef<unknown>([...new Array(articles.length)].map(() => createRef<HTMLDivElement>()));
   const [positions, setPositions] = useState({});
 
@@ -47,7 +48,7 @@ export const PostView = (props: PostViewProps) => {
             />
           </S.ImageWrapper>
           <div className={'layout-column layout-align-start-start mb-64'}>
-            <h1 className={'strong mb-8 text-neutral-100'} style={{ fontSize: 72 }}>{post.title}</h1>
+            <h1 className={clsx(theme === 'dark' ? 'text-neutral-100' : 'text-primary-900', 'strong mb-8')} style={{ fontSize: 72 }}>{post.title}</h1>
             <div className={'layout-row'}>
               <span className={'mb-16 text-primary-500'}>{post.date}</span>
               &nbsp;&nbsp;|&nbsp;&nbsp;

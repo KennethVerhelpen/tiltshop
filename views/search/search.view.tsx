@@ -5,6 +5,7 @@ import { Header, SearchContainer, Article } from '../../components';
 export type SearchViewProps = {
   searchClient: ReactNode;
   indexName: string;
+  theme: ThemeType;
 } 
 
 type HitComponent = {
@@ -27,18 +28,20 @@ const sortingArticlesItem = [
 ]
 
 export const SearchView = (props: SearchViewProps) => {
-	const { searchClient, indexName  } = { ...props };
+	const { searchClient, indexName, theme  } = { ...props };
   
   return (
     <>
       <Header
         align={'center'}
         animated={false}
+        theme={theme}
         className={'pt-128 pb-64 container-lg px-24'}
         title={'Browse all items'}
         topic={'Easily find all items hand-picked just for you.'}
       />
       <SearchContainer
+        theme={theme}
         searchClient={searchClient}
         indexName={indexName}
         hitComponent={HitComponent}
