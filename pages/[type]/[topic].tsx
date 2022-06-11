@@ -63,6 +63,8 @@ export async function getStaticProps({
   const currentArticles = await prisma.article.findMany({ where: { topicId: currentTopic.id } });
   await prisma.$disconnect();
 
+  await prisma.$disconnect();
+
   return {
     props: {
       type: currentType,

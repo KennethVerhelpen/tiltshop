@@ -30,6 +30,7 @@ const Type = (props: Props) => {
 
 export async function getStaticPaths() {
 	const types = await prisma.type.findMany();
+	await prisma.$disconnect();
 
 	await prisma.$disconnect();
 
@@ -60,6 +61,7 @@ export async function getStaticProps({
 			typeId: currentType.id
 		}
 	});
+	await prisma.$disconnect();
 
 	await prisma.$disconnect();
 
