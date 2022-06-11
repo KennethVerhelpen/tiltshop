@@ -20,7 +20,8 @@ export default function App({ Component, pageProps }) {
 	}
 
 	useEffect(() => {
-		if (localStorage.getItem('theme') === undefined) {
+		console.log("LOCAL", localStorage.getItem('theme'));
+		if (localStorage.getItem('theme') === null) {
 			localStorage.setItem('theme', JSON.stringify('dark'));
 		} else {
 			setTheme(localStorage.getItem('theme').replace(/['"]+/g, ''));

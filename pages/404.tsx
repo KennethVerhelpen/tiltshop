@@ -9,7 +9,6 @@ const Custom404 = () => {
 
   return (
     <Page
-      theme={theme}
       nav={false}
     > 
       <ErrorView theme={theme}/>
