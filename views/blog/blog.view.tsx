@@ -64,7 +64,7 @@ export const BlogView = (props: BlogViewProps) => {
 							{posts.map((post: PostType, index: number) => (
 								<Fragment key={post.slug}>
 									<div className={'p-8 layout-column layout-align-start-center flex-33 flex-xs-100 flex-sm-50'}>
-										<Post className={'width-100'} post={post}/>
+										<Post className={'width-100'} post={post} theme={theme}/>
 									</div>
 									{posts.length > 3 && index === 3 || posts.length < 3 && index === 0 ? 
 										<div className={'p-8 layout-column layout-align-start-center flex-33 flex-xs-100 flex-sm-50'}>
