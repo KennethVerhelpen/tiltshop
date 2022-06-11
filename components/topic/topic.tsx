@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 import { ArrowForwardRounded } from '@mui/icons-material';
 
+import { getAwsImageUrl } from '../../lib/utils';
 import { TopicType, TypeType } from '../../lib/types';
 import * as S from './topic.styles';
 
@@ -47,8 +48,8 @@ export const Topic = (props: TopicProps) => {
 								objectFit={'cover'}
 								objectPosition={'center'}
 								priority={index <= 16}
-								loading={index <= 16 ? 'eager' : 'lazy'}
-								src={`/images/topics/${topic.slug}/thumbnail.jpg`}
+								loading={index <= 50 ? 'eager' : 'lazy'}
+								src={getAwsImageUrl(`/images/topics/${topic.slug}/thumbnail.jpg`)}
 								alt={topic.name}
 							/>
 						</S.ImageWrapper>

@@ -1,4 +1,4 @@
-import { ArticleType, ThemeType, TopicType, TypeType } from "./types";
+import { ArticleType, TopicType, TypeType } from "./types";
 
 export const throttleApi = (time, request) => {
   return (
@@ -8,6 +8,15 @@ export const throttleApi = (time, request) => {
         }, time)
     })
   );
+};
+
+export const getAwsImageUrl = (params: string) => {
+  if (params.length > 0) {
+    const url = `https://tiltshop-data.s3.us-east-2.amazonaws.com${params}`;
+    return url;
+  } else {
+    throw new Error(`Missing params in the image url.`);
+  }
 };
 
 export const getReadingTime = (texts: string[]) => {

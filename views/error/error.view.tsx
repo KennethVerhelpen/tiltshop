@@ -23,7 +23,7 @@ export const ErrorView = (props: ErrorViewProps) => {
     )}>
       <S.Title className={clsx(
         theme === 'dark' ? 'text-neutral-100' : 'text-primary-900',
-        'strong serif')
+        'strong cursive')
       }>
         {error}
       </S.Title>

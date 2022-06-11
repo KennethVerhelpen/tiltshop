@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 import { ArrowForwardRounded } from '@mui/icons-material';
 
+import { getAwsImageUrl } from '../../lib/utils';
 import { ArticleType, TopicType, TypeType } from '../../lib/types';
 import { Shape, Main, Footer, IconButton, ImageWrapper, BudgetRangeStyled } from './article.styles';
 
@@ -87,7 +88,7 @@ export const Article = (props: ArticleProps) => {
 						priority={index <= 2}
 						loading={index <= 2 ? 'eager' : 'lazy'}
 						alt={`${article.imgAlt} - ${topicName}`}
-						src={`/images/articles/${article.id}/article.jpg`}
+						src={getAwsImageUrl(`/images/articles/${article.id}/article.jpg`)}
 					/>
 				</ImageWrapper>
 			</Shape>

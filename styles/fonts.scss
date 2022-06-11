@@ -1,59 +1,58 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone&display=block');
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Damion&display=swap');
 
-@font-face {
-  font-family: "Pacifico";
-  src: url("/fonts/Pacifico/Pacifico-Regular.ttf");
-  font-style: normal;
-  font-weight: 700;
-  font-display: block;
+@mixin get-aws-font-url($params) {
+  @if ($params != null) {
+    src: 'https://tiltshop-data.s3.us-east-2.amazonaws.com' + $params;
+  } @else {
+    @warn "Missing params in the font url.";
+  }
 }
 
 @font-face {
   font-family: "Damion";
-  src: url("/fonts/Damion/Damion-Regular.ttf");
   font-style: normal;
   font-weight: 700;
   font-display: block;
+  @include get-aws-font-url('/fonts/damion/damion-regular.ttf');
 }
 
 @font-face {
   font-family: "SF Pro Display";
-  src: url("/fonts/SF-Pro-Display/SF-Pro-Display-Regular.otf");
   font-style: normal;
   font-weight: 400;
   font-display: block;
+  @include get-aws-font-url('/fonts/sf-pro-display/sf-pro-display-regular.otf');
 }
 
 @font-face {
   font-family: "SF Pro Display";
-  src: url("/fonts/SF-Pro-Display/SF-Pro-Display-RegularItalic.otf");
   font-style: italic;
   font-weight: 400;
   font-display: block;
+  @include get-aws-font-url('/fonts/sf-pro-display/sf-pro-display-regular-italic.otf');
 }
 
 @font-face {
   font-family: "SF Pro Display";
-  src: url("/fonts/SF-Pro-Display/SF-Pro-Display-Bold.otf");
   font-style: normal;
   font-weight: 700;
   font-display: block;
+  @include get-aws-font-url('/fonts/sf-pro-display/sf-pro-display-bold.otf');
 }
 
 @font-face {
   font-family: "SF Pro Display";
-  src: url("/fonts/SF-Pro-Display/SF-Pro-Display-Heavy.otf");
   font-style: normal;
   font-weight: 800;
   font-display: block;
+  @include get-aws-font-url('/fonts/sf-pro-display/sf-pro-display-heavy.otf');
 }
 
 @font-face {
   font-family: "SF Pro Display";
-  src: url("/fonts/SF-Pro-Display/SF-Pro-Display-Black.otf");
   font-style: normal;
   font-weight: 900;
   font-display: block;
+  @include get-aws-font-url('/fonts/sf-pro-display/sf-pro-display-black.otf');
 }

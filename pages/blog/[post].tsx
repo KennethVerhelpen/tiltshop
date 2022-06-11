@@ -24,7 +24,7 @@ export const Post = (props: Props) => {
 		<Page
 				menu={false}
 				ogImageUrl={post.ogImage.url}
-				title={`${post.title} - Tilt`}
+				title={`${post.title}`}
 				description={post.date}
 				history={`/blog`}
 				theme={theme}

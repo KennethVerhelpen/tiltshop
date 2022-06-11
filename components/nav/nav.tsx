@@ -42,8 +42,8 @@ export const Nav = (props: NavProps) => {
 							{ history && !menu && BackHistory(history) }	
 						</div>
 						<Link href={'/'}>
-							<a className={'text-primary-100 bold h6 serif'}>
-								<Logo width={32} className={'h2 strong'}/>
+							<a className={'text-primary-100 bold h6 cursive'}>
+								<Logo theme={'dark'} className={'h2'}/>
 							</a>
 						</Link>
 					</div>

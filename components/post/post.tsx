@@ -7,7 +7,7 @@ import { FavoriteTwoTone, RemoveRedEyeTwoTone } from '@mui/icons-material';
 
 import { PostType, ThemeType} from '../../lib/types';
 import { getReadingTime } from '../../lib/utils';
-import { Shape, ImageWrapper } from './post.styles';
+import* as S from './post.styles';
 
 
 type PostProps = {
@@ -22,12 +22,12 @@ export const Post: React.FC<PostProps> = (props) => {
 
 	return (
 			<Link href={`blog/${post.slug}`}>
-				<Shape className={clsx(className, 'bg-neutral-100 layout-column rounded-xl border shadow-2 cursor-pointer')}>
+				<S.Shape className={clsx(className, 'bg-neutral-100 layout-column rounded-xl border shadow-2 cursor-pointer')}>
 					<header className={'p-8'}>
-						<ImageWrapper className={'relative height-100 width-100'}>
+						<S.ImageWrapper className={'relative width-100'}>
 							<Image
 								className={'rounded-lg'}
-								src={'/images/backgrounds/mobile-background.jpg'}
+								src={'/images/default/placeholder.jpg'}
 								layout={'fill'}
 								quality={'100'}
 								objectFit={'cover'}
@@ -36,7 +36,7 @@ export const Post: React.FC<PostProps> = (props) => {
 								loading={'eager'}
 								alt={'image'}
 							/>
-						</ImageWrapper>
+						</S.ImageWrapper>
 					</header>
 					<main className={'p-32'}>
 						<h3 className={'strong h2 mb-8'}>{post.title}</h3>
@@ -62,7 +62,7 @@ export const Post: React.FC<PostProps> = (props) => {
 							<span className={'small'}>{post.date}</span>
 						</div>
 					</footer>
-				</Shape>
+				</S.Shape>
 			</Link>
 	);
 }

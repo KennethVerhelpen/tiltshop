@@ -46,13 +46,13 @@ export const RegisterForm = () => {
 					{ form.state === 'success' && (
 						<div className={'layout-column layout-align-center-center'}>
 							<MarkunreadMailboxTwoTone style={{ fontSize: 32 }} className={'mb-32 text-primary-100'}/>
-							<span className={'h3 strong serif text-primary-100 mb-16'}>Hooray!</span>
+							<span className={'h3 strong text-primary-100 mb-16'}>Hooray!</span>
 							<span className={'small text-primary-100'}>You're now on the list.</span>
 						</div>
 					)}
 					{ form.state === 'error' && (
 						<div className={'layout-column layout-align-center-center'}>
-							<span className={'h3 strong serif text-primary-100 mb-16'}>Oops!</span>
+							<span className={'h3 strong text-primary-100 mb-16'}>Oops!</span>
 							<span className={'small text-primary-100 mb-32'}>{form.message}</span>
 							<button className={'btn btn-md btn-raised width-100'} onClick={() => setForm(undefined)}>Go back</button>
 						</div>
@@ -66,7 +66,7 @@ export const RegisterForm = () => {
 			}
 			<main className={clsx({ 'hide' : form },'layout-column layout-align-center-center')}>
 				<EmailTwoTone style={{ fontSize: 32 }} className={'mb-32 text-primary-100'}/>
-				<span className={'h3 strong serif text-primary-100 mb-16'}>Stay tuned about our latest articles</span>
+				<span className={'h3 strong text-primary-100 mb-16'}>Stay tuned about our latest articles</span>
 				<span className={'small text-primary-100 mb-16'}>Register to our free newsletter and get the latest reviews directly in your mailbox.</span>
 				<S.Input
 					id={'email-input'}

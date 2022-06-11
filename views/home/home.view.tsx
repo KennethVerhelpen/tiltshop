@@ -87,7 +87,7 @@ export const HomeView = (props: HomeViewProps) => {
 	}, [lastPageItemInView, firstPageItemInView])
 	
   return (
-		<main className={'pt-128 p-0 layout-column layout-align-center-start overflow-hidden'}>
+		<main className={'p-0 layout-column layout-align-center-start overflow-hidden'}>
 			<header key={'header'} className={'container-lg py-128'}>
 				<Header theme={theme} rotation={true}/>
 			</header>
