@@ -69,7 +69,7 @@ export const Nav = (props: NavProps) => {
 					<ul className={'small flex-noshrink layout-row layout-align-center-stretch p-0 m-0 list-reset'}>
 						<li className={'layout-row layout-align-center-center'}>
 							<Link href={'/'}>
-								<S.NavButton className={clsx(activePage === undefined && 'active bold text-primary-100', 'text-primary-500 layout-column layout-align-start-stretch cursor-pointer')}>
+								<S.NavButton className={clsx(activePage === undefined && 'active bold text-primary-100', 'text-primary-400 layout-column layout-align-start-stretch cursor-pointer')}>
 									<div className={'layout-row layout-align-center-center px-16 flex'}>
 										<span>All</span>
 									</div>
@@ -81,7 +81,7 @@ export const Nav = (props: NavProps) => {
 							.map((type: TypeType, index: number) => (
 								<li key={index} className={'layout-row layout-align-center-center'}>
 									<Link href={`/${type.slug}`}>
-										<S.NavButton className={clsx(activePage === type.slug && 'active bold text-primary-100', 'text-primary-500 layout-column layout-align-start-stretch cursor-pointer')}>
+										<S.NavButton className={clsx(activePage === type.slug && 'active bold text-primary-100', 'text-primary-400 layout-column layout-align-start-stretch cursor-pointer')}>
 											<div className={'layout-row layout-align-center-center px-16 flex'}>
 												{(() => {
 													switch(type.slug) {
