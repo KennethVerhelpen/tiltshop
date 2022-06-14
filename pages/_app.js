@@ -20,7 +20,6 @@ export default function App({ Component, pageProps }) {
 	}
 
 	useEffect(() => {
-		console.log("LOCAL", localStorage.getItem('theme'));
 		if (localStorage.getItem('theme') === null) {
 			localStorage.setItem('theme', JSON.stringify('dark'));
 		} else {

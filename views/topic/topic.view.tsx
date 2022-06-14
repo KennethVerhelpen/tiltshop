@@ -42,7 +42,7 @@ export const TopicView = (props: TopicViewProps) => {
       <S.Grid className={'container-lg layout-column'}>
         {topic.htmlDescription && topic.htmlDescription.length &&
           <section className="px-8 pb-64">
-            <S.Description className={'text-primary-500 blocktext text-left'}>
+            <S.Description theme={theme} className={'text-primary-500 blocktext text-left'}>
               <div dangerouslySetInnerHTML={description}></div>
               { topic.htmlDescription.length > 1500 &&
                 <>

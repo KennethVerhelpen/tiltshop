@@ -45,7 +45,7 @@ featuredArticles:
 author:
   name: Tim Neutkens
   picture: '/images/topics/avengers/thumbnail.jpg'
-  role: 'Founder @ Tilt'
+  role: 'Founder @ tilt.'
 ogImage:
   url: '/images/topics/avengers/thumbnail.jpg'
 outro: 'Regardless of your streaming budget, you still may need some additional streaming equipment. Such equipment includes a tripod for your video camera and an arm for your microphone, all sorts of cables to connect audio and video sources, light stands and LED rings to further improve your video quality, a green screen (chroma key) to change your backgrounds, and many more.'

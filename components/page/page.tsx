@@ -46,7 +46,7 @@ export const Page = (props: PageProps) => {
 			<Head>
 				<meta charSet={'UTF-8'} />
 				<meta name={'viewport'} content={'initial-scale=1.0, width=device-width'} />
-				<title>Tilt: {title}</title>
+				<title>tilt. - {title}</title>
 				<meta name={'keywords'} content={'Cinema, Movies, Tv shows, Video games'} />
 				<meta name={'description'} content={description} />
 				<meta property={'og:title'} content={title} />
@@ -58,7 +58,7 @@ export const Page = (props: PageProps) => {
 				<link rel={'icon'} href={'/favicon.ico'} />
 				<link rel="preconnect" href="https://fonts.googleapis.com"/>
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/>
-				<link href="https://fonts.googleapis.com/css2?family=Damion&display=swap" rel="stylesheet"/>
+				<link href="https://fonts.googleapis.com/css2?family=Damion&display=block" rel="stylesheet"/>
 				<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone&display=block" rel="stylesheet" />
 			</Head>
 			{nav ? <Nav types={types} history={history} menu={menu} activePage={activePage} switchTheme={switchTheme} theme={theme}/> : null}

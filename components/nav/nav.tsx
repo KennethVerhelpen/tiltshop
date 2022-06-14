@@ -68,11 +68,11 @@ export const Nav = (props: NavProps) => {
 				<div className={'border-top border-bottom border-primary-800 layout-row layout-align-center-center flex-none hide-xs width-100'}>
 					<ul className={'small flex-noshrink layout-row layout-align-center-stretch p-0 m-0 list-reset'}>
 						<li className={'layout-row layout-align-center-center'}>
-							<Link href={'/'}>
+							<Link href={'/'} passHref>
 								<S.NavButton className={clsx(activePage === undefined && 'active bold text-primary-100', 'text-primary-400 layout-column layout-align-start-stretch cursor-pointer')}>
-									<div className={'layout-row layout-align-center-center px-16 flex'}>
+									<span className={'layout-row layout-align-center-center px-16 flex'}>
 										<span>All</span>
-									</div>
+									</span>
 								</S.NavButton>
 							</Link>
 						</li>
@@ -80,7 +80,7 @@ export const Nav = (props: NavProps) => {
 							.sort((a: TypeType, b: TypeType) => (a.id - b.id))
 							.map((type: TypeType, index: number) => (
 								<li key={index} className={'layout-row layout-align-center-center'}>
-									<Link href={`/${type.slug}`}>
+									<Link href={`/${type.slug}`} passHref>
 										<S.NavButton className={clsx(activePage === type.slug && 'active bold text-primary-100', 'text-primary-400 layout-column layout-align-start-stretch cursor-pointer')}>
 											<div className={'layout-row layout-align-center-center px-16 flex'}>
 												{(() => {

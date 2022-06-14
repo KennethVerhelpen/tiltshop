@@ -41,11 +41,11 @@ export const Topic = (props: TopicProps) => {
 					}
 					</S.Footer>
 					<S.ImagePosition className="rounded-md overflow-hidden absolute">
-						<S.ImageWrapper className={'image-wrapper rounded-md overflow-hidden relative'}>
+						<S.ImageWrapper className={'rounded-md overflow-hidden relative'}>
 							<Image
-								quality={100}
 								layout={'fill'}
 								objectFit={'cover'}
+								placeholder={'blur'}
 								objectPosition={'center'}
 								priority={index <= 16}
 								loading={index <= 50 ? 'eager' : 'lazy'}
