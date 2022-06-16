@@ -1,11 +1,11 @@
-import prisma from '../../lib/prisma';
-import markdownToHtml from '../../lib/markdownToHtml'
-import { getPostBySlug, getAllPosts } from '../../lib/posts';
-import { getFormatedDate, getReadingTime } from '../../lib/utils';
+// import prisma from '../../lib/prisma';
+// import markdownToHtml from '../../lib/markdownToHtml'
+// import { getPostBySlug, getAllPosts } from '../../lib/posts';
+// import { getFormatedDate, getReadingTime } from '../../lib/utils';
 import { PostType, ArticleType, TypeType, TopicType } from '../../lib/types';
 import { Page } from '../../components';
 import { PostView } from '../../views';
-import { unsplash } from '../api/unsplash';
+// import { unsplash } from '../api/unsplash';
 import { useContext } from 'react';
 import { ThemeContext } from '../_app';
 
@@ -34,84 +34,84 @@ export const Post = (props: Props) => {
 	);
 };
 
-export async function getStaticProps({
-	params: { post: postSlug}
-}) {
+// export async function getStaticProps({
+// 	params: { post: postSlug}
+// }) {
 
-	const currentPost = getPostBySlug(postSlug, [
-		'articles',
-		'author',
-		'content',
-		'coverImageUnsplashId',
-		'coverImageUnsplashUrl',
-		'date',
-		'excerpt',
-		'featuredArticles',
-		'ogImage',
-		'outro',
-		'slug',
-		'title',
-		'topicSlug',
-		'typeSlug',
-	]) as PostType;
+	// const currentPost = getPostBySlug(postSlug, [
+	// 	'articles',
+	// 	'author',
+	// 	'content',
+	// 	'coverImageUnsplashId',
+	// 	'coverImageUnsplashUrl',
+	// 	'date',
+	// 	'excerpt',
+	// 	'featuredArticles',
+	// 	'ogImage',
+	// 	'outro',
+	// 	'slug',
+	// 	'title',
+	// 	'topicSlug',
+	// 	'typeSlug',
+	// ]) as PostType;
 
-	currentPost['content'] = await markdownToHtml(currentPost.content || '');
-	currentPost['date'] = getFormatedDate(currentPost.date);
-	currentPost['time'] = getReadingTime([currentPost.content, currentPost.excerpt, currentPost.outro]);
-	currentPost['coverImageUnsplashUrl'] = await (await unsplash.photos.get({
-		photoId: `${currentPost.coverImageUnsplashId}`
-	})).response.urls.full;
+	// currentPost['content'] = await markdownToHtml(currentPost.content || '');
+	// currentPost['date'] = getFormatedDate(currentPost.date);
+	// currentPost['time'] = getReadingTime([currentPost.content, currentPost.excerpt, currentPost.outro]);
+	// currentPost['coverImageUnsplashUrl'] = await (await unsplash.photos.get({
+	// 	photoId: `${currentPost.coverImageUnsplashId}`
+	// })).response.urls.full;
 
-	const currentArticlesSlugs: string[] = currentPost['featuredArticles']?.map(featuredArticle => (featuredArticle.slug));
-	const currentArticles = await prisma.article.findMany({
-		where : { 
-			slug: { in: currentArticlesSlugs }
-		}
-	});
+	// const currentArticlesSlugs: string[] = currentPost['featuredArticles']?.map(featuredArticle => (featuredArticle.slug));
+	// const currentArticles = await prisma.article.findMany({
+	// 	where : { 
+	// 		slug: { in: currentArticlesSlugs }
+	// 	}
+	// });
 
-	const currentTopicsId: number[] = currentArticles.map(article => article.topicId);
-	const currentTopics = await prisma.topic.findMany({
-		where : {
-			id: {
-				in: currentTopicsId
-			}
-		}
-	});
+	// const currentTopicsId: number[] = currentArticles.map(article => article.topicId);
+	// const currentTopics = await prisma.topic.findMany({
+	// 	where : {
+	// 		id: {
+	// 			in: currentTopicsId
+	// 		}
+	// 	}
+	// });
 
-	const currentTypesId: number[] = currentArticles.map(article => article.typeId);
-	const currentTypes = await prisma.type.findMany({
-		where : {
-			id: {
-				in: currentTypesId
-			}
-		}
-	});
+	// const currentTypesId: number[] = currentArticles.map(article => article.typeId);
+	// const currentTypes = await prisma.type.findMany({
+	// 	where : {
+	// 		id: {
+	// 			in: currentTypesId
+	// 		}
+	// 	}
+	// });
 
-	return {
-		props: {
-			post: currentPost,
-			topics: currentTopics,
-			types: currentTypes,
-			articles: currentArticles
-		},
-	}
-}
+	// return {
+	// 	props: {
+	// 		post: currentPost,
+	// 		topics: currentTopics,
+	// 		types: currentTypes,
+	// 		articles: currentArticles
+	// 	},
+	// }
+// }
 
-export async function getStaticPaths() {
-	const posts = getAllPosts(['slug']);
+// export async function getStaticPaths() {
+// 	const posts = getAllPosts(['slug']);
 	
-  const paths = posts.map((post: PostType) => {
-    return {	
-      params: {
-        post: post.slug,
-      }
-	  }
-  })
+//   const paths = posts.map((post: PostType) => {
+//     return {	
+//       params: {
+//         post: post.slug,
+//       }
+// 	  }
+//   })
 
-  return {
-		paths,
-		fallback: false,
-  }
-};
+//   return {
+// 		paths,
+// 		fallback: false,
+//   }
+// };
 
 export default Post;
