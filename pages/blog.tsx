@@ -9,7 +9,7 @@ import { BlogView } from '../views';
 import { ThemeContext } from './_app';
 
 type Props = {
-  posts: PostType[];
+  posts?: PostType[];
 }
 
 export const Blog = (props: Props) => {
@@ -28,26 +28,26 @@ export const Blog = (props: Props) => {
 
 export default Blog;
 
-export async function getStaticProps(){
+// export async function getStaticProps(){
 
-	const allPosts = getAllPosts([
-		'title',
-		'date',
-		'slug',
-		'author',
-		'content',
-		'coverImage'
-	]);
+// 	const allPosts = getAllPosts([
+// 		'title',
+// 		'date',
+// 		'slug',
+// 		'author',
+// 		'content',
+// 		'coverImage'
+// 	]);
 
-	const allPostsFormated = allPosts?.map((post: PostType) => {
-		post['date'] = getFormatedDate(post.date);
-		post['time'] = getReadingTime([post.content]);
-		return post
-	})
+// 	const allPostsFormated = allPosts?.map((post: PostType) => {
+// 		post['date'] = getFormatedDate(post.date);
+// 		post['time'] = getReadingTime([post.content]);
+// 		return post
+// 	})
 
-  return {
-    props: {
-      posts: allPostsFormated,
-    }
-  }
-}
+//   return {
+//     props: {
+//       posts: allPostsFormated,
+//     }
+//   }
+// }
