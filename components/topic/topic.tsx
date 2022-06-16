@@ -45,7 +45,6 @@ export const Topic = (props: TopicProps) => {
 							<Image
 								layout={'fill'}
 								objectFit={'cover'}
-								placeholder={'blur'}
 								objectPosition={'center'}
 								priority={index <= 16}
 								loading={index <= 50 ? 'eager' : 'lazy'}

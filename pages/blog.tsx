@@ -39,10 +39,10 @@ export async function getStaticProps(){
 		'coverImage'
 	]);
 
-	const allPostsFormated = allPosts.map((post: PostType) => {
+	const allPostsFormated = allPosts?.map((post: PostType) => {
 		post['date'] = getFormatedDate(post.date);
 		post['time'] = getReadingTime([post.content]);
-		return (post)
+		return post
 	})
 
   return {

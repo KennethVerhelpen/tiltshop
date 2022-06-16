@@ -15,7 +15,7 @@ export const getAwsImageUrl = (params: string) => {
     const url = `https://tiltshop-data.s3.us-east-2.amazonaws.com${params}`;
     return url;
   } else {
-    throw new Error(`Missing params in the image url.`);
+    throw new Error('Missing params in the image url.');
   }
 };
 
@@ -53,7 +53,7 @@ export const populateTopicsData = (topics: TopicType[], types: TypeType[]) => {
       topic['typeSlug'] = types.find(type => type.id === topic.typeId).slug;
     }); return topics;
   } else {
-    throw new Error(`Missing topics or types data.`);
+    throw new Error('Missing topics or types data.');
   }
 }
 
@@ -84,6 +84,6 @@ export const populateArticlesData = (articles: ArticleType[], topics: TopicType[
       }
     }); return articles;
   } else {
-    throw new Error(`Missing articles, topics or types data.`);
+    throw new Error('Missing articles, topics or types data.');
   }
 }
