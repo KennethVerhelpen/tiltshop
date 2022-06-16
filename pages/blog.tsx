@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
-import { getAllPosts } from '../lib/posts';
+// import { getAllPosts } from '../lib/posts';
 import { PostType } from "../lib/types";
-import { getFormatedDate, getReadingTime } from '../lib/utils';
+// import { getFormatedDate, getReadingTime } from '../lib/utils';
 
 import { Page } from '../components';
 import { BlogView } from '../views';
