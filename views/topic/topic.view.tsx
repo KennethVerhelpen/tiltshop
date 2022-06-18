@@ -35,7 +35,7 @@ export const TopicView = (props: TopicViewProps) => {
         align={'left'}
         theme={theme}
         animated={false}
-        className={'pt-128 pb-64 container-lg px-24'}
+        className={'container-xl pt-128 pb-64 container-lg px-24'}
         title={topic.name}
         topic={topic.name}
       />

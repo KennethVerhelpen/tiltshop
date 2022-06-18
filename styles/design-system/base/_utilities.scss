@@ -108,6 +108,15 @@
   list-style-type: none;
 }
 
+%btn-reset,
+.btn-reset {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  background: none;
+}
+
 @each $axis in ('-x', '-y', '') {
   @include overflow-classes($axis);
 }

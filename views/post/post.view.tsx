@@ -38,8 +38,6 @@ export const PostView = (props: PostViewProps) => {
             <Image
               quality={'100'}
               objectFit={'cover'}
-              // height={'384px'}
-              // width={'1056px'}
               layout={'fill'}
               objectPosition={'center'}
               loading={'lazy'}

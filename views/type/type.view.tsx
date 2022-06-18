@@ -13,7 +13,7 @@ export const TypeView = (props: TypeViewProps) => {
   
   return (
 		<div className={'width-100'}>
-			<Header theme={theme} className={'pt-128 pb-64'} type={type.name}/>
+			<Header theme={theme} className={'container-xl pt-128 pb-64'} type={type.name}/>
 			<main className={'container-lg pb-128 layout-column'}>
 				<div className={'layout-row layout-wrap layout-align-center-center'}>
 					{topics.map((topic, index) => {

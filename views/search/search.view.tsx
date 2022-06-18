@@ -36,7 +36,7 @@ export const SearchView = (props: SearchViewProps) => {
         align={'center'}
         animated={false}
         theme={theme}
-        className={'pt-128 pb-64 container-lg px-24'}
+        className={'container-xl pt-128 pb-64 container-lg px-24'}
         title={'Browse all items'}
         topic={'Easily find all items hand-picked just for you.'}
       />

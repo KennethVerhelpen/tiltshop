@@ -8,12 +8,13 @@ import { ThemeContext } from '../_app';
 
 type Props = {
   type: TypeType;
+  types: TypeType[];
   topic: TopicType;
   articles: ArticleType[];
 }
 
 const Topic = (props: Props) => {
-	const { type, topic, articles } = { ...props };
+	const { type, topic, articles, types } = { ...props };
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -21,6 +22,7 @@ const Topic = (props: Props) => {
       <Page
         menu={false}
         theme={theme}
+        types={types}
         title={`Best ${topic.articlesCount >= 20 ? '20+' : '10+' } products for ${topic.name} lovers`}
         history={`/${type.slug}`}
         bgImageUrl={`/images/topics/${topic.slug}/cover.gif`}
@@ -58,6 +60,7 @@ export async function getStaticProps({
     type: typeSlug
   }}){
 
+  const types = await prisma.type.findMany();
   const currentTopic = await prisma.topic.findUnique({ where: { slug: topicSlug } });
   const currentType = await prisma.type.findUnique({ where: { slug: typeSlug } });
   const currentArticles = await prisma.article.findMany({ where: { topicId: currentTopic.id } });
@@ -67,6 +70,7 @@ export async function getStaticProps({
 
   return {
     props: {
+      types,
       type: currentType,
       topic: currentTopic,
       articles: currentArticles,

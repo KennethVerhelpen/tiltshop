@@ -9,19 +9,21 @@ import { ThemeContext } from '../../_app';
 
 type Props = {
   type: TypeType;
+	types: TypeType[];
   topic: TopicType;
 	article: ArticleType;
   articles: ArticleType[];
 }
 
 export const ArticleDetails = (props: Props) => {
-	const {type, topic, article, articles} = { ...props };
+	const {type, topic, article, articles, types } = { ...props };
 	const { theme } = useContext(ThemeContext);
 
 	return (
 		<>
 			<Page
 				menu={false}
+				types={types}
 				title={`${article.title} - ${topic.name}`}
 				description={article.description}
 				history={`/${type.slug}/${topic.slug}`}
@@ -88,10 +90,13 @@ export async function getStaticProps({
 		}, take: 3
 	});
 
+	const types = await prisma.type.findMany();
+
 	await prisma.$disconnect();
 
   return {
     props: {
+			types,
 			type: currentType,
 			topic: currentTopic,
 			article: currentArticle,

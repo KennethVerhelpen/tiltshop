@@ -3,6 +3,7 @@ export { BudgetRange } from './budget-range/budget-range';
 export { Footer } from './footer/footer';
 export { Header } from './header/header';
 export { Nav } from './nav/nav';
+export { MobileMenu } from './mobile-menu/mobile-menu';
 export { Page } from './page/page';
 export { Post } from './post/post';
 export { RegisterForm } from './register-form/register-form';

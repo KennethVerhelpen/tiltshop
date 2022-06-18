@@ -16,5 +16,5 @@ export const Input = styled.input`
 `
 
 export const Form = styled.form`
-	min-width: 30rem;
+	max-width: 30rem;
 `

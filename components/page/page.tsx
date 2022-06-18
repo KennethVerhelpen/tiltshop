@@ -9,7 +9,7 @@ import clsx from 'clsx';
 import { ThemeContext } from '../../pages/_app';
 
 export type PageProps = {
-	activePage?: string,
+	activePage?: TypeType['slug'],
 	alt?: string,
 	bgImageUrl?: string
 	children?: ReactNode,

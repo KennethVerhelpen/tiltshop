@@ -14,10 +14,11 @@ type Props = {
 	articles: ArticleType[];
 	topics: TopicType[];
 	types: TypeType[];
+	allTypes: TypeType[];
 }
 
 export const Post = (props: Props) => {
-  const { post, articles, topics, types } = { ...props };
+  const { post, articles, topics, types, allTypes } = { ...props };
 	const { theme } = useContext(ThemeContext);
 
 	return (
@@ -28,6 +29,7 @@ export const Post = (props: Props) => {
 				description={post.date}
 				history={`/blog`}
 				theme={theme}
+				types={allTypes}
 			>
 			<PostView theme={theme} topics={topics} types={types} articles={articles} post={post}/>
 		</Page>
@@ -87,8 +89,11 @@ export async function getStaticProps({
 		}
 	});
 
+	const types =  await prisma.type.findMany();
+
 	return {
 		props: {
+			allTypes: types,
 			post: currentPost,
 			topics: currentTopics,
 			types: currentTypes,

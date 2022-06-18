@@ -88,7 +88,7 @@ export const HomeView = (props: HomeViewProps) => {
 	
   return (
 		<main className={'p-0 layout-column layout-align-center-start overflow-hidden'}>
-			<header key={'header'} className={'container-lg py-128'}>
+			<header key={'header'} className={'container-xl py-128'}>
 				<Header theme={theme} rotation={true}/>
 			</header>
 			<main className={'layout-row layout-wrap layout-align-center-center flex-gt-xs-none'}>
