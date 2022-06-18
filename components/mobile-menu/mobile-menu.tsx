@@ -21,8 +21,9 @@ export const MobileMenu = (props: MobileMenuProps) => {
 		<>
 			<Global
 				styles={css`
-					body {
+					body, html {
 						overflow: hidden;
+						position: relative;
 					}
 				`}
 			/>
