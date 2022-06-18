@@ -38,8 +38,8 @@ export const MobileMenu = (props: MobileMenuProps) => {
 						<label className={'p-16 bold h5 text-primary-100'}>Categories</label>
 						<main>
 							<li className={'layout-row layout-align-center-center border-bottom border-primary-800'}>
-								<Link href={'/'} passHref>
-									<a className={'text-primary-400 layout-column p-16 layout-align-start-stretch cursor-pointer flex'}>
+								<Link href={'/'} passHref >
+									<a onClick={onClose} className={'text-primary-400 layout-column p-16 layout-align-start-stretch cursor-pointer flex'}>
 										All
 									</a>
 								</Link>
@@ -48,8 +48,8 @@ export const MobileMenu = (props: MobileMenuProps) => {
 								.sort((a: TypeType, b: TypeType) => (a.id - b.id))
 								.map((type: TypeType, index: number) => (
 									<li key={index} className={'layout-row layout-align-start-center border-bottom border-primary-800'}>
-										<Link href={`/${type.slug}`} onClick={onClose} passHref>
-											<a className={'text-primary-400 layout-column layout-align-start-stretch cursor-pointer p-16 flex'}>
+										<Link href={`/${type.slug}`} passHref>
+											<a onClick={onClose} className={'text-primary-400 layout-column layout-align-start-stretch cursor-pointer p-16 flex'}>
 												<div className={'layout-row layout-align-center-center flex'}>
 													{(() => {
 														switch(type.slug) {
@@ -81,8 +81,8 @@ export const MobileMenu = (props: MobileMenuProps) => {
 						<label className={'px-16 pt-32 pb-16 bold h5 text-primary-100'}>More</label>
 						<main>
 							<li className={'layout-row layout-align-start-center border-bottom border-primary-800'}>
-								<Link href={`/blog`} onClick={onClose} passHref>
-									<a className={'text-capitalize text-truncate text-primary-400 layout-column layout-align-start-stretch cursor-pointer p-16 flex'}>
+								<Link href={`/blog`}  passHref>
+									<a onClick={onClose} className={'text-capitalize text-truncate text-primary-400 layout-column layout-align-start-stretch cursor-pointer p-16 flex'}>
 										Blog
 									</a>
 								</Link>
