@@ -24,7 +24,7 @@ export const Description = styled.div<DescriptionType>`
       font-size: 1.125rem;
     }
     b {
-      color: ${props.theme === 'dark' ? COLORS.PRIMARY_100 : COLORS.PRIMARY_300};
+      color: ${props.theme === 'dark' ? COLORS.PRIMARY_100 : COLORS.PRIMARY_700};
     }
   `}
 `

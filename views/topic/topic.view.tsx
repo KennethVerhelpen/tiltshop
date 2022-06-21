@@ -4,6 +4,7 @@ import { createMarkup } from '../../lib/utils';
 import { TopicType, ArticleType, TypeType, ThemeType } from '../../lib/types';
 import { Header, Article } from '../../components';
 import * as S from './topic.view.styles';
+import clsx from 'clsx';
 			
 export type TopicViewProps = {
   topic: TopicType;
@@ -35,14 +36,14 @@ export const TopicView = (props: TopicViewProps) => {
         align={'left'}
         theme={theme}
         animated={false}
-        className={'container-xl pt-128 pb-64 container-lg px-24'}
+        className={'container-lg pt-128 pb-64 container-lg px-24'}
         title={topic.name}
         topic={topic.name}
       />
       <S.Grid className={'container-lg layout-column'}>
         {topic.htmlDescription && topic.htmlDescription.length &&
           <section className="px-8 pb-64">
-            <S.Description theme={theme} className={'text-primary-500 blocktext text-left'}>
+            <S.Description theme={theme} className={clsx(theme === 'dark' ? 'text-primary-400' : 'text-primary-700', 'blocktext text-left')}>
               <div dangerouslySetInnerHTML={description}></div>
               { topic.htmlDescription.length > 1500 &&
                 <>
