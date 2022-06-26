@@ -30,7 +30,7 @@ export function Autocomplete(props) {
     };
   }, [props]);
 
-  return <div ref={containerRef} className="autocomplete-wrapper"/>;
+  return <div ref={containerRef} className={'autocomplete-wrapper'}/>;
 }
 
 export const SearchAutocomplete = () => {
@@ -153,10 +153,10 @@ export const SearchAutocomplete = () => {
             templates: {
               item({ item, components }) {
                 return (
-                  <a href={`/${item.typeSlug}/${item.slug}`} className="aa-ItemLink">
-                    <div className="aa-ItemContent">
-                      <div className="aa-ItemTitle">
-                        <components.Highlight hit={item} attribute="name" />
+                  <a href={`/${item.typeSlug}/${item.slug}`} className={'aa-ItemLink'}>
+                    <div className={'aa-ItemContent'}>
+                      <div className={'aa-ItemTitle'}>
+                        <components.Highlight hit={item} attribute={'name'}/>
                       </div>
                     </div>
                   </a>

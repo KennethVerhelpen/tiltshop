@@ -61,7 +61,7 @@ export const BlogView = (props: BlogViewProps) => {
 			<div className={'container-xl layout-align-center-center layout-column'}>
 				{posts && posts.length > 4
 					? <S.Grid className={'p-0 layout-column pb-128'}>
-							<div className="layout-row layout-wrap layout-align-start-stretch">
+							<div className={'layout-row layout-wrap layout-align-start-stretch'}>
 								{posts.map((post: PostType, index: number) => (
 									<Fragment key={post.slug}>
 										<div className={'p-8 layout-column layout-align-start-center flex-33 flex-xs-100 flex-sm-50'}>
@@ -83,7 +83,7 @@ export const BlogView = (props: BlogViewProps) => {
 								<>
 									<FeedTwoTone style={{ fontSize: 32 }} className={'mb-32 text-primary-400'}/>
 									<h3 className={clsx(theme === 'dark' ? 'text-primary-900' : 'text-primary-100', 'h5 bold mb-8')}>There is no blog post at the moment.</h3>
-									<p className={clsx(theme === 'dark' ? 'text-primary-500' : 'text-primary-400')}>Stay tuned for the upcoming news by subscribing to our newsletter here:</p>
+									<p className={clsx(theme === 'dark' ? 'text-primary-600' : 'text-primary-400')}>Stay tuned for the upcoming news by subscribing to our newsletter here:</p>
 								</>
 							)}
 							{ form?.state === 'success' && (
@@ -106,7 +106,7 @@ export const BlogView = (props: BlogViewProps) => {
 						</header>
 						{(form === null || form?.state === undefined)
 							?
-								<main className="layout-column layout-align-start-start mt-16">
+								<main className={'layout-column layout-align-start-start mt-16'}>
 									<S.Input
 										id={'email-input'}
 										name={'email'}

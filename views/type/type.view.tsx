@@ -18,7 +18,7 @@ export const TypeView = (props: TypeViewProps) => {
 				<div className={'layout-row layout-wrap layout-align-center-center'}>
 					{topics.map((topic, index) => {
 						return (
-							<div key={topic.id} className={'fade-in-bottom speed-5 cascade p-8 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50'}>
+							<div key={topic.id} className={'p-8 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50'}>
 								<Topic className={'layout-column layout-align-center-center shadow-5 rounded-xl overflow-hidden'} topic={topic} type={type} index={index} />
 							</div>
 						)

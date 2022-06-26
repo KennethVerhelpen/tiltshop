@@ -21,16 +21,16 @@ export const ArticleView = (props: ArticleViewProps) => {
       <div className={'layout-column layout-gt-xs-row pt-gt-sm-128 pt-32 pb-64'}>
         <section className={'flex-order-1 flex-order-gt-xs-0 flex p-16 p-gt-sm-32'}>
           <header className={'layout-column layout-align-start-start'}>
-            <S.Title className={clsx({'text-primary-100' : theme === 'dark'}, 'strong mb-8 ')}>{article.title}</S.Title>
+            <S.Title className={clsx({'text-primary-100' : theme === 'dark'}, 'strong mb-32')}>{article.title}</S.Title>
             <div className={'layout-row mb-32'}>
-              <h2 className={clsx(theme === 'dark' ? 'bg-primary-700 text-primary-300' : 'bg-primary-300 text-primary-500', 'display-inline-block small text-capitalize p-8 rounded-sm mr-8')}>{topic.name}</h2>
-              <h3 className={clsx(theme === 'dark' ? 'bg-primary-700 text-primary-300' : 'bg-primary-300 text-primary-500', 'display-inline-block small text-capitalize p-8 rounded-sm')}>{type.name}</h3>
+              <h2 className={clsx(theme === 'dark' ? 'bg-primary-700 text-primary-300' : 'bg-primary-300 text-primary-600', 'display-inline-block small text-capitalize p-8 rounded-sm mr-8')}>{topic.name}</h2>
+              <h3 className={clsx(theme === 'dark' ? 'bg-primary-700 text-primary-300' : 'bg-primary-300 text-primary-600', 'display-inline-block small text-capitalize p-8 rounded-sm')}>{type.name}</h3>
             </div>
-            <p className={'lh-3 h6 mb-32 text-primary-500'}>{article.description}</p>
+            <p className={clsx(theme === 'dark' ? ' text-primary-400' : 'text-primary-500', 'lh-3 h6 mb-32')}>{article.description}</p>
             {article.details && article.details.length > 0 ? (
               <>
                 <h4 className={clsx(theme === 'dark' ? 'text-primary-300' : 'text-primary-700', 'bold h6 mb-16')}>Product details</h4>
-                <ul className={'lh-3 h6 text-primary-500'}>
+                <ul className={clsx(theme === 'dark' ? ' text-primary-400' : 'text-primary-500', 'lh-3 h6')}>
                   {article.details.split(';').map(detail => (
                     <li key={detail}>{detail}</li>
                   ))}
@@ -59,7 +59,7 @@ export const ArticleView = (props: ArticleViewProps) => {
         <h4 className={clsx(theme === 'dark' ? 'text-primary-300' : 'text-primary-900', 'p-32 bold text-center h3')}>Other cool products that you may like</h4>
         <main className={'layout-row layout-wrap'}>
           {articles.slice(0,3).map(article => (
-            <div key={article.id} className={'fade-in-bottom speed-5 cascade p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50'}>
+            <div key={article.id} className={'p-16 width-100 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50'}>
               <Article theme={theme} article={article} topic={topic} type={type}/>
             </div>
           ))}

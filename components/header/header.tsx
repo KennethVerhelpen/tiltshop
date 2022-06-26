@@ -21,7 +21,7 @@ export type HeaderProps = {
 const defaultProps = {
   rotation: false,
   align: 'center',
-  animated: true,
+  animated: false,
 	rotatingTexts: [ 'cinema lovers', 'tv show addicts', 'passionate gamers' ],
 }
 

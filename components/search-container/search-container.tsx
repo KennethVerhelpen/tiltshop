@@ -30,9 +30,9 @@ export const SearchContainer = (props: SearchContainerProps) => {
     <InstantSearch searchClient={searchClient} indexName={indexName}>
       <div className={'container-lg'}>
         {searchBar ? 
-          <div className="layout-row layout-align-center-center">
-            <div className="flex-100 flex-gt-sm-50">
-              <SearchBar theme={theme} className={'fade-in-bottom speed-3'}/>
+          <div className={'layout-row layout-align-center-center'}>
+            <div className={'flex-100 flex-gt-sm-50'}>
+              <SearchBar theme={theme}/>
             </div>
           </div>
           : null

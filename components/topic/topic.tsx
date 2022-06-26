@@ -40,7 +40,7 @@ export const Topic = (props: TopicProps) => {
 						
 					}
 					</S.Footer>
-					<S.ImagePosition className="rounded-md overflow-hidden absolute">
+					<S.ImagePosition className={'rounded-md overflow-hidden absolute'}>
 						<S.ImageWrapper className={'rounded-md overflow-hidden relative'}>
 							<Image
 								layout={'fill'}

@@ -56,10 +56,10 @@ export const Page = (props: PageProps) => {
 				<meta name={'twitter:title'} content={description} />
 				<meta name={'twitter:card'} content={'summary_large_image'} />
 				<link rel={'icon'} href={'/favicon.ico'} />
-				<link rel="preconnect" href="https://fonts.googleapis.com"/>
-				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/>
-				<link href="https://fonts.googleapis.com/css2?family=Damion&display=block" rel="stylesheet"/>
-				<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone&display=block" rel="stylesheet" />
+				<link rel={'preconnect'} href={'https://fonts.googleapis.com'}/>
+				<link rel={'preconnect'} href={'https://fonts.gstatic.com'} crossOrigin={'anonymous'}/>
+				<link href={'https://fonts.googleapis.com/css2?family=Damion&display=block'} rel={'stylesheet'}/>
+				<link href={'https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone&display=block'} rel={'stylesheet'} />
 			</Head>
 			{nav ? <Nav types={types} history={history} menu={menu} activePage={activePage} switchTheme={switchTheme} theme={theme}/> : null}
 			<S.Main className={clsx(theme === 'dark' ? 'bg-primary-900' : 'bg-neutral-100', 'flex layout-column layout-align-start-center')}>

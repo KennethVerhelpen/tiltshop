@@ -98,10 +98,7 @@ export const HomeView = (props: HomeViewProps) => {
 						<div
 							key={topic.id + index}
 							ref={gridItemRefs.current[index]}
-							className={clsx(
-								{'cascade fade-in-bottom speed-5' : (index <= topics.length - 1)},
-								'p-8 layout-column layout-align-center-center'
-							)}
+							className={'p-8 layout-column layout-align-center-center'}
 						>
 							<div ref={handleInViewRef(index, markedIndex, gridItems)} >
 								<Topic

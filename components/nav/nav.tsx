@@ -11,7 +11,7 @@ import { Menu } from '../menu/menu';
 
 export const BackHistory = (slug: string) =>{
   return (
-		<div className="hide-xs layout-align-center-center layout-column">
+		<div className={'hide-xs layout-align-center-center layout-column'}>
 			<Link href={slug}>
 				<a className={'layout-row layout-align-center-center cursor-pointer'}>
 					<ArrowBackTwoTone style={{ fontSize: 16 }} className={'text-primary-100 mr-8'} />
@@ -47,7 +47,7 @@ export const Nav = (props: NavProps) => {
 						</button>
 					</div>
 					{ history && !menu && BackHistory(history) }
-					<div className="layout-column layout-align-center-center">
+					<div className={'layout-column layout-align-center-center'}>
 						<Link href={'/'}>
 							<a className={'text-primary-100 bold h6 cursive'}>
 								<Logo theme={'dark'} className={'h2'}/>
@@ -55,9 +55,9 @@ export const Nav = (props: NavProps) => {
 						</Link>
 					</div>
 					<ul className={'list-reset flex layout layout-align-end-center'}>
-						<li className="hide-xs">
+						<li className={'hide-xs'}>
 							<Link href={'/blog'}>
-								<a className='text-primary-100 px-16 small cursor-pointer'>Blog</a>
+								<a className={'text-primary-100 px-16 small cursor-pointer'}>Blog</a>
 							</Link>
 						</li>
 						<li className={'hide-xs'}>
