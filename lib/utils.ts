@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { ArticleType, TopicType, TypeType } from "./types";
 
 export const throttleApi = (time, request) => {
@@ -87,3 +88,20 @@ export const populateArticlesData = (articles: ArticleType[], topics: TopicType[
     throw new Error('Missing articles, topics or types data.');
   }
 }
+
+// export const urlExist = (url: string) => {
+//   const [httpStatus, setHttpStatus] = useState<number>();
+//   console.log("url",url)
+//   useEffect(() => {
+//     const http = new XMLHttpRequest();
+//     http.open('HEAD', url, false);
+//     http.send();
+//     setHttpStatus(http.status);
+//   }, [url]);
+//   console.log("httpStatus",httpStatus)
+//   if (httpStatus != 404) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }

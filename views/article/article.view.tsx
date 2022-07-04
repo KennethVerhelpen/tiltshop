@@ -1,4 +1,4 @@
-import { ArrowForwardRounded } from '@mui/icons-material';
+import { ArrowForwardRounded, FavoriteBorderOutlined } from '@mui/icons-material';
 
 import { ArticleType, ThemeType, TopicType, TypeType } from '../../lib/types';
 import { Article  } from '../../components';
@@ -15,7 +15,18 @@ export type ArticleViewProps = {
 
 export const ArticleView = (props: ArticleViewProps) => {
 	const { article, articles, topic, type, theme } = { ...props };
-  
+
+  const updateLikes = async (article: ArticleType) => {
+    const response = await fetch('/api/likes', {
+      method : 'POST',
+      body: JSON.stringify(article)
+    });
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return await response.json();
+	};
+
   return (
     <main className={'container-lg'}>
       <div className={'layout-column layout-gt-xs-row pt-gt-sm-128 pt-32 pb-64'}>
@@ -25,6 +36,12 @@ export const ArticleView = (props: ArticleViewProps) => {
             <div className={'layout-row mb-32'}>
               <h2 className={clsx(theme === 'dark' ? 'bg-primary-700 text-primary-300' : 'bg-primary-300 text-primary-600', 'display-inline-block small text-capitalize p-8 rounded-sm mr-8')}>{topic.name}</h2>
               <h3 className={clsx(theme === 'dark' ? 'bg-primary-700 text-primary-300' : 'bg-primary-300 text-primary-600', 'display-inline-block small text-capitalize p-8 rounded-sm')}>{type.name}</h3>
+              <div className={clsx(theme === 'dark' ? 'bg-primary-700 text-primary-300' : 'bg-primary-300 text-primary-600', 'display-inline-block small text-capitalize p-8 rounded-sm')}>
+                <span>Likes: {article.likes}</span>
+                <button className="btn-reset" onClick={() => updateLikes(article)}>
+                  <FavoriteBorderOutlined style={{ fontSize: 14}}/>
+                </button>
+              </div>
             </div>
             <p className={clsx(theme === 'dark' ? ' text-primary-400' : 'text-primary-500', 'lh-3 h6 mb-32')}>{article.description}</p>
             {article.details && article.details.length > 0 ? (
