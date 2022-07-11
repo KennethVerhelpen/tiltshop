@@ -1,5 +1,5 @@
 import prisma from '../lib/prisma';
-import { TypeType, TopicType, ThemeType } from '../lib/types'
+import { TypeType, TopicType } from '../lib/types'
 import { Page } from '../components/index';
 import { TypeView } from '../views/type/type.view';
 import { ThemeContext } from './_app';
@@ -44,7 +44,7 @@ export async function getStaticPaths() {
 		paths,
 		fallback: false
 	}
-};
+}
 
 export async function getStaticProps({
 	params: { type: typeSlug }

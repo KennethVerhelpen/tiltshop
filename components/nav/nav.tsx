@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
-import clsx from 'clsx';
+import { useState } from 'react';
 import Link from 'next/link';
-import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone, SearchRounded, ArrowBackTwoTone, DevicesOtherTwoTone, DarkModeTwoTone, LightModeTwoTone, MenuRounded } from '@mui/icons-material';
+import { SearchRounded, ArrowBackTwoTone, DarkModeTwoTone, LightModeTwoTone, MenuRounded } from '@mui/icons-material';
 
 import { MobileMenu } from '../../components';
 import { ThemeType, TypeType } from '../../lib/types';
@@ -77,10 +76,10 @@ export const Nav = (props: NavProps) => {
 				</div>
 			</div>
 			{ menu &&
-				<Menu activePage={activePage} types={types} theme={theme}/>
+				<Menu activePage={activePage} types={types}/>
 			}
 			{mobileMenu && 
-				<MobileMenu types={types} theme={theme} onClose={() => setMobileMenu(false)}/>
+				<MobileMenu types={types} onClose={() => setMobileMenu(false)}/>
 			}
 		</S.Shape>
 	);

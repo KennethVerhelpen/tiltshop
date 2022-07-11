@@ -1,5 +1,4 @@
 import { ReactNode, useContext, useEffect, useState } from 'react';
-import Image from 'next/image';
 import Head from 'next/head';
 
 import { Nav, Footer } from '../../components';

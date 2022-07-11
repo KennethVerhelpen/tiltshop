@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import "../styles/index.scss";
-import { HistoryProvider } from "../contexts/use-history";
+// import { HistoryProvider } from "../contexts/use-history";
 import { css, Global } from "@emotion/react";
 import { COLORS } from "../styles/design-system/variables";
 
-export const ThemeContext = React.createContext();
+export const ThemeContext = createContext();
 
 export default function App({ Component, pageProps }) {
 	const [theme, setTheme] = useState('dark');
@@ -37,11 +37,9 @@ export default function App({ Component, pageProps }) {
 					}
 				`}
 			/>
-			<HistoryProvider>
-				<ThemeContext.Provider value={{ switchTheme, theme }}>
-					<Component {...pageProps} />
-				</ThemeContext.Provider>
-			</HistoryProvider>
+			<ThemeContext.Provider value={{ switchTheme, theme }}>
+				<Component {...pageProps} />
+			</ThemeContext.Provider>
 		</>
 	)
 }

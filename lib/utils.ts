@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
 import { ArticleType, TopicType, TypeType } from "./types";
 
 export const throttleApi = (time, request) => {
   return (
-    new Promise(function(resolve, reject){
+    new Promise(function(resolve){
         setTimeout(() => {
           resolve(request);
         }, time)
@@ -24,8 +23,8 @@ export const getReadingTime = (texts: string[]) => {
   const wordsPerMinute = 200;
   let time = null;
   if (texts.length > 0) {
-    let totalCount: number = 0;
-    for(var i = 0; i < texts.length; i++) { 
+    let totalCount = 0;
+    for(let i = 0; i < texts.length; i++) { 
       totalCount += texts[i].split(" ").length;
     } return time = Math.ceil(totalCount / wordsPerMinute);
   } return time

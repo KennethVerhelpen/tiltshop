@@ -4,8 +4,9 @@ import prisma from '../lib/prisma';
 import { TypeType, TopicType } from '../lib/types';
 import { Page } from '../components';
 import { HomeView } from '../views';
-import { populateTopicsData, populateArticlesData } from '../lib/utils';
-import { pushAlgoliaRecords } from "./api/algolia";
+import { populateTopicsData } from '../lib/utils';
+// import { populateArticlesData } from '../lib/utils';
+// import { pushAlgoliaRecords } from './api/algolia';
 import { ThemeContext } from './_app';
 
 type HomeProps = {
@@ -32,7 +33,7 @@ export async function getStaticProps() {
   // TIP: Uncomment to push new indexes to Algolia;
   // const articles = await prisma.article.findMany();
   // const populatedArticles = await populateArticlesData(articles, topics, types);
-	// pushAlgoliaRecords(populatedArticles, types, populatedTopics);
+	// pushAlgoliaRecords(populatedArticles, populatedTopics);
   
   await prisma.$disconnect();
 

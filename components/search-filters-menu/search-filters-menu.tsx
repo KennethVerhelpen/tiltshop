@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FilterListTwoTone } from '@mui/icons-material';
 import { Global, css } from '@emotion/react';
 
@@ -6,7 +6,7 @@ import { RefinementList } from 'react-instantsearch-dom';
 
 import * as S from './search-filters-menu.styles';
 
-export const SearchFiltersMenu = React.forwardRef((props, ref) => {
+export const SearchFiltersMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -17,17 +17,17 @@ export const SearchFiltersMenu = React.forwardRef((props, ref) => {
     setAnchorEl(null);
   }
 
-	return (
+  return (
     <>
-    	<Global
-				styles={
+      <Global
+        styles={
         css`
           .MuiMenu-paper {
             border-radius: .375rem !important;
             box-shadow: 0 0 30px 0 rgba(144, 144, 144, 0.12), 0 0 16px rgba(144, 144, 144, 0.15) !important;
           }
         `}
-			/>
+      />
       <button
         aria-haspopup={'true'}
         aria-controls={'type-filter-menu'}
@@ -37,7 +37,6 @@ export const SearchFiltersMenu = React.forwardRef((props, ref) => {
         <span>Filters</span>
       </button>
       <S.SearchFiltersMenu
-        ref={ref}
         id={'type-filter-menu'}
         anchorEl={anchorEl}
         keepMounted
@@ -51,4 +50,4 @@ export const SearchFiltersMenu = React.forwardRef((props, ref) => {
       </S.SearchFiltersMenu>
     </>
   )
-});
+};

@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next"
 import prisma from "../../lib/prisma"
 import { ArticleType } from "../../lib/types";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export const likes = () => async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== 'POST') {
     return res.status(405).json({message: 'Method not allowed?'})
   }
@@ -22,3 +22,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   res.json(updatedLikes)
 }
+
+export default likes;

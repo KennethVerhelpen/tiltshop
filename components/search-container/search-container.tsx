@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { SearchClient } from 'algoliasearch';
 import { InstantSearch } from 'react-instantsearch-dom';
 import { SortingItemType, ThemeType } from '../../lib/types';
 import {
@@ -12,11 +12,11 @@ import {
 } from '../index';
 
 export type SearchContainerProps =  {
-  hitComponent: ReactNode;
+  hitComponent: (props: unknown) => void;
   hitsPerPage?: number;
   filters?: boolean;
   searchBar?: boolean;
-  searchClient: ReactNode;
+  searchClient: SearchClient;
   indexName: string;
   sortingItems?: SortingItemType[];
   sortingDefaultItem?: string;

@@ -1,6 +1,6 @@
-import algoliasearch from 'algoliasearch';
+import algoliasearch, { SearchClient } from 'algoliasearch';
 
-export const algoliaSearchClient = algoliasearch(
+export const algoliaSearchClient: SearchClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_ID,
   process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY
 );
@@ -16,27 +16,27 @@ export const algoliaTopicsIndex = algoliaAdminClient.initIndex(algoliaTopicsInde
 export const algoliaArticlesIndexName = 'tiltshop-articles';
 export const algoliaArticlesIndex = algoliaAdminClient.initIndex(algoliaArticlesIndexName);
 
-export const pushAlgoliaRecords = async (articles, types, topics) => {
+export const pushAlgoliaRecords = async (articles, topics) => {
   if (topics) {
     try {
-      const clearTopics = await algoliaTopicsIndex.clearObjects();
+      await algoliaTopicsIndex.clearObjects();
     } catch (error) {
       console.log(error, 'There was an error clearing the topics.');
     }
     try {
-      const saveTopics = await algoliaTopicsIndex.saveObjects(await topics, { autoGenerateObjectIDIfNotExist: true });
+      await algoliaTopicsIndex.saveObjects(await topics, { autoGenerateObjectIDIfNotExist: true });
     } catch (error) {
       console.log(error, 'There was an error uploading the topics.');
     }
   }
   if (articles) {
     try {
-      const clearArticles =  await algoliaArticlesIndex.clearObjects();    
+      await algoliaArticlesIndex.clearObjects();
     } catch (error) {
       console.log(error, 'There was an error clearing the articles.');
     }
     try {
-      const saveArticles =  await algoliaArticlesIndex.saveObjects(articles, { autoGenerateObjectIDIfNotExist: true });;    
+      await algoliaArticlesIndex.saveObjects(articles, { autoGenerateObjectIDIfNotExist: true });
     } catch (error) {
       console.log(error, 'There was an error uploading the articles.');
     }

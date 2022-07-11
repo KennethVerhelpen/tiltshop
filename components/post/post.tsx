@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 import { FavoriteTwoTone, RemoveRedEyeTwoTone } from '@mui/icons-material';
 
-import { PostType, ThemeType} from '../../lib/types';
+import { PostType } from '../../lib/types';
 import { getReadingTime } from '../../lib/utils';
 import* as S from './post.styles';
 
@@ -13,11 +13,10 @@ import* as S from './post.styles';
 type PostProps = {
 	className?: string;
 	post: PostType;
-	theme: ThemeType;
 }
 
 export const Post: React.FC<PostProps> = (props) => {
-	const { className, post, theme } = props;
+	const { className, post } = props;
 	const readingTime = getReadingTime([post.content]);
 
 	return (

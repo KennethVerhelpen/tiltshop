@@ -65,7 +65,7 @@ export const BlogView = (props: BlogViewProps) => {
 								{posts.map((post: PostType, index: number) => (
 									<Fragment key={post.slug}>
 										<div className={'p-8 layout-column layout-align-start-center flex-33 flex-xs-100 flex-sm-50'}>
-											<Post className={'width-100'} post={post} theme={theme}/>
+											<Post className={'width-100'} post={post}/>
 										</div>
 										{posts.length > 3 && index === 3 || posts.length < 3 && index === 0 ? 
 											<div className={'p-8 layout-column layout-align-start-center flex-33 flex-xs-100 flex-sm-50'}>
@@ -90,7 +90,7 @@ export const BlogView = (props: BlogViewProps) => {
 								<>
 									<MarkunreadMailboxTwoTone style={{ fontSize: 32 }} className={'mb-32 text-primary-400'}/>
 									<h3 className={clsx(theme === 'dark' ? 'text-primary-900' : 'text-primary-100', 'h3 strong mb-8')}>Hooray!</h3>
-									<p className={'text-primary-500'}>You're now on the list.</p>
+									<p className={'text-primary-500'}>You are now on the list.</p>
 								</>
 							)}
 							{ form?.state === 'error' && (

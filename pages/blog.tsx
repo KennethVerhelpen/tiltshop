@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { getAllPosts } from '../lib/posts';
 import { PostType, TypeType } from "../lib/types";

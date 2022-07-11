@@ -5,13 +5,13 @@ import { SearchView } from '../views';
 import { ThemeContext } from './_app';
 import { algoliaSearchClient, algoliaArticlesIndexName } from './api/algolia';
 import prisma from '../lib/prisma';
-import { ThemeType, TypeType } from '../lib/types';
+import { TypeType } from '../lib/types';
 
 type SearchProps = {
 	types: TypeType[];
 }
 
-const Search = (props:SearchProps) => {
+const Search = (props: SearchProps) => {
 	const { types } = { ...props };
 	const { theme } = useContext(ThemeContext);
 

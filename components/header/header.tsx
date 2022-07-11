@@ -33,7 +33,7 @@ export type SubheadingProps = {
 
 export const Subheading = (props: SubheadingProps) => {
   const { theme, text, animated } = { ...props};
-  const [content, setContent] = useState<any>(undefined)
+  const [content, setContent] = useState(undefined)
 
   useEffect(() => {
     setContent(createMarkup(text));
@@ -59,14 +59,14 @@ export const Header = (props: HeaderProps) => {
 		}
 	};
 
-  if (rotation) {
-    useEffect(() => {
+  useEffect(() => {
+    if (rotation) {
       const interval = setInterval(() => {
         handleRotatingTextChange()
       }, 1500);
       return () => clearInterval(interval);
-    });
-  }
+    }
+  });
 
   return (
     <Section className={clsx(className, align === 'left' ? 'layout-align-start-start text-left' : 'layout-align-center-center text-center', 'layout-column')} {...restProps}>

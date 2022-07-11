@@ -1,21 +1,18 @@
-import { useState } from 'react';
-import clsx from 'clsx';
 import Link from 'next/link';
 import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone, DevicesOtherTwoTone, CloseRounded } from '@mui/icons-material';
 
 
-import { ThemeType, TypeType } from '../../lib/types';
+import { TypeType } from '../../lib/types';
 import * as S from './mobile-menu.styles';
 import { css, Global } from '@emotion/react';
 
 export type MobileMenuProps= {
 	types: TypeType[],
-	theme: ThemeType,
 	onClose: () => void;
 }
 
 export const MobileMenu = (props: MobileMenuProps) => {
-	const { types, theme, onClose } = { ...props };
+	const { types, onClose } = { ...props };
 
 	return (
 		<>

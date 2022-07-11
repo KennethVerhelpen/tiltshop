@@ -47,7 +47,7 @@ export const RegisterForm = () => {
 						<div className={'layout-column layout-align-center-center'}>
 							<MarkunreadMailboxTwoTone style={{ fontSize: 32 }} className={'mb-32 text-primary-100'}/>
 							<span className={'h3 strong text-primary-100 mb-16'}>Hooray!</span>
-							<span className={'small text-primary-100'}>You're now on the list.</span>
+							<span className={'small text-primary-100'}>You are now on the list.</span>
 						</div>
 					)}
 					{ form.state === 'error' && (

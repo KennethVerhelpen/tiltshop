@@ -1,9 +1,9 @@
-import { ReactNode } from 'react';
 import { ArticleType, ThemeType } from '../../lib/types';
 import { Header, SearchContainer, Article } from '../../components';
+import { SearchClient } from 'algoliasearch';
 			
 export type SearchViewProps = {
-  searchClient: ReactNode;
+  searchClient: SearchClient;
   indexName: string;
   theme: ThemeType;
 } 

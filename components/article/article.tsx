@@ -28,6 +28,7 @@ export const Article = (props: ArticleProps) => {
 	const topicSlug = topic ? topic.slug : article.topicSlug;
 
 	return (
+		// eslint-disable-next-line react/jsx-no-target-blank
 		<a
 			rel={'sponsored'}
 			aria-label={article.title}

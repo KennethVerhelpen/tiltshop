@@ -2,7 +2,7 @@
 import { useContext } from 'react';
 
 import prisma from '../../../lib/prisma';
-import { TypeType, TopicType, ArticleType, ThemeType } from '../../../lib/types';
+import { TypeType, TopicType, ArticleType } from '../../../lib/types';
 import { Page } from '../../../components';
 import { ArticleView } from '../../../views';
 import { ThemeContext } from '../../_app';
@@ -56,7 +56,7 @@ export async function getStaticPaths() {
 		paths,
 		fallback: false,
   }
-};
+}
 
 export async function getStaticProps({
   params: {

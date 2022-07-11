@@ -9,7 +9,7 @@ export type Props = {
 export const SearchResultsWrapper = (props: Props) => {
   const { children } = { ...props }
 
-  const Results = connectStateResults(({ searchState, searchResults, children }) =>
+  const Results = connectStateResults(({ searchResults, children }) =>
 		searchResults && searchResults.nbHits !== 0  ? (children) : (
 			<>
 				<div className={'layout-column layout-align-center-center py-128 text-center container-sm'}>

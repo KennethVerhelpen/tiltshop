@@ -12,7 +12,7 @@ const Custom404 = () => {
       nav={false}
     > 
       <ErrorView theme={theme}/>
-    </Page>
+    </Page> 
   );
 };
 

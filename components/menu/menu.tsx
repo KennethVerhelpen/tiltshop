@@ -1,20 +1,18 @@
-import { useState } from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone, DevicesOtherTwoTone, CloseRounded } from '@mui/icons-material';
+import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone, DevicesOtherTwoTone } from '@mui/icons-material';
 
 
-import { ThemeType, TypeType } from '../../lib/types';
+import { TypeType } from '../../lib/types';
 import * as S from './menu.styles';
 
 export type MenuProps= {
 	types: TypeType[],
-	theme: ThemeType,
 	activePage: TypeType['slug'],
 }
 
 export const Menu = (props: MenuProps) => {
-	const { types, theme, activePage } = { ...props };
+	const { types, activePage } = { ...props };
 
 	return (
 		<div className={'border-top border-bottom border-primary-800 layout-row layout-align-center-center flex-none hide-xs width-100'}>
