@@ -10,6 +10,8 @@ class MyDocument extends Document {
     return (
       <Html lang={'en'}>
         <Head>
+          <link href={'https://fonts.googleapis.com/css2?family=Damion&display=block'} rel={'stylesheet'}/>
+				  <link href={'https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone&display=block'} rel={'stylesheet'} />
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.G_TAG}`} />
           <script dangerouslySetInnerHTML={{
             __html: `

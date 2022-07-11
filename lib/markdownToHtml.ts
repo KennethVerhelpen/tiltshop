@@ -1,4 +1,4 @@
-import remark from 'remark';
+import { remark } from 'remark';
 import html from 'remark-html';
 import unwrapImages from 'remark-unwrap-images';
 

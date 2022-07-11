@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef, Fragment, createRef } from 'react';
-import clsx from 'clsx';
+import React, { useState, useEffect, useRef, createRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import { ThemeType, TopicType, TypeType } from '../../lib/types';
-import { Header, SearchAutocomplete, Topic } from '../../components';
+import { Header, Topic } from '../../components';
 
 export type HomeViewProps = {
   topics: TopicType[];
@@ -29,7 +28,7 @@ export type HeaderWrapperType = {
 
 export type HeaderContentType = {
   opacity: number;
-  blur: number;
+  blur: number; 
 	size: number;
 	position: number;
 }

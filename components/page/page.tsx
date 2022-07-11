@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useEffect } from 'react';
+import { ReactNode, useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
 
@@ -40,13 +40,22 @@ export const Page = (props: PageProps) => {
 	} = {...defaultProps, ...props};
 
 	const { theme, switchTheme } = useContext(ThemeContext);
+	const [ headTitle, setHeadTitle ] = useState<string>('tilt.');
+
+	useEffect(() => {
+		if (title) {
+			setHeadTitle(`tilt. - ${title}`)
+		} else {
+			setHeadTitle('tilt.')
+		}
+	}, [title])
 
 	return (
 		<>
 			<Head>
 				<meta charSet={'UTF-8'} />
 				<meta name={'viewport'} content={'initial-scale=1.0, width=device-width'} />
-				<title>tilt. - {title}</title>
+				<title>{headTitle}</title>
 				<meta name={'keywords'} content={'Cinema, Movies, Tv shows, Video games'} />
 				<meta name={'description'} content={description} />
 				<meta property={'og:title'} content={title} />
@@ -58,8 +67,6 @@ export const Page = (props: PageProps) => {
 				<link rel={'icon'} href={'/favicon.ico'} />
 				<link rel={'preconnect'} href={'https://fonts.googleapis.com'}/>
 				<link rel={'preconnect'} href={'https://fonts.gstatic.com'} crossOrigin={'anonymous'}/>
-				<link href={'https://fonts.googleapis.com/css2?family=Damion&display=block'} rel={'stylesheet'}/>
-				<link href={'https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone&display=block'} rel={'stylesheet'} />
 			</Head>
 			{nav ? <Nav types={types} history={history} menu={menu} activePage={activePage} switchTheme={switchTheme} theme={theme}/> : null}
 			<S.Main className={clsx(theme === 'dark' ? 'bg-primary-900' : 'bg-neutral-100', 'flex layout-column layout-align-start-center')}>

@@ -1,6 +1,6 @@
 
 import styled from '@emotion/styled';
-import Menu from '@material-ui/core/Menu';
+import { Menu } from '@mui/icons-material';
 
 export const SearchFiltersMenu = styled(Menu)`
 	padding: 1rem 0;
