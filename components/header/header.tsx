@@ -1,25 +1,54 @@
-import { useState, useEffect, ReactNode } from "react";
-import clsx from "clsx";
+import { useState, useEffect, ReactNode } from 'react';
+import clsx from 'clsx';
 
+import { createMarkup } from '../../lib/utils';
+import { ThemeType, TopicType, TypeType } from '../../lib/types';
 import { Section, DefaultTitle, CustomTitle } from './header.styles';
 
 export type HeaderProps = {
   className?: string;
   title?: string;
-  category?: string;
-  medium?: string;
+  type?: TypeType['name'];
+  topic?: TopicType['name'];
+  align?: 'left' | 'center';
   subtitle?: string | ReactNode;
   rotation?: boolean;
   rotatingTexts?: string[];
+  theme?: ThemeType;
+  animated?: boolean;
 }
 
 const defaultProps = {
   rotation: false,
-	rotatingTexts: [ "cinema lovers", "tv show addicts", "passionate gamers" ],
+  align: 'center',
+  animated: false,
+	rotatingTexts: [ 'cinema lovers', 'tv show addicts', 'passionate gamers' ],
+}
+
+export type SubheadingProps = {
+   theme: ThemeType,
+   text: string | ReactNode;
+   animated?: boolean;
+}
+
+export const Subheading = (props: SubheadingProps) => {
+  const { theme, text, animated } = { ...props};
+  const [content, setContent] = useState(undefined)
+
+  useEffect(() => {
+    setContent(createMarkup(text));
+  }, [text])
+  
+  return (
+    <h2
+      className={clsx(theme === 'dark' ? 'text-primary-400' : 'text-primary-500', {'scale-in speed-10' : animated }, 'h6 lh-2')}
+      dangerouslySetInnerHTML={content}
+    />
+  )
 }
 
 export const Header = (props: HeaderProps) => {
-  const { className, title, category, medium, subtitle, rotatingTexts, rotation } = {...defaultProps, ...props};
+  const { align, className, theme, title, type, topic, subtitle, rotatingTexts, rotation, animated, ...restProps } = { ...defaultProps, ...props };
   const [ visibleText, setVisibleText ] = useState(0);
 
   const handleRotatingTextChange = () => {
@@ -30,45 +59,56 @@ export const Header = (props: HeaderProps) => {
 		}
 	};
 
-  if (rotation) {
-    useEffect(() => {
+  useEffect(() => {
+    if (rotation) {
       const interval = setInterval(() => {
         handleRotatingTextChange()
       }, 1500);
       return () => clearInterval(interval);
-    });
-  }
+    }
+  });
 
   return (
-    <Section className={clsx(className, "pt-xs-128 pb-xs-32 text-center layout-column layout-align-center-center")}>
-      <div className="pt-32 container-md layout-column layout-align-center-center flex">
-        { title ? 
-          <CustomTitle className="scale-in speed-10 mt-16 mb-16 strong" >{title}</CustomTitle>
-          :
-          <>
-            <DefaultTitle className="scale-in speed-10 hide-xs mt-16 mb-16 strong"> 
-              <span>The best items for</span><br/>
-                { category ?
-                  <span>{category} lovers</span>
-                :
-                <span>
-                  {rotatingTexts.map((text, index) => (
-                    <span className={clsx({ "hide": visibleText != index })} key={index}>{text}.</span>
-                  ))}
-                </span>
-              }
-            </DefaultTitle>
-            <DefaultTitle className="scale-in speed-10 mt-16 mb-32 strong hide show-xs">The best items for cinema, tv & video game lovers.</DefaultTitle>
-          </>
+    <Section className={clsx(className, align === 'left' ? 'layout-align-start-start text-left' : 'layout-align-center-center text-center', 'layout-column')} {...restProps}>
+      <div className={clsx(align === 'left' ? 'layout-align-start-start' : 'layout-align-center-center', 'layout-column flex')}>
+        { title
+          ? <CustomTitle className={clsx({'text-primary-100' : theme === 'dark'}, {'scale-in speed-10' : animated }, ' mt-16 mb-16 strong')}>{title}</CustomTitle>
+          : <>
+              <DefaultTitle className={clsx({'text-primary-100' : theme === 'dark'}, {'scale-in speed-10' : animated }, 'hide-xs mt-16 mb-16 strong')}> 
+                <span>The best items for</span><br/>
+                  { type ?
+                    <span>{type} lovers</span>
+                  :
+                  <span>
+                    {rotatingTexts.map((text, index) => (
+                      <span className={clsx({ 'hide': visibleText != index })} key={index}>{text}.</span>
+                    ))}
+                  </span>
+                }
+              </DefaultTitle>
+              <DefaultTitle className={clsx({'text-primary-100' : theme === 'dark'}, {'scale-in speed-10' : animated }, 'mt-16 mb-32 strong hide show-xs')}>The best items for cinema, tv & video game lovers.</DefaultTitle>
+            </>
         }
-        { medium &&
-          <h2 className="h6 fade-in-bottom speed-5 container-sm lh-2">The best items for <b>{medium} fans</b> in <b>{new Date().getFullYear()}</b>.</h2>
+        { topic &&
+          <Subheading
+            theme={theme}
+            animated={animated}
+            text={`The best items for <b>${topic} fans</b> in <b>${new Date().getFullYear()}.`}
+          />
         }
         { subtitle &&
-          <h2 className="h6 fade-in-bottom speed-5 container-sm lh-2">{subtitle}</h2>
+          <Subheading
+            theme={theme}
+            animated={animated}
+            text={subtitle}
+          />
         }
-        { !medium && !subtitle &&
-          <h2 className="fade-in-bottom speed-5 h6 layout-row layout-column-xs layout-align-center-center container-sm lh-2">A list of great products hand-picked just for you.</h2>
+        { (!topic && !subtitle) &&
+          <Subheading
+            theme={theme}
+            animated={animated}
+            text={'A list of great products hand-picked just for you.'}
+          />
         }
       </div>
     </Section>

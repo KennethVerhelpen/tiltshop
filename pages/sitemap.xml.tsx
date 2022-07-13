@@ -21,13 +21,13 @@ export async function getServerSideProps({ res }) {
   const articles = await prisma.article.findMany();
   await prisma.$disconnect();
   
-  const typeSlugs = [].concat.apply([], types.map(
+  const typeSlugs = [].concat(...types.map(
     type => ("/" + type.slug).toString()
   ));
-  const topicSlugs = [].concat.apply([], topics.map(
+  const topicSlugs = [].concat(...topics.map(
     topic => ("/" + types.find(type => type.id === topic.typeId).slug + "/" + topic.slug).toString()
   ));
-  const articleSlugs = [].concat.apply([], articles.map(article => (
+  const articleSlugs = [].concat(...articles.map(article => (
     "/" + types.find(type => type.id === article.typeId).slug + "/" + topics.find(topic => topic.id === article.topicId).slug + "/" + article.slug).toString()
   ));
 

@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import { Pagination } from 'react-instantsearch-dom';
 
 export const SearchPagination = styled(Pagination)`

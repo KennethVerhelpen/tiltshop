@@ -1,55 +1,46 @@
-import prisma from "../lib/prisma";
-import { Page, Topic, Header, SearchView } from "../components";
-import { TypeType, TopicType } from "../lib/types/types";
-import { pushAlgoliaRecords, algoliaTopicsIndexName, algoliaSearchClient } from "./api/algolia";
+import { useContext } from 'react';
+
+import prisma from '../lib/prisma';
+import { TypeType, TopicType } from '../lib/types';
+import { Page } from '../components';
+import { HomeView } from '../views';
+import { populateTopicsData } from '../lib/utils';
+// import { populateArticlesData } from '../lib/utils';
+// import { pushAlgoliaRecords } from './api/algolia';
+import { ThemeContext } from './_app';
 
 type HomeProps = {
   types: TypeType[];
+  topics: TopicType[];
 };
 
 const Home = (props: HomeProps) => {
-	const { types } = { ...props };
+	const { types, topics } = { ...props };
+  const { theme } = useContext(ThemeContext);
 	
 	return (
-		<Page
-			types={types}
-		> 
-			<Header	rotation={true}/>
-			<SearchView
-				indexName={algoliaTopicsIndexName}
-				searchClient={algoliaSearchClient}
-				hitComponent={Topics}
-				hitsPerPage={51}
-				filters={false}
-			/>
+		<Page types={types} footer={false}>
+      <HomeView theme={theme} topics={topics} types={types}/>
 		</Page>
 	);
 };
 
-export type TopicsProps = {
-  hit: TopicType;
-};
-
-export const Topics = (props: TopicsProps) => {
-	const { hit } = { ...props };
-
-  return (
-		<div key={hit.id} className="fade-in-bottom speed-5 cascade p-16 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
-			<Topic className="flex layout-column layout-align-center-center" topic={hit}/>
-		</div>
-  );
-}
-
 export async function getStaticProps() {
 	const types = await prisma.type.findMany();
-	await prisma.$disconnect()
-	// const topics = await prisma.topic.findMany();
-	// const articles = await prisma.article.findMany();
+  const topics = await prisma.topic.findMany();
+  const populatedTopics = await populateTopicsData(topics, types);
+  
+  // TIP: Uncomment to push new indexes to Algolia;
+  // const articles = await prisma.article.findMany();
+  // const populatedArticles = await populateArticlesData(articles, topics, types);
+	// pushAlgoliaRecords(populatedArticles, populatedTopics);
+  
+  await prisma.$disconnect();
 
-	// pushAlgoliaRecords(types, topics, articles);
   return {
     props: {
-      types
+      types,
+      topics: populatedTopics,
     }
   }
 }

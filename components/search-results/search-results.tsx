@@ -1,8 +1,7 @@
-import { ReactNode } from "react";
 import * as S from "./search-results.styles";
 
 export type Props =  {
-  hitComponent: ReactNode;
+  hitComponent: (props: unknown) => void;
   hitsPerPage?: number;
 }
 

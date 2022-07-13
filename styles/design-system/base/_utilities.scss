@@ -74,7 +74,7 @@
 
   %border#{$suffix},
   .border#{$suffix} {
-    border#{$suffix}: 1px solid $secondary-900;
+    border#{$suffix}: 1px solid $primary-900;
   }
 }
 
@@ -108,6 +108,15 @@
   list-style-type: none;
 }
 
+%btn-reset,
+.btn-reset {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  background: none;
+}
+
 @each $axis in ('-x', '-y', '') {
   @include overflow-classes($axis);
 }
@@ -123,7 +132,7 @@
 @each $shadow in $shadows {
   %shadow-#{$shadow},
   .shadow-#{$shadow} {
-    @include box($shadow, $secondary-900);
+    @include box($shadow, $primary-900);
   }
 }
 

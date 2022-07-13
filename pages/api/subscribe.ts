@@ -1,4 +1,6 @@
-export default async (req, res) => {
+import { NextApiRequest, NextApiResponse } from "next";
+
+export const subscribe = () => async (req: NextApiRequest, res: NextApiResponse) => {
   const { email } = req.body;
 
   if (!email) {
@@ -38,3 +40,5 @@ export default async (req, res) => {
     return res.status(500).json({ error: error.message || error.toString() });
   }
 };
+
+export default subscribe;

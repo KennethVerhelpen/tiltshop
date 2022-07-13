@@ -1,50 +1,46 @@
-import { Page, Header, Article, SearchView } from "../components";
-import { algoliaSearchClient, algoliaArticlesIndexName } from "./api/algolia";
-import { ArticleType } from '../lib/types/types';
+import { useContext } from 'react';
 
-const Search = () => {
+import { Page } from '../components';
+import { SearchView } from '../views';
+import { ThemeContext } from './_app';
+import { algoliaSearchClient, algoliaArticlesIndexName } from './api/algolia';
+import prisma from '../lib/prisma';
+import { TypeType } from '../lib/types';
 
-	const sortingArticlesItem = [
-		{ value: 'tiltshop-articles', label: 'Featured' },
-		{ value: 'tiltshop-articles_price_asc', label: 'Price asc.' },
-		{ value: 'tiltshop-articles_price_desc', label: 'Price desc.' },
-	]
+type SearchProps = {
+	types: TypeType[];
+}
+
+const Search = (props: SearchProps) => {
+	const { types } = { ...props };
+	const { theme } = useContext(ThemeContext);
 
 	return (
 		<>
 			<Page
-				activePage={"browse"}
 				menu={false}
+				theme={theme}
+				types={types}
 			>
-				<Header
-					title="Browse all items"
-					subtitle="Easily find all items hand-picked just for you."
-				/>
 				<SearchView
+					theme={theme}
 					searchClient={algoliaSearchClient}
 					indexName={algoliaArticlesIndexName}
-					hitComponent={Articles}
-					hitsPerPage={21}
-					filters={true}
-					sortingDefaultItem="tiltshop-articles"
-					sortingItems={sortingArticlesItem}
 				/>
 			</Page>
 		</>
 	);
 };
 
-export type Articles = {
-	hit: ArticleType;
-}
+export async function getStaticProps(){
 
-const Articles = (props: Articles) => {
-	const { hit } = { ...props };
-  return (
-		<div key={hit.id} className="p-16 layout-row layout-align-center-center flex-33 flex-xs-100 flex-sm-50">
-			<Article className="flex" article={hit}/>
-		</div>
-  );
+	const types =  await prisma.type.findMany();
+
+  return {
+    props: {
+			types,
+    }
+  }
 }
 
 export default Search

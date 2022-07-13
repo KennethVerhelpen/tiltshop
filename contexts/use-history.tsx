@@ -1,50 +1,54 @@
-import { useRouter } from 'next/router'
-import React, { createContext, useState, useEffect, useContext } from 'react'
+import {createContext} from 'react';
+export const HistoryContext = createContext('');
 
-interface HValidation {
-  history: string[];
-  setHistory(data: string[]): void;
-  back(): void;
-}
+// import { useRouter } from 'next/router'
+// import React, { createContext, useState, useEffect, useContext, ReactNode } from 'react'
 
-const HistoryContext = createContext<HValidation>({} as HValidation)
-export const HistoryProvider: React.FC = ({ children }) => {
-  const { asPath, push, pathname } = useRouter()
-  const [history, setHistory] = useState<string[]>([])
+// interface HValidation {
+//   history: string[];
+//   setHistory(data: string[]): void;
+//   back(): void;
+//   children: ReactNode;
+// }
 
-  function back() {
-    for (let i = history.length - 2; i >= 0; i--) {
-      const route = history[i]
-      if (!route.includes('#') && route !== pathname) {
-        push(route)
+// const HistoryContext = createContext<HValidation>({} as HValidation)
+// export const HistoryProvider: React.FC = ({ children }) => {
+//   const { asPath, push, pathname } = useRouter()
+//   const [history, setHistory] = useState<string[]>([])
 
-        // if you want to pop history on back
-        const newHistory = history.slice(0, i)
-        setHistory(newHistory)
+//   function back() {
+//     for (let i = history.length - 2; i >= 0; i--) {
+//       const route = history[i]
+//       if (!route.includes('#') && route !== pathname) {
+//         push(route)
 
-        break
-      }
-    }
-  }
+//         // if you want to pop history on back
+//         const newHistory = history.slice(0, i)
+//         setHistory(newHistory)
 
-  useEffect(() => {
-    setHistory(previous => [...previous, asPath])
-  }, [asPath])
+//         break
+//       }
+//     }
+//   }
 
-  return (
-    <HistoryContext.Provider
-      value={{
-        back,
-        history,
-        setHistory,
-      }}
-    >
-      {children}
-    </HistoryContext.Provider>
-  )
-}
+//   useEffect(() => {
+//     setHistory(previous => [...previous, asPath])
+//   }, [asPath])
 
-export function useHistory(): HValidation {
-  const context = useContext(HistoryContext);
-  return context
-}
+//   return (
+//     <HistoryContext.Provider
+//       value={{
+//         back,
+//         history,
+//         setHistory,
+//       }}
+//     >
+//       {children}
+//     </HistoryContext.Provider>
+//   )
+// }
+
+// export function useHistory(): HValidation {
+//   const context = useContext(HistoryContext);
+//   return context
+// }

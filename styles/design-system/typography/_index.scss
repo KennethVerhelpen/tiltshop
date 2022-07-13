@@ -2,11 +2,11 @@ body {
   font-size: $font-size-base;
 }
 
-%serif,
-.serif {
-  font-family: $font-family-serif;
+%cursive,
+.cursive {
+  font-family: $font-family-cursive;
 }
-
+ 
 %h1, %h2, %h3, %h4, %h5, %h6,
 .h1, .h2, .h3, .h4, .h5, .h6,
 h1, h2, h3, h4, h5, h6 {
@@ -61,8 +61,8 @@ small {
 .mark,
 mark {
   padding: $mark-padding;
-  background-color: $secondary-900;
-  color: $secondary-100;
+  background-color: $primary-900;
+  color: $primary-100;
 }
 
 %blockquote,
@@ -81,9 +81,9 @@ em {
 %code,
 .code {
   display: inline-block;
-  color: $secondary-900;
-  background: $secondary-300;
-  border: 1px solid $secondary-700;
+  color: $primary-900;
+  background: $primary-300;
+  border: 1px solid $primary-700;
   border-radius: $radius-sm;
   font-family: inherit;
   padding: 0 0.25rem;
@@ -120,9 +120,9 @@ u {
 
 .link {
   text-decoration: underline;
-  color: $secondary-700;
+  color: $primary-700;
   &:hover {
-    color: $secondary-900;
+    color: $primary-900;
   }
 }
 
