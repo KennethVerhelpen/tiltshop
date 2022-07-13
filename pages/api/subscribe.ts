@@ -1,4 +1,6 @@
-export const subscribe = () => async (req, res) => {
+import { NextApiRequest, NextApiResponse } from "next";
+
+export const subscribe = () => async (req: NextApiRequest, res: NextApiResponse) => {
   const { email } = req.body;
 
   if (!email) {
