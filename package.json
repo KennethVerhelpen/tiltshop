@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "dependencies": {
     "@algolia/autocomplete-js": "^1.7.1",
     "@algolia/autocomplete-theme-classic": "^1.7.1",
@@ -18,7 +21,7 @@
     "@mailchimp/mailchimp_marketing": "^3.0.75",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.7",
-    "@prisma/client": "^4.0.0",
+    "@prisma/client": "^4.2.1",
     "algoliasearch": "^4.13.1",
     "clsx": "^1.2.1",
     "eslint": "^8.19.0",
@@ -44,7 +47,7 @@
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "eslint-config-next": "12.2.2",
-    "prisma": "^4.0.0",
+    "prisma": "^4.2.1",
     "typescript": "^4.7.4"
   }
 }

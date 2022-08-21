@@ -27,10 +27,10 @@ export const Topic = (props: TopicProps) => {
 						<S.Title className={'text-primary-100 h2 strong mb-8'}>{topic.name}</S.Title>
 						<span className={'p text-capitalize text-primary-100'} style={{ opacity: 0.5 }}>{type ? type.name : topic.typeName}</span>
 					</S.Main>
-					<S.Footer className={clsx(topic.articlesCount > 0 ? 'layout-align-start-center' : 'layout-align-center-center', 'px-32 py-16 layout-row')}>
-						{topic.articlesCount > 0
+					<S.Footer className={clsx(topic._count.articles > 0 ? 'layout-align-start-center' : 'layout-align-center-center', 'px-32 py-16 layout-row')}>
+						{topic._count.articles > 0
 						?	<>
-								<span className={'small text-left flex text-primary-100 text-truncate'}>See all <b>{topic.articlesCount}</b> articles</span>
+								<span className={'small text-left flex text-primary-100 text-truncate'}>See all <b>{topic._count.articles}</b> articles</span>
 								<S.IconButton className={'text-primary-100 layout layout-align-center-center p-8 rounded'}>
 									<ArrowForwardRounded style={{ fontSize: 16 }}/>
 								</S.IconButton>

@@ -27,7 +27,15 @@ const Home = (props: HomeProps) => {
 
 export async function getStaticProps() {
 	const types = await prisma.type.findMany();
-  const topics = await prisma.topic.findMany();
+  const topics = await prisma.topic.findMany({
+    include: {
+			_count: {
+				select: {
+					articles: true
+				}
+			}
+		}
+  });
   const populatedTopics = await populateTopicsData(topics, types);
   
   // TIP: Uncomment to push new indexes to Algolia;

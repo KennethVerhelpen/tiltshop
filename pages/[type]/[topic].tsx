@@ -23,7 +23,7 @@ const Topic = (props: Props) => {
         menu={false}
         theme={theme}
         types={types}
-        title={`Best ${topic.articlesCount >= 20 ? '20+' : '10+' } products for ${topic.name} lovers`}
+        title={`Best ${topic._count.articles >= 20 ? '20+' : '10+' } products for ${topic.name} lovers`}
         history={`/${type.slug}`}
         bgImageUrl={`/images/topics/${topic.slug}/cover.gif`}
         >
@@ -61,7 +61,18 @@ export async function getStaticProps({
   }}){
 
   const types = await prisma.type.findMany();
-  const currentTopic = await prisma.topic.findUnique({ where: { slug: topicSlug } });
+  const currentTopic = await prisma.topic.findUnique({
+    where: {
+      slug: topicSlug
+    },
+    include: {
+			_count: {
+				select: {
+					articles: true
+				}
+			}
+		}
+  });
   const currentType = await prisma.type.findUnique({ where: { slug: typeSlug } });
   const currentArticles = await prisma.article.findMany({ where: { topicId: currentTopic.id } });
   await prisma.$disconnect();
