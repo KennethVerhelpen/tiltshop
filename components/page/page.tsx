@@ -63,7 +63,7 @@ export const Page = (props: PageProps) => {
 				<meta property={'og:url'} content={'http://tiltshop.co'} />
 				<meta name={'twitter:title'} content={description} />
 				<meta name={'twitter:card'} content={'summary_large_image'} />
-				<link rel={'icon'} href={'/favicon.ico'} />
+				<link rel={'icon'} href={'/favicons/favicon.ico'} />
 				<link rel={'preconnect'} href={'https://fonts.googleapis.com'}/>
 				<link rel={'preconnect'} href={'https://fonts.gstatic.com'} crossOrigin={'anonymous'}/>
 			</Head>

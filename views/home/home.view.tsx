@@ -95,7 +95,7 @@ export const HomeView = (props: HomeViewProps) => {
 					return (
 						// As the topics are duplicated indefinitely and to avoid conflicts, the index is combined to the id to generate the key.
 						<div
-							key={topic.id + index}
+							key={`${topic.name}-${topic.id}-${index}`}
 							ref={gridItemRefs.current[index]}
 							className={'p-8 layout-column layout-align-center-center'}
 						>
