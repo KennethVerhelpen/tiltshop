@@ -3,6 +3,7 @@ import "../styles/index.scss";
 // import { HistoryProvider } from "../contexts/use-history";
 import { css, Global } from "@emotion/react";
 import { COLORS } from "../styles/design-system/variables";
+import { Analytics } from '@vercel/analytics/react';
 
 export const ThemeContext = createContext();
 
@@ -40,6 +41,7 @@ export default function App({ Component, pageProps }) {
 			<ThemeContext.Provider value={{ switchTheme, theme }}>
 				<Component {...pageProps} />
 			</ThemeContext.Provider>
+			<Analytics />
 		</>
 	)
 }
