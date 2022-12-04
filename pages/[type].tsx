@@ -57,6 +57,13 @@ export async function getStaticProps({
 	const currentTopics = await prisma.topic.findMany({
 		where: {
 			typeId: currentType.id
+		},
+		include: {
+			_count: {
+				select: {
+					articles: true
+				}
+			}
 		}
 	});
 	await prisma.$disconnect();

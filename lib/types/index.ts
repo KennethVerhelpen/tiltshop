@@ -11,9 +11,11 @@ export type TopicType = {
 	typeId?: number,
   typeSlug?: string,
   typeName?: string,
-	articlesCount?: number;
 	plainDescription?: string;
 	htmlDescription?: string;
+  _count: {
+    articles: number;
+  }
 }
 
 export type ArticleType = {
