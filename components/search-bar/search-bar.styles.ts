@@ -20,8 +20,9 @@ export const SearchBar = styled.div<SearchBarProps>`
 			display: flex;
 			flex: 1 1 100%;
 			background: transparent;
-			color: ${props.theme === 'dark' ? COLORS.PRIMARY_100 : COLORS.NEUTRAL_100};
+			color: ${props.theme === 'dark' ? COLORS.PRIMARY_900 : COLORS.NEUTRAL_100};
 			font-family: ${TYPOGRAPHY.SANS_SERIF};
+
 			&::placeholder {
 				color: ${COLORS.PRIMARY_600};
 				font-family: ${TYPOGRAPHY.SANS_SERIF};

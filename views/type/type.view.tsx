@@ -1,6 +1,5 @@
 import { ThemeType, TopicType, TypeType } from '../../lib/types';
 import { Topic, Header } from '../../components';
-import clsx from 'clsx';
 			
 export type TypeViewProps = {
 	topics: TopicType[];
