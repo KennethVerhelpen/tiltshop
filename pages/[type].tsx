@@ -32,8 +32,6 @@ export async function getStaticPaths() {
 	const types = await prisma.type.findMany();
 	await prisma.$disconnect();
 
-	await prisma.$disconnect();
-
 	const paths = types.map(type => ({
 		params: {
 			type: type.slug.toString(),
@@ -61,8 +59,6 @@ export async function getStaticProps({
 			typeId: currentType.id
 		}
 	});
-	await prisma.$disconnect();
-
 	await prisma.$disconnect();
 
 	return { 
