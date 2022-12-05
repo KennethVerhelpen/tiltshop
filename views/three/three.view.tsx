@@ -1,4 +1,4 @@
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { useSpring } from 'react-spring';
 import { Mesh } from "three";
 import { createRef, useEffect } from 'react';
@@ -10,9 +10,23 @@ export type ThreeViewProps = {
 	theme: ThemeType; 
 }
 
+export const Tape = () => {
+	const tapeRef = createRef<Mesh>();
+
+	useFrame(() => {
+    tapeRef.current.rotation.y += 0.01;
+  });
+
+	return (
+		<mesh ref={tapeRef} rotation={[Math.PI / 1, 2, 1.575]}>
+			<boxGeometry args={[0.5, 3, 2]} />
+			<meshStandardMaterial />
+		</mesh>
+	)
+}
+
 export const ThreeView = (props: ThreeViewProps) => {
 	const { topics, type, theme } = { ...props };
-	const tapeRef = createRef<Mesh>();
 
 	const handleRotation = (mesh: Mesh) => {
 		if (mesh?.current) {
@@ -37,12 +51,9 @@ export const ThreeView = (props: ThreeViewProps) => {
 		<Canvas style={{ width: '100%', height: '100vh'}}> 
 			<ambientLight intensity={0.075} />
 			<directionalLight color="grey" position={[0, 0, 0]} />
-			<mesh ref={tapeRef} rotation={[Math.PI / 1, 2, 1.575]}>
-				<boxGeometry args={[0.5, 3, 2]} />
-				<meshStandardMaterial />
-			</mesh>
+			<Tape/>
 		</Canvas>
-		<button onClick={() => handleRotation(tapeRef)}>Rotate</button>
+		{/* <button onClick={}>Rotate</button> */}
 		</>
   )
 }
