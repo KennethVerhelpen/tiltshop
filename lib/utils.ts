@@ -1,4 +1,6 @@
-import { ArticleType, TopicType, TypeType } from "./types";
+import { SyntheticEvent } from "react";
+import { ArticleType, ImageType, TopicType, TypeType } from "./types";
+import { coverPlaceholder, avatarPlaceholder, thumbnailPlaceholder } from "./constants";
 
 export const throttleApi = (time, request) => {
   return (
@@ -88,16 +90,30 @@ export const populateArticlesData = (articles: ArticleType[], topics: TopicType[
   }
 }
 
+export const onImageError = (type: ImageType, event: SyntheticEvent<HTMLImageElement>) => {
+  event.currentTarget.onerror = null;
+  if (type === 'avatar') {
+    event.currentTarget.src = avatarPlaceholder;
+    event.currentTarget.srcset = avatarPlaceholder;
+  }
+  if (type === 'thumbnail') {
+    event.currentTarget.src = thumbnailPlaceholder;
+    event.currentTarget.srcset = thumbnailPlaceholder;
+  }
+  if (type === 'cover') {
+    event.currentTarget.src = coverPlaceholder;
+    event.currentTarget.srcset = coverPlaceholder;
+  }
+}
+
 // export const urlExist = (url: string) => {
 //   const [httpStatus, setHttpStatus] = useState<number>();
-//   console.log("url",url)
 //   useEffect(() => {
 //     const http = new XMLHttpRequest();
 //     http.open('HEAD', url, false);
 //     http.send();
 //     setHttpStatus(http.status);
 //   }, [url]);
-//   console.log("httpStatus",httpStatus)
 //   if (httpStatus != 404) {
 //     return true;
 //   } else {

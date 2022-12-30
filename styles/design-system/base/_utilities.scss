@@ -152,6 +152,14 @@
   }
 }
 
-.break-word {
-  word-break: break-word;
+@each $suffix in ('break-all', 'break-word') {
+  %text-#{$suffix},
+  .text-#{$suffix} {
+    word-break: #{$suffix};
+  }
+}
+
+%transition,
+.transition {
+  transition: all 0.3s ease-in-out;
 }

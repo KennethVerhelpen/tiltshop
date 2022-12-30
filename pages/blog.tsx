@@ -2,7 +2,6 @@ import { useContext } from 'react';
 
 import { getAllPosts } from '../lib/posts';
 import { PostType, TypeType } from "../lib/types";
-import { getFormatedDate, getReadingTime } from '../lib/utils';
 
 import { Page } from '../components';
 import { BlogView } from '../views';
@@ -38,21 +37,16 @@ export async function getStaticProps(){
 		'slug',
 		'author',
 		'content',
-		'coverImage'
+		'excerpt',
+		'outro'
 	]);
-
-	const allPostsFormated = allPosts?.map((post: PostType) => {
-		post['date'] = getFormatedDate(post.date);
-		post['time'] = getReadingTime([post.content]);
-		return post
-	})
 
 	const types =  await prisma.type.findMany();
 
   return {
     props: {
 			types,
-      posts: allPostsFormated,
+      posts: allPosts,
     }
   }
 }
