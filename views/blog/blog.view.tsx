@@ -59,7 +59,7 @@ export const BlogView = (props: BlogViewProps) => {
 				}
 			/>
 			<div className={'container-xl layout-align-center-center layout-column'}>
-				{posts && posts.length > 4
+				{posts && posts.length > 0
 					? <S.Grid className={'p-0 layout-column pb-128'}>
 							<div className={'layout-row layout-wrap layout-align-start-stretch'}>
 								{posts.map((post: PostType, index: number) => (

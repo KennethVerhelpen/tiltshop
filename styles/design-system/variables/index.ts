@@ -18,6 +18,8 @@ export const COLORS = {
   NEUTRAL_700: 'hsl(100, 0%, 25%)',
   NEUTRAL_800: 'hsl(100, 0%, 10%)',
   NEUTRAL_900: 'hsl(100, 0%, 0%)',
+
+  STAR: 'hsl(40, 95%, 55%)',
 };
 
 export const BREAKPOINTS = {

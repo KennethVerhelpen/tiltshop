@@ -68,8 +68,10 @@ export const Nav = (props: NavProps) => {
 						</li>
 						<li>
 							<button aria-label={'Switch theme'} className={'btn-reset layout-align-center-center layout-column cursor-pointer p-4'} onClick={switchTheme}>
-								{ theme === 'dark' ? <DarkModeTwoTone className={'text-primary-100'} style={{ fontSize: 20 }}/> :  
-								<LightModeTwoTone className={'text-primary-100'} style={{ fontSize: 20 }}/>}
+								{ theme === 'dark'
+									? <LightModeTwoTone className={'text-primary-100'} style={{ fontSize: 20 }}/>
+									: <DarkModeTwoTone className={'text-primary-100'} style={{ fontSize: 20 }}/>
+								}
 							</button>
 						</li>
 					</ul>

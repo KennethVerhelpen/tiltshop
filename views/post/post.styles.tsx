@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import { Star } from '@mui/icons-material';
 
-import { BREAKPOINTS, RADIUSES, TYPOGRAPHY } from '../../styles/design-system/variables';
+import { BREAKPOINTS, COLORS, RADIUSES, TYPOGRAPHY } from '../../styles/design-system/variables';
 import { Article as ImportedArticle } from '../../components';
 
 export const Title = styled.h1`
@@ -15,14 +16,15 @@ export const Title = styled.h1`
   }
 `
 
-export const AuthorImg = styled.img`
+export const AvatarImageWrapper = styled.div`
   width: 2.5rem;
   height: 2.5rem;
-  border-width: 0.125rem;
 `
 
 export const SideBlock = styled.div`
   top: 6rem;
+  min-width: 15rem;
+  max-width: 15rem;
 `
 
 export const PostContent = styled.div`
@@ -36,11 +38,23 @@ export const Article = styled(ImportedArticle)`
   top: 6rem;
 `
 
-export const ImageWrapper = styled.div`
+export const CoverImageWrapper = styled.div`
   height: 24rem;
 
   @media only screen and (min-width: ${BREAKPOINTS.xs}) {
    border-radius: ${RADIUSES.xl}; 
   }
+`
+
+export const IndexButton = styled.button`
+  color: ${COLORS.PRIMARY_500};
+
+  &:hover {
+    color: ${COLORS.PRIMARY_900};
+  }
+`
+
+export const StarRating = styled(Star)`
+  color: ${COLORS.STAR};
 `
 

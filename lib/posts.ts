@@ -1,42 +1,44 @@
 import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
+import { getFormatedDate, getReadingTime } from './utils'
+import markdownToHtml from './markdownToHtml'
 
-const postsDirectory = join(process.cwd(), '_posts')
+const postsDirectory = join(process.cwd(), '_posts');
 
-export function getPostSlugs() {
+export function getAllPosts(fields = []) {
   const files = fs.readdirSync(postsDirectory)
   if (files.length > 0) {
-    return files
+    const posts = files.map((file) => getPostBySlug(file, fields))
+    return posts
   } return [];
 }
 
-export function getPostBySlug(slug, fields = []) {
-  const realSlug = slug.replace(/\.md$/, '');
-  const fullPath = join(postsDirectory, `${realSlug}.md`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { data, content } = matter(fileContents);
+export function getPostBySlug(file, fields = []) {
+  const fileName = file.replace(/\.md$/, '');
+  const path = join(postsDirectory, `${fileName}.md`);
+  const fileContent = fs.readFileSync(path, 'utf8');
+  const { data, content } = matter(fileContent);
 
   const items = {}
 
   // Ensure only the minimal needed data is exposed
-  fields.forEach((field) => {
+  fields.forEach(async (field) => {
     if (field === 'slug') {
-      items[field] = realSlug
+      items[field] = fileName
     }
     if (field === 'content') {
-      items[field] = content
+      items[field] = await markdownToHtml(content || '')
+    }
+    if (field === 'date') {
+      data[field] = getFormatedDate(data[field]);
     }
     if (data[field]) {
       items[field] = data[field]
     }
   })
+  
+  items['time'] = getReadingTime([content, data['excerpt'], data['outro']]);
 
   return items
-}
-
-export function getAllPosts(fields = []) {
-  const slugs = getPostSlugs();
-  const posts = slugs.map((slug) => getPostBySlug(slug, fields))
-  return posts
 }

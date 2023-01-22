@@ -48,7 +48,7 @@ export const ArticleView = (props: ArticleViewProps) => {
       <div className={'layout-column layout-gt-xs-row pt-gt-sm-128 pt-32 pb-64'}>
         <section className={'flex-order-1 flex-order-gt-xs-0 flex p-16 p-gt-sm-32'}>
           <header className={'layout-column layout-align-start-start'}>
-            <S.Title ref={title} className={clsx({'text-primary-100' : theme === 'dark'}, 'break-word strong mb-32')} charCount={charCount}>{article.title}</S.Title>
+            <S.Title ref={title} className={clsx({'text-primary-100' : theme === 'dark'}, 'text-break-word strong mb-32')} charCount={charCount}>{article.title}</S.Title>
             <div className={'layout-row mb-32'}>
               <h2 className={clsx(theme === 'dark' ? 'bg-primary-700 text-primary-300' : 'bg-primary-300 text-primary-600', 'layout-row layout-align-center-center small text-capitalize p-8 rounded-sm mr-8')}>{topic.name}</h2>
               <h3 className={clsx(theme === 'dark' ? 'bg-primary-700 text-primary-300' : 'bg-primary-300 text-primary-600', 'layout-row layout-align-center-center small text-capitalize p-8 rounded-sm mr-8')}>{type.name}</h3>

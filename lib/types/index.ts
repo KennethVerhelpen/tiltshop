@@ -13,7 +13,7 @@ export type TopicType = {
   typeName?: string,
 	plainDescription?: string;
 	htmlDescription?: string;
-  _count: {
+  _count?: {
     articles: number;
   }
 }
@@ -55,16 +55,15 @@ export type PostType = {
   excerpt?: string;
   title: string;
   author: {
+    id: string;
     name?: string;
-    picture?: string;
     role?: string;
+    description?: string;
   },
 	content: string;
 	ogImage: {
     url: string;
   };
-  coverImageUnsplashId: string;
-	coverImageUnsplashUrl: string;
   date: string;
   time?: number;
   featuredArticles: FeaturedArticleType[];
@@ -85,3 +84,5 @@ export type FormDataType = {
 }
 
 export type ThemeType = 'dark' | 'light';
+
+export type ImageType = 'cover' | 'avatar' | 'thumbnail';

@@ -1,11 +1,8 @@
 import prisma from '../../lib/prisma';
-import markdownToHtml from '../../lib/markdownToHtml'
 import { getPostBySlug, getAllPosts } from '../../lib/posts';
-import { getFormatedDate, getReadingTime } from '../../lib/utils';
 import { PostType, ArticleType, TypeType, TopicType } from '../../lib/types';
 import { Page } from '../../components';
 import { PostView } from '../../views';
-import { unsplash } from '../api/unsplash';
 import { useContext } from 'react';
 import { ThemeContext } from '../_app';
 
@@ -44,8 +41,6 @@ export async function getStaticProps({
 		'articles',
 		'author',
 		'content',
-		'coverImageUnsplashId',
-		'coverImageUnsplashUrl',
 		'date',
 		'excerpt',
 		'featuredArticles',
@@ -57,22 +52,15 @@ export async function getStaticProps({
 		'typeSlug',
 	]) as PostType;
 
-	currentPost['content'] = await markdownToHtml(currentPost.content || '');
-	currentPost['date'] = getFormatedDate(currentPost.date);
-	currentPost['time'] = getReadingTime([currentPost.content, currentPost.excerpt, currentPost.outro]);
-	currentPost['coverImageUnsplashUrl'] = await (await unsplash.photos.get({
-		photoId: `${currentPost.coverImageUnsplashId}`
-	})).response.urls.full;
-
-	const currentArticlesSlugs: string[] = currentPost['featuredArticles']?.map(featuredArticle => (featuredArticle.slug));
-	const currentArticles = await prisma.article.findMany({
+	const currentArticlesSlugs: ArticleType['slug'][] = currentPost['featuredArticles']?.map(featuredArticle => (featuredArticle.slug));
+	const currentArticles: ArticleType[] = await prisma.article.findMany({
 		where : { 
-			slug: { in: currentArticlesSlugs }
+			slug: { in: currentArticlesSlugs } 
 		}
 	});
 
-	const currentTopicsId: number[] = currentArticles.map(article => article.topicId);
-	const currentTopics = await prisma.topic.findMany({
+	const currentTopicsId: TopicType['id'][] = currentArticles.map(article => article.topicId);
+	const currentTopics: TopicType[] = await prisma.topic.findMany({
 		where : {
 			id: {
 				in: currentTopicsId
@@ -80,8 +68,8 @@ export async function getStaticProps({
 		}
 	});
 
-	const currentTypesId: number[] = currentArticles.map(article => article.typeId);
-	const currentTypes = await prisma.type.findMany({
+	const currentTypesId: TypeType['id'][] = currentArticles.map(article => article.typeId);
+	const currentTypes: TypeType[] = await prisma.type.findMany({
 		where : {
 			id: {
 				in: currentTypesId
@@ -104,7 +92,6 @@ export async function getStaticProps({
 
 export async function getStaticPaths() {
 	const posts = getAllPosts(['slug']);
-	
 	const paths = posts.map((post: PostType) => {
 		return {	
 			params: {

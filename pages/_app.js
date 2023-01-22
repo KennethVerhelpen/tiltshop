@@ -20,13 +20,23 @@ export default function App({ Component, pageProps }) {
 		}
 	}
 
+	const handleTheme = (mode) => {
+		setTheme(mode);
+		localStorage.setItem('theme', JSON.stringify(mode));
+	}
+
 	useEffect(() => {
-		if (localStorage.getItem('theme') === null) {
-			localStorage.setItem('theme', JSON.stringify('dark'));
+		const darkColorScheme = window.matchMedia("(prefers-color-scheme: dark)");
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (mode) => handleTheme(mode.matches ? 'dark' : 'light'));
+		if (localStorage.getItem('theme') !== null) {
+			handleTheme(localStorage.getItem('theme').replace(/['"]+/g, ''));
 		} else {
-			setTheme(localStorage.getItem('theme').replace(/['"]+/g, ''));
+			handleTheme(darkColorScheme.matches ? 'dark' : 'light');
 		}
-	}, []);
+		return () => {
+			window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change');
+		}
+	}, [])
 
 	return (
 		<>
