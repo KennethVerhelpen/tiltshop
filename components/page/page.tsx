@@ -52,9 +52,9 @@ export const Page = (props: PageProps) => {
 	return (
 		<>
 			<Head>
+				<title>{headTitle}</title>
 				<meta charSet={'UTF-8'} />
 				<meta name={'viewport'} content={'initial-scale=1.0, width=device-width'} />
-				<title>{headTitle}</title>
 				<meta name={'keywords'} content={'Cinema, Movies, Tv shows, Video games'} />
 				<meta name={'description'} content={description} />
 				<meta property={'og:title'} content={title} />
@@ -63,9 +63,6 @@ export const Page = (props: PageProps) => {
 				<meta property={'og:url'} content={'http://tiltshop.co'} />
 				<meta name={'twitter:title'} content={description} />
 				<meta name={'twitter:card'} content={'summary_large_image'} />
-				<link rel={'icon'} href={'/favicons/favicon.ico'} />
-				<link rel={'preconnect'} href={'https://fonts.googleapis.com'}/>
-				<link rel={'preconnect'} href={'https://fonts.gstatic.com'} crossOrigin={'anonymous'}/>
 			</Head>
 			{nav ? <Nav types={types} history={history} menu={menu} activePage={activePage} switchTheme={switchTheme} theme={theme}/> : null}
 			<S.Main className={clsx(theme === 'dark' ? 'bg-primary-900' : 'bg-neutral-100', 'flex layout-column layout-align-start-center')}>

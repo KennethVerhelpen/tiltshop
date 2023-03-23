@@ -1,10 +1,17 @@
+// Sass
+
 @use 'sass:math';
 
+// Tailwind
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 // Fonts
-@import './fonts';
+// @import './fonts';
 
 // Design System
-@import './design-system/index';
+// @import './design-system/index';
 
 // Next overides
 @import './next';
