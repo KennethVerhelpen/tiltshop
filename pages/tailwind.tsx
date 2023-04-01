@@ -1,10 +1,11 @@
 import SelectUnstyled from '@mui/base/SelectUnstyled';
 import OptionUnstyled from '@mui/base/OptionUnstyled';
+import { ArrowForwardRounded } from '@mui/icons-material';
+import { Icon } from '@mui/material';
 
 const optionStyled = {
 	root: {
-		className:
-			'rounded-md hover:bg-gray-50 px-4 py-2 text-sm',
+		className: 'rounded-md hover:bg-gray-50 px-4 py-2 text-sm',
 	}
 }
 
@@ -37,10 +38,16 @@ export const Tailwind = () => {
 							'cursor-pointer',
 					},
 				}}>
-				<OptionUnstyled slotProps={optionStyled} value={10}>Ten</OptionUnstyled>
+				<OptionUnstyled slotProps={optionStyled} value={10}>
+					<span>Ten</span>
+				</OptionUnstyled>
 				<OptionUnstyled slotProps={optionStyled} value={20}>Twenty</OptionUnstyled>
 				<OptionUnstyled slotProps={optionStyled} value={30}>Thirty</OptionUnstyled>
 			</SelectUnstyled>
+			<Icon
+				baseClassName="text-sm"
+				className="text-sm arrow-forward-rounded"
+			/>
 		</div>
 	);
 };
