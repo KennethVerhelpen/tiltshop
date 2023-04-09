@@ -1,22 +1,24 @@
 export type TypeType = {
-	id: number,
-	slug?: string,
-	name?: string,
-}
+  id: number;
+  slug?: string;
+  name?: string;
+};
 
 export type TopicType = {
-	id?: number;
-	slug?: string
-	name?: string;
-	typeId?: number,
-  typeSlug?: string,
-  typeName?: string,
-	plainDescription?: string;
-	htmlDescription?: string;
+  id?: number;
+  slug?: string;
+  name?: string;
+  typeId?: number;
+  typeSlug?: string;
+  typeName?: string;
+  plainDescription?: string;
+  htmlDescription?: string;
   _count?: {
     articles: number;
-  }
-}
+  };
+};
+
+export type Size = "xs" | "sm" | "md" | "lg" | "xl";
 
 export type ArticleType = {
   id?: number;
@@ -39,7 +41,7 @@ export type ArticleType = {
   details?: string;
   likes?: number;
   summary?: string;
-}
+};
 
 export type FeaturedArticleType = {
   slug: string;
@@ -47,7 +49,7 @@ export type FeaturedArticleType = {
   summary?: string;
   benefits?: string[];
   flaws?: string[];
-}
+};
 
 export type PostType = {
   id?: number;
@@ -59,9 +61,9 @@ export type PostType = {
     name?: string;
     role?: string;
     description?: string;
-  },
-	content: string;
-	ogImage: {
+  };
+  content: string;
+  ogImage: {
     url: string;
   };
   date: string;
@@ -71,18 +73,18 @@ export type PostType = {
   typeSlug?: string;
   topicSlug?: string;
   outro?: string;
-}
+};
 
 export type SortingItemType = {
   value: string;
   label: string;
-}
+};
 
 export type FormDataType = {
-	state?: 'loading' | 'error' | 'success';
-	message?: string;
-}
+  state?: "loading" | "error" | "success";
+  message?: string;
+};
 
-export type ThemeType = 'dark' | 'light';
+export type ThemeType = "dark" | "light";
 
-export type ImageType = 'cover' | 'avatar' | 'thumbnail';
+export type ImageType = "cover" | "avatar" | "thumbnail";
