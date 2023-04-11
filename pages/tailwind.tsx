@@ -1,49 +1,36 @@
-import SelectUnstyled from "@mui/base/SelectUnstyled";
-import OptionUnstyled from "@mui/base/OptionUnstyled";
-import { Icon } from "@mui/material";
-import { Button } from "../components/button";
+// import SelectUnstyled from "@mui/base/SelectUnstyled";
+// import OptionUnstyled from "@mui/base/OptionUnstyled";
+import { Button, ButtonProps } from "../components/button";
+import { ArrowForwardRounded } from "@mui/icons-material";
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
+import clsx from "clsx";
 
-const optionStyled = {
-  root: {
-    className: "rounded-md hover:bg-gray-50 px-4 py-2 text-sm",
-  },
-};
+// const optionStyled = {
+//   root: {
+//     className: "rounded-md hover:bg-gray-50 px-4 py-2 text-sm",
+//   },
+// };
+
+const variants =  ['outlined', 'raised', 'soft', 'strong'];
+const sizes =  ['xs', 'sm', 'md', 'lg', 'xl'];
 
 export const Tailwind = () => {
   return (
-    <div className="h-screen w-screen flex place-items-center justify-center bg-zinc-50">
-      <Button
-        label={"Button"}
-        className="mr-2"
-        onClick={() => {
-          ("");
-        }}
-        size="xs"
-      />
-      <Button
-        label={"Button"}
-        className="mr-2"
-        onClick={() => {
-          ("");
-        }}
-        size="sm"
-      />
-      <Button
-        label={"Button"}
-        className="mr-2"
-        onClick={() => {
-          ("");
-        }}
-        size="md"
-      />
-      <Button
-        label={"Button"}
-        className="mr-2"
-        onClick={() => {
-          ("");
-        }}
-        size="lg"
-      />
+    <div className="flex flex-col h-screen w-screen place-items-center justify-center bg-zinc-50">
+      {variants.map((variant: ButtonProps['variant']) => (
+        <div className="flex-row flex p-2 place-items-center" key={variant}>
+          {sizes.map((size: ButtonProps['size']) => (
+            <Button
+              size={size}
+              key={size}
+              label={"Button"}
+              variant={variant}
+              className="mr-2"
+              trailingIcon={<ArrowRightIcon className="w-4 h-4"/>}
+            />
+          ))}
+        </div>
+      ))}
     </div>
     // <div className="h-screen w-screen flex place-items-center justify-center">
     //   <SelectUnstyled
