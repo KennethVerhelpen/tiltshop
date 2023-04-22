@@ -5,10 +5,29 @@ import { MovieTwoTone, TvTwoTone, SportsEsportsTwoTone, DevicesOtherTwoTone } fr
 
 import { TypeType } from '../../lib/types';
 import * as S from './menu.styles';
+import { ReactNode } from 'react';
 
 export type MenuProps= {
 	types: TypeType[],
 	activePage: TypeType['slug'],
+}
+
+const getTypeIcon = (type: TypeType): ReactNode => {
+	switch(type.slug) {
+		case 'movies': return <MovieTwoTone className={'m-8'} style={{ fontSize: 16 }}/>
+		case 'tv-shows': return <TvTwoTone className={'m-8'} style={{ fontSize: 16 }}/>
+		case 'video-games': return <SportsEsportsTwoTone className={'m-8'} style={{ fontSize: 16 }}/>
+		case 'electronics': return <DevicesOtherTwoTone className={'m-8'} style={{ fontSize: 16 }}/>
+	}
+}
+
+const getTypeName = (type: TypeType): string => {
+	switch(type.slug) {
+		case 'movies': return 'movies'
+		case 'tv-shows': return 'tv shows'
+		case 'video-games': return 'video games'
+		case 'electronics': return 'electronics'
+	}
 }
 
 export const Menu = (props: MenuProps) => {
@@ -33,24 +52,8 @@ export const Menu = (props: MenuProps) => {
 							<Link href={`/${type.slug}`} passHref>
 								<S.NavButton className={clsx(activePage === type.slug && 'active bold text-primary-100', 'text-primary-400 layout-column layout-align-start-stretch cursor-pointer')}>
 									<div className={'layout-row layout-align-center-center px-16 flex'}>
-										{(() => {
-											switch(type.slug) {
-												case 'movies': return <MovieTwoTone className={'m-8'} style={{ fontSize: 16 }}/>
-												case 'tv-shows': return <TvTwoTone className={'m-8'} style={{ fontSize: 16 }}/>
-												case 'video-games': return <SportsEsportsTwoTone className={'m-8'} style={{ fontSize: 16 }}/>
-												case 'electronics': return <DevicesOtherTwoTone className={'m-8'} style={{ fontSize: 16 }}/>
-											}
-										})()}
-										<span className={'text-capitalize text-truncate'}>
-											{(() => {
-												switch(type.slug) {
-													case 'movies': return 'movies'
-													case 'tv-shows': return 'tv shows'
-													case 'video-games': return 'video games'
-													case 'electronics': return 'electronics'
-												}
-											})()}
-										</span>
+										{getTypeIcon(type)}
+										<span className={'text-capitalize text-truncate'}>{getTypeName(type)}</span>
 									</div>
 								</S.NavButton>
 							</Link>

@@ -40,14 +40,6 @@ export default function App({ Component, pageProps }) {
 
 	return (
 		<>
-			<Global
-				styles={css`
-					html,
-					body {
-						background: ${theme === 'dark' ? COLORS.PRIMARY_900 : COLORS.NEUTRAL_100};
-					}
-				`}
-			/>
 			<ThemeContext.Provider value={{ switchTheme, theme }}>
 				<Component {...pageProps} />
 			</ThemeContext.Provider>
